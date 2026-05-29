@@ -1,0 +1,506 @@
+{
+  "meta": {
+    "izenburua": "Psikologiaren Lenteen Atlasa",
+    "azpititulua": "Gizakia ulertzeko moduen historia: arima, kontzientzia, portaera, inkontzientea, garuna, gizartea eta harremanak.",
+    "esaldiGakoa": "Lente bakarrarekin ez da nahikoa.",
+    "sarrera": "Psikologiaren historia ez da autore eta data zerrenda bat. Gizakia ulertzeko lenteen historia da: batzuek barnera begiratu dute, besteek portaerara, besteek garunera, besteek gizartera. Lente bakoitzak zerbait argitzen du, baina zerbait ilunpean uzten du."
+  },
+
+  "lenteak": [
+    { "id": "barnera", "izena": "Barnera begiratu", "ikonoa": "begia", "deskribapena": "Arima, kontzientzia, inkontzientea eta barne-esperientzia aztertzen dituzten eskolak." },
+    { "id": "portaerara", "izena": "Portaerara begiratu", "ikonoa": "portaera", "deskribapena": "Behagarria eta neurgarria den jokabidean zentratzen diren eskolak." },
+    { "id": "garunera", "izena": "Garunera begiratu", "ikonoa": "garuna", "deskribapena": "Prozesu psikologikoen oinarri biologikoa eta garunaren funtzioa aztertzen dutenak." },
+    { "id": "gizartera", "izena": "Gizartera begiratu", "ikonoa": "taldea", "deskribapena": "Taldeak, kultura eta egoera sozialak gugan duten eragina aztertzen dutenak." },
+    { "id": "harremanetara", "izena": "Harremanetara begiratu", "ikonoa": "lotura", "deskribapena": "Pertsonen arteko harremanetan eta elkarreraginean zentratzen direnak." },
+    { "id": "zentzura", "izena": "Zentzura eta hazkundera begiratu", "ikonoa": "bihotza", "deskribapena": "Pertsonaren hazkundea, ongizatea eta bizitzaren zentzua aztertzen dutenak." }
+  ],
+
+  "galderaHandiak": [
+    {
+      "id": "g1",
+      "ikonoa": "begia",
+      "galdera": "Zer da gizakia: arima, gorputza, portaera, adimena ala harremana?",
+      "azalpena": "Galdera honek psikologiaren historia osoa zeharkatzen du. Eskola bakoitzak erantzun bat eman dio, eta erantzun horrek erabakitzen du gero zer aztertu eta nola."
+    },
+    {
+      "id": "g2",
+      "ikonoa": "lente",
+      "galdera": "Zer aztertu behar du psikologiak: kontzientzia, jokabidea, inkontzientea, garuna ala testuingurua?",
+      "azalpena": "Psikologia zientzia izateko, bere aztergaia mugatu behar zuen. Baina mugatzeak beti zerbait kanpoan uztea esan nahi du."
+    },
+    {
+      "id": "g3",
+      "ikonoa": "askatasuna",
+      "galdera": "Gizakia libreagoa da ala baldintzatuagoa?",
+      "azalpena": "Erabakitzen al dugu, edo iragana, garuna eta ingurua dira erabakitzen dutenak? Eztabaida hau psikologiaren bihotzean dago oraindik."
+    },
+    {
+      "id": "g4",
+      "ikonoa": "garuna",
+      "galdera": "Burmuinak azaltzen al du dena?",
+      "azalpena": "Neurozientziak asko argitu du. Baina gizakia garunera bakarrik murrizteak zerbait galarazten al du?"
+    },
+    {
+      "id": "g5",
+      "ikonoa": "taldea",
+      "galdera": "Gizarteak eta taldeak zenbateraino moldatzen gaituzte?",
+      "azalpena": "Uste dugu gure erabakiak geureak direla. Baina besteen presentziak, taldeak eta kulturak uste duguna baino gehiago eragiten digute."
+    }
+  ],
+
+  "kronologia": [
+    {
+      "id": "k01", "garaia": "Antzinaroa", "data": "K.a. IV. mendea", "blokea": "filosofia",
+      "mugarria": "Arimari buruzko lehen teoria sistematikoak",
+      "autoreak": ["Platon", "Aristoteles"],
+      "galdera": "Zer da arima eta nola lotzen da gorputzarekin?",
+      "ekarpena": "Platonek arima eta gorputza bereizi zituen; Aristotelesek arima gorputzaren \"forma\" gisa ulertu zuen, eta pertzepzioaz, oroimenaz eta grinez idatzi zuen.",
+      "muga": "Behaketa sistematikorik gabeko espekulazio filosofikoa zen.",
+      "gaurEgun": "Psikologiaren galdera nagusiak hortik datoz; gorputza eta gogamena lotzeko auzia bizirik dago."
+    },
+    {
+      "id": "k02", "garaia": "Erdi Aroa", "data": "IV.–XIII. mendeak", "blokea": "filosofia",
+      "mugarria": "Arimaren teologia eta barne-esperientzia",
+      "autoreak": ["Agustin Hiponakoa", "Tomas Akinokoa"],
+      "galdera": "Nola ezagutzen du gizakiak bere burua eta Jainkoa?",
+      "ekarpena": "Agustinek introspekzioa eta barne-esperientzia jarri zituen erdigunean; Tomasek Aristoteles eta kristautasuna uztartu zituen.",
+      "muga": "Pentsamendua marko erlijiosoaren mende zegoen; ez zen zientzia independentea.",
+      "gaurEgun": "Introspekzioaren eta nork bere burua aztertzearen ideia oraindik garrantzitsua da."
+    },
+    {
+      "id": "k03", "garaia": "XVII. mendea", "data": "1637 ingurua", "blokea": "filosofia",
+      "mugarria": "Dualismoa: gogamena eta gorputza",
+      "autoreak": ["René Descartes"],
+      "galdera": "Bi gauza al gara, gorputza eta gogoa?",
+      "ekarpena": "Descartesek gogamena aztergai sistematiko bihurtu zuen: \"pentsatzen dut, beraz banaiz\". Gorputza makina gisa ulertu zuen.",
+      "muga": "Gogamena eta gorputza bi substantzia bereizi gisa ikusteak nola elkartzen diren azaltzeko arazoa sortu zuen.",
+      "gaurEgun": "Dualismoa baztertuta dago zientzian, baina gure hizkeran bizirik dirau."
+    },
+    {
+      "id": "k04", "garaia": "XVIII.–XIX. mendeak", "data": "1650–1860", "blokea": "filosofia",
+      "mugarria": "Enpirismoa, arrazionalismoa eta psikofisika",
+      "autoreak": ["John Locke", "David Hume", "Gustav Fechner", "Ernst Weber"],
+      "galdera": "Nondik dator ezagutza, eta neur al daiteke esperientzia?",
+      "ekarpena": "Enpiristek esperientziatik zetorrela esan zuten (\"tabula rasa\"); psikofisikak lehen aldiz esperientzia subjektiboa neurtu zuen legez (Weber-Fechner).",
+      "muga": "Psikofisika sentsazio sinpleetara mugatzen zen; ez zuen pentsamendu konplexua jorratzen.",
+      "gaurEgun": "Pertzepzioaren ikerketaren eta neurketa psikologikoaren oinarrian dago."
+    },
+    {
+      "id": "k05", "garaia": "1879", "data": "1879", "blokea": "estruktura",
+      "mugarria": "Leipzigeko laborategia — psikologia zientzia bihurtzen da",
+      "autoreak": ["Wilhelm Wundt"],
+      "galdera": "Zerez osatuta dago kontzientzia?",
+      "ekarpena": "Wundtek lehen laborategi psikologikoa ireki zuen Leipzigen. Psikologia filosofiatik banandu eta zientzia esperimental bihurtu zen.",
+      "muga": "Introspekzio kontrolatua subjektiboegia zen emaitza fidagarriak emateko.",
+      "gaurEgun": "1879 psikologia zientifikoaren sorrera-data da; metodoa bera gainditu da."
+    },
+    {
+      "id": "k06", "garaia": "XIX. amaiera", "data": "1890 ingurua", "blokea": "estruktura",
+      "mugarria": "Funtzionalismoa AEBetan",
+      "autoreak": ["William James", "John Dewey"],
+      "galdera": "Zertarako balio du gogamenak?",
+      "ekarpena": "Jamesek galdera aldatu zuen: ez \"zerez osatuta dago\" baizik eta \"zertarako balio du\". Eboluzioaren ideia ekarri zuen psikologiara.",
+      "muga": "Funtzioak zehaztea zaila zen; teoria lausoegia geratu zen.",
+      "gaurEgun": "Psikologia aplikatuaren eta ikuspegi adaptatiboaren oinarrian dago."
+    },
+    {
+      "id": "k07", "garaia": "XX. hasiera", "data": "1900–1930", "blokea": "estruktura",
+      "mugarria": "Psikoanalisia",
+      "autoreak": ["Sigmund Freud", "Carl Jung", "Alfred Adler"],
+      "galdera": "Zenbat erabakitzen du guregan ez dakigun horrek?",
+      "ekarpena": "Freudek inkontzientea jarri zuen erdigunean: gure jokabide askok arrazoi ezkutuak dituztela proposatu zuen. Eragin kultural izugarria.",
+      "muga": "Bere proposamen asko ezin dira zientifikoki frogatu; sexualitateari emandako pisua gehiegizkoa.",
+      "gaurEgun": "Eragin kulturala handia da; psikoterapia batzuetan bizirik, baina ez psikologia zientifikoaren oinarri."
+    },
+    {
+      "id": "k08", "garaia": "1910–1950", "data": "1913–1950", "blokea": "estruktura",
+      "mugarria": "Konduktismoa",
+      "autoreak": ["John B. Watson", "Ivan Pavlov", "B. F. Skinner"],
+      "galdera": "Kontzientzia ezin bada neurtu, zer azter dezakegu objektiboki?",
+      "ekarpena": "Behagarria den portaera bakarrik aztertzea proposatu zuen. Psikologia zientzia objektibo bihurtu zuen eta ikaskuntzaren legeak aurkitu zituen.",
+      "muga": "Barne-mundua (pentsamendua, emozioak) \"kutxa beltz\" gisa baztertu zuen.",
+      "gaurEgun": "Ikaskuntzaren printzipioak baliozkoak dira oraindik, baina barne-mundua ezin da baztertu."
+    },
+    {
+      "id": "k09", "garaia": "1910–1940", "data": "1912–1940", "blokea": "estruktura",
+      "mugarria": "Gestalt",
+      "autoreak": ["Max Wertheimer", "Wolfgang Köhler", "Kurt Koffka"],
+      "galdera": "Zergatik hautematen dugu osotasuna, eta ez zatiak?",
+      "ekarpena": "Pertzepzioak egitura aktiboa duela erakutsi zuen: \"osotasuna zatien batura baino gehiago da\". Antolaketa-legeak deskribatu zituen.",
+      "muga": "Batez ere pertzepzioan zentratu zen; zaila zen prozesu konplexuagoetara hedatzea.",
+      "gaurEgun": "Pertzepzioaren psikologian eta diseinuan oinarrizkoa; kognitibismoaren aurrekaria."
+    },
+    {
+      "id": "k10", "garaia": "1940–1960", "data": "1943–1961", "blokea": "estruktura",
+      "mugarria": "Humanismoa — \"hirugarren indarra\"",
+      "autoreak": ["Abraham Maslow", "Carl Rogers"],
+      "galdera": "Zer behar du pertsona batek hazteko eta zentzua aurkitzeko?",
+      "ekarpena": "Determinismoaren aurrean (psikoanalisia eta konduktismoa), pertsonaren askatasuna, potentziala eta hazkundea azpimarratu zituen.",
+      "muga": "Batzuetan gizakia gehiegi idealizatzen du; froga zientifiko gutxi.",
+      "gaurEgun": "Terapian eta hezkuntzan eragin handia; baina ez beti modu zientifikoan baliozkotua."
+    },
+    {
+      "id": "k11", "garaia": "1950–1970", "data": "1956–1970", "blokea": "estruktura",
+      "mugarria": "Iraultza kognitiboa",
+      "autoreak": ["Ulric Neisser", "George Miller", "Noam Chomsky"],
+      "galdera": "Zer gertatzen da estimuluaren eta erantzunaren artean, buruan?",
+      "ekarpena": "Barne-mundua berriz ekarri zuen zientziara, baina modu neurgarrian: gogamena informazio-prozesadore gisa (ordenagailuaren metafora).",
+      "muga": "Gogamena ordenagailu gisa ulertzeak emozioa, gorputza eta testuingurua ahaztu ditzake.",
+      "gaurEgun": "Psikologia nagusiaren oinarria da; neurozientziarekin lotuta dago."
+    },
+    {
+      "id": "k12", "garaia": "1950–1980", "data": "1951–1980", "blokea": "sozial",
+      "mugarria": "Psikologia soziala eta ikaskuntza soziala",
+      "autoreak": ["Solomon Asch", "Stanley Milgram", "Albert Bandura"],
+      "galdera": "Zenbateraino moldatzen gaituzte besteek eta taldeak?",
+      "ekarpena": "Erakutsi zuen jokabidea ezin dela testuingurutik kanpo ulertu (konformismoa, obedientzia) eta besteei begira ikasten dugula (Bandura).",
+      "muga": "Esperimentu klasiko batzuen baliozkotasuna eta etika eztabaidatuak dira.",
+      "gaurEgun": "Funtsezkoa aurreiritziak, polarizazioa eta talde-dinamikak ulertzeko."
+    },
+    {
+      "id": "k13", "garaia": "1970–1990", "data": "1970–1990", "blokea": "sozial",
+      "mugarria": "Neuropsikologia eta neurozientzia",
+      "autoreak": ["Roger Sperry", "Brenda Milner", "Antonio Damasio"],
+      "galdera": "Nola lotzen dira garuna eta jokabidea?",
+      "ekarpena": "Prozesu psikologikoen oinarri biologikoa argitu zuen; lesioek (Gage, H.M.) eta neuroirudiak garunaren eta jokabidearen lotura erakutsi zuten.",
+      "muga": "\"Garunak dena azaltzen du\" ideia murriztailea da; pertsona ezin da garunera bakarrik murriztu.",
+      "gaurEgun": "Oso indartsua eta ezinbestekoa, baina beste lenteekin osatu behar da."
+    },
+    {
+      "id": "k14", "garaia": "1980–gaur", "data": "1980–", "blokea": "sozial",
+      "mugarria": "Ikuspegi kognitibo-konduktuala",
+      "autoreak": ["Aaron Beck", "Albert Ellis"],
+      "galdera": "Nola lot ditzakegu pentsamenduak eta jokabidea aldaketa lortzeko?",
+      "ekarpena": "Konduktismoa eta kognitibismoa bat egin zituen terapia eraginkor eta froga zientifikoz hornitu batean (TCC).",
+      "muga": "Batzuetan azalekoegitzat jotzen da: sintometan zentratzea, arrazoi sakonagoak alde batera utzita.",
+      "gaurEgun": "Froga gehien duen psikoterapia-ereduetako bat."
+    },
+    {
+      "id": "k15", "garaia": "1990–gaur", "data": "1998–", "blokea": "positibo",
+      "mugarria": "Psikologia positiboa",
+      "autoreak": ["Martin Seligman", "Mihály Csíkszentmihályi"],
+      "galdera": "Zerk egiten gaitu zoriontsu eta zerk ematen dio zentzua bizitzari?",
+      "ekarpena": "Psikologia \"gaixotasunetik\" \"ongizatera\" zabaldu zuen, eta ongizatea modu enpirikoan ikertu zuen.",
+      "muga": "Bere bertsio naif eta komertzialak (\"pentsamendu positiboa\" guztirako) kritikagarriak dira.",
+      "gaurEgun": "Ikerketa-ildo baliozkoa, baina pop-bertsioetatik bereizi behar da."
+    },
+    {
+      "id": "k16", "garaia": "2000–gaur", "data": "2000–", "blokea": "positibo",
+      "mugarria": "Ikuspegi integratzaile garaikideak",
+      "autoreak": ["Eredu bio-psiko-soziala"],
+      "galdera": "Zergatik ez da nahikoa lente bakarra gizakia ulertzeko?",
+      "ekarpena": "Eskola desberdinen ekarpenak biltzen ditu: faktore biologiko, psikologiko eta sozialak elkarrekin aztertzen ditu.",
+      "muga": "Arriskua: dena nahastea edo ezer sakon ez aztertzea; integrazioak diziplina handia eskatzen du.",
+      "gaurEgun": "Psikologia garaikidearen ikuspegi nagusia da."
+    }
+  ],
+
+  "eskolak": [
+    {
+      "id": "filosofia", "izena": "Filosofia psikologikoa", "garaia": "Antzinaroa – Erdi Aroa", "blokea": "filosofia",
+      "lenteak": ["barnera"],
+      "galdera": "Zer da arima? Nola lotzen dira gorputza eta pentsamendua?",
+      "zerAztertzen": "Izaeraren, ezagutzaren, oroimenaren eta grinen inguruko galdera filosofikoak.",
+      "autoreak": ["Platon", "Aristoteles", "Agustin Hiponakoa", "Tomas Akinokoa"],
+      "adibidea": "Aristotelesentzat oroimena \"argizarian utzitako zigilua\" bezalakoa zen: irudia gordetzen duen aztarna.",
+      "ekarpena": "Psikologiaren galdera nagusiak mahai gainean jarri zituen, metodo zientifikorik gabe ere.",
+      "sinplifikazioa": "Espekulazioan oinarritzen zen, ez behaketa sistematikoan; arima sarritan gorputzetik bereizita ulertzen zen.",
+      "gaurEgun": "Psikologiaren galderak hortik datoz; filosofiaren eta zientziaren arteko muga bizirik dago (kontzientziaren auzia).",
+      "esaldia": "Zientzia baino lehen, galdera zegoen.",
+      "klaseGaldera": "Zure ustez, zientziak galdera filosofiko guztiak ordezka ditzake, ala beti geratuko da zerbait erantzun gabe?"
+    },
+    {
+      "id": "dualismoa", "izena": "Dualismoa", "garaia": "XVII. mendea", "blokea": "filosofia",
+      "lenteak": ["barnera"],
+      "galdera": "Bi gauza al gara, gorputza eta gogoa? Nola eragiten diote elkarri?",
+      "zerAztertzen": "Gogamen-gorputz harremana, arrazoia eta zalantza metodikoa.",
+      "autoreak": ["René Descartes"],
+      "adibidea": "Descartesentzat gorputza erloju baten antzeko makina zen; gogamena, berriz, beste substantzia bat.",
+      "ekarpena": "Gogamena modu sistematikoan aztergai bihurtu zuen: \"pentsatzen dut, beraz banaiz\".",
+      "sinplifikazioa": "Gogamena eta gorputza bi substantzia bereizi gisa ikusteak arazo konponezina sortu zuen: nola elkartzen dira?",
+      "gaurEgun": "Zientzian baztertuta dago, baina sen onean bizirik dirau (\"nire gorputza\" vs \"ni\").",
+      "esaldia": "Banaketa erraza da; lotura da zaila.",
+      "klaseGaldera": "\"Nire gorputzak huts egin dit\" esaten dugunean, dualista ari al gara hizketan?"
+    },
+    {
+      "id": "psikofisika", "izena": "Psikofisika", "garaia": "XIX. mendea", "blokea": "estruktura",
+      "lenteak": ["garunera"],
+      "galdera": "Neur al daiteke esperientzia subjektiboa?",
+      "zerAztertzen": "Estimulu fisikoaren eta sentsazio psikologikoaren arteko erlazioa (atalaseak).",
+      "autoreak": ["Gustav Fechner", "Ernst Weber"],
+      "adibidea": "Esku batean 100 g eta bestean 105 g jartzen badizkizute, ez duzu aldea sumatzen; baina 100 eta 110 artean bai. Sentsazioak bere legeak ditu.",
+      "ekarpena": "Lehen aldiz psikologia neurketara eta esperimentaziora hurbildu zuen (Weber-Fechner legea).",
+      "sinplifikazioa": "Sentsazio sinpleetara mugatzen zen; ez zuen esanahia edo pentsamendu konplexua neurtzen.",
+      "gaurEgun": "Pertzepzioaren ikerketaren eta metodo psikofisikoaren oinarrian dago.",
+      "esaldia": "Barne-munduak ere bere legeak ditu.",
+      "klaseGaldera": "Zergatik da garrantzitsua zerbait neur daitekeela frogatzea zientzia izan dadin?"
+    },
+    {
+      "id": "estrukturalismoa", "izena": "Estrukturalismoa", "garaia": "1879–1900", "blokea": "estruktura",
+      "lenteak": ["barnera"],
+      "galdera": "Zerez osatuta dago kontzientzia?",
+      "zerAztertzen": "Kontzientziaren oinarrizko elementuak, introspekzio kontrolatuaren bidez.",
+      "autoreak": ["Wilhelm Wundt", "Edward Titchener"],
+      "adibidea": "Sagar bat ikustean, ikaslea introspekzioz saiatzen zen esperientzia \"piezatan\" deskribatzen: kolorea, forma, distira, usaina.",
+      "ekarpena": "1879an Wundtek Leipzigen lehen laborategi psikologikoa ireki zuen: psikologia diziplina zientifiko independente bihurtu zen.",
+      "sinplifikazioa": "Introspekzioa ez zen fidagarria (subjektiboegia); kontzientzia \"piezatan\" banatzeak osotasuna galarazten zuen.",
+      "gaurEgun": "Wundten laborategia psikologiaren sorrera-data da; metodoa bera gainditu da.",
+      "esaldia": "Hemen jaio zen psikologia laborategi gisa.",
+      "klaseGaldera": "Fidatzekoa al da norberak bere buruaz dioena datu zientifiko gisa?"
+    },
+    {
+      "id": "funtzionalismoa", "izena": "Funtzionalismoa", "garaia": "XIX. amaiera – XX. hasiera", "blokea": "estruktura",
+      "lenteak": ["barnera", "portaerara"],
+      "galdera": "Zertarako balio du gogamenak eta kontzientziak?",
+      "zerAztertzen": "Gogamenaren funtzioak ingurura egokitzeko (ez egitura, baizik eta zertarako).",
+      "autoreak": ["William James", "John Dewey"],
+      "adibidea": "Zergatik dugu beldurra? Funtzionalistentzat, arriskutik babesteko balio digulako; emozioak funtzio bat du.",
+      "ekarpena": "Galdera \"zerez osatuta\" izatetik \"zertarako balio duen\" izatera aldatu zuen; eboluzioa ekarri zuen psikologiara.",
+      "sinplifikazioa": "Funtzioak zehaztea zaila zen; teoria gisa lausoegia geratu zen.",
+      "gaurEgun": "Psikologia aplikatuaren eta ikuspegi adaptatiboaren oinarrian dago.",
+      "esaldia": "Galdera ona aldatzeak dena aldatzen du.",
+      "klaseGaldera": "Zure emozio bat aukeratu eta galdetu: zertarako balio izan ahal dio gizakiari eboluzioan?"
+    },
+    {
+      "id": "psikoanalisia", "izena": "Psikoanalisia", "garaia": "XX. hasiera", "blokea": "estruktura",
+      "lenteak": ["barnera"],
+      "galdera": "Zenbat erabakitzen du guregan ez dakigun horrek?",
+      "zerAztertzen": "Inkontzientea, grinak, haur-garaiko esperientziak eta defentsa-mekanismoak.",
+      "autoreak": ["Sigmund Freud", "Carl Jung", "Alfred Adler"],
+      "adibidea": "Ahozko hutsegite bat (lapsus), amets bat edo zerbait \"ahaztea\": Freudentzat inkontzienteak hitz egiten du horietan.",
+      "ekarpena": "Inkontzientea erdigunean jarri zuen; jokabide askok arrazoi ezkutuak izan ditzaketela erakutsi zuen. Eragin kultural izugarria.",
+      "sinplifikazioa": "Bere proposamen asko ezin dira zientifikoki frogatu (ez dira faltsagarriak); haurtzaroari eta sexualitateari emandako pisua gehiegizkoa.",
+      "gaurEgun": "Eragin kulturala handia da; psikoterapia batzuetan bizirik, baina ez psikologia zientifiko nagusiaren oinarria.",
+      "esaldia": "Beti ez dakigu zergatik egiten dugun egiten duguna.",
+      "klaseGaldera": "Teoria bat ezin bada inola ere gezurtatu, zientzia al da oraindik?"
+    },
+    {
+      "id": "konduktismoa", "izena": "Konduktismoa", "garaia": "1910–1950", "blokea": "estruktura",
+      "lenteak": ["portaerara"],
+      "galdera": "Kontzientzia ezin bada neurtu, zer azter dezakegu objektiboki?",
+      "zerAztertzen": "Behagarria den portaera; estimulu eta erantzunen arteko loturak; kondizionamendua.",
+      "autoreak": ["John B. Watson", "Ivan Pavlov", "B. F. Skinner"],
+      "adibidea": "Pavloven txakurra: kanpai-hotsarekin lerdea jariatzen ikasi zuen, jana iristearekin lotu ostean.",
+      "ekarpena": "Psikologia zientzia objektibo bihurtu zuen (neurgarria); ikaskuntzaren legeak aurkitu zituen; aplikazio praktiko handiak.",
+      "sinplifikazioa": "Barne-mundua \"kutxa beltz\" gisa baztertu zuen; gizakia animalia-eredu hutsetik ulertzeko arriskua.",
+      "gaurEgun": "Ikaskuntzaren printzipioak baliozkoak dira oraindik (terapia, hezkuntza); baina barne-mundua ezin da baztertu.",
+      "esaldia": "Ikus dezakeguna neur dezakegu; baina dena al da ikusgai?",
+      "klaseGaldera": "Zure ohitura bat aukeratu: zer estimuluk eragiten du eta zer sarik mantentzen?"
+    },
+    {
+      "id": "gestalt", "izena": "Gestalt", "garaia": "1910–1940", "blokea": "estruktura",
+      "lenteak": ["barnera"],
+      "galdera": "Zergatik hautematen dugu osotasuna, eta ez zatiak?",
+      "zerAztertzen": "Pertzepzioa eta antolaketa: nola eraikitzen dugu esanahia banakako estimuluetatik.",
+      "autoreak": ["Max Wertheimer", "Wolfgang Köhler", "Kurt Koffka"],
+      "adibidea": "Irudi anbiguoetan (kopa bat ala bi aurpegi?) gauza bera ikus dezakegu modu bietara: begiak ez du dena erabakitzen, garunak antolatzen du.",
+      "ekarpena": "Pertzepzioak egitura aktiboa duela erakutsi zuen; antolaketa-legeak deskribatu zituen (hurbiltasuna, antzekotasuna, itxiera).",
+      "sinplifikazioa": "Batez ere pertzepzioan zentratu zen; zaila zen printzipioak prozesu konplexuagoetara hedatzea.",
+      "gaurEgun": "Pertzepzioaren psikologian eta diseinuan oinarrizkoa; kognitibismoaren aurrekaria.",
+      "esaldia": "Osotasuna zatien batura baino gehiago da.",
+      "klaseGaldera": "Bilatu adibide bat non begiek gauza bat ikusten duten baina garunak beste bat \"erabakitzen\" duen."
+    },
+    {
+      "id": "humanismoa", "izena": "Humanismoa", "garaia": "1940–1960", "blokea": "estruktura",
+      "lenteak": ["zentzura", "barnera"],
+      "galdera": "Zer behar du pertsona batek hazteko eta zentzua aurkitzeko?",
+      "zerAztertzen": "Pertsona osoa, askatasuna, hazkundea, autorrealizazioa eta esperientzia subjektiboa.",
+      "autoreak": ["Abraham Maslow", "Carl Rogers"],
+      "adibidea": "Rogersen terapian, terapeutak ez du esaten zer egin behar duzun; baldintzarik gabeko onarpena eskaintzen du pertsonak bere bidea aurki dezan.",
+      "ekarpena": "Determinismoaren aurrean (psikoanalisia eta konduktismoa), pertsonaren askatasuna eta potentziala azpimarratu zituen (\"hirugarren indarra\").",
+      "sinplifikazioa": "Batzuetan gehiegi idealizatzen du gizakia; froga zientifiko gutxi; kultura indibidualistaren isla izan daiteke.",
+      "gaurEgun": "Terapian eta hezkuntzan eragin handia; baina ez beti modu zientifikoan baliozkotua.",
+      "esaldia": "Pertsona ez da soilik bere iragana edo bere estimuluak.",
+      "klaseGaldera": "Beti hazteko gai garela pentsatzeak min egin diezaioke norbaiti? Noiz?"
+    },
+    {
+      "id": "kognitibismoa", "izena": "Kognitibismoa", "garaia": "1950–1970", "blokea": "estruktura",
+      "lenteak": ["barnera"],
+      "galdera": "Zer gertatzen da estimuluaren eta erantzunaren artean, buruan?",
+      "zerAztertzen": "Barne-prozesuak: arreta, oroimena, hizkuntza, arazoen ebazpena, informazioaren prozesamendua.",
+      "autoreak": ["Ulric Neisser", "George Miller", "Noam Chomsky"],
+      "adibidea": "Cocktail party efektua: festa zaratatsu batean, zure izena entzuten duzu beste solasaldi batean. Arretak informazioa iragazten du.",
+      "ekarpena": "Barne-mundua berriz ekarri zuen zientziara, baina modu neurgarrian: gogamena informazio-prozesadore gisa (ordenagailuaren metafora).",
+      "sinplifikazioa": "Gogamena ordenagailu gisa ulertzeak emozioa, gorputza eta testuingurua ahaztu ditzake.",
+      "gaurEgun": "Psikologia nagusiaren oinarria; neurozientziarekin lotuta (neurozientzia kognitiboa).",
+      "esaldia": "Kutxa beltza ireki zen berriro.",
+      "klaseGaldera": "Gogamena ordenagailu bat al da benetan? Zertan huts egiten du metafora horrek?"
+    },
+    {
+      "id": "ikaskuntza-soziala", "izena": "Ikaskuntza soziala", "garaia": "1960–1980", "blokea": "sozial",
+      "lenteak": ["portaerara", "gizartera"],
+      "galdera": "Beste batzuei begira ere ikasten al dugu, zuzeneko saririk gabe?",
+      "zerAztertzen": "Behaketa bidezko ikaskuntza, imitazioa, modeloak eta autoeraginkortasuna.",
+      "autoreak": ["Albert Bandura"],
+      "adibidea": "Bobo panpinaren esperimentua: heldu bat oldarkor ikusi zuten haurrek panpinarekin jokabide bera errepikatu zuten.",
+      "ekarpena": "Konduktismoa eta kognitibismoa lotu zituen: ikaskuntza soziala da, eta barne-prozesuek (arreta, itxaropenak) eragiten dute.",
+      "sinplifikazioa": "Faktore biologiko eta emozional batzuk bigarren mailan utz ditzake.",
+      "gaurEgun": "Hezkuntzan, komunikabideen eraginean eta jokabide-aldaketan oinarrizkoa.",
+      "esaldia": "Besteei begira ikasten dugu nor garen.",
+      "klaseGaldera": "Zein jokabide ikasi duzu inork irakatsi gabe, besteak ikusi besterik gabe?"
+    },
+    {
+      "id": "psikologia-soziala", "izena": "Psikologia soziala", "garaia": "1950–1970", "blokea": "sozial",
+      "lenteak": ["gizartera", "harremanetara"],
+      "galdera": "Zenbateraino moldatzen gaitu besteen presentziak eta taldeak?",
+      "zerAztertzen": "Konformismoa, obedientzia, aurreiritziak, talde-identitatea eta jarrerak.",
+      "autoreak": ["Solomon Asch", "Stanley Milgram", "Leon Festinger", "Henri Tajfel"],
+      "adibidea": "Aschen esperimentuan, jendeak erantzun argi-oker bat ematen zuen, besteek hala egiten zutela ikusteagatik bakarrik.",
+      "ekarpena": "Erakutsi zuen jokabidea ezin dela testuingurutik kanpo ulertu; egoerak indibiduoa baino gehiago azal dezake batzuetan.",
+      "sinplifikazioa": "Esperimentu klasiko batzuen baliozkotasuna eta etika eztabaidatuak dira (Milgram, presondegiaren simulazioa).",
+      "gaurEgun": "Funtsezkoa aurreiritziak, polarizazioa eta talde-dinamikak ulertzeko.",
+      "esaldia": "Egoerak uste duguna baino gehiago azaltzen du.",
+      "klaseGaldera": "Noiz aldatu duzu zure iritzia taldearekin bat etortzeagatik, benetan sinetsi gabe?"
+    },
+    {
+      "id": "neurozientzia", "izena": "Neuropsikologia eta neurozientzia", "garaia": "1970–1990", "blokea": "sozial",
+      "lenteak": ["garunera"],
+      "galdera": "Nola lotzen dira garuna eta jokabidea?",
+      "zerAztertzen": "Garunaren egitura eta funtzioa, lesioen ondorioak eta neuroirudia.",
+      "autoreak": ["Roger Sperry", "Brenda Milner", "Antonio Damasio"],
+      "adibidea": "Phineas Gage: burdina batek garuna zeharkatu zion eta bizirik atera zen, baina haren nortasuna erabat aldatu zen.",
+      "ekarpena": "Prozesu psikologikoen oinarri biologikoa argitu zuen; garunaren eta jokabidearen arteko lotura zuzena erakutsi zuen.",
+      "sinplifikazioa": "\"Garunak dena azaltzen du\" ideia murriztailea da (neuro-determinismoa, neuromitoak); pertsona ezin da garunera bakarrik murriztu.",
+      "gaurEgun": "Oso indartsua eta ezinbestekoa, baina beste lenteekin osatu behar da.",
+      "esaldia": "Garuna gabe ez dago gogamenik; baina gogamena ez da garuna bakarrik.",
+      "klaseGaldera": "\"Nire garunak hala erabaki du\" esateak aldatzen al du \"nik hala erabaki dut\" esatea?"
+    },
+    {
+      "id": "kognitibo-konduktuala", "izena": "Psikologia kognitibo-konduktuala", "garaia": "1980–gaur", "blokea": "sozial",
+      "lenteak": ["barnera", "portaerara"],
+      "galdera": "Nola lot ditzakegu pentsamenduak eta jokabidea aldaketa lortzeko?",
+      "zerAztertzen": "Pentsamendu, emozio eta jokabidearen arteko lotura; eredu disfuntzionalak aldatzea.",
+      "autoreak": ["Aaron Beck", "Albert Ellis"],
+      "adibidea": "\"Dena gaizki egiten dut\" pentsamendu automatikoa identifikatu, eta froga errealekin erronkatzen ikastea.",
+      "ekarpena": "Konduktismoaren eta kognitibismoaren bat-egitea; terapia eraginkor eta froga zientifikoz hornitua (TCC).",
+      "sinplifikazioa": "Batzuetan azalekoegitzat jotzen da: sintometan zentratzea, arrazoi sakonagoak alde batera utzita.",
+      "gaurEgun": "Froga gehien duen psikoterapia-ereduetako bat.",
+      "esaldia": "Pentsatzeko era aldatzeak sentitzeko era alda dezake.",
+      "klaseGaldera": "Pentsamendu bat aldatzeak benetan alda dezake sentitzeko era, ala azalekoa da hori?"
+    },
+    {
+      "id": "psikologia-positiboa", "izena": "Psikologia positiboa", "garaia": "1990–gaur", "blokea": "positibo",
+      "lenteak": ["zentzura"],
+      "galdera": "Zerk egiten gaitu zoriontsu eta zerk ematen dio zentzua bizitzari?",
+      "zerAztertzen": "Ongizatea, indar pertsonalak, fluxua (flow), esker ona eta harreman positiboak.",
+      "autoreak": ["Martin Seligman", "Mihály Csíkszentmihályi"],
+      "adibidea": "\"Flow\" egoera: zerbaitetan hain murgilduta egotea (kirola, musika) non denbora pasatzen ez den nabaritzen.",
+      "ekarpena": "Psikologia \"gaixotasunetik\" \"ongizatera\" zabaldu zuen; ikerketa enpirikoa ongizateari aplikatu zion.",
+      "sinplifikazioa": "Bere bertsio naif eta komertzialak (\"pentsamendu positiboa\" guztirako) kritikagarriak dira; min erreala gutxiets dezake.",
+      "gaurEgun": "Ikerketa-ildo baliozkoa, baina pop-bertsioetatik bereizi behar da.",
+      "esaldia": "Ongi egotea ere ikertu daiteke — baina ez da formula magikoa.",
+      "klaseGaldera": "\"Positibo izan beti\" mezuak min egin diezaioke norbaiti? Noiz da kaltegarria?"
+    },
+    {
+      "id": "integratzailea", "izena": "Ikuspegi integratzaile garaikideak", "garaia": "2000–gaur", "blokea": "positibo",
+      "lenteak": ["barnera", "portaerara", "garunera", "gizartera", "harremanetara", "zentzura"],
+      "galdera": "Zergatik ez da nahikoa lente bakarra gizakia ulertzeko?",
+      "zerAztertzen": "Faktore biologiko, psikologiko eta sozialen elkarrekintza (eredu bio-psiko-soziala).",
+      "autoreak": ["Eredu bio-psiko-soziala"],
+      "adibidea": "Depresioa ulertzeko: biologia (neurotransmisoreak) + pentsamenduak (estilo kognitiboa) + ingurunea (bakardadea, estresa) batera aztertzen dira.",
+      "ekarpena": "Eskola desberdinen ekarpenak biltzen ditu; gizakia maila askotan ulertzen du aldi berean.",
+      "sinplifikazioa": "Arriskua: dena nahastea edo ezer sakon ez aztertzea; integrazioak diziplina handia eskatzen du.",
+      "gaurEgun": "Psikologia garaikidearen ikuspegi nagusia (eredu bio-psiko-soziala).",
+      "esaldia": "Lente bakarrarekin ez da nahikoa.",
+      "klaseGaldera": "Zure azken erabaki garrantzitsuan, zer pisatu zuen gehiago: biologiak, pentsamenduek ala inguruneak?"
+    }
+  ],
+
+  "harremanak": {
+    "azalpena": "Eskola batzuk ez ziren bata bestearen ondoren etorri bakarrik: askotan aurrekoaren aurka edo aurrekoari erantzunez sortu ziren. Hona hemen tentsio nagusiak.",
+    "nodoak": [
+      { "id": "estrukturalismoa", "izena": "Estrukturalismoa", "x": 13, "y": 22 },
+      { "id": "funtzionalismoa", "izena": "Funtzionalismoa", "x": 13, "y": 70 },
+      { "id": "psikoanalisia", "izena": "Psikoanalisia", "x": 33, "y": 13 },
+      { "id": "konduktismoa", "izena": "Konduktismoa", "x": 33, "y": 46 },
+      { "id": "gestalt", "izena": "Gestalt", "x": 33, "y": 82 },
+      { "id": "humanismoa", "izena": "Humanismoa", "x": 54, "y": 16 },
+      { "id": "kognitibismoa", "izena": "Kognitibismoa", "x": 53, "y": 52 },
+      { "id": "ikaskuntza-soziala", "izena": "Ikaskuntza soziala", "x": 55, "y": 85 },
+      { "id": "psikologia-soziala", "izena": "Psikologia soziala", "x": 75, "y": 15 },
+      { "id": "neurozientzia", "izena": "Neurozientzia", "x": 73, "y": 47 },
+      { "id": "psikologia-positiboa", "izena": "Psikologia positiboa", "x": 76, "y": 83 },
+      { "id": "integratzailea", "izena": "Ikuspegi integratzailea", "x": 88, "y": 64 }
+    ],
+    "loturak": [
+      { "iturria": "estrukturalismoa", "helburua": "konduktismoa", "mota": "erantzuna", "testua": "Kontzientzia ezin bada neurtu, azter dezagun portaera." },
+      { "iturria": "konduktismoa", "helburua": "kognitibismoa", "mota": "erantzuna", "testua": "Portaera garrantzitsua da, baina buruan gertatzen dena ezin da baztertu." },
+      { "iturria": "estrukturalismoa", "helburua": "psikoanalisia", "mota": "beste-bidea", "testua": "Kontzientzia ez da dena: psikoanalisiak inkontzientea jarri zuen erdigunean." },
+      { "iturria": "konduktismoa", "helburua": "humanismoa", "mota": "erantzuna", "testua": "Determinismoaren aurrean, humanismoak pertsonaren askatasuna eta hazkundea azpimarratu zituen." },
+      { "iturria": "funtzionalismoa", "helburua": "konduktismoa", "mota": "eragina", "testua": "Egokitzapenaren ideiatik portaera behagarriaren azterketara." },
+      { "iturria": "gestalt", "helburua": "kognitibismoa", "mota": "eragina", "testua": "Pertzepzioaren antolaketatik barne-prozesu mentaletara." },
+      { "iturria": "konduktismoa", "helburua": "ikaskuntza-soziala", "mota": "jarraipena", "testua": "Portaeratik abiatu, baina behaketa eta barne-itxaropenak gehituz." },
+      { "iturria": "kognitibismoa", "helburua": "neurozientzia", "mota": "jarraipena", "testua": "Barne-prozesuak garunaren funtzionamenduarekin lotuz (neurozientzia kognitiboa)." },
+      { "iturria": "humanismoa", "helburua": "psikologia-positiboa", "mota": "jarraipena", "testua": "Hazkundean eta ongizatean zentratzea, baina oraingoan froga zientifikoarekin." },
+      { "iturria": "psikologia-soziala", "helburua": "integratzailea", "mota": "konbergentzia", "testua": "Pertsona ezin da testuingurutik kanpo ulertu." },
+      { "iturria": "neurozientzia", "helburua": "integratzailea", "mota": "konbergentzia", "testua": "Garuna eta jokabidea lotu, baina pertsona osoa garunera murriztu gabe." },
+      { "iturria": "kognitibismoa", "helburua": "integratzailea", "mota": "konbergentzia", "testua": "Barne-prozesuak biologiarekin eta gizartearekin uztartuz." }
+    ],
+    "motak": {
+      "erantzuna": "Aurrekoaren aurkako erantzuna",
+      "beste-bidea": "Beste bide bat",
+      "eragina": "Eragina / aurrekaria",
+      "jarraipena": "Jarraipena eta osatzea",
+      "konbergentzia": "Bat egitea ikuspegi integratzailean"
+    }
+  },
+
+  "kritikak": [
+    {
+      "id": "kr1", "izenburua": "Psikoanalisia",
+      "testua": "Eragin kultural handia du, baina bere proposamen asko zientifikoki eztabaidagarriak dira: askotan ezin dira frogatu ezta gezurtatu ere."
+    },
+    {
+      "id": "kr2", "izenburua": "Konduktismoa",
+      "testua": "Oso erabilgarria izan da ikaskuntza ulertzeko, baina barne-mundua (pentsamendua, emozioak, esanahia) sinplifikatzeko edo ezabatzeko arriskua du."
+    },
+    {
+      "id": "kr3", "izenburua": "Humanismoa",
+      "testua": "Pertsona erdigunean jarri zuen, baina batzuetan gizakia gehiegi idealiza dezake, eta froga zientifiko gutxirekin egiten du."
+    },
+    {
+      "id": "kr4", "izenburua": "Neurozientzia",
+      "testua": "Asko argitu du garunaren eta jokabidearen loturaz, baina \"garunak dena azaltzen du\" ideia murriztailea da. Adi neuromitoekin (\"ezker/eskuin garuna\", \"%10 baino ez dugu erabiltzen\")."
+    },
+    {
+      "id": "kr5", "izenburua": "Psikologia positiboa",
+      "testua": "Baliagarria izan daiteke, baina bere bertsio naif eta komertzialak kritikagarriak dira: \"positibo izan beti\" mezuak min erreala uka dezake."
+    },
+    {
+      "id": "kr6", "izenburua": "Mindfulness, trauma eta gorputza",
+      "testua": "Ikuspegi hauek baliagarriak izan daitezke, baina ez dira errezeta magiko gisa aurkeztu behar. Lagungarria ez da beti dena konpontzen duena."
+    }
+  ],
+
+  "sintesia": {
+    "esaldia": "Lente bakarrarekin ez da nahikoa.",
+    "testua": "Psikologiaren historia ez da eskola batek aurrekoa suntsitzen duen kontakizuna. Galdera handien historia da: zer gara, nola ikasten dugu, zerk baldintzatzen gaitu, zer gertatzen da gure barruan, nola eragiten digute besteek eta nola lotzen diren garuna, gorputza, historia pertsonala eta gizartea.",
+    "miniMapa": {
+      "erdigunea": "GIZAKIA",
+      "adarrak": [
+        { "izena": "Garuna eta gorputza", "galdera": "Zerk osatzen gaitu fisikoki?", "lentea": "garunera" },
+        { "izena": "Barne-mundua", "galdera": "Zer gertatzen da gure barruan?", "lentea": "barnera" },
+        { "izena": "Ikaskuntza eta portaera", "galdera": "Nola ikasten dugu?", "lentea": "portaerara" },
+        { "izena": "Gizartea eta besteak", "galdera": "Nola eragiten digute besteek?", "lentea": "gizartera" },
+        { "izena": "Harremanak", "galdera": "Nola lotzen gara elkarrekin?", "lentea": "harremanetara" },
+        { "izena": "Zentzua eta hazkundea", "galdera": "Zerk ematen dio zentzua?", "lentea": "zentzura" }
+      ]
+    },
+    "galderak": [
+      "Zein eskolak ematen dizu gizakia ulertzeko ikuspegi sinesgarriena?",
+      "Zein eskolak sinplifikatzen du gehien gizakia?",
+      "Zer galduko genuke portaera bakarrik aztertuko bagenu?",
+      "Zer galduko genuke garuna bakarrik aztertuko bagenu?",
+      "Gaur egungo psikologiak zergatik behar ditu ikuspegi integratzaileak?"
+    ]
+  },
+
+  "ibilbidea": [
+    { "id": "galderak", "izena": "Galdera handiak" },
+    { "id": "kronologia", "izena": "Kronologia" },
+    { "id": "eskolak", "izena": "Eskolak" },
+    { "id": "harremanak", "izena": "Harremanak" },
+    { "id": "kritika", "izena": "Kritika" },
+    { "id": "sintesia", "izena": "Sintesia" }
+  ]
+}

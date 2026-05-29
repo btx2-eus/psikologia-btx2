@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Lenteen Atlasa">
+  <rect width="48" height="48" rx="11" fill="#1B3A5C"/>
+  <circle cx="19" cy="20" r="10" fill="none" stroke="#6D5DD3" stroke-width="2.4" opacity="0.9"/>
+  <circle cx="29" cy="24" r="10" fill="none" stroke="#3CB39A" stroke-width="2.4" opacity="0.9"/>
+  <circle cx="24" cy="30" r="10" fill="none" stroke="#D98A3A" stroke-width="2.4" opacity="0.9"/>
+  <circle cx="24" cy="24" r="2.6" fill="#F4F1E9"/>
+</svg>

@@ -1,0 +1,532 @@
+/* =================================================================
+   PSIKOLOGIAREN LENTEEN ATLASA — styles.css
+   Editorial digital + ikerketa-atlas. Paper beroa, urdin iluna,
+   lente koloreak neurrian. Diseinua ez da edukia zapaldu behar.
+   ================================================================= */
+
+:root {
+  /* --- Oinarri-paleta --- */
+  --paper:        #F4F1E9;   /* atzealde beroa, koaderno zientifikoa */
+  --paper-2:      #ECE7DB;   /* atzealde apur bat ilunagoa */
+  --surface:      #FCFAF5;   /* txartelak */
+  --ink:          #1E2A33;   /* testu nagusia */
+  --ink-2:        #4A565F;   /* testu sekundarioa */
+  --ink-3:        #7A858D;   /* testu lausoa */
+  --urdin:        #1B3A5C;   /* marka, izenburuak */
+  --urdin-argi:   #D6E8F7;
+  --grafito:      #2E3338;
+  --lerro:        #D8D1C2;   /* marra finak */
+  --lerro-sendoa: #C3BBAA;
+
+  /* --- Azentu koloreak (neurrian) --- */
+  --more:    #6D5DD3;   /* more elektriko leuna */
+  --berde:   #2E8B7F;   /* berde mentolatua */
+  --anbar:   #C77D3A;   /* anbar epela */
+
+  /* --- Lenteen koloreak (iragazkiak) --- */
+  --l-barnera:       #3F6CA8;
+  --l-portaerara:    #2E8B7F;
+  --l-garunera:      #6D5DD3;
+  --l-gizartera:     #C77D3A;
+  --l-harremanetara: #B85C8A;
+  --l-zentzura:      #4E9E63;
+
+  /* --- Bloke-koloreak (kronologia / eskolen familia) --- */
+  --b-filosofia: #5A6B86;
+  --b-estruktura:#1B3A5C;
+  --b-sozial:    #6D5DD3;
+  --b-positibo:  #C77D3A;
+
+  /* --- Tipografia --- */
+  --f-izen: 'Nunito', system-ui, sans-serif;
+  --f-gorp: 'Inter', system-ui, sans-serif;
+
+  /* --- Forma --- */
+  --r:    14px;
+  --r-tx: 18px;
+  --itzal-1: 0 1px 2px rgba(27,58,92,.06), 0 2px 8px rgba(27,58,92,.05);
+  --itzal-2: 0 4px 14px rgba(27,58,92,.10), 0 10px 30px rgba(27,58,92,.08);
+  --max: 1180px;
+
+  --t: 280ms cubic-bezier(.22,.61,.36,1);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+  margin: 0;
+  font-family: var(--f-gorp);
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #fbf8f0 0%, transparent 60%),
+    var(--paper);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: var(--f-izen); color: var(--urdin); line-height: 1.15; margin: 0 0 .4em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 900; letter-spacing: -.01em; }
+h3 { font-size: 1.2rem; font-weight: 800; }
+p { margin: 0 0 1rem; }
+a { color: var(--urdin); }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em; background: var(--paper-2); padding: .1em .4em; border-radius: 5px; }
+
+/* Ikono guztien neurri lehenetsia (ICON() laguntzaileak sortutako svg-ak).
+   Testuinguru bakoitzeko arau zehatzek hau gainidazten dute. */
+svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
+
+:focus-visible { outline: 3px solid var(--more); outline-offset: 2px; border-radius: 4px; }
+
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 200;
+  background: var(--urdin); color: #fff; padding: .6em 1em; border-radius: 8px;
+  transition: top var(--t);
+}
+.skip-link:focus { top: 12px; }
+
+/* =================== NABIGAZIOA =================== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 1rem;
+  padding: .55rem clamp(1rem, 4vw, 2.4rem);
+  background: rgba(244,241,233,.82);
+  backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--lerro);
+}
+.nav__marka {
+  display: flex; align-items: center; gap: .5rem;
+  font-family: var(--f-izen); font-weight: 900; color: var(--urdin);
+  text-decoration: none; font-size: 1.02rem; white-space: nowrap;
+}
+.nav__marka img { display: block; }
+
+.nav__ibilbidea {
+  display: flex; gap: .15rem; flex: 1; overflow-x: auto;
+  scrollbar-width: none; -ms-overflow-style: none;
+  mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+}
+.nav__ibilbidea::-webkit-scrollbar { display: none; }
+.ibil-lotura {
+  position: relative; flex: 0 0 auto;
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .35rem .7rem; border-radius: 999px;
+  font-size: .82rem; font-weight: 600; color: var(--ink-2);
+  text-decoration: none; white-space: nowrap; transition: color var(--t), background var(--t);
+}
+.ibil-lotura .pausoa {
+  width: 1.35rem; height: 1.35rem; flex: 0 0 auto;
+  display: grid; place-items: center; border-radius: 50%;
+  font-size: .72rem; font-weight: 800; font-family: var(--f-izen);
+  background: var(--paper-2); color: var(--ink-3); border: 1.5px solid var(--lerro-sendoa);
+  transition: all var(--t);
+}
+.ibil-lotura:hover { color: var(--urdin); background: rgba(109,93,211,.07); }
+.ibil-lotura.is-aktibo { color: var(--urdin); }
+.ibil-lotura.is-aktibo .pausoa { background: var(--urdin); color: #fff; border-color: var(--urdin); }
+
+.nav__kontrolak { display: flex; align-items: center; gap: .6rem; }
+.modu-aldagailua {
+  display: inline-flex; padding: 3px; gap: 2px;
+  background: var(--paper-2); border: 1px solid var(--lerro); border-radius: 999px;
+}
+.modu-aldagailua button {
+  border: 0; background: transparent; cursor: pointer;
+  font-family: var(--f-gorp); font-size: .8rem; font-weight: 600; color: var(--ink-2);
+  padding: .3rem .7rem; border-radius: 999px; transition: all var(--t);
+}
+.modu-aldagailua button.is-aktibo { background: var(--urdin); color: #fff; box-shadow: var(--itzal-1); }
+
+.ikono-botoia {
+  border: 1px solid var(--lerro); background: var(--surface); cursor: pointer;
+  font-family: var(--f-gorp); font-size: .78rem; font-weight: 600; color: var(--ink-2);
+  padding: .38rem .7rem; border-radius: 999px; transition: all var(--t); white-space: nowrap;
+}
+.ikono-botoia[aria-pressed="true"] { opacity: .55; text-decoration: line-through; }
+
+/* =================== HEROA =================== */
+.hero {
+  position: relative; min-height: 92vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 4rem clamp(1.2rem, 6vw, 5rem) 3rem;
+  overflow: hidden;
+}
+.hero__ilustrazioa {
+  position: absolute; inset: 0; z-index: 0;
+  display: flex; justify-content: flex-end; align-items: center;
+  opacity: .9; pointer-events: none;
+}
+.hero__svg { width: min(720px, 80vw); height: 100%; max-height: 760px; }
+.hero__edukia { position: relative; z-index: 1; max-width: 680px; }
+.hero__txikia {
+  text-transform: uppercase; letter-spacing: .18em; font-size: .76rem;
+  font-weight: 700; color: var(--more); margin-bottom: 1rem;
+}
+.hero__izenburua {
+  font-size: clamp(2.6rem, 8vw, 5.2rem); font-weight: 900; letter-spacing: -.02em;
+  margin-bottom: .5rem; color: var(--urdin);
+}
+.hero__azpititulua { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--ink-2); max-width: 36ch; margin-bottom: 1.4rem; }
+.hero__esaldia {
+  font-family: var(--f-izen); font-size: clamp(1.2rem, 3vw, 1.7rem); font-weight: 800;
+  color: var(--urdin); border-left: 4px solid var(--more); padding-left: 1rem; margin-bottom: 2rem;
+}
+.hero__botoiak { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+.botoia {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: 1rem;
+  padding: .85rem 1.5rem; border-radius: 999px; text-decoration: none;
+  border: 2px solid transparent; cursor: pointer; transition: all var(--t);
+}
+.botoia--nagusi { background: var(--urdin); color: #fff; box-shadow: var(--itzal-2); }
+.botoia--nagusi:hover { transform: translateY(-2px); background: #224a73; }
+.botoia--ahul { background: transparent; color: var(--urdin); border-color: var(--lerro-sendoa); }
+.botoia--ahul:hover { border-color: var(--urdin); background: rgba(27,58,92,.05); }
+
+.hero__behera {
+  position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%);
+  color: var(--ink-3); z-index: 1; animation: bounce 2.4s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,8px)} }
+
+/* hero animazioak */
+.hero__lente { transform-origin: center; animation: lente-flota 9s ease-in-out infinite; }
+.hero__lente.l2 { animation-delay: -3s; }
+.hero__lente.l3 { animation-delay: -6s; }
+@keyframes lente-flota { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(0,-14px) scale(1.03)} }
+.hero__nodo { animation: nodo-puls 3.5s ease-in-out infinite; }
+.hero__nodo.n2{animation-delay:.4s}.hero__nodo.n3{animation-delay:.8s}.hero__nodo.n4{animation-delay:1.2s}.hero__nodo.n5{animation-delay:1.6s}
+@keyframes nodo-puls { 0%,100%{opacity:.55}50%{opacity:1} }
+
+/* =================== ATALAK (oinarria) =================== */
+.atala {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.2rem, 5vw, 2.4rem);
+}
+.atala--zabal { max-width: 1340px; }
+.atala__goiburua { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 2.4rem; }
+.atala__zenbakia {
+  font-family: var(--f-izen); font-weight: 900; font-size: 1rem;
+  color: var(--more); border: 2px solid currentColor; border-radius: 10px;
+  padding: .25rem .55rem; flex: 0 0 auto; margin-top: .3rem; letter-spacing: .03em;
+}
+.atala__sarrera { color: var(--ink-2); max-width: 62ch; font-size: 1.04rem; margin: 0; }
+
+/* reveal animazioa */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+.reveal.ikusgai { opacity: 1; transform: none; }
+
+/* =================== 01 · GALDERA HANDIAK =================== */
+.galderak-sareta {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+}
+.galdera-atea {
+  position: relative; background: var(--surface); border: 1px solid var(--lerro);
+  border-radius: var(--r-tx); padding: 1.6rem 1.4rem; overflow: hidden;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.galdera-atea::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--more);
+  transform: scaleY(0); transform-origin: top; transition: transform var(--t);
+}
+.galdera-atea:hover { transform: translateY(-4px); box-shadow: var(--itzal-2); border-color: transparent; }
+.galdera-atea:hover::before { transform: scaleY(1); }
+.galdera-atea__ikono {
+  width: 46px; height: 46px; display: grid; place-items: center; border-radius: 12px;
+  background: rgba(109,93,211,.1); color: var(--more); margin-bottom: 1rem;
+}
+.galdera-atea__ikono svg { width: 26px; height: 26px; }
+.galdera-atea h3 { font-size: 1.16rem; color: var(--urdin); margin-bottom: .5rem; }
+.galdera-atea p { color: var(--ink-2); font-size: .95rem; margin: 0; }
+
+/* =================== 02 · KRONOLOGIA =================== */
+.kronologia {
+  display: flex; gap: 1.1rem; overflow-x: auto; padding: 1rem .2rem 2rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin; scrollbar-color: var(--lerro-sendoa) transparent;
+}
+.kronologia::-webkit-scrollbar { height: 8px; }
+.kronologia::-webkit-scrollbar-thumb { background: var(--lerro-sendoa); border-radius: 99px; }
+.krono-txartela {
+  scroll-snap-align: start; flex: 0 0 300px;
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--lerro);
+  border-top: 4px solid var(--bloke, var(--urdin)); border-radius: var(--r);
+  padding: 1.3rem; transition: box-shadow var(--t), transform var(--t);
+}
+.krono-txartela:hover { box-shadow: var(--itzal-2); transform: translateY(-3px); }
+.krono-data {
+  display: inline-block; font-family: var(--f-izen); font-weight: 900;
+  color: var(--bloke, var(--urdin)); font-size: .95rem; letter-spacing: .02em;
+}
+.krono-garaia { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: .3rem; }
+.krono-mugarria { font-family: var(--f-izen); font-weight: 800; color: var(--urdin); font-size: 1.08rem; margin: .2rem 0 .5rem; }
+.krono-autoreak { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .8rem; }
+.txikiloa {
+  font-size: .72rem; font-weight: 600; padding: .12rem .5rem; border-radius: 99px;
+  background: var(--paper-2); color: var(--ink-2); border: 1px solid var(--lerro);
+}
+.krono-galdera { font-style: italic; color: var(--ink-2); font-size: .92rem; margin-bottom: .7rem; }
+.krono-zabaldu {
+  margin-top: auto; align-self: flex-start; border: 0; background: none; cursor: pointer;
+  color: var(--bloke, var(--urdin)); font-family: var(--f-izen); font-weight: 800; font-size: .85rem;
+  display: inline-flex; align-items: center; gap: .35rem; padding: .3rem 0;
+}
+.krono-zabaldu svg { width: 16px; height: 16px; transition: transform var(--t); }
+.krono-xeheak {
+  display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t);
+}
+.krono-xeheak > div { overflow: hidden; }
+.krono-txartela.is-zabalik .krono-xeheak { grid-template-rows: 1fr; }
+.krono-txartela.is-zabalik .krono-zabaldu svg { transform: rotate(180deg); }
+.xehe-lerroa { font-size: .9rem; padding-top: .7rem; margin-top: .7rem; border-top: 1px dashed var(--lerro); }
+.xehe-lerroa b { display: block; font-family: var(--f-izen); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin-bottom: .1rem; }
+
+/* =================== 03 · ESKOLAK =================== */
+.iragazkiak { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 2rem; }
+.iragazki-botoia {
+  display: inline-flex; align-items: center; gap: .45rem;
+  border: 1.5px solid var(--lerro-sendoa); background: var(--surface); cursor: pointer;
+  font-family: var(--f-gorp); font-weight: 600; font-size: .88rem; color: var(--ink-2);
+  padding: .45rem .9rem; border-radius: 999px; transition: all var(--t);
+}
+.iragazki-botoia svg { width: 17px; height: 17px; }
+.iragazki-botoia:hover { border-color: var(--lente, var(--urdin)); color: var(--lente, var(--urdin)); }
+.iragazki-botoia.is-aktibo {
+  background: var(--lente, var(--urdin)); border-color: var(--lente, var(--urdin)); color: #fff;
+}
+.iragazki-botoia.is-aktibo[data-lente="guztiak"] { background: var(--urdin); border-color: var(--urdin); }
+
+.eskolak-sareta {
+  display: grid; gap: 1.1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+.eskola-txartela {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--lerro);
+  border-radius: var(--r-tx); padding: 1.4rem; position: relative;
+  transition: box-shadow var(--t), transform var(--t), opacity var(--t);
+}
+.eskola-txartela:hover { box-shadow: var(--itzal-2); transform: translateY(-3px); }
+.eskola-txartela.is-ezkutatua { display: none; }
+.eskola-buru { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; margin-bottom: .2rem; }
+.eskola-garaia { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: var(--ink-3); white-space: nowrap; }
+.eskola-izena { font-family: var(--f-izen); font-weight: 900; font-size: 1.22rem; color: var(--urdin); margin: 0 0 .6rem; }
+.eskola-galdera {
+  font-family: var(--f-izen); font-weight: 700; font-size: 1rem; color: var(--ink);
+  border-left: 3px solid var(--lente, var(--more)); padding-left: .7rem; margin-bottom: .9rem;
+}
+.eskola-lenteak { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .9rem; }
+.lente-marka {
+  font-size: .68rem; font-weight: 700; padding: .15rem .55rem; border-radius: 99px;
+  color: #fff; display: inline-flex; align-items: center; gap: .25rem;
+}
+.lente-marka svg { width: 12px; height: 12px; }
+
+.eskola-fitxak { display: flex; gap: .3rem; flex-wrap: wrap; margin-bottom: .2rem; }
+.fitxa-botoia {
+  border: 1px solid var(--lerro); background: var(--paper); cursor: pointer;
+  font-family: var(--f-gorp); font-weight: 600; font-size: .78rem; color: var(--ink-2);
+  padding: .32rem .7rem; border-radius: 8px; transition: all var(--t);
+}
+.fitxa-botoia:hover { border-color: var(--lente, var(--urdin)); color: var(--lente, var(--urdin)); }
+.fitxa-botoia.is-aktibo { background: var(--lente, var(--urdin)); border-color: var(--lente, var(--urdin)); color: #fff; }
+
+.eskola-edukia {
+  display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t);
+}
+.eskola-edukia > div { overflow: hidden; }
+.eskola-txartela.is-zabalik .eskola-edukia { grid-template-rows: 1fr; }
+.eskola-panela { padding-top: 1rem; }
+.eskola-panela h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--lente, var(--ink-3)); margin: 0 0 .25rem; }
+.eskola-panela p { font-size: .92rem; color: var(--ink-2); margin: 0 0 .8rem; }
+.eskola-panela .autore-zerr { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .8rem; }
+
+.eskola-esaldia {
+  margin-top: auto; padding-top: .9rem; font-family: var(--f-izen); font-weight: 800;
+  color: var(--lente, var(--urdin)); font-size: .98rem; line-height: 1.3;
+  border-top: 1px dashed var(--lerro);
+}
+.eskola-esaldia::before { content: "« "; opacity: .5; }
+.eskola-esaldia::after { content: " »"; opacity: .5; }
+
+/* irakasle modua: klaseko galdera */
+.klase-galdera { display: none; }
+body.modua-irakasle .klase-galdera {
+  display: block; margin-top: .9rem; padding: .7rem .8rem; border-radius: 10px;
+  background: rgba(199,125,58,.1); border: 1px dashed var(--anbar);
+  font-size: .88rem; color: var(--grafito);
+}
+body.modua-irakasle .klase-galdera::before {
+  content: "Klasean galdetzeko"; display: block; font-family: var(--f-izen);
+  font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--anbar); margin-bottom: .25rem;
+}
+.eskola-zabaldu-handi {
+  margin-top: .8rem; width: 100%; border: 1px dashed var(--lerro-sendoa);
+  background: transparent; cursor: pointer; border-radius: 10px; padding: .4rem;
+  font-family: var(--f-izen); font-weight: 700; font-size: .8rem; color: var(--ink-3);
+}
+.eskola-zabaldu-handi:hover { color: var(--urdin); border-color: var(--urdin); }
+
+/* =================== 04 · HARREMANEN MAPA =================== */
+.atala--ilun {
+  max-width: none; background: var(--urdin);
+  color: #e9eef4; margin-top: 2rem;
+  padding-left: max(1.2rem, calc((100vw - var(--max)) / 2 + 1.2rem));
+  padding-right: max(1.2rem, calc((100vw - var(--max)) / 2 + 1.2rem));
+}
+.atala--ilun h2 { color: #fff; }
+.atala--ilun .atala__sarrera { color: #c5d2e0; }
+.atala--ilun .atala__zenbakia { color: #9db4d8; }
+
+.mapa-blokea { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem; align-items: stretch; }
+.mapa-svg-bilgarria {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r); padding: .5rem; min-height: 420px;
+}
+#mapa-svg { width: 100%; height: 100%; display: block; min-height: 420px; }
+
+.mapa-nodo-g { cursor: pointer; }
+.mapa-nodo-kutxa {
+  fill: #24486e; stroke: #6e8cb3; stroke-width: .4;
+  transition: fill var(--t), stroke var(--t);
+}
+.mapa-nodo-testua { fill: #eaf1f8; font-family: var(--f-izen); font-weight: 800; }
+.mapa-lotura { stroke: #5e7ba1; stroke-width: .35; fill: none; transition: stroke var(--t), stroke-width var(--t), opacity var(--t); }
+.mapa-nodo-g:hover .mapa-nodo-kutxa,
+.mapa-nodo-g.is-hauta .mapa-nodo-kutxa { fill: var(--more); stroke: #cdbfff; }
+.mapa-lotura.is-nabarmen { stroke: var(--more); stroke-width: .7; opacity: 1; }
+.mapa-lotura.is-lauso { opacity: .12; }
+.mapa-nodo-g.is-lauso { opacity: .3; }
+
+.mapa-panela {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r); padding: 1.3rem; display: flex; flex-direction: column; justify-content: center;
+}
+.mapa-panela__hutsa { color: #aebfd2; font-style: italic; }
+.mapa-panela h3 { color: #fff; font-size: 1.1rem; margin-bottom: .8rem; }
+.mapa-tentsioa { padding: .7rem 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+.mapa-tentsioa:last-child { border-bottom: 0; }
+.mapa-tentsioa .nondik-nora { display: flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .9rem; color: #d7c9ff; margin-bottom: .25rem; flex-wrap: wrap; }
+.mapa-tentsioa .nondik-nora svg { width: 15px; height: 15px; opacity: .7; }
+.mapa-tentsioa p { font-size: .88rem; color: #cdd8e6; margin: 0; }
+
+.tentsio-zerrenda { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%,300px),1fr)); }
+.tentsio-zerrenda li {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  border-left: 3px solid var(--more); border-radius: 10px; padding: .9rem 1rem;
+}
+.tentsio-mota { font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: #9db4d8; font-weight: 700; }
+.tentsio-bide { font-family: var(--f-izen); font-weight: 800; color: #fff; font-size: .92rem; margin: .15rem 0 .35rem; display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.tentsio-bide svg { width: 15px; height: 15px; color: #9db4d8; }
+.tentsio-zerrenda p { font-size: .86rem; color: #c5d2e0; margin: 0; }
+
+/* =================== 05 · KRITIKA =================== */
+.kritika-sareta { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.kritika-txartela {
+  background: linear-gradient(180deg, rgba(199,125,58,.07), var(--surface) 60%);
+  border: 1px solid var(--lerro); border-left: 4px solid var(--anbar);
+  border-radius: var(--r); padding: 1.3rem;
+}
+.kritika-txartela h3 { display: flex; align-items: center; gap: .5rem; font-size: 1.08rem; color: var(--urdin); margin-bottom: .5rem; }
+.kritika-alerta {
+  width: 26px; height: 26px; flex: 0 0 auto; border-radius: 7px; display: grid; place-items: center;
+  background: var(--anbar); color: #fff; font-family: var(--f-izen); font-weight: 900; font-size: .95rem;
+}
+.kritika-txartela p { font-size: .93rem; color: var(--ink-2); margin: 0; }
+
+/* =================== 06 · SINTESIA =================== */
+.atala--sintesi { text-align: center; }
+.atala--sintesi .atala__goiburua { text-align: left; }
+.sintesi-esaldia {
+  font-family: var(--f-izen); font-weight: 900; color: var(--urdin);
+  font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1.1; margin: 1rem auto 1.4rem; max-width: 16ch;
+}
+.sintesi-testua { max-width: 60ch; margin: 0 auto 2.5rem; color: var(--ink-2); font-size: 1.05rem; }
+
+/* mini mapa kontzeptuala */
+.mini-mapa { display: grid; place-items: center; margin: 0 auto 3rem; max-width: 760px; }
+.mini-mapa__sarea { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); width: 100%; }
+.mini-mapa__erdi {
+  grid-column: 1 / -1; justify-self: center;
+  font-family: var(--f-izen); font-weight: 900; font-size: 1.3rem; color: #fff;
+  background: var(--urdin); padding: .8rem 2rem; border-radius: 999px; box-shadow: var(--itzal-2);
+  margin-bottom: .5rem; letter-spacing: .04em;
+}
+.mini-adarra {
+  background: var(--surface); border: 1px solid var(--lerro); border-top: 3px solid var(--lente, var(--more));
+  border-radius: var(--r); padding: 1rem; text-align: left;
+}
+.mini-adarra__ikono { color: var(--lente, var(--more)); margin-bottom: .4rem; }
+.mini-adarra__ikono svg { width: 22px; height: 22px; }
+.mini-adarra b { font-family: var(--f-izen); display: block; color: var(--urdin); font-size: .98rem; }
+.mini-adarra span { font-size: .85rem; color: var(--ink-2); }
+
+.sintesi-galderak {
+  text-align: left; max-width: 720px; margin: 0 auto; background: var(--surface);
+  border: 1px solid var(--lerro); border-radius: var(--r-tx); padding: 1.8rem clamp(1.2rem, 4vw, 2.2rem);
+}
+.sintesi-galderak h3 { display: flex; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+.sintesi-galderak h3 svg { width: 22px; height: 22px; color: var(--more); flex: 0 0 auto; }
+.sintesi-galderak ol { margin: 0; padding-left: 0; list-style: none; counter-reset: g; }
+.sintesi-galderak li {
+  counter-increment: g; position: relative; padding: .8rem 0 .8rem 2.6rem;
+  border-bottom: 1px dashed var(--lerro); font-size: 1rem; color: var(--ink);
+}
+.sintesi-galderak li:last-child { border-bottom: 0; }
+.sintesi-galderak li::before {
+  content: counter(g); position: absolute; left: 0; top: .75rem;
+  width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border-radius: 50%;
+  background: rgba(109,93,211,.12); color: var(--more); font-family: var(--f-izen); font-weight: 900; font-size: .9rem;
+}
+
+/* =================== OINA =================== */
+.oina {
+  text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid var(--lerro);
+  color: var(--ink-2); font-size: .9rem;
+}
+.oina strong { color: var(--urdin); font-family: var(--f-izen); }
+.oina__txikia { font-size: .82rem; color: var(--ink-3); margin: .4rem 0 0; }
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 880px) {
+  .mapa-blokea { grid-template-columns: 1fr; }
+  .mapa-svg-bilgarria { min-height: 340px; }
+  #mapa-svg { min-height: 340px; }
+  .nav__kontrolak .ikono-botoia { display: none; }
+}
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  .nav { gap: .5rem; padding: .5rem .8rem; }
+  .nav__marka span { display: none; }
+  .hero { min-height: 88vh; padding-top: 3rem; }
+  .hero__ilustrazioa { opacity: .45; justify-content: center; }
+  .atala__goiburua { flex-direction: column; gap: .6rem; }
+  .modu-aldagailua button { padding: .3rem .55rem; font-size: .76rem; }
+  /* kronologia bertikala mugikorrean */
+  .kronologia {
+    flex-direction: column; overflow-x: visible; padding-left: 1.2rem;
+    border-left: 2px solid var(--lerro); margin-left: .3rem; gap: 1rem;
+  }
+  .krono-txartela { flex: 1 1 auto; position: relative; }
+  .krono-txartela::before {
+    content: ""; position: absolute; left: -1.55rem; top: 1.5rem;
+    width: 11px; height: 11px; border-radius: 50%; background: var(--bloke, var(--urdin)); border: 2px solid var(--paper);
+  }
+}
+
+/* =================== MUGIMENDUA MURRIZTUTA =================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+body.mugimendurik-ez *, body.mugimendurik-ez *::before, body.mugimendurik-ez *::after {
+  animation: none !important; transition-duration: .01ms !important;
+}
+body.mugimendurik-ez .reveal { opacity: 1 !important; transform: none !important; }
