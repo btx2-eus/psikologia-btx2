@@ -3,7 +3,18 @@
     "izenburua": "Psikologiaren Lenteen Atlasa",
     "azpititulua": "Gizakia ulertzeko moduen historia: arima, kontzientzia, portaera, inkontzientea, garuna, gizartea eta harremanak.",
     "esaldiGakoa": "Lente bakarrarekin ez da nahikoa.",
+    "azalpenPraktikoa": "Web honetan psikologiaren historia ulertuko duzu: eskola bakoitzak zer ikusten duen, zer *ez* duen ikusten, eta zergatik gaur egun lente bakarra ez den nahikoa.",
     "sarrera": "Psikologiaren historia ez da autore eta data zerrenda bat. Gizakia ulertzeko lenteen historia da: batzuek barnera begiratu dute, besteek portaerara, besteek garunera, besteek gizartera. Lente bakoitzak zerbait argitzen du, baina zerbait ilunpean uzten du."
+  },
+
+  "helburuak": {
+    "izenburua": "Zer ikasiko duzu?",
+    "sarrera": "Web hau amaitzean, hiru gauza hauek egiteko gai izango zara:",
+    "zerrenda": [
+      { "ikonoa": "lente", "testua": "Eskola psikologiko nagusiak bereizten." },
+      { "ikonoa": "begia", "testua": "Eskola bakoitzak zer galderari erantzun nahi zion ulertzen." },
+      { "ikonoa": "lotura", "testua": "Gaur egungo psikologiak zergatik behar duen ikuspegi integratzailea azaltzen." }
+    ]
   },
 
   "lenteak": [
@@ -423,18 +434,19 @@
       { "id": "integratzailea", "izena": "Ikuspegi integratzailea", "x": 88, "y": 64 }
     ],
     "loturak": [
-      { "iturria": "estrukturalismoa", "helburua": "konduktismoa", "mota": "erantzuna", "testua": "Kontzientzia ezin bada neurtu, azter dezagun portaera." },
-      { "iturria": "konduktismoa", "helburua": "kognitibismoa", "mota": "erantzuna", "testua": "Portaera garrantzitsua da, baina buruan gertatzen dena ezin da baztertu." },
-      { "iturria": "estrukturalismoa", "helburua": "psikoanalisia", "mota": "beste-bidea", "testua": "Kontzientzia ez da dena: psikoanalisiak inkontzientea jarri zuen erdigunean." },
-      { "iturria": "konduktismoa", "helburua": "humanismoa", "mota": "erantzuna", "testua": "Determinismoaren aurrean, humanismoak pertsonaren askatasuna eta hazkundea azpimarratu zituen." },
-      { "iturria": "funtzionalismoa", "helburua": "konduktismoa", "mota": "eragina", "testua": "Egokitzapenaren ideiatik portaera behagarriaren azterketara." },
-      { "iturria": "gestalt", "helburua": "kognitibismoa", "mota": "eragina", "testua": "Pertzepzioaren antolaketatik barne-prozesu mentaletara." },
-      { "iturria": "konduktismoa", "helburua": "ikaskuntza-soziala", "mota": "jarraipena", "testua": "Portaeratik abiatu, baina behaketa eta barne-itxaropenak gehituz." },
-      { "iturria": "kognitibismoa", "helburua": "neurozientzia", "mota": "jarraipena", "testua": "Barne-prozesuak garunaren funtzionamenduarekin lotuz (neurozientzia kognitiboa)." },
-      { "iturria": "humanismoa", "helburua": "psikologia-positiboa", "mota": "jarraipena", "testua": "Hazkundean eta ongizatean zentratzea, baina oraingoan froga zientifikoarekin." },
-      { "iturria": "psikologia-soziala", "helburua": "integratzailea", "mota": "konbergentzia", "testua": "Pertsona ezin da testuingurutik kanpo ulertu." },
-      { "iturria": "neurozientzia", "helburua": "integratzailea", "mota": "konbergentzia", "testua": "Garuna eta jokabidea lotu, baina pertsona osoa garunera murriztu gabe." },
-      { "iturria": "kognitibismoa", "helburua": "integratzailea", "mota": "konbergentzia", "testua": "Barne-prozesuak biologiarekin eta gizartearekin uztartuz." }
+      { "iturria": "estrukturalismoa", "helburua": "konduktismoa", "mota": "erantzuna", "norabide": "bat", "testua": "Kontzientzia ezin bada neurtu, azter dezagun portaera." },
+      { "iturria": "konduktismoa", "helburua": "kognitibismoa", "mota": "erantzuna", "norabide": "bat", "testua": "Portaera garrantzitsua da, baina buruan gertatzen dena ezin da baztertu." },
+      { "iturria": "estrukturalismoa", "helburua": "psikoanalisia", "mota": "beste-bidea", "norabide": "bat", "testua": "Kontzientzia ez da dena: psikoanalisiak inkontzientea jarri zuen erdigunean." },
+      { "iturria": "psikoanalisia", "helburua": "humanismoa", "mota": "erantzuna", "norabide": "bi", "testua": "Psikoanalisiaren determinismoaren aurrean, humanismoak pertsonaren askatasuna eta hazkundea jarri zituen erdigunean." },
+      { "iturria": "konduktismoa", "helburua": "humanismoa", "mota": "erantzuna", "norabide": "bat", "testua": "Konduktismoaren determinismoaren aurrean ere, humanismoak pertsona osoa aldarrikatu zuen." },
+      { "iturria": "funtzionalismoa", "helburua": "konduktismoa", "mota": "eragina", "norabide": "bat", "testua": "Egokitzapenaren ideiatik portaera behagarriaren azterketara." },
+      { "iturria": "gestalt", "helburua": "kognitibismoa", "mota": "eragina", "norabide": "bat", "testua": "Pertzepzioaren antolaketatik barne-prozesu mentaletara." },
+      { "iturria": "konduktismoa", "helburua": "ikaskuntza-soziala", "mota": "jarraipena", "norabide": "bat", "testua": "Portaeratik abiatu, baina behaketa eta barne-itxaropenak gehituz." },
+      { "iturria": "kognitibismoa", "helburua": "neurozientzia", "mota": "jarraipena", "norabide": "bi", "testua": "Gogamena eta garuna elkarri lotuta: barne-prozesuak garunaren funtzionamenduan oinarrituz (neurozientzia kognitiboa)." },
+      { "iturria": "humanismoa", "helburua": "psikologia-positiboa", "mota": "jarraipena", "norabide": "bat", "testua": "Hazkundean eta ongizatean zentratzea, baina oraingoan froga zientifikoarekin." },
+      { "iturria": "psikologia-soziala", "helburua": "integratzailea", "mota": "konbergentzia", "norabide": "bat", "testua": "Pertsona ezin da bere testuingurutik kanpo ulertu: egoerak eta taldeak erabakigarriak dira." },
+      { "iturria": "neurozientzia", "helburua": "integratzailea", "mota": "konbergentzia", "norabide": "bat", "testua": "Garuna eta jokabidea lotu, baina pertsona osoa garunera murriztu gabe." },
+      { "iturria": "kognitibismoa", "helburua": "integratzailea", "mota": "konbergentzia", "norabide": "bat", "testua": "Barne-prozesuak biologiarekin eta gizartearekin uztartuz, gaur egungo sintesi zabalagoan." }
     ],
     "motak": {
       "erantzuna": "Aurrekoaren aurkako erantzuna",
@@ -442,9 +454,18 @@
       "eragina": "Eragina / aurrekaria",
       "jarraipena": "Jarraipena eta osatzea",
       "konbergentzia": "Bat egitea ikuspegi integratzailean"
-    }
+    },
+    "irakurketa": [
+      "Estrukturalismoak kontzientzia aztertu nahi zuen; ezin zela objektiboki neurtu ikusita, konduktismoak portaerara jo zuen, eta gero kognitibismoak buruko prozesuak berreskuratu zituen.",
+      "Psikoanalisiaren eta konduktismoaren determinismoaren aurrean, humanismoak pertsonaren askatasuna eta hazkundea jarri zituen erdigunean.",
+      "Konduktismotik ikaskuntza soziala sortu zen, behaketa eta barne-itxaropenak gehituz.",
+      "Kognitibismoa eta neurozientzia elkarri lotuta daude: gogamena eta garuna batera aztertzen dira.",
+      "Psikologia sozialak testuinguruaren garrantzia erakutsi zuen, eta ikuspegi integratzaileek dena uztartzen dute gaur egungo sintesi zabalago batean."
+    ]
   },
 
+  "kritikaSarrera": "Hau ez da amaierako ohar txiki bat: gaiaren muina da. Gaur egun psikologia ikastea, neurri handi batean, azalpen polit baina pobreak bereizten ikastea da. Eskola bakoitzak zerbait argitu zuen, baina batek ere ez du egia osoa.",
+  "kritikaAzpimarra": "Kontuz azalpen erraz, eder eta osatugabeekin.",
   "kritikak": [
     {
       "id": "kr1", "izenburua": "Psikoanalisia",
@@ -494,6 +515,8 @@
       "Gaur egungo psikologiak zergatik behar ditu ikuspegi integratzaileak?"
     ]
   },
+
+  "oharKritikoa": "Kontuan hartu: eskola psikologiko hauek hemen modu didaktikoan laburtuta daude. Batzuk gaur egun eztabaidatuak dira, eta egungo ikerketa askoz anitzagoa eta zehatzagoa da. Hau abiapuntua da, ez azken hitza: psikologia ez da dogma-taula bat, etengabe berrikusten den jakintza baizik.",
 
   "ibilbidea": [
     { "id": "galderak", "izena": "Galdera handiak" },

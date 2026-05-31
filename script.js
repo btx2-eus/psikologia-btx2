@@ -10,6 +10,9 @@ const ICON = (id, klase = '') =>
 const esc = (s = '') => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+// *hitza* → <em>hitza</em> (nabarmentze sinplea testuetan)
+const markup = (s = '') => esc(s).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
 // Lente bakoitzaren ikonoa eta CSS kolore-aldagaia
 const LENTE_IKONO = {
   barnera: 'begia', portaerara: 'portaera', garunera: 'garuna',
@@ -17,6 +20,15 @@ const LENTE_IKONO = {
 };
 const lenteKolorea = (id) => `var(--l-${id})`;
 const blokeKolorea = (id) => `var(--b-${id})`;
+
+// Harremanen maparen gezi moten koloreak (atzealde ilunerako)
+const MOTA_KOLORE = {
+  'erantzuna':     '#E79090',
+  'beste-bidea':   '#C9A8FF',
+  'eragina':       '#8FB4E0',
+  'jarraipena':    '#8FD0B0',
+  'konbergentzia': '#E6C77A'
+};
 
 let DATA = null;
 let LENTEAK = {}; // id -> lente objektua
@@ -40,7 +52,9 @@ async function init() {
 
   LENTEAK = Object.fromEntries(DATA.lenteak.map(l => [l.id, l]));
 
+  renderHeroa();
   renderIbilbidea();
+  renderHelburuak();
   renderGalderak();
   renderKronologia();
   renderIragazkiak();
@@ -48,6 +62,7 @@ async function init() {
   renderMapa();
   renderKritika();
   renderSintesia();
+  renderOharKritikoa();
 
   hasiBehatzaileak();
   hasiKontrolak();
@@ -60,6 +75,25 @@ function renderIbilbidea() {
     <a class="ibil-lotura" href="#${p.id}" data-atal="${p.id}">
       <span class="pausoa">${i + 1}</span><span>${esc(p.izena)}</span>
     </a>`).join('');
+}
+
+/* ---------- HEROA (azalpen praktikoa JSONetik) ---------- */
+function renderHeroa() {
+  const el = document.getElementById('hero-azalpena');
+  if (el && DATA.meta && DATA.meta.azalpenPraktikoa) el.innerHTML = markup(DATA.meta.azalpenPraktikoa);
+}
+
+/* ---------- ZER IKASIKO DUZU ---------- */
+function renderHelburuak() {
+  const h = DATA.helburuak;
+  if (!h) return;
+  document.getElementById('helburu-izenburua').textContent = h.izenburua;
+  document.getElementById('helburu-sarrera').textContent = h.sarrera || '';
+  document.getElementById('helburu-zerrenda').innerHTML = h.zerrenda.map(z => `
+    <li>
+      <span class="helburu-ikono">${ICON(z.ikonoa)}</span>
+      <span>${esc(z.testua)}</span>
+    </li>`).join('');
 }
 
 /* ---------- 01 · GALDERA HANDIAK ---------- */
@@ -220,15 +254,15 @@ function renderMapa() {
   const nodoMap = Object.fromEntries(nodoak.map(n => [n.id, n]));
   const SVGNS = 'http://www.w3.org/2000/svg';
 
-  // marker (geziburua)
+  // marker (geziburua) — context-stroke bidez lerroaren kolorea hartzen du
   svg.innerHTML = `
     <defs>
-      <marker id="gezi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-        <path d="M0 0 L10 5 L0 10 z" fill="#5e7ba1"/>
+      <marker id="gezi" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4.6" markerHeight="4.6" orient="auto-start-reverse">
+        <path d="M0 0 L8 4 L0 8 z" fill="context-stroke"/>
       </marker>
     </defs>`;
 
-  // loturak (kurbatuak)
+  // loturak (kurbatuak, mota bakoitza kolore batez, norabide bikoak bi geziekin)
   loturak.forEach((l, i) => {
     const a = nodoMap[l.iturria], b = nodoMap[l.helburua];
     if (!a || !b) return;
@@ -236,7 +270,10 @@ function renderMapa() {
     const path = document.createElementNS(SVGNS, 'path');
     path.setAttribute('d', `M ${a.x} ${a.y} Q ${mx} ${my} ${b.x} ${b.y}`);
     path.setAttribute('class', 'mapa-lotura');
+    path.setAttribute('stroke', MOTA_KOLORE[l.mota] || '#8aa3c2');
+    if (l.mota === 'beste-bidea') path.setAttribute('stroke-dasharray', '1.6 1.3');
     path.setAttribute('marker-end', 'url(#gezi)');
+    if (l.norabide === 'bi') path.setAttribute('marker-start', 'url(#gezi)');
     path.dataset.iturria = l.iturria;
     path.dataset.helburua = l.helburua;
     path.dataset.indizea = i;
@@ -285,16 +322,37 @@ function renderMapa() {
     svg.appendChild(g);
   });
 
+  // legenda (gezi moten kolore-azalpena)
+  const legenda = document.getElementById('mapa-legenda');
+  if (legenda) {
+    legenda.innerHTML = Object.entries(motak).map(([id, izena]) =>
+      `<li><span class="swatch${id === 'beste-bidea' ? ' dash' : ''}" style="border-top-color:${MOTA_KOLORE[id] || '#8aa3c2'}"></span>${esc(izena)}</li>`
+    ).join('');
+  }
+
   // tentsio-zerrenda osoa (irisgarria, mugikorrerako ere bai)
   const zerr = document.getElementById('tentsio-zerrenda');
-  zerr.innerHTML = loturak.map(l => `
-    <li data-iturria="${l.iturria}" data-helburua="${l.helburua}">
+  zerr.innerHTML = loturak.map(l => {
+    const lotura = `${esc(nodoMap[l.iturria]?.izena)} ${ehLotura(l.norabide)} ${esc(nodoMap[l.helburua]?.izena)}`;
+    return `
+    <li data-iturria="${l.iturria}" data-helburua="${l.helburua}" style="border-left-color:${MOTA_KOLORE[l.mota] || '#8aa3c2'}">
       <span class="tentsio-mota">${esc(motak[l.mota] || l.mota)}</span>
-      <div class="tentsio-bide">${esc(nodoMap[l.iturria]?.izena)} ${ICON('fletxa')} ${esc(nodoMap[l.helburua]?.izena)}</div>
+      <div class="tentsio-bide">${lotura}</div>
       <p>${esc(l.testua)}</p>
-    </li>`).join('');
+    </li>`; }).join('');
+
+  // "Nola irakurri mapa hau" — gidatutako irakurketa
+  const ir = document.getElementById('mapa-irakurketa-zerr');
+  if (ir && DATA.harremanak.irakurketa) {
+    ir.innerHTML = DATA.harremanak.irakurketa.map(t => `<li>${esc(t)}</li>`).join('');
+  }
 
   panelaHasieratu();
+}
+
+// Norabidearen arabera konektore egokia (→ edo ↔)
+function ehLotura(norabide) {
+  return `<span class="bide-gezi" aria-hidden="true">${norabide === 'bi' ? '↔' : '→'}</span>`;
 }
 
 function wrapEtiketa(izena) {
@@ -338,8 +396,8 @@ function hautatuNodoa(id) {
   const panela = document.getElementById('mapa-panela');
   if (!lotutakoak.length) { panela.innerHTML = `<p class="mapa-panela__hutsa">Eskola honek ez du lotura zuzenik mapa honetan.</p>`; return; }
   panela.innerHTML = `<h3>${esc(nodoMap[id].izena)}</h3>` + lotutakoak.map(l => `
-    <div class="mapa-tentsioa">
-      <div class="nondik-nora">${esc(nodoMap[l.iturria].izena)} ${ICON('fletxa')} ${esc(nodoMap[l.helburua].izena)}</div>
+    <div class="mapa-tentsioa" style="border-left:3px solid ${MOTA_KOLORE[l.mota] || '#8aa3c2'};padding-left:.7rem">
+      <div class="nondik-nora">${esc(nodoMap[l.iturria].izena)} ${ehLotura(l.norabide)} ${esc(nodoMap[l.helburua].izena)}</div>
       <p><strong>${esc(motak[l.mota] || l.mota)}.</strong> ${esc(l.testua)}</p>
     </div>`).join('');
 
@@ -352,6 +410,11 @@ function hautatuNodoa(id) {
 
 /* ---------- 05 · KRITIKA ---------- */
 function renderKritika() {
+  const sar = document.getElementById('kritika-sarrera');
+  if (sar) sar.textContent = DATA.kritikaSarrera || '';
+  const azp = document.getElementById('kritika-azpimarra');
+  if (azp) azp.textContent = DATA.kritikaAzpimarra || '';
+
   const k = document.getElementById('kritika-edukia');
   k.innerHTML = DATA.kritikak.map(c => `
     <article class="kritika-txartela reveal">
@@ -382,6 +445,12 @@ function renderSintesia() {
       <h3>${ICON('lente')} 5 galdera zuretzat</h3>
       <ol>${s.galderak.map(g => `<li>${esc(g)}</li>`).join('')}</ol>
     </div>`;
+}
+
+/* ---------- OHAR KRITIKOA ---------- */
+function renderOharKritikoa() {
+  const el = document.getElementById('ohar-kritikoa-testua');
+  if (el && DATA.oharKritikoa) el.textContent = DATA.oharKritikoa;
 }
 
 /* ---------- BEHATZAILEAK (scroll-spy + reveal) ---------- */

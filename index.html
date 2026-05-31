@@ -101,7 +101,7 @@
       <div class="hero__edukia">
         <p class="hero__txikia">2. Batxilergoa · Psikologia · euskaraz</p>
         <h1 class="hero__izenburua">Psikologiaren<br>Lenteen Atlasa</h1>
-        <p class="hero__azpititulua">Gizakia ulertzeko moduen historia: arima, kontzientzia, portaera, inkontzientea, garuna, gizartea eta harremanak.</p>
+        <p class="hero__azalpena" id="hero-azalpena">Web honetan psikologiaren historia ulertuko duzu: eskola bakoitzak zer ikusten duen, zer <em>ez</em> duen ikusten, eta zergatik gaur egun lente bakarra ez den nahikoa.</p>
         <p class="hero__esaldia">«Lente bakarrarekin ez da nahikoa.»</p>
         <div class="hero__botoiak">
           <a class="botoia botoia--nagusi" href="#galderak">Hasi ibilbidea</a>
@@ -109,6 +109,17 @@
         </div>
       </div>
       <a class="hero__behera" href="#galderak" aria-label="Jaitsi"><svg width="22" height="22"><use href="#ic-fletxa" transform="rotate(90 11 11)"/></svg></a>
+    </section>
+
+    <!-- ===== ZER IKASIKO DUZU ===== -->
+    <section class="helburuak" id="zer-ikasiko" aria-labelledby="helburu-izenburua">
+      <div class="helburuak__bilgarria">
+        <div class="helburuak__buru">
+          <h2 id="helburu-izenburua"></h2>
+          <p id="helburu-sarrera"></p>
+        </div>
+        <ol class="helburuak__zerrenda" id="helburu-zerrenda"></ol>
+      </div>
     </section>
 
     <!-- ===== GALDERA HANDIAK ===== -->
@@ -161,21 +172,29 @@
       <div class="mapa-blokea">
         <div class="mapa-svg-bilgarria">
           <svg id="mapa-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Eskolen arteko harremanen diagrama"></svg>
+          <ul class="mapa-legenda" id="mapa-legenda" aria-label="Gezi moten azalpena"></ul>
         </div>
         <div class="mapa-panela" id="mapa-panela" aria-live="polite"></div>
       </div>
+
+      <div class="mapa-irakurketa" id="mapa-irakurketa">
+        <h3>Nola irakurri mapa hau</h3>
+        <ol id="mapa-irakurketa-zerr"></ol>
+      </div>
+
       <ul class="tentsio-zerrenda" id="tentsio-zerrenda" aria-label="Tentsio nagusien zerrenda"></ul>
     </section>
 
     <!-- ===== KRITIKA ===== -->
-    <section class="atala" id="kritika">
+    <section class="atala atala--kritika" id="kritika">
       <div class="atala__goiburua">
         <span class="atala__zenbakia">05</span>
         <div>
           <h2>Kontuz sinplifikazioekin</h2>
-          <p class="atala__sarrera">Psikologia ez da motibazio-esaldi bilduma bat. Lente bakoitzak zerbait argitzen du, baina baita gehiegi sinplifikatzeko arriskua ere. Begirada kritikoa ezinbestekoa da.</p>
+          <p class="atala__sarrera" id="kritika-sarrera"></p>
         </div>
       </div>
+      <blockquote class="kritika-azpimarra" id="kritika-azpimarra"></blockquote>
       <div class="kritika-sareta" id="kritika-edukia"></div>
     </section>
 
@@ -190,6 +209,12 @@
       </div>
       <div id="sintesia-edukia"></div>
     </section>
+
+    <!-- ===== OHAR KRITIKOA ===== -->
+    <aside class="ohar-kritikoa" id="ohar-kritikoa" aria-label="Ohar kritikoa">
+      <div class="ohar-kritikoa__ikono" aria-hidden="true">i</div>
+      <p id="ohar-kritikoa-testua"></p>
+    </aside>
   </main>
 
   <footer class="oina">

@@ -170,6 +170,11 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
   margin-bottom: .5rem; color: var(--urdin);
 }
 .hero__azpititulua { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--ink-2); max-width: 36ch; margin-bottom: 1.4rem; }
+.hero__azalpena {
+  font-size: clamp(1.05rem, 2.1vw, 1.28rem); color: var(--grafito);
+  max-width: 46ch; margin-bottom: 1.5rem; line-height: 1.5;
+}
+.hero__azalpena em { font-style: normal; font-weight: 700; color: var(--more); }
 .hero__esaldia {
   font-family: var(--f-izen); font-size: clamp(1.2rem, 3vw, 1.7rem); font-weight: 800;
   color: var(--urdin); border-left: 4px solid var(--more); padding-left: 1rem; margin-bottom: 2rem;
@@ -201,6 +206,36 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 .hero__nodo { animation: nodo-puls 3.5s ease-in-out infinite; }
 .hero__nodo.n2{animation-delay:.4s}.hero__nodo.n3{animation-delay:.8s}.hero__nodo.n4{animation-delay:1.2s}.hero__nodo.n5{animation-delay:1.6s}
 @keyframes nodo-puls { 0%,100%{opacity:.55}50%{opacity:1} }
+
+/* =================== ZER IKASIKO DUZU =================== */
+.helburuak {
+  background: var(--urdin);
+  color: #eaf1f8;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.2rem, 5vw, 2.4rem);
+}
+.helburuak__bilgarria { max-width: var(--max); margin: 0 auto; }
+.helburuak__buru { margin-bottom: 1.8rem; }
+.helburuak__buru h2 { color: #fff; margin-bottom: .35rem; }
+.helburuak__buru p { color: #bcccdf; margin: 0; font-size: 1.05rem; }
+.helburuak__zerrenda {
+  list-style: none; margin: 0; padding: 0; counter-reset: h;
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+.helburuak__zerrenda li {
+  counter-increment: h; position: relative;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--r); padding: 1.4rem 1.3rem 1.3rem;
+  display: flex; flex-direction: column; gap: .7rem;
+}
+.helburuak__zerrenda li::before {
+  content: counter(h); font-family: var(--f-izen); font-weight: 900; font-size: 1rem;
+  width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--more); color: #fff;
+}
+.helburu-ikono { color: #aebfe6; }
+.helburu-ikono svg { width: 26px; height: 26px; }
+.helburuak__zerrenda li span { font-family: var(--f-izen); font-weight: 700; font-size: 1.06rem; color: #fff; line-height: 1.3; }
 
 /* =================== ATALAK (oinarria) =================== */
 .atala {
@@ -398,11 +433,13 @@ body.modua-irakasle .klase-galdera::before {
   transition: fill var(--t), stroke var(--t);
 }
 .mapa-nodo-testua { fill: #eaf1f8; font-family: var(--f-izen); font-weight: 800; }
-.mapa-lotura { stroke: #5e7ba1; stroke-width: .35; fill: none; transition: stroke var(--t), stroke-width var(--t), opacity var(--t); }
+/* stroke-a SVG atributu gisa ezartzen da JStik (mota bakoitza kolore batez);
+   ez jarri stroke hemen, CSSak atributua gainidazten baitu. */
+.mapa-lotura { stroke-width: .4; fill: none; opacity: .82; transition: stroke-width var(--t), opacity var(--t); }
 .mapa-nodo-g:hover .mapa-nodo-kutxa,
 .mapa-nodo-g.is-hauta .mapa-nodo-kutxa { fill: var(--more); stroke: #cdbfff; }
-.mapa-lotura.is-nabarmen { stroke: var(--more); stroke-width: .7; opacity: 1; }
-.mapa-lotura.is-lauso { opacity: .12; }
+.mapa-lotura.is-nabarmen { stroke-width: .9; opacity: 1; }
+.mapa-lotura.is-lauso { opacity: .1; }
 .mapa-nodo-g.is-lauso { opacity: .3; }
 
 .mapa-panela {
@@ -414,7 +451,7 @@ body.modua-irakasle .klase-galdera::before {
 .mapa-tentsioa { padding: .7rem 0; border-bottom: 1px solid rgba(255,255,255,.1); }
 .mapa-tentsioa:last-child { border-bottom: 0; }
 .mapa-tentsioa .nondik-nora { display: flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .9rem; color: #d7c9ff; margin-bottom: .25rem; flex-wrap: wrap; }
-.mapa-tentsioa .nondik-nora svg { width: 15px; height: 15px; opacity: .7; }
+.bide-gezi { font-weight: 900; color: #9db4d8; padding: 0 .1rem; }
 .mapa-tentsioa p { font-size: .88rem; color: #cdd8e6; margin: 0; }
 
 .tentsio-zerrenda { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%,300px),1fr)); }
@@ -427,7 +464,72 @@ body.modua-irakasle .klase-galdera::before {
 .tentsio-bide svg { width: 15px; height: 15px; color: #9db4d8; }
 .tentsio-zerrenda p { font-size: .86rem; color: #c5d2e0; margin: 0; }
 
+/* maparen legenda (gezi moten kolore-azalpena) */
+.mapa-legenda {
+  list-style: none; margin: .6rem 0 0; padding: .6rem .4rem 0;
+  display: flex; flex-wrap: wrap; gap: .5rem 1.1rem;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.mapa-legenda li { display: inline-flex; align-items: center; gap: .4rem; font-size: .74rem; color: #c5d2e0; }
+.mapa-legenda .swatch { width: 22px; height: 0; border-top-width: 3px; border-top-style: solid; border-radius: 2px; }
+.mapa-legenda .swatch.dash { border-top-style: dashed; }
+
+/* "Nola irakurri mapa hau" — gezien irakurketa gidatua */
+.mapa-irakurketa {
+  margin-top: 1.8rem; background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.14); border-radius: var(--r);
+  padding: 1.4rem clamp(1.2rem, 4vw, 2rem);
+}
+.mapa-irakurketa h3 { color: #fff; font-size: 1.12rem; margin-bottom: 1rem; }
+.mapa-irakurketa ol { margin: 0; padding: 0; list-style: none; counter-reset: ir; display: grid; gap: .8rem; }
+.mapa-irakurketa li {
+  counter-increment: ir; position: relative; padding-left: 2.6rem;
+  color: #dbe6f2; font-size: .96rem; line-height: 1.5;
+}
+.mapa-irakurketa li::before {
+  content: counter(ir); position: absolute; left: 0; top: -.1rem;
+  width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border-radius: 50%;
+  background: var(--more); color: #fff; font-family: var(--f-izen); font-weight: 900; font-size: .85rem;
+}
+.mapa-irakurketa li b { color: #fff; font-family: var(--f-izen); }
+
+/* ohar kritikoa (iturri / kredibilitatea) */
+.ohar-kritikoa {
+  max-width: 880px; margin: 0 auto;
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.2rem 1.4rem clamp(2.5rem, 5vw, 3.5rem);
+}
+.ohar-kritikoa__ikono {
+  flex: 0 0 auto; width: 2rem; height: 2rem; border-radius: 50%;
+  display: grid; place-items: center; margin-top: .1rem;
+  background: var(--paper-2); border: 1.5px solid var(--lerro-sendoa);
+  color: var(--ink-2); font-family: 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 1.1rem;
+}
+.ohar-kritikoa p { margin: 0; font-size: .92rem; color: var(--ink-3); line-height: 1.6; font-style: italic; }
+
 /* =================== 05 · KRITIKA =================== */
+.atala--kritika {
+  background:
+    radial-gradient(1000px 420px at 15% 0%, rgba(199,125,58,.10), transparent 60%),
+    var(--paper);
+  max-width: none;
+  padding-left: max(1.2rem, calc((100vw - var(--max)) / 2 + 1.2rem));
+  padding-right: max(1.2rem, calc((100vw - var(--max)) / 2 + 1.2rem));
+}
+.kritika-azpimarra {
+  position: relative; max-width: var(--max); margin: 0 0 1.8rem;
+  padding: 1.4rem 1.5rem 1.4rem 4rem; border-radius: var(--r-tx);
+  background: var(--surface); border: 1px solid var(--lerro); border-left: 5px solid var(--anbar);
+  box-shadow: var(--itzal-1);
+  font-family: var(--f-izen); font-weight: 900; line-height: 1.25;
+  font-size: clamp(1.25rem, 3.2vw, 1.85rem); color: var(--urdin);
+}
+.kritika-azpimarra::before {
+  content: "!"; position: absolute; left: 1.1rem; top: 1.3rem;
+  width: 2rem; height: 2rem; border-radius: 8px; display: grid; place-items: center;
+  background: var(--anbar); color: #fff; font-size: 1.2rem; font-weight: 900;
+}
+.atala--kritika .atala__sarrera { font-size: 1.1rem; color: var(--grafito); }
 .kritika-sareta { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 .kritika-txartela {
   background: linear-gradient(180deg, rgba(199,125,58,.07), var(--surface) 60%);
