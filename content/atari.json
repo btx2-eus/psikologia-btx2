@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "izenburua": "Psikologia",
+    "azpititulua": "2. Batxilergoa",
+    "esaldia": "Zientzia bat zeure buruari buruz.",
+    "sarrera": "Psikologiak galdera zaharrenei erantzuten die metodo zientifikoarekin: zer gara, nola ikasten dugu, zerk baldintzatzen gaitu, nola eragiten digute besteek. Hemen, gai bakoitza fenomeno errealetik abiatuta lantzen da, eta zu zeu zara aztergai nagusia."
+  },
+
+  "blokeak": [
+    {
+      "id": "historia",
+      "izena": "Abiapuntua",
+      "kolorea": "filosofia",
+      "deskribapena": "Nondik dator psikologia eta nola bihurtu zen zientzia.",
+      "gaiak": [
+        {
+          "id": "lenteen-atlasa",
+          "izenburua": "Psikologiaren Lenteen Atlasa",
+          "azpititulua": "Gizakia ulertzeko moduen historia",
+          "deskribapena": "Eskola psikologiko nagusiak, kronologia interaktiboa eta haien arteko harremanak. Lente bakoitzak zerbait argitzen du, baina zerbait ilunpean uzten du.",
+          "lotura": "lenteen-atlasa.html",
+          "egoera": "prest",
+          "ikonoa": "lente",
+          "etiketak": ["Historia", "Eskolak", "Kronologia"]
+        }
+      ]
+    },
+    {
+      "id": "oinarriak",
+      "izena": "1. blokea · Oinarriak",
+      "kolorea": "estruktura",
+      "deskribapena": "Zer den psikologia, garunaren oinarriak, pertzepzioa eta ikaskuntza.",
+      "gaiak": [
+        { "id": "zer-da", "izenburua": "Zer da psikologia?", "deskribapena": "Jakintzaren estatusa, metodo zientifikoa eta psikologia vs. sen ona.", "egoera": "laster", "ikonoa": "lente" },
+        { "id": "garuna", "izenburua": "Portaeraren oinarri biologikoak", "deskribapena": "Garunak ez du determinatzen, baina bai baldintzatzen.", "egoera": "laster", "ikonoa": "garuna" },
+        { "id": "pertzepzioa", "izenburua": "Pertzepzioa, arreta eta oroimena", "deskribapena": "Hautematea ez da errealitatearen kopia: eraikuntza da.", "egoera": "laster", "ikonoa": "begia" },
+        { "id": "ikaskuntza", "izenburua": "Ikaskuntza", "deskribapena": "Kondizionamendua eta ikaskuntza soziala.", "egoera": "laster", "ikonoa": "portaera" }
+      ]
+    },
+    {
+      "id": "prozesuak",
+      "izena": "2. blokea · Prozesuak",
+      "kolorea": "berde",
+      "deskribapena": "Garapena, motibazioa, emozioak, pentsamendua eta hizkuntza.",
+      "gaiak": [
+        { "id": "garapena", "izenburua": "Garapen psikologikoa", "deskribapena": "Piaget, Vygotsky, Kohlberg: garapena ez da lineala.", "egoera": "laster", "ikonoa": "lotura" },
+        { "id": "motibazioa", "izenburua": "Motibazioa eta emozioak", "deskribapena": "Maslowen piramidea kritikoki, eta emozioaren funtzio adaptatiboa.", "egoera": "laster", "ikonoa": "bihotza" },
+        { "id": "pentsamendua", "izenburua": "Pentsamendua eta sormena", "deskribapena": "Heuristikoak, alborapen kognitiboak eta sormena.", "egoera": "laster", "ikonoa": "lente" }
+      ]
+    },
+    {
+      "id": "ni-besteak",
+      "izena": "3. blokea · Ni eta besteak",
+      "kolorea": "sozial",
+      "deskribapena": "Nortasuna, harremanak, sexualitatea eta osasun mentala.",
+      "gaiak": [
+        { "id": "nortasuna", "izenburua": "Nortasuna", "deskribapena": "Teoria diferenteak eta nortasunaren eraikuntza soziala.", "egoera": "laster", "ikonoa": "begia" },
+        { "id": "soziala", "izenburua": "Harremanak eta psikologia soziala", "deskribapena": "Konformismoa, obedientzia, estereotipoak eta talde-dinamika.", "egoera": "laster", "ikonoa": "taldea" },
+        { "id": "osasuna", "izenburua": "Osasun mentala", "deskribapena": "Normaltasuna vs. patologia, estigma eta prebentzioa.", "egoera": "laster", "ikonoa": "bihotza" }
+      ]
+    }
+  ],
+
+  "egoeraEtiketak": {
+    "prest": "Prest",
+    "laster": "Laster"
+  }
+}

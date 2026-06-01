@@ -97,6 +97,14 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
   backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--lerro);
 }
+.nav__itzuli {
+  display: grid; place-items: center; flex: 0 0 auto;
+  width: 2.1rem; height: 2.1rem; border-radius: 50%;
+  color: var(--urdin); text-decoration: none;
+  border: 1.5px solid var(--lerro-sendoa); background: var(--surface);
+  transition: all var(--t);
+}
+.nav__itzuli:hover { background: var(--urdin); color: #fff; border-color: var(--urdin); }
 .nav__marka {
   display: flex; align-items: center; gap: .5rem;
   font-family: var(--f-izen); font-weight: 900; color: var(--urdin);
@@ -596,6 +604,13 @@ body.modua-irakasle .klase-galdera::before {
 }
 .oina strong { color: var(--urdin); font-family: var(--f-izen); }
 .oina__txikia { font-size: .82rem; color: var(--ink-3); margin: .4rem 0 0; }
+.oina__nabigazio { margin-bottom: 1rem; }
+.oina__nabigazio a {
+  font-family: var(--f-izen); font-weight: 800; text-decoration: none; color: var(--urdin);
+  display: inline-block; padding: .5rem 1.1rem; border-radius: 999px;
+  border: 1.5px solid var(--lerro-sendoa); transition: all var(--t);
+}
+.oina__nabigazio a:hover { background: var(--urdin); color: #fff; border-color: var(--urdin); }
 
 /* =================== RESPONSIVE =================== */
 @media (max-width: 880px) {

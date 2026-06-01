@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://btx2-eus.github.io/psikologia-btx2/sitemap.xml

@@ -1,32 +1,41 @@
-# Psikologiaren Lenteen Atlasa
+# Psikologia · 2. Batxilergoa
 
-2. Batxilergoko **Psikologia** irakasgairako webgune interaktiboa, euskaraz.
-Gizakia ulertzeko moduen historia, lente edo ikuspegi gisa antolatuta.
+2. Batxilergoko **Psikologia** irakasgaiaren webgunea, euskaraz.
+Atari orokor bat da, gaiz gai hazten doana. Lehen gaia **Psikologiaren Lenteen Atlasa**
+da (psikologiaren historia), eta ikasturtean zehar gai gehiago gehituko dira.
 
-> **Ideia nagusia:** psikologiaren historia ez da autore eta data zerrenda bat,
-> gizakia ulertzeko lenteen historia baizik. *Lente bakarrarekin ez da nahikoa.*
+> **Ideia nagusia:** psikologia zientzia bat da zeure buruari buruz. Gai bakoitza
+> fenomeno errealetik abiatzen da, eta ikaslea bera da aztergai nagusia.
 
-Klasean azaltzeko **eta** ikasleek etxean errepasatzeko sortua dago, eta etorkizunean
-beste gai batzuk gehitzeko prest.
+Klasean azaltzeko **eta** ikasleek etxean errepasatzeko sortua dago.
 
 ---
 
 ## 1. Zer dago barruan
 
+Webguneak **bi maila** ditu: ataria (gaien zerrenda) eta gai bakoitzaren orria.
+
 ```
 psikologia-btx2-web/
-├── index.html        ← orriaren egitura (atalak, ikonoak, heroa)
-├── styles.css        ← diseinua (kolore, tipografia, txartelak…)
-├── script.js         ← interakzioak (ez da ukitu behar edukia aldatzeko)
+├── index.html            ← ATARIA: gaien zerrenda (bloketan antolatuta)
+├── home.css / home.js    ← atariaren diseinua eta logika
+│
+├── lenteen-atlasa.html   ← GAIA 1: Psikologiaren Lenteen Atlasa (historia)
+├── atlasa.css / atlasa.js← gai horren diseinua eta interakzioak
+│
 ├── content/
-│   └── psikologiaren-historia.json   ← ★ EDUKI GUZTIA HEMEN DAGO ★
+│   ├── atari.json                    ← ★ ATARIKO gaien zerrenda ★
+│   └── psikologiaren-historia.json   ← ★ ATLASAREN eduki guztia ★
 ├── assets/
 │   └── logo.svg
-└── README.md         ← gida hau
+└── README.md             ← gida hau
 ```
 
-**Garrantzitsuena:** testu guztia `content/psikologiaren-historia.json` fitxategian dago.
-Hori editatzen baduzu, webgune osoa eguneratzen da. **Ez duzu kodea ukitu behar.**
+**Garrantzitsuena:** testu guztia `content/` karpetako bi JSON fitxategietan dago.
+Horiek editatzen badituzu, webgunea eguneratzen da. **Ez duzu kodea ukitu behar.**
+
+- `content/atari.json` → atariko gaien txartelak (zein gai, zein egoeratan).
+- `content/psikologiaren-historia.json` → Lenteen Atlasaren eduki osoa.
 
 ---
 
@@ -126,17 +135,35 @@ Eskola batek lente bat baino gehiago izan ditzake: `"lenteak": ["barnera", "port
 
 ## 3. Etorkizunerako: gai berri bat gehitzea
 
-Webgunea **hazteko** prestatuta dago. Gaur "Psikologiaren historia" da hasierako gaia,
-baina bihar memoria, emozioak, pertzepzioa edo beste edozein gai gehi daiteke.
+Webgunea **hazteko** prestatuta dago. Gaur "Lenteen Atlasa" da gai bakarra prest,
+baina bihar memoria, emozioak, nortasuna edo beste edozein gai gehi daiteke.
 
-Bide errazena:
+### A) Gai berri bat atarian agertarazi (errazena)
 
-1. Sortu `content/` barruan datu-fitxategi berri bat, adib. `content/memoria.json`.
-2. Kopiatu `index.html` orri berri batera (adib. `memoria.html`) eta `script.js`-en
-   aldatu kargatzen den fitxategiaren izena.
-3. Lotu orri berria hasierako orritik.
+Atariko txartelak `content/atari.json`-etik datoz. Gai bat **"laster"** bezala
+agertzeko (oraindik orririk gabe), gehitu sarrera bat dagokion blokean:
 
-Egitura bera berrerabiltzen denez, gai bakoitzak itxura eta funtzionamendu berdina izango du.
+```json
+{
+  "id": "emozioak",
+  "izenburua": "Motibazioa eta emozioak",
+  "deskribapena": "Maslowen piramidea kritikoki, eta emozioaren funtzioa.",
+  "egoera": "laster",
+  "ikonoa": "bihotza"
+}
+```
+
+- `egoera`: `"laster"` (prestatzen) edo `"prest"` (erabilgarri, orria behar du).
+- `ikonoa`: `lente`, `begia`, `garuna`, `taldea`, `lotura`, `bihotza` edo `portaera`.
+
+### B) Gai bat benetan prest jarri (orri berria)
+
+1. Gaiak bere edukia behar du: sortu `content/gaiaren-izena.json`.
+2. Sortu gaiaren orria, adib. `emozioak.html` (Atlasa eredu gisa har dezakezu,
+   `lenteen-atlasa.html` kopiatuz eta bere `*.css` / `*.js` egokituz).
+3. `atari.json`-en, jarri gai horren `"egoera": "prest"` eta gehitu `"lotura": "emozioak.html"`.
+
+Atariak automatikoki txartel klikagarri bihurtuko du.
 
 ---
 

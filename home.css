@@ -1,0 +1,169 @@
+/* =================================================================
+   PSIKOLOGIA BTX2 — ATARIA (home.css)
+   Atlas-estilo bera: paper beroa, urdin iluna, lente koloreak.
+   ================================================================= */
+
+:root {
+  --paper:        #F4F1E9;
+  --paper-2:      #ECE7DB;
+  --surface:      #FCFAF5;
+  --ink:          #1E2A33;
+  --ink-2:        #4A565F;
+  --ink-3:        #7A858D;
+  --urdin:        #1B3A5C;
+  --lerro:        #D8D1C2;
+  --lerro-sendoa: #C3BBAA;
+
+  --more:    #6D5DD3;
+  --berde:   #2E8B7F;
+  --anbar:   #C77D3A;
+
+  /* bloke-koloreak (Atlasaren sistemarekin bat) */
+  --b-filosofia: #5A6B86;
+  --b-estruktura:#1B3A5C;
+  --b-berde:     #2E8B7F;
+  --b-sozial:    #6D5DD3;
+  --b-positibo:  #C77D3A;
+
+  --f-izen: 'Nunito', system-ui, sans-serif;
+  --f-gorp: 'Inter', system-ui, sans-serif;
+  --r: 16px;
+  --itzal-1: 0 1px 2px rgba(27,58,92,.06), 0 2px 8px rgba(27,58,92,.05);
+  --itzal-2: 0 6px 20px rgba(27,58,92,.12), 0 14px 38px rgba(27,58,92,.09);
+  --max: 1100px;
+  --t: 280ms cubic-bezier(.22,.61,.36,1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0; font-family: var(--f-gorp); font-size: 17px; line-height: 1.62; color: var(--ink);
+  background: radial-gradient(1100px 560px at 82% -8%, #fbf8f0, transparent 60%), var(--paper);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+h1, h2, h3 { font-family: var(--f-izen); color: var(--urdin); line-height: 1.12; margin: 0 0 .4em; }
+p { margin: 0 0 1rem; }
+a { color: var(--urdin); }
+code { font-family: ui-monospace, Menlo, monospace; font-size: .86em; background: var(--paper-2); padding: .1em .4em; border-radius: 5px; }
+:focus-visible { outline: 3px solid var(--more); outline-offset: 2px; border-radius: 6px; }
+svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
+
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 200;
+  background: var(--urdin); color: #fff; padding: .6em 1em; border-radius: 8px; transition: top var(--t);
+}
+.skip-link:focus { top: 12px; }
+
+/* =================== NABIGAZIOA =================== */
+.atari-nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .55rem clamp(1rem, 4vw, 2.4rem);
+  background: rgba(244,241,233,.84); backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--lerro);
+}
+.atari-nav__marka { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+.atari-nav__marka span { display: flex; flex-direction: column; line-height: 1.05; }
+.atari-nav__marka strong { font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: 1.05rem; }
+.atari-nav__marka small { font-size: .72rem; color: var(--ink-3); }
+.atari-nav__lotura {
+  font-family: var(--f-izen); font-weight: 700; font-size: .9rem; text-decoration: none; color: var(--ink-2);
+  padding: .4rem .9rem; border-radius: 999px; transition: all var(--t);
+}
+.atari-nav__lotura:hover { color: var(--urdin); background: rgba(109,93,211,.08); }
+
+/* =================== HEROA =================== */
+.atari-hero {
+  position: relative; min-height: 78vh;
+  display: flex; align-items: center;
+  padding: 3rem clamp(1.2rem, 6vw, 5rem);
+  max-width: 1280px; margin: 0 auto; overflow: hidden;
+}
+.atari-hero__ilustrazioa { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: flex-end; align-items: center; opacity: .92; pointer-events: none; }
+.atari-hero__svg { width: min(640px, 75vw); height: auto; }
+.atari-hero__edukia { position: relative; z-index: 1; max-width: 620px; }
+.atari-hero__txikia { text-transform: uppercase; letter-spacing: .18em; font-size: .76rem; font-weight: 700; color: var(--more); margin-bottom: .8rem; }
+.atari-hero__izenburua { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: .3rem; }
+.atari-hero__esaldia { font-family: var(--f-izen); font-weight: 800; font-size: clamp(1.2rem, 3vw, 1.7rem); color: var(--urdin); border-left: 4px solid var(--more); padding-left: 1rem; margin-bottom: 1.4rem; }
+.atari-hero__sarrera { font-size: clamp(1rem, 2vw, 1.18rem); color: var(--ink-2); max-width: 52ch; margin-bottom: 1.8rem; }
+
+.atari-botoia {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: 1.02rem;
+  background: var(--urdin); color: #fff; text-decoration: none;
+  padding: .85rem 1.6rem; border-radius: 999px; box-shadow: var(--itzal-2); transition: all var(--t);
+}
+.atari-botoia:hover { transform: translateY(-2px); background: #224a73; }
+.atari-botoia svg { width: 18px; height: 18px; }
+
+.atari-lente { transform-origin: center; animation: flota 9s ease-in-out infinite; }
+.atari-lente.lb { animation-delay: -3s; }
+.atari-lente.lc { animation-delay: -6s; }
+@keyframes flota { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+/* =================== GAIAK =================== */
+.gaiak { max-width: var(--max); margin: 0 auto; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.2rem, 5vw, 2.4rem) 2rem; }
+.gaiak__goiburua { margin-bottom: 2.4rem; }
+.gaiak__goiburua h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; }
+.gaiak__goiburua p { color: var(--ink-2); max-width: 60ch; margin: .3rem 0 0; }
+
+.bloke { margin-bottom: 2.6rem; }
+.bloke__buru { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.1rem; }
+.bloke__txartela {
+  font-family: var(--f-izen); font-weight: 900; font-size: .76rem; letter-spacing: .04em;
+  text-transform: uppercase; color: #fff; background: var(--bloke, var(--urdin));
+  padding: .3rem .8rem; border-radius: 999px; white-space: nowrap;
+}
+.bloke__deskribapena { color: var(--ink-2); font-size: .94rem; margin: 0; }
+
+.gai-sareta { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+
+.gai-txartela {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--lerro);
+  border-radius: var(--r); padding: 1.5rem; text-decoration: none; color: inherit;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  border-top: 4px solid var(--bloke, var(--urdin));
+}
+.gai-txartela--prest:hover { transform: translateY(-4px); box-shadow: var(--itzal-2); border-color: transparent; border-top-color: var(--bloke, var(--urdin)); }
+.gai-txartela--laster { opacity: .72; cursor: default; }
+.gai-txartela--laster:hover { box-shadow: var(--itzal-1); }
+
+.gai-buru { display: flex; align-items: flex-start; justify-content: space-between; gap: .8rem; margin-bottom: .8rem; }
+.gai-ikono { width: 46px; height: 46px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 12px; background: color-mix(in srgb, var(--bloke, var(--urdin)) 12%, transparent); color: var(--bloke, var(--urdin)); }
+.gai-ikono svg { width: 26px; height: 26px; }
+
+.gai-egoera {
+  font-family: var(--f-izen); font-weight: 800; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
+  padding: .2rem .6rem; border-radius: 999px; white-space: nowrap;
+}
+.gai-egoera--prest { background: var(--berde); color: #fff; }
+.gai-egoera--laster { background: var(--paper-2); color: var(--ink-3); border: 1px solid var(--lerro); }
+
+.gai-izenburua { font-family: var(--f-izen); font-weight: 900; font-size: 1.18rem; color: var(--urdin); margin: 0 0 .15rem; line-height: 1.2; }
+.gai-azpititulua { font-size: .82rem; color: var(--ink-3); font-style: italic; margin-bottom: .6rem; }
+.gai-deskribapena { font-size: .92rem; color: var(--ink-2); margin: 0 0 1rem; }
+
+.gai-etiketak { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1rem; }
+.gai-etiketa { font-size: .7rem; font-weight: 600; padding: .12rem .5rem; border-radius: 99px; background: var(--paper-2); color: var(--ink-2); border: 1px solid var(--lerro); }
+
+.gai-sartu { margin-top: auto; display: inline-flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .92rem; color: var(--bloke, var(--urdin)); }
+.gai-sartu svg { width: 16px; height: 16px; transition: transform var(--t); }
+.gai-txartela--prest:hover .gai-sartu svg { transform: translateX(4px); }
+
+/* =================== OINA =================== */
+.atari-oina { text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid var(--lerro); color: var(--ink-2); font-size: .9rem; }
+.atari-oina strong { color: var(--urdin); font-family: var(--f-izen); }
+.atari-oina__txikia { font-size: .82rem; color: var(--ink-3); margin: .4rem 0 0; }
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  .atari-hero { min-height: 70vh; }
+  .atari-hero__ilustrazioa { opacity: .4; justify-content: center; }
+  .bloke__buru { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
