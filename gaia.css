@@ -104,43 +104,163 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 }
 .ghero__sarrera { font-size: clamp(1.02rem, 2vw, 1.18rem); color: var(--ink-2); max-width: 60ch; }
 
-/* =================== PRESTATZEN (placeholder) =================== */
-.prestatzen {
-  max-width: var(--max); margin: 0 auto;
-  padding: 1rem clamp(1.2rem, 5vw, 2.4rem) clamp(3rem, 8vw, 5rem);
+/* =================== NIETZSCHE AUSARDIA-MARKOA =================== */
+.nietzsche {
+  margin: 2.2rem 0 0; padding: 1.6rem clamp(1.3rem, 3vw, 2rem);
+  background: var(--surface); border: 1px solid var(--lerro);
+  border-left: 5px solid var(--gaia); border-radius: var(--r); box-shadow: var(--itzal-1);
 }
-.prestatzen__txartela {
-  position: relative; text-align: center;
-  background: var(--surface);
-  border: 1px solid var(--lerro); border-radius: var(--r);
-  padding: clamp(2.2rem, 6vw, 3.5rem) clamp(1.4rem, 5vw, 3rem);
-  box-shadow: var(--itzal-1);
-  overflow: hidden;
-}
-.prestatzen__txartela::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    repeating-linear-gradient(45deg, transparent, transparent 14px,
-      color-mix(in srgb, var(--gaia) 5%, transparent) 14px,
-      color-mix(in srgb, var(--gaia) 5%, transparent) 28px);
-  -webkit-mask-image: linear-gradient(180deg, #000, transparent 55%);
-  mask-image: linear-gradient(180deg, #000, transparent 55%);
-}
-.prestatzen__txartela > * { position: relative; }
-.prestatzen__domina {
-  display: inline-block; font-family: var(--f-izen); font-weight: 800; font-size: .72rem;
+.nietzsche__etiketa {
+  display: inline-block; font-family: var(--f-izen); font-weight: 800; font-size: .7rem;
   letter-spacing: .08em; text-transform: uppercase; color: var(--gaia);
-  background: var(--gaia-argi); border: 1px solid color-mix(in srgb, var(--gaia) 30%, transparent);
-  padding: .3rem .8rem; border-radius: 999px; margin-bottom: 1.4rem;
+  background: var(--gaia-argi); padding: .25rem .7rem; border-radius: 999px; margin-bottom: 1rem;
 }
-.prestatzen__ikono {
-  width: 72px; height: 72px; margin: 0 auto 1.2rem; display: grid; place-items: center;
-  border-radius: 20px; background: var(--gaia-argi); color: var(--gaia);
+.nietzsche__aipua {
+  margin: 0 0 .5rem; font-family: var(--f-izen); font-weight: 800;
+  font-size: clamp(1.15rem, 2.6vw, 1.5rem); line-height: 1.32; color: var(--urdin);
 }
-.prestatzen__txartela h2 { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 900; margin-bottom: .6rem; }
-.prestatzen__txartela p { color: var(--ink-2); max-width: 52ch; margin: 0 auto 1rem; }
-.prestatzen__oharra { font-size: .95rem; color: var(--ink-3); }
-.prestatzen__oharra a { font-weight: 700; color: var(--gaia); }
+.nietzsche__aipua::before { content: "“"; color: var(--gaia); margin-right: .1rem; }
+.nietzsche__aipua::after { content: "”"; color: var(--gaia); }
+.nietzsche__egilea { font-family: var(--f-izen); font-weight: 700; color: var(--ink-2); font-size: .95rem; margin-bottom: 1.1rem; }
+.nietzsche__egilea span { color: var(--ink-3); font-weight: 400; }
+.nietzsche__sarrera { color: var(--ink-2); font-size: .98rem; margin: 0 0 1rem; }
+.nietzsche__galderak { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+.nietzsche__galderak li {
+  position: relative; padding-left: 1.5rem; font-size: .95rem; color: var(--grafito);
+}
+.nietzsche__galderak li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: .5rem; height: .5rem; border-radius: 50%; background: var(--gaia);
+}
+
+/* =================== ATALEN OINARRIA =================== */
+.atal {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 3.8rem) clamp(1.2rem, 5vw, 2.4rem) 0;
+}
+.atal__goiburua { margin-bottom: 1.8rem; }
+.atal__etiketa {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--gaia); background: var(--gaia-argi); padding: .3rem .8rem; border-radius: 999px; margin-bottom: .8rem;
+}
+.atal__etiketa svg { width: 15px; height: 15px; }
+.atal__goiburua h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 900; letter-spacing: -.01em; }
+.atal__sarrera { color: var(--ink-2); max-width: 62ch; margin: .3rem 0 0; }
+
+/* ----- Lehen kontratua ----- */
+.kontratua-zerrenda {
+  margin: 0; padding: 0; list-style: none; counter-reset: kk;
+  display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.kontratua-zerrenda li {
+  counter-increment: kk; position: relative;
+  background: var(--surface); border: 1px solid var(--lerro); border-radius: var(--r);
+  padding: 1.1rem 1.1rem 1.1rem 3.4rem; font-size: .96rem; color: var(--ink);
+}
+.kontratua-zerrenda li::before {
+  content: counter(kk); position: absolute; left: 1rem; top: 1rem;
+  width: 1.8rem; height: 1.8rem; display: grid; place-items: center; border-radius: 50%;
+  background: var(--gaia); color: #fff; font-family: var(--f-izen); font-weight: 900; font-size: .9rem;
+}
+.kontratua-oharra {
+  margin: 1.4rem 0 0; padding: 1rem 1.2rem; border-radius: var(--r);
+  background: var(--gaia-argi); color: var(--urdin);
+  font-family: var(--f-izen); font-weight: 800; font-size: 1.02rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.kontratua-oharra svg { width: 22px; height: 22px; flex: 0 0 auto; color: var(--gaia); }
+
+/* ----- Saioen sekuentzia ----- */
+.saioak-zerrenda { display: grid; gap: 1rem; }
+.saio {
+  background: var(--surface); border: 1px solid var(--lerro);
+  border-left: 4px solid var(--gaia); border-radius: var(--r); padding: 1.4rem clamp(1.2rem, 3vw, 1.7rem);
+}
+.saio__buru { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+.saio__zenb {
+  flex: 0 0 auto; width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border-radius: 50%;
+  background: var(--gaia); color: #fff; font-family: var(--f-izen); font-weight: 900; font-size: 1.1rem;
+}
+.saio__titulua h3 { font-family: var(--f-izen); font-weight: 900; font-size: 1.18rem; color: var(--urdin); margin: .15rem 0 .15rem; }
+.saio__galdera { font-family: var(--f-izen); font-weight: 700; font-style: italic; color: var(--gaia); font-size: .95rem; margin: 0; }
+.saio__fenomenoa {
+  font-size: .95rem; color: var(--ink-2); margin: 0 0 1rem;
+  padding: .8rem 1rem; background: var(--paper-2); border-radius: 10px;
+}
+.saio__label {
+  display: inline-block; font-family: var(--f-izen); font-weight: 800; font-size: .64rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--gaia); margin-right: .5rem;
+}
+.saio__baliabideak { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.saio-baliabide {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .82rem; font-weight: 600; color: var(--ink-2);
+  background: var(--paper); border: 1px solid var(--lerro); border-radius: 999px; padding: .35rem .8rem;
+  text-decoration: none; transition: all var(--t);
+}
+.saio-baliabide svg { width: 15px; height: 15px; color: var(--gaia); }
+.saio-baliabide--lotura:hover, .saio-baliabide--atlas:hover { border-color: var(--gaia); color: var(--gaia); }
+.saio-baliabide--aurkezpena { background: var(--gaia-argi); border-color: transparent; color: var(--urdin); }
+
+.saio-zabaldu {
+  width: 100%; border: 0; background: none; cursor: pointer; text-align: left;
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: .9rem; color: var(--gaia);
+  padding: .6rem 0 0; border-top: 1px dashed var(--lerro);
+}
+.saio-zabaldu svg { width: 18px; height: 18px; transform: rotate(90deg); transition: transform var(--t); }
+.saio.is-zabalik .saio-zabaldu svg { transform: rotate(-90deg); }
+.saio__denborak { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t); }
+.saio__denborak > div { overflow: hidden; }
+.saio.is-zabalik .saio__denborak { grid-template-rows: 1fr; }
+.denbora-zerrenda { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .4rem; }
+.denbora-zerrenda li { display: flex; gap: .8rem; align-items: baseline; font-size: .92rem; color: var(--ink-2); }
+.denbora-min {
+  flex: 0 0 auto; min-width: 2.6rem; text-align: right;
+  font-family: var(--f-izen); font-weight: 800; color: var(--gaia);
+}
+
+/* ----- Lanabes-kutxa ----- */
+.lanabes-sareta { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.lanabes-txartela {
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  background: var(--surface); border: 1px solid var(--lerro); border-top: 4px solid var(--gaia);
+  border-radius: var(--r); padding: 1.4rem; transition: transform var(--t), box-shadow var(--t);
+}
+.lanabes-txartela:hover { transform: translateY(-4px); box-shadow: var(--itzal-2); }
+.lanabes-buru { display: flex; align-items: center; justify-content: space-between; margin-bottom: .7rem; }
+.lanabes-ikono { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: var(--gaia-argi); color: var(--gaia); }
+.lanabes-ikono svg { width: 24px; height: 24px; }
+.lanabes-kodea { font-family: var(--f-izen); font-weight: 900; color: var(--gaia); font-size: .95rem; }
+.lanabes-txartela h3 { font-family: var(--f-izen); font-weight: 900; font-size: 1.12rem; color: var(--urdin); margin: 0 0 .3rem; }
+.lanabes-txartela p { font-size: .92rem; color: var(--ink-2); margin: 0 0 1rem; }
+.lanabes-sartu { margin-top: auto; display: inline-flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .9rem; color: var(--gaia); }
+.lanabes-sartu svg { width: 16px; height: 16px; transition: transform var(--t); }
+.lanabes-txartela:hover .lanabes-sartu svg { transform: translateX(4px); }
+
+/* ----- Atlas lotura ----- */
+.atlas-blokea {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.4rem;
+  background: var(--urdin); color: #eaf1f8; border-radius: var(--r);
+  padding: clamp(1.6rem, 4vw, 2.4rem);
+}
+.atlas-blokea__testua { flex: 1 1 360px; }
+.atlas-blokea__etiketa {
+  display: inline-block; font-family: var(--f-izen); font-weight: 800; font-size: .7rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--urdin);
+  background: #eaf1f8; padding: .25rem .7rem; border-radius: 999px; margin-bottom: .7rem;
+}
+.atlas-blokea h2 { color: #fff; font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: .4rem; }
+.atlas-blokea p { color: #c5d2e0; margin: 0; max-width: 56ch; }
+.atlas-botoia {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: 1rem;
+  background: #fff; color: var(--urdin); text-decoration: none;
+  padding: .85rem 1.5rem; border-radius: 999px; transition: transform var(--t);
+}
+.atlas-botoia:hover { transform: translateY(-2px); }
+.atlas-botoia svg { width: 18px; height: 18px; }
 
 /* =================== OINA =================== */
 .goina {

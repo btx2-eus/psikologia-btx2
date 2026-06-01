@@ -1,0 +1,104 @@
+/* =================================================================
+   FITXAK — inprimatzeko prestatutako orriak (fitxa.css)
+   Pantailan: marka eta tresna-barra. Inprimatzean: orri garbia.
+   ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --paper: #F4F1E9;
+  --surface: #FCFAF5;
+  --ink: #1E2A33;
+  --ink-2: #4A565F;
+  --ink-3: #7A858D;
+  --urdin: #1B3A5C;
+  --lerro: #D8D1C2;
+  --lerro-sendoa: #C3BBAA;
+  --gaia: #1B3A5C;
+  --gaia-argi: #D6E8F7;
+  --f-izen: 'Nunito', system-ui, sans-serif;
+  --f-gorp: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: var(--f-gorp); color: var(--ink); line-height: 1.5;
+  background: var(--paper); font-size: 15px;
+}
+
+/* tresna-barra (ez da inprimatzen) */
+.tresna-barra {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .6rem clamp(1rem, 4vw, 2rem);
+  background: rgba(244,241,233,.92); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--lerro);
+}
+.tresna-barra a { font-family: var(--f-izen); font-weight: 800; color: var(--urdin); text-decoration: none; font-size: .9rem; }
+.tresna-barra .ekintzak { display: flex; gap: .5rem; }
+.botoi-inprimatu {
+  font-family: var(--f-izen); font-weight: 800; font-size: .9rem; cursor: pointer;
+  background: var(--urdin); color: #fff; border: 0; border-radius: 999px; padding: .55rem 1.2rem;
+}
+.botoi-inprimatu:hover { background: #224a73; }
+
+/* orria (A4 itxura) */
+.fitxa {
+  max-width: 820px; margin: 1.5rem auto; background: #fff;
+  border: 1px solid var(--lerro); border-radius: 10px;
+  padding: clamp(1.5rem, 4vw, 2.6rem); box-shadow: 0 6px 24px rgba(27,58,92,.08);
+}
+
+.fitxa-goiburua { border-bottom: 3px solid var(--gaia); padding-bottom: .9rem; margin-bottom: 1.2rem; }
+.fitxa-kodea { font-family: var(--f-izen); font-weight: 900; color: var(--gaia); font-size: .85rem; letter-spacing: .03em; }
+.fitxa-goiburua h1 { font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: clamp(1.4rem, 4vw, 1.9rem); margin: .15rem 0; line-height: 1.15; }
+.fitxa-goiburua p { color: var(--ink-2); margin: .2rem 0 0; font-size: .95rem; }
+
+.eremu-ilara { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.eremu { flex: 1 1 140px; }
+.eremu label { display: block; font-family: var(--f-izen); font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); margin-bottom: .2rem; }
+.eremu .lerro-hutsa { border-bottom: 1.5px solid var(--lerro-sendoa); height: 1.4rem; }
+
+.azpi { font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: 1.05rem; margin: 1.4rem 0 .5rem; display: flex; gap: .5rem; align-items: baseline; }
+.azpi .zk { color: var(--gaia); }
+
+.argibide { font-size: .88rem; color: var(--ink-2); margin: 0 0 .6rem; }
+
+.kutxa {
+  border: 1.5px solid var(--lerro-sendoa); border-radius: 8px; background: var(--surface);
+  min-height: 3.5rem; padding: .7rem .9rem; margin-bottom: 1rem;
+}
+.kutxa--handi { min-height: 5.5rem; }
+.kutxa--lerroak { background:
+  repeating-linear-gradient(transparent, transparent 1.7rem, var(--lerro) 1.7rem, var(--lerro) calc(1.7rem + 1px)); }
+
+.ohar-kutxa {
+  background: var(--gaia-argi); border-radius: 8px; padding: .8rem 1rem; margin: 1rem 0;
+  font-size: .9rem; color: var(--urdin);
+}
+.ohar-kutxa strong { font-family: var(--f-izen); }
+
+table.fitxa-taula { width: 100%; border-collapse: collapse; margin: .6rem 0 1.2rem; font-size: .88rem; }
+table.fitxa-taula th, table.fitxa-taula td { border: 1px solid var(--lerro-sendoa); padding: .55rem .6rem; text-align: left; vertical-align: top; }
+table.fitxa-taula th { background: var(--gaia-argi); color: var(--urdin); font-family: var(--f-izen); font-weight: 800; font-size: .8rem; }
+table.fitxa-taula td { height: 2.6rem; }
+
+.lente-aukerak { display: flex; flex-wrap: wrap; gap: .4rem; margin: .4rem 0 1rem; }
+.lente-aukerak span { font-size: .78rem; border: 1px solid var(--lerro-sendoa); border-radius: 999px; padding: .2rem .65rem; color: var(--ink-2); background: var(--surface); }
+
+.kontrol-zerrenda { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.kontrol-zerrenda li { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; }
+.kontrol-zerrenda .kk { flex: 0 0 auto; width: 1.1rem; height: 1.1rem; border: 1.5px solid var(--gaia); border-radius: 4px; margin-top: .12rem; }
+
+.fitxa-oina { margin-top: 1.6rem; padding-top: .8rem; border-top: 1px solid var(--lerro); font-size: .78rem; color: var(--ink-3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+
+/* =================== INPRIMATZEA =================== */
+@media print {
+  @page { margin: 1.4cm; }
+  body { background: #fff; font-size: 11.5pt; }
+  .tresna-barra { display: none; }
+  .fitxa { max-width: none; margin: 0; border: 0; border-radius: 0; box-shadow: none; padding: 0; }
+  .kutxa, .eremu .lerro-hutsa, table.fitxa-taula th, table.fitxa-taula td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ohar-kutxa, table.fitxa-taula th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .azpi { break-after: avoid; }
+  .kutxa, table.fitxa-taula, .ohar-kutxa { break-inside: avoid; }
+}
