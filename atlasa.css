@@ -611,6 +611,10 @@ body.modua-irakasle .klase-galdera::before {
   border: 1.5px solid var(--lerro-sendoa); transition: all var(--t);
 }
 .oina__nabigazio a:hover { background: var(--urdin); color: #fff; border-color: var(--urdin); }
+.oina__autoria {
+  margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--lerro);
+  font-family: var(--f-izen); font-weight: 700; font-size: .82rem; color: var(--ink-2);
+}
 
 /* =================== RESPONSIVE =================== */
 @media (max-width: 880px) {
