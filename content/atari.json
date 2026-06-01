@@ -2,16 +2,23 @@
   "meta": {
     "izenburua": "Psikologia",
     "azpititulua": "2. Batxilergoa",
-    "esaldia": "Zientzia bat zeure buruari buruz.",
-    "sarrera": "Psikologiak galdera zaharrenei erantzuten die metodo zientifikoarekin: zer gara, nola ikasten dugu, zerk baldintzatzen gaitu, nola eragiten digute besteek. Hemen, gai bakoitza fenomeno errealetik abiatuta lantzen da, eta zu zeu zara aztergai nagusia."
+    "mapaIzena": "Ikasturtearen mapa: helburuak, gaiak eta lan modua",
+    "azentua": "Kontzeptua + kasua + arrazoiketa",
+    "esaldia": "Zientzia bat zeure buruari buruz."
+  },
+
+  "helburuNagusia": {
+    "etiketa": "Helburu nagusia",
+    "testua": "Psikologiaren oinarrizko kontzeptuak erabiliz, gure burua, besteak eta gizartean gertatzen diren jokabideak hobeto ulertzea.",
+    "oharra": "Ez da auto-laguntza: psikologia serioa da. Iritzia bai, baina kontzeptuekin, kasuarekin eta argudioarekin."
   },
 
   "blokeak": [
     {
-      "id": "historia",
+      "id": "abiapuntua",
       "izena": "Abiapuntua",
       "kolorea": "filosofia",
-      "deskribapena": "Nondik dator psikologia eta nola bihurtu zen zientzia.",
+      "deskribapena": "Nondik dator psikologia eta nola bihurtu zen zientzia. Ikasturtea ulertzeko oinarria.",
       "gaiak": [
         {
           "id": "lenteen-atlasa",
@@ -26,40 +33,62 @@
       ]
     },
     {
-      "id": "oinarriak",
-      "izena": "1. blokea · Oinarriak",
+      "id": "ebaluazioa-1",
+      "izena": "1. ebaluazioa",
+      "gaia": "Burua eta garuna",
+      "galdera": "Nola eraikitzen dugu errealitatea?",
       "kolorea": "estruktura",
-      "deskribapena": "Zer den psikologia, garunaren oinarriak, pertzepzioa eta ikaskuntza.",
+      "deskribapena": "Zer den psikologia, garunaren oinarriak eta nola hautematen, arreta jartzen eta gogoratzen dugun.",
       "gaiak": [
         { "id": "zer-da", "izenburua": "Zer da psikologia?", "deskribapena": "Jakintzaren estatusa, metodo zientifikoa eta psikologia vs. sen ona.", "egoera": "laster", "ikonoa": "lente" },
-        { "id": "garuna", "izenburua": "Portaeraren oinarri biologikoak", "deskribapena": "Garunak ez du determinatzen, baina bai baldintzatzen.", "egoera": "laster", "ikonoa": "garuna" },
+        { "id": "biologikoak", "izenburua": "Oinarri biologikoak", "deskribapena": "Garunak ez du determinatzen, baina bai baldintzatzen.", "egoera": "laster", "ikonoa": "garuna" },
         { "id": "pertzepzioa", "izenburua": "Pertzepzioa, arreta eta oroimena", "deskribapena": "Hautematea ez da errealitatearen kopia: eraikuntza da.", "egoera": "laster", "ikonoa": "begia" },
-        { "id": "ikaskuntza", "izenburua": "Ikaskuntza", "deskribapena": "Kondizionamendua eta ikaskuntza soziala.", "egoera": "laster", "ikonoa": "portaera" }
+        { "id": "neuromitoak", "izenburua": "Neuromitoak eta amigdala", "deskribapena": "Kasua: neuromitoak, amigdala-bahiketa eta Black Mirror.", "egoera": "laster", "ikonoa": "garuna", "mota": "kasua" }
       ]
     },
     {
-      "id": "prozesuak",
-      "izena": "2. blokea · Prozesuak",
+      "id": "ebaluazioa-2",
+      "izena": "2. ebaluazioa",
+      "gaia": "Emozioa eta harremana",
+      "galdera": "Zerk mugitzen gaitu?",
       "kolorea": "berde",
-      "deskribapena": "Garapena, motibazioa, emozioak, pentsamendua eta hizkuntza.",
+      "deskribapena": "Nola ikasten dugun, zerk motibatzen gaituen eta nola lotzen garen besteekin.",
       "gaiak": [
-        { "id": "garapena", "izenburua": "Garapen psikologikoa", "deskribapena": "Piaget, Vygotsky, Kohlberg: garapena ez da lineala.", "egoera": "laster", "ikonoa": "lotura" },
+        { "id": "ikaskuntza", "izenburua": "Ikaskuntza-kapsula", "deskribapena": "Kondizionamendua eta ikaskuntza soziala, praktikan.", "egoera": "laster", "ikonoa": "portaera" },
         { "id": "motibazioa", "izenburua": "Motibazioa eta emozioak", "deskribapena": "Maslowen piramidea kritikoki, eta emozioaren funtzio adaptatiboa.", "egoera": "laster", "ikonoa": "bihotza" },
-        { "id": "pentsamendua", "izenburua": "Pentsamendua eta sormena", "deskribapena": "Heuristikoak, alborapen kognitiboak eta sormena.", "egoera": "laster", "ikonoa": "lente" }
+        { "id": "presioa", "izenburua": "Presioa eta errendimendua", "deskribapena": "Kasua: Whiplash — presioak hobetzen ala hausten gaitu?", "egoera": "laster", "ikonoa": "lente", "mota": "kasua" },
+        { "id": "maitasuna", "izenburua": "Maitasuna eta harreman afektiboak", "deskribapena": "Atxikimendua, apegoa eta harreman afektiboak.", "egoera": "laster", "ikonoa": "lotura" }
       ]
     },
     {
-      "id": "ni-besteak",
-      "izena": "3. blokea · Ni eta besteak",
+      "id": "ebaluazioa-3",
+      "izena": "3. ebaluazioa",
+      "gaia": "Taldea eta osasun mentala",
+      "galdera": "Nola eragiten digute besteek?",
       "kolorea": "sozial",
-      "deskribapena": "Nortasuna, harremanak, sexualitatea eta osasun mentala.",
+      "deskribapena": "Taldeak eta gizarteak nola moldatzen gaituzten, eta osasun mentalari begirada kritikoa.",
       "gaiak": [
-        { "id": "nortasuna", "izenburua": "Nortasuna", "deskribapena": "Teoria diferenteak eta nortasunaren eraikuntza soziala.", "egoera": "laster", "ikonoa": "begia" },
-        { "id": "soziala", "izenburua": "Harremanak eta psikologia soziala", "deskribapena": "Konformismoa, obedientzia, estereotipoak eta talde-dinamika.", "egoera": "laster", "ikonoa": "taldea" },
-        { "id": "osasuna", "izenburua": "Osasun mentala", "deskribapena": "Normaltasuna vs. patologia, estigma eta prebentzioa.", "egoera": "laster", "ikonoa": "bihotza" }
+        { "id": "soziala", "izenburua": "Psikologia soziala", "deskribapena": "Konformismoa, jarrerak eta talde-dinamika.", "egoera": "laster", "ikonoa": "taldea" },
+        { "id": "talde-presioa", "izenburua": "Talde-presioa, autoritatea eta masa", "deskribapena": "Kasua: Asch, Milgram eta masaren psikologia.", "egoera": "laster", "ikonoa": "taldea", "mota": "kasua" },
+        { "id": "osasuna", "izenburua": "Osasun mentala eta pseudozientzia", "deskribapena": "Terapiak, estigma eta pseudozientziarekiko begirada kritikoa.", "egoera": "laster", "ikonoa": "bihotza" },
+        { "id": "nor-naiz", "izenburua": "Nor naiz ni?", "deskribapena": "Amaierako itxiera: ikasleak eraikitako sintesi identitarioa.", "egoera": "laster", "ikonoa": "begia", "mota": "itxiera" }
       ]
     }
   ],
+
+  "lanModua": {
+    "etiketa": "Lan modua",
+    "sarrera": "Honela egingo dugu lan ikasturtean zehar:",
+    "zerrenda": [
+      { "ikonoa": "lente", "testua": "Azalpen laburrak", "mota": "azalpena" },
+      { "ikonoa": "begia", "testua": "Kasuak, filmak eta serieak", "mota": "kasua" },
+      { "ikonoa": "portaera", "testua": "Fitxa laburrak", "mota": "fitxa" },
+      { "ikonoa": "lotura", "testua": "Lan aplikatu bat ebaluazio bakoitzean", "mota": "lana" },
+      { "ikonoa": "taldea", "testua": "Elkarrizketa eta gogoeta", "mota": "gogoeta" }
+    ]
+  },
+
+  "ikastekoModua": "Ikasteko modua: kontzeptuak ulertu, adibideetan ikusi, kasuetan aplikatu eta arrazoituz idatzi.",
 
   "egoeraEtiketak": {
     "prest": "Prest",

@@ -66,19 +66,48 @@
       <div class="atari-hero__edukia">
         <p class="atari-hero__txikia">Ikasgaiaren webgunea · euskaraz</p>
         <h1 class="atari-hero__izenburua" id="atari-izenburua">Psikologia</h1>
+        <p class="atari-hero__mapa" id="atari-mapa"></p>
         <p class="atari-hero__esaldia" id="atari-esaldia"></p>
-        <p class="atari-hero__sarrera" id="atari-sarrera"></p>
-        <a class="atari-botoia" href="#gaiak">Ikusi gaiak <svg width="18" height="18" aria-hidden="true"><use href="#ic-fletxa"/></svg></a>
+        <p class="atari-hero__azentua" id="atari-azentua"></p>
+        <a class="atari-botoia" href="#gaiak">Ikusi ikasturtearen mapa <svg width="18" height="18" aria-hidden="true"><use href="#ic-fletxa"/></svg></a>
       </div>
     </section>
 
-    <!-- ===== GAIAK (blokeka) ===== -->
+    <!-- ===== HELBURU NAGUSIA ===== -->
+    <section class="helburua" id="helburua" aria-labelledby="helburu-etiketa">
+      <div class="helburua__bilgarria">
+        <div class="helburua__txartela">
+          <span class="helburua__ikono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+          </span>
+          <span class="helburua__etiketa" id="helburu-etiketa">Helburu nagusia</span>
+        </div>
+        <div class="helburua__edukia">
+          <p class="helburua__testua" id="helburua-testua"></p>
+          <p class="helburua__oharra" id="helburua-oharra"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GAIAK (ebaluazioka) ===== -->
     <section class="gaiak" id="gaiak">
       <div class="gaiak__goiburua">
-        <h2>Gaiak</h2>
-        <p>Ikasturtea hiru bloketan antolatuta dago. Gai bakoitza prest dagoenean, hemen agertuko da. Lehen gaia jada erabilgarri duzu.</p>
+        <h2>Gai-banaketa ebaluazioetan</h2>
+        <p>Ikasturtea hiru ebaluaziotan antolatuta dago, bakoitza galdera handi batekin. Gai bakoitza prest dagoenean, hemen agertuko da klikagarri.</p>
       </div>
       <div id="blokeak-edukia"></div>
+    </section>
+
+    <!-- ===== LAN MODUA ===== -->
+    <section class="lan-modua" id="lan-modua" aria-labelledby="lan-modua-etiketa">
+      <div class="lan-modua__bilgarria">
+        <div class="lan-modua__buru">
+          <span class="lan-modua__etiketa" id="lan-modua-etiketa"></span>
+          <p id="lan-modua-sarrera"></p>
+        </div>
+        <ul class="lan-modua__zerrenda" id="lan-modua-zerrenda"></ul>
+        <p class="lan-modua__ikasteko" id="lan-modua-ikasteko"></p>
+      </div>
     </section>
   </main>
 

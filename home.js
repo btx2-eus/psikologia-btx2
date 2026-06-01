@@ -27,27 +27,68 @@ async function init() {
   // Heroa
   if (DATA.meta) {
     document.getElementById('atari-izenburua').textContent = DATA.meta.izenburua || 'Psikologia';
-    document.getElementById('atari-esaldia').textContent = DATA.meta.esaldia || '';
-    document.getElementById('atari-sarrera').textContent = DATA.meta.sarrera || '';
+    setText('atari-mapa', DATA.meta.mapaIzena);
+    setText('atari-esaldia', DATA.meta.esaldia);
+    setText('atari-azentua', DATA.meta.azentua);
+  }
+
+  // Helburu nagusia
+  if (DATA.helburuNagusia) {
+    setText('helburu-etiketa', DATA.helburuNagusia.etiketa || 'Helburu nagusia');
+    setText('helburua-testua', DATA.helburuNagusia.testua);
+    setText('helburua-oharra', DATA.helburuNagusia.oharra);
   }
 
   renderBlokeak();
+  renderLanModua();
 }
+
+function setText(id, t) { const el = document.getElementById(id); if (el && t != null) el.textContent = t; }
 
 function renderBlokeak() {
   const k = document.getElementById('blokeak-edukia');
   const et = DATA.egoeraEtiketak || { prest: 'Prest', laster: 'Laster' };
 
-  k.innerHTML = DATA.blokeak.map(b => `
+  k.innerHTML = DATA.blokeak.map(b => {
+    // ebaluazio-blokeek gaia + galdera dute; abiapuntuak deskribapena soilik
+    const buru = b.gaia
+      ? `<div class="bloke__buru bloke__buru--ebal">
+           <span class="bloke__txartela">${esc(b.izena)}</span>
+           <div class="bloke__titulua">
+             <h3 class="bloke__gaia">${esc(b.gaia)}</h3>
+             ${b.galdera ? `<p class="bloke__galdera">${esc(b.galdera)}</p>` : ''}
+           </div>
+         </div>`
+      : `<div class="bloke__buru">
+           <span class="bloke__txartela">${esc(b.izena)}</span>
+           <p class="bloke__deskribapena">${esc(b.deskribapena || '')}</p>
+         </div>`;
+
+    return `
     <section class="bloke" style="--bloke:${blokeKolorea(b.kolorea)}">
-      <div class="bloke__buru">
-        <span class="bloke__txartela">${esc(b.izena)}</span>
-        <p class="bloke__deskribapena">${esc(b.deskribapena || '')}</p>
-      </div>
+      ${buru}
       <div class="gai-sareta">
         ${b.gaiak.map(g => gaiTxartela(g, et)).join('')}
       </div>
-    </section>`).join('');
+    </section>`;
+  }).join('');
+}
+
+/* ---------- LAN MODUA ---------- */
+function renderLanModua() {
+  const lm = DATA.lanModua;
+  if (!lm) return;
+  setText('lan-modua-etiketa', lm.etiketa);
+  setText('lan-modua-sarrera', lm.sarrera);
+  setText('lan-modua-ikasteko', DATA.ikastekoModua);
+  const z = document.getElementById('lan-modua-zerrenda');
+  if (z) {
+    z.innerHTML = lm.zerrenda.map(item => `
+      <li class="lan-modua__item lan-modua__item--${esc(item.mota || 'azalpena')}">
+        <span class="lan-modua__ikono">${ICON(item.ikonoa || 'lente')}</span>
+        <span>${esc(item.testua)}</span>
+      </li>`).join('');
+  }
 }
 
 function gaiTxartela(g, et) {
