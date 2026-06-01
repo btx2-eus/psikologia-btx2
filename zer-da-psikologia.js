@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderKontratua(D.kontratua);
   renderSaioak(D);
   renderLanabesak(D.lanabesak);
+  if (D.errepasoa) renderErrepasoa(D.errepasoa);
   renderAtlas(D.atlasLotura);
 });
 
@@ -177,4 +178,187 @@ function renderAtlas(a) {
       </div>
       <a class="atlas-botoia" href="${esc(a.lotura)}">${esc(a.botoia)} ${ICON('fletxa')}</a>
     </div>`;
+}
+
+/* ---------- ERREPASO INTERAKTIBOA ---------- */
+function renderErrepasoa(e) {
+  const s = document.getElementById('errepasoa');
+  s.innerHTML = `
+    <div class="atal__goiburua">
+      <span class="atal__etiketa">${ICON('begia')} ${esc(e.etiketa)}</span>
+      <h2 id="errepasoa-h">${esc(e.izenburua)}</h2>
+      <p class="atal__sarrera">${esc(e.sarrera)}</p>
+    </div>
+    <div class="errepaso-blokeak">
+      <div class="errepaso-zatia" id="sailkapen-jokoa"></div>
+      <div class="errepaso-zatia" id="autotesta"></div>
+    </div>`;
+  if (e.sailkapena) renderSailkapena(e.sailkapena);
+  if (e.autotesta) renderAutotesta(e.autotesta);
+}
+
+/* ----- Sailkapen-jokoa ----- */
+function renderSailkapena(d) {
+  const wrap = document.getElementById('sailkapen-jokoa');
+  const azalpenaId = 'sailk-azalpena';
+  wrap.innerHTML = `
+    <div class="errepaso-buru">
+      <h3>${ICON('lente')} ${esc(d.izenburua)}</h3>
+      <p>${esc(d.argibidea)}</p>
+    </div>
+    <div class="sailk-aurrera"><span class="sailk-kont">1</span> / ${d.itemak.length}
+      <span class="sailk-emaitza" aria-live="polite"></span>
+    </div>
+    <div class="sailk-txartela">
+      <p class="sailk-esaldia"></p>
+      <div class="sailk-botoiak" role="group" aria-label="Sailkatu esaldia">
+        ${d.kategoriak.map(k => `<button class="sailk-botoi" data-id="${k.id}" title="${esc(k.definizioa)}">${esc(k.izena)}</button>`).join('')}
+      </div>
+      <div class="sailk-feedback" id="${azalpenaId}" hidden></div>
+      <button class="errepaso-hurrengo" hidden>Hurrengoa ${ICON('fletxa')}</button>
+    </div>
+    <div class="sailk-amaiera" hidden></div>`;
+
+  const kat = Object.fromEntries(d.kategoriak.map(k => [k.id, k.izena]));
+  let i = 0, zuzenak = 0, erantzunda = false;
+  const esaldiaEl = wrap.querySelector('.sailk-esaldia');
+  const botoiak = [...wrap.querySelectorAll('.sailk-botoi')];
+  const feedback = wrap.querySelector('.sailk-feedback');
+  const hurrengoBtn = wrap.querySelector('.errepaso-hurrengo');
+  const kontEl = wrap.querySelector('.sailk-kont');
+  const emaitzaEl = wrap.querySelector('.sailk-emaitza');
+  const txartela = wrap.querySelector('.sailk-txartela');
+  const amaiera = wrap.querySelector('.sailk-amaiera');
+
+  function kargatu() {
+    const item = d.itemak[i];
+    esaldiaEl.textContent = '«' + item.esaldia + '»';
+    kontEl.textContent = i + 1;
+    erantzunda = false;
+    feedback.hidden = true; feedback.innerHTML = '';
+    hurrengoBtn.hidden = true;
+    botoiak.forEach(b => { b.disabled = false; b.className = 'sailk-botoi'; });
+  }
+
+  botoiak.forEach(b => b.addEventListener('click', () => {
+    if (erantzunda) return;
+    erantzunda = true;
+    const item = d.itemak[i];
+    const ondo = b.dataset.id === item.erantzuna;
+    if (ondo) zuzenak++;
+    botoiak.forEach(x => {
+      x.disabled = true;
+      if (x.dataset.id === item.erantzuna) x.classList.add('is-zuzena');
+      else if (x === b) x.classList.add('is-oker');
+    });
+    feedback.hidden = false;
+    feedback.className = 'sailk-feedback ' + (ondo ? 'is-ondo' : 'is-gaizki');
+    feedback.innerHTML = `<strong>${ondo ? 'Bai.' : 'Erantzun zuzena: ' + esc(kat[item.erantzuna]) + '.'}</strong> ${esc(item.azalpena)}`;
+    hurrengoBtn.hidden = false;
+    hurrengoBtn.textContent = (i + 1 < d.itemak.length) ? 'Hurrengoa →' : 'Ikusi emaitza →';
+  }));
+
+  hurrengoBtn.addEventListener('click', () => {
+    if (i + 1 < d.itemak.length) { i++; kargatu(); hurrengoBtn.scrollIntoView({block:'nearest'}); }
+    else amaitu();
+  });
+
+  function amaitu() {
+    txartela.hidden = true;
+    amaiera.hidden = false;
+    const ehuneko = Math.round(zuzenak / d.itemak.length * 100);
+    amaiera.innerHTML = `
+      <p class="amaiera-emaitza">${zuzenak} / ${d.itemak.length}</p>
+      <p class="amaiera-mezua">${emaitzaMezua(ehuneko)}</p>
+      <button class="errepaso-berriz">↻ Berriz egin</button>`;
+    amaiera.querySelector('.errepaso-berriz').addEventListener('click', () => {
+      i = 0; zuzenak = 0; amaiera.hidden = true; txartela.hidden = false; kargatu();
+    });
+    emaitzaEl.textContent = '· Amaituta';
+  }
+
+  kargatu();
+}
+
+/* ----- Autotesta ----- */
+function renderAutotesta(d) {
+  const wrap = document.getElementById('autotesta');
+  wrap.innerHTML = `
+    <div class="errepaso-buru">
+      <h3>${ICON('garuna')} ${esc(d.izenburua)}</h3>
+      <p>${esc(d.argibidea)}</p>
+    </div>
+    <div class="test-aurrera"><span class="test-kont">1</span> / ${d.galderak.length}</div>
+    <div class="test-txartela">
+      <p class="test-galdera"></p>
+      <div class="test-aukerak" role="group" aria-label="Aukeratu erantzuna"></div>
+      <div class="test-feedback" hidden></div>
+      <button class="errepaso-hurrengo" hidden>Hurrengoa ${ICON('fletxa')}</button>
+    </div>
+    <div class="test-amaiera" hidden></div>`;
+
+  let i = 0, zuzenak = 0, erantzunda = false;
+  const galderaEl = wrap.querySelector('.test-galdera');
+  const aukeraketa = wrap.querySelector('.test-aukerak');
+  const feedback = wrap.querySelector('.test-feedback');
+  const hurrengoBtn = wrap.querySelector('.errepaso-hurrengo');
+  const kontEl = wrap.querySelector('.test-kont');
+  const txartela = wrap.querySelector('.test-txartela');
+  const amaiera = wrap.querySelector('.test-amaiera');
+
+  function kargatu() {
+    const g = d.galderak[i];
+    galderaEl.textContent = g.galdera;
+    kontEl.textContent = i + 1;
+    erantzunda = false;
+    feedback.hidden = true; feedback.innerHTML = '';
+    hurrengoBtn.hidden = true;
+    aukeraketa.innerHTML = g.aukerak.map((a, idx) =>
+      `<button class="test-aukera" data-idx="${idx}">${esc(a)}</button>`).join('');
+    aukeraketa.querySelectorAll('.test-aukera').forEach(b => b.addEventListener('click', () => erantzun(b, g)));
+  }
+
+  function erantzun(b, g) {
+    if (erantzunda) return;
+    erantzunda = true;
+    const idx = +b.dataset.idx;
+    const ondo = idx === g.zuzena;
+    if (ondo) zuzenak++;
+    aukeraketa.querySelectorAll('.test-aukera').forEach((x, xi) => {
+      x.disabled = true;
+      if (xi === g.zuzena) x.classList.add('is-zuzena');
+      else if (x === b) x.classList.add('is-oker');
+    });
+    feedback.hidden = false;
+    feedback.className = 'test-feedback ' + (ondo ? 'is-ondo' : 'is-gaizki');
+    feedback.innerHTML = `<strong>${ondo ? 'Bai.' : 'Ez guztiz.'}</strong> ${esc(g.azalpena)}`;
+    hurrengoBtn.hidden = false;
+    hurrengoBtn.textContent = (i + 1 < d.galderak.length) ? 'Hurrengoa →' : 'Ikusi emaitza →';
+  }
+
+  hurrengoBtn.addEventListener('click', () => {
+    if (i + 1 < d.galderak.length) { i++; kargatu(); }
+    else amaitu();
+  });
+
+  function amaitu() {
+    txartela.hidden = true;
+    amaiera.hidden = false;
+    const ehuneko = Math.round(zuzenak / d.galderak.length * 100);
+    amaiera.innerHTML = `
+      <p class="amaiera-emaitza">${zuzenak} / ${d.galderak.length}</p>
+      <p class="amaiera-mezua">${emaitzaMezua(ehuneko)}</p>
+      <button class="errepaso-berriz">↻ Berriz egin</button>`;
+    amaiera.querySelector('.errepaso-berriz').addEventListener('click', () => {
+      i = 0; zuzenak = 0; amaiera.hidden = true; txartela.hidden = false; kargatu();
+    });
+  }
+
+  kargatu();
+}
+
+function emaitzaMezua(ehuneko) {
+  if (ehuneko >= 85) return 'Bikain! Kontzeptuak argi dituzu eta behaketa eta interpretazioa ondo bereizten dituzu.';
+  if (ehuneko >= 60) return 'Ondo bidean. Begiratu berriz huts egin dituzun azalpenak: askotan behaketa eta iritzia nahasten dira.';
+  return 'Lasai: hau ez da azterketa. Irakurri berriz azalpenak eta egin berriz — pentsatzeko da, ez asmatzeko.';
 }

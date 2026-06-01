@@ -159,5 +159,116 @@
     "testua": "Gai honetan lenteen ideia erabiltzen hasiko gara: eskola psikologiko bakoitza gizakia ulertzeko lente bat da. Ezagutu denak — arimatik garuneraino — kronologia eta harremanekin.",
     "lotura": "lenteen-atlasa.html",
     "botoia": "Ireki Lenteen Atlasa"
+  },
+
+  "errepasoa": {
+    "etiketa": "Errepasoa",
+    "izenburua": "Errepaso interaktiboa",
+    "sarrera": "Hau ez da memoria-froga: pentsatzen ikasteko da. Bi ariketa dituzu, eta nahi adina aldiz egin ditzakezu. Helburua ez da 'asmatzea', baizik eta zergatiak ulertzea.",
+
+    "sailkapena": {
+      "izenburua": "Behaketa ala interpretazioa?",
+      "argibidea": "Esaldi bakoitza irakurri eta sailkatu. Gogoratu: behatzea ikusten dena esatea da; hipotesia azalpen posible bat; iritzia balorazioa; eta diagnostikoa etiketa kliniko bat, frogarik gabe arriskutsua dena.",
+      "kategoriak": [
+        { "id": "behaketa", "izena": "Behaketa", "definizioa": "Ikus edo entzun daitekeena, interpretatu gabe." },
+        { "id": "hipotesia", "izena": "Hipotesia", "definizioa": "Azalpen posible bat, froga gehiago behar duena." },
+        { "id": "iritzia", "izena": "Iritzia", "definizioa": "Balorazio pertsonala, ona/txarra." },
+        { "id": "diagnostikoa", "izena": "Diagnostiko arriskutsua", "definizioa": "Etiketa klinikoa, frogarik gabe botata." }
+      ],
+      "itemak": [
+        { "esaldia": "Anek ez du aurkezpenean hitz egin.", "erantzuna": "behaketa", "azalpena": "Ikus daitekeen jokabidea da, interpretaziorik gabe. Ez du esaten zergatik." },
+        { "esaldia": "Ane lotsatia da.", "erantzuna": "iritzia", "azalpena": "Izaerari buruzko balorazio orokorra da: jokabide bat nortasun-ezaugarri bihurtzen du, frogarik gabe." },
+        { "esaldia": "Agian urduri zegoen.", "erantzuna": "hipotesia", "azalpena": "Azalpen posible bat eskaintzen du ('agian'), egia absolutu gisa aurkeztu gabe." },
+        { "esaldia": "Mikelek 20 minututan 8 aldiz begiratu du mugikorra.", "erantzuna": "behaketa", "azalpena": "Datu zehatza eta neurgarria: zenbatu daiteke, ez du interpretatzen." },
+        { "esaldia": "Mikel mugikorraren adiktoa da.", "erantzuna": "diagnostikoa", "azalpena": "'Adikzioa' etiketa klinikoa da. Jokabide bat ikusita diagnostiko bat botatzea arriskutsua da: ez gara klinikoak, eta ez dugu frogarik." },
+        { "esaldia": "Taldeak ez dio lekurik eman parte hartzeko.", "erantzuna": "hipotesia", "azalpena": "Testuinguruari buruzko azalpen posible bat da: zergatia talde-dinamikan kokatzen du, baina ez daki ziur." },
+        { "esaldia": "Gaizki portatu da.", "erantzuna": "iritzia", "azalpena": "Balio-judizio bat da ('gaizki'), ez deskribapen objektiboa. Zer egin duen zehazki ez du esaten." },
+        { "esaldia": "Begiak malkotan zituen hizketan ari zenean.", "erantzuna": "behaketa", "azalpena": "Ikus daitekeena deskribatzen du, esanahirik gehitu gabe. Ez du esaten triste dagoenik." }
+      ]
+    },
+
+    "autotesta": {
+      "izenburua": "Ulertu duzu? — autotesta",
+      "argibidea": "Galdera kontzeptualak dira: ez datak edo izenak, baizik eta ideia nagusiak. Aukeratu erantzun bat eta ikusiko duzu azalpena.",
+      "galderak": [
+        {
+          "galdera": "Zerk bereizten du psikologia zientifikoa sen onetik?",
+          "aukerak": [
+            "Psikologiak beti arrazoia duela",
+            "Behaketan, datuetan eta hipotesiak frogatzean oinarritzen dela",
+            "Pertsonen izaera azkar igartzen duela",
+            "Sentimenduei buruz hitz egiten duela"
+          ],
+          "zuzena": 1,
+          "azalpena": "Psikologia ez da intuizioz eraikitzen: behatuz, datuak bilduz eta hipotesiak aztertuz baizik. Hori da sen onetik bereizten duena."
+        },
+        {
+          "galdera": "Zein galderari erantzuten saiatzen zen batez ere konduktismoa?",
+          "aukerak": [
+            "Zer gertatzen da inkontzientean?",
+            "Nola eraikitzen da arima?",
+            "Zer portaera behagarri eta neurgarri ikus dezakegu?",
+            "Zein da bizitzaren zentzua?"
+          ],
+          "zuzena": 2,
+          "azalpena": "Watson eta Skinnerrentzat, zientziak neurgarria dena aztertu behar zuen: ikus daitekeen portaera, ez barruko prozesu ezkutuak."
+        },
+        {
+          "galdera": "Zergatik da arriskutsua hipotesi bat egia ziurra balitz bezala erabiltzea?",
+          "aukerak": [
+            "Hipotesiak beti faltsuak direlako",
+            "Pertsona etiketa batean itxi eta beste azalpenak baztertu ditzakegulako",
+            "Hipotesiak zientzian debekatuta daudelako",
+            "Ez delako arriskutsua, normala baizik"
+          ],
+          "zuzena": 1,
+          "azalpena": "Hipotesia aukera bat da, ez egia. Ziurtzat hartzen badugu, pertsona etiketatzen dugu eta beste azalpen posibleak ikusteari uzten diogu."
+        },
+        {
+          "galdera": "Zer esan nahi du 'lente bakarrarekin ez da nahikoa' esaldiak?",
+          "aukerak": [
+            "Eskola bat baino ez dela baliozkoa",
+            "Psikologia ezin dela ulertu",
+            "Ikuspegi bakoitzak zerbait argitzen du, baina baita zerbait ilunpean utzi ere",
+            "Lente fisikoak behar ditugula irakurtzeko"
+          ],
+          "zuzena": 2,
+          "azalpena": "Eskola bakoitzak galdera batzuei erantzuten die ondo, baina beste batzuk kanpoan uzten ditu. Horregatik behar dugu ikuspegi bat baino gehiago."
+        },
+        {
+          "galdera": "Freuden ekarpenetatik, zer onartzen du gaur egungo psikologiak oraindik?",
+          "aukerak": [
+            "Edipo konplexua frogatuta dagoela",
+            "Ametsak modu estandarizatuan interpretatu daitezkeela",
+            "Gure jokabide asko ez direla guztiz kontzienteak",
+            "Psikoanalisia dela terapia bakarra"
+          ],
+          "zuzena": 2,
+          "azalpena": "Inkontzientearen ideia orokorra —gure jokabidean kontziente ez garen prozesuek eragiten dutela— mantentzen da, nahiz eta Freuden teoria zehatz asko gainditu diren."
+        },
+        {
+          "galdera": "Zergatik diogu pertzepzioa ez dela errealitatearen kopia bat?",
+          "aukerak": [
+            "Begiek gaizki funtzionatzen dutelako",
+            "Garunak informazioa antolatu eta interpretatu egiten duelako",
+            "Errealitatea ez delako existitzen",
+            "Denok berdin ikusten dugulako"
+          ],
+          "zuzena": 1,
+          "azalpena": "Hautematea eraikuntza aktiboa da: garunak estimuluak antolatzen, iragazten eta interpretatzen ditu. Horregatik pertsona desberdinek gauza bera modu desberdinean bizi dezakete."
+        },
+        {
+          "galdera": "Psikologiaz hitz egitean, zein da lehen pausoa kasu bat aztertzean?",
+          "aukerak": [
+            "Diagnostiko bat ematea",
+            "Ondo behatzea, interpretatu aurretik",
+            "Pertsonari etiketa bat jartzea",
+            "Erantzun azkar bat bilatzea"
+          ],
+          "zuzena": 1,
+          "azalpena": "'Lehen pausoa ez da azaltzea; ondo behatzea da.' Behaketa eta interpretazioa nahastea da akats ohikoena."
+        }
+      ]
+    }
   }
 }

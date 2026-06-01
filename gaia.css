@@ -291,6 +291,71 @@ a.saio-baliabide--aurkezpena svg { color: var(--urdin); }
   font-family: var(--f-izen); font-weight: 700; font-size: .82rem; color: var(--ink-2);
 }
 
+/* =================== ERREPASO INTERAKTIBOA =================== */
+.errepaso-blokeak { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.errepaso-zatia {
+  background: var(--surface); border: 1px solid var(--lerro); border-top: 4px solid var(--gaia);
+  border-radius: var(--r); padding: 1.5rem; display: flex; flex-direction: column;
+}
+.errepaso-buru h3 { display: flex; align-items: center; gap: .5rem; font-family: var(--f-izen); font-weight: 900; font-size: 1.15rem; color: var(--urdin); margin: 0 0 .4rem; }
+.errepaso-buru h3 svg { width: 20px; height: 20px; color: var(--gaia); }
+.errepaso-buru p { font-size: .9rem; color: var(--ink-2); margin: 0 0 1rem; }
+
+.sailk-aurrera, .test-aurrera {
+  font-family: var(--f-izen); font-weight: 800; font-size: .82rem; color: var(--ink-3);
+  margin-bottom: .8rem; display: flex; align-items: center; gap: .5rem;
+}
+.sailk-kont, .test-kont { color: var(--gaia); }
+.sailk-emaitza { color: var(--berde); font-weight: 700; }
+
+.sailk-txartela, .test-txartela { display: flex; flex-direction: column; }
+.sailk-esaldia {
+  font-family: var(--f-izen); font-weight: 800; font-size: 1.15rem; color: var(--urdin);
+  background: var(--gaia-argi); border-radius: 12px; padding: 1.1rem 1.2rem; margin: 0 0 1rem; line-height: 1.35;
+}
+.test-galdera {
+  font-family: var(--f-izen); font-weight: 800; font-size: 1.08rem; color: var(--urdin);
+  margin: 0 0 1rem; line-height: 1.35;
+}
+.sailk-botoiak { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .3rem; }
+.test-aukerak { display: grid; gap: .5rem; margin-bottom: .3rem; }
+
+.sailk-botoi, .test-aukera {
+  font-family: var(--f-gorp); font-weight: 600; font-size: .92rem; cursor: pointer; text-align: left;
+  background: var(--paper); border: 1.5px solid var(--lerro-sendoa); border-radius: 10px;
+  padding: .7rem .9rem; color: var(--ink); transition: all var(--t);
+}
+.sailk-botoi { border-radius: 999px; }
+.sailk-botoi:hover:not(:disabled), .test-aukera:hover:not(:disabled) { border-color: var(--gaia); color: var(--gaia); }
+.sailk-botoi:disabled, .test-aukera:disabled { cursor: default; }
+.sailk-botoi.is-zuzena, .test-aukera.is-zuzena { background: #E3F2EC; border-color: var(--berde); color: #1d6a55; }
+.sailk-botoi.is-oker, .test-aukera.is-oker { background: #FBE9E7; border-color: #d9745f; color: #b3422c; }
+
+.sailk-feedback, .test-feedback {
+  margin-top: .9rem; padding: .9rem 1rem; border-radius: 10px; font-size: .9rem; line-height: 1.45;
+  border-left: 4px solid var(--gaia); background: var(--paper-2); color: var(--grafito);
+}
+.sailk-feedback.is-ondo, .test-feedback.is-ondo { border-left-color: var(--berde); background: #EEF6F2; }
+.sailk-feedback.is-gaizki, .test-feedback.is-gaizki { border-left-color: var(--anbar); background: #FBF1E8; }
+.sailk-feedback strong, .test-feedback strong { font-family: var(--f-izen); }
+
+.errepaso-hurrengo {
+  align-self: flex-end; margin-top: 1rem; display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: .9rem; cursor: pointer;
+  background: var(--gaia); color: #fff; border: 0; border-radius: 999px; padding: .55rem 1.2rem;
+}
+.errepaso-hurrengo svg { width: 16px; height: 16px; }
+.errepaso-hurrengo:hover { filter: brightness(1.08); }
+
+.sailk-amaiera, .test-amaiera { text-align: center; padding: 1.5rem 0 .5rem; }
+.amaiera-emaitza { font-family: var(--f-izen); font-weight: 900; font-size: 2.6rem; color: var(--gaia); margin: 0; line-height: 1; }
+.amaiera-mezua { color: var(--ink-2); font-size: .95rem; max-width: 38ch; margin: .8rem auto 1.2rem; }
+.errepaso-berriz {
+  font-family: var(--f-izen); font-weight: 800; font-size: .9rem; cursor: pointer;
+  background: var(--surface); color: var(--gaia); border: 1.5px solid var(--gaia); border-radius: 999px; padding: .55rem 1.3rem;
+}
+.errepaso-berriz:hover { background: var(--gaia); color: #fff; }
+
 /* =================== RESPONSIVE =================== */
 @media (max-width: 680px) {
   body { font-size: 16px; }
