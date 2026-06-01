@@ -40,6 +40,12 @@ body {
   background: var(--urdin); color: #fff; border: 0; border-radius: 999px; padding: .55rem 1.2rem;
 }
 .botoi-inprimatu:hover { background: #224a73; }
+.botoi-deskargatu {
+  font-family: var(--f-izen); font-weight: 800; font-size: .9rem; text-decoration: none;
+  background: var(--surface); color: var(--urdin); border: 1.5px solid var(--lerro-sendoa);
+  border-radius: 999px; padding: .5rem 1.1rem;
+}
+.botoi-deskargatu:hover { border-color: var(--urdin); }
 
 /* orria (A4 itxura) */
 .fitxa {

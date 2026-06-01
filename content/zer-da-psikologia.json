@@ -44,7 +44,8 @@
       "fenomenoa": "Ikasturte berria. Aurkezpen baten ordez, Nietzscheren galdera bat: zenbat egia jasan dezake norbaitek?",
       "galdera": "Zergatik behar dugu ausardia geure burua ezagutzeko?",
       "aurkezpena": "01 · Zer da psikologia",
-      "fitxa": { "izena": "00.1 · Psikologiaren lehen atea", "lotura": "#kontratua" },
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1DASjDlKcK-oXaMZoCJaOVAZCKT-zKlwfj8MAj1lwu_0/edit",
+      "fitxa": { "izena": "00.1 · Psikologiaren lehen atea", "lotura": "fitxak/lehen-atea.html", "pdf": "fitxak/pdf/lehen-atea.pdf" },
       "denborak": [
         { "min": "5", "egitekoa": "Aurkezpena: azala eta ikasgaiaren tonua" },
         { "min": "10", "egitekoa": "Nietzsche irakurri eta azaldu" },
@@ -60,7 +61,8 @@
       "fenomenoa": "Egunero esaten dugu \"X lotsatia da\" edo \"Y-ri ez zaio interesatzen\". Baina hori behaketa, hipotesia, iritzia ala etiketa da?",
       "galdera": "Non dago behaketaren eta interpretazioaren arteko muga?",
       "aurkezpena": "02 · Zer da psikologia",
-      "fitxa": { "izena": "00.2 · Zer da eta zer ez da psikologia", "lotura": "" },
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1uP76crsp3-qGghNxdi1HbmDMCTdU7Y7gJSry2-1GXwc/edit",
+      "fitxa": { "izena": "00.2 · Zer da eta zer ez da psikologia", "lotura": "fitxak/zer-da-zer-ez.html", "pdf": "fitxak/pdf/zer-da-zer-ez.pdf" },
       "denborak": [
         { "min": "5", "egitekoa": "Aurreko saioa eta kontratua gogoratu" },
         { "min": "10", "egitekoa": "Zer da psikologia azaldu" },
@@ -76,7 +78,8 @@
       "fenomenoa": "Lehengo bizitza-markoak argiagoak ziren. Gaur askatasun gehiago dago, baina baita ziurgabetasun handiagoa ere.",
       "galdera": "Zergatik kostatzen zaigu gehiago nor izatea gaur egun?",
       "aurkezpena": "03 · Zer da psikologia",
-      "fitxa": { "izena": "00.3 · Gaur egungo gizartea eta psikologiaren beharra", "lotura": "" },
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1njxVeVosvuolBdSGxQcwBSaAVoMdd_Kn_8pvCRBJoHc/edit",
+      "fitxa": { "izena": "00.3 · Gaur egungo gizartea eta psikologiaren beharra", "lotura": "fitxak/gaur-egungo-gizartea.html", "pdf": "fitxak/pdf/gaur-egungo-gizartea.pdf" },
       "denborak": [
         { "min": "5", "egitekoa": "Sarrera: zer da gaur gazteentzat zailena?" },
         { "min": "7", "egitekoa": "Azalpena: gizartea aldatu da" },
@@ -93,7 +96,8 @@
       "fenomenoa": "Ikasle batek ez du inoiz klasean parte hartzen. Isilik egoten da, begirada jaitsita. Zer ari da gertatzen?",
       "galdera": "Lente desberdinek zer ikusten dute kasu berean?",
       "aurkezpena": "04 · Zer da psikologia",
-      "fitxa": { "izena": "00.4 · Lenteen mapa", "lotura": "fitxak/lenteen-mapa.html" },
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1YXodvRMyoQWSJiPS7YyqAbHG7Y1rT-PNzNOmjH5Syo4/edit",
+      "fitxa": { "izena": "00.4 · Lenteen mapa", "lotura": "fitxak/lenteen-mapa.html", "pdf": "fitxak/pdf/lenteen-mapa.pdf" },
       "atlas": true,
       "denborak": [
         { "min": "5", "egitekoa": "Aurreko saioa gogoratu" },
@@ -111,7 +115,8 @@
       "fenomenoa": "Urte osoan kasuak aztertuko ditugu. Baina nola egin modu arduratsuan, etiketarik jarri gabe?",
       "galdera": "Nola aztertu kasu bat galdera hobeekin, erantzun azkarrik gabe?",
       "aurkezpena": "05 · Kasu psikologikoa aztertzeko fitxa",
-      "fitxa": { "izena": "00.5 · Kasu psikologikoa aztertzeko fitxa", "lotura": "fitxak/kasu-azterketa.html" },
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1FxOAZN2_ylzIeaNQDnQQYyHfDBRoNbiCFlaTdHiQmDo/edit",
+      "fitxa": { "izena": "00.5 · Kasu psikologikoa aztertzeko fitxa", "lotura": "fitxak/kasu-azterketa.html", "pdf": "fitxak/pdf/kasu-azterketa.pdf" },
       "denborak": [
         { "min": "5", "egitekoa": "Aurreko saioa gogoratu" },
         { "min": "7", "egitekoa": "Zergatik behar dugun fitxa" },
@@ -134,6 +139,7 @@
         "kodea": "00.4",
         "deskribapena": "Kasu bera lente psikologiko desberdinetatik aztertzeko. Lenteen Atlasarekin lotzen da zuzenean.",
         "lotura": "fitxak/lenteen-mapa.html",
+        "pdf": "fitxak/pdf/lenteen-mapa.pdf",
         "ikonoa": "lente"
       },
       {
@@ -141,6 +147,7 @@
         "kodea": "00.5",
         "deskribapena": "Urte osorako lanabesa: 5 urrats kasu bat modu arduratsuan eta etikoan aztertzeko (behaketa, hipotesiak, testuingurua, lenteak, mugak).",
         "lotura": "fitxak/kasu-azterketa.html",
+        "pdf": "fitxak/pdf/kasu-azterketa.pdf",
         "ikonoa": "eraikuntza"
       }
     ]

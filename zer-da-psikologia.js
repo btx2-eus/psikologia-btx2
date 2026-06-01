@@ -87,11 +87,21 @@ function renderSaioak(D) {
 
 function saioTxartela(s) {
   const guztira = s.denborak.reduce((a, d) => a + (parseInt(d.min, 10) || 0), 0);
+
+  // Aurkezpena: Drive-lotura badu, klikagarri (kanpora); bestela marka soila
+  const aurkTxiki = s.aurkezpenaLotura
+    ? `<a class="saio-baliabide saio-baliabide--aurkezpena" href="${esc(s.aurkezpenaLotura)}" target="_blank" rel="noopener">${ICON('aurkezpena')} ${esc(s.aurkezpena)}</a>`
+    : `<span class="saio-baliabide saio-baliabide--aurkezpena">${ICON('aurkezpena')} ${esc(s.aurkezpena)}</span>`;
+
+  // Fitxa: lotura + aukeran PDF txiki bat
   const fitxaLotura = s.fitxa && s.fitxa.lotura;
   const fitxaTxiki = s.fitxa
     ? (fitxaLotura
-        ? `<a class="saio-baliabide saio-baliabide--lotura" href="${esc(s.fitxa.lotura)}">${ICON('fitxa')} ${esc(s.fitxa.izena)}</a>`
+        ? `<a class="saio-baliabide saio-baliabide--lotura" href="${esc(s.fitxa.lotura)}">${ICON('fitxa')} ${esc(s.fitxa.izena)}${s.fitxa.pdf ? '' : ''}</a>`
         : `<span class="saio-baliabide">${ICON('fitxa')} ${esc(s.fitxa.izena)}</span>`)
+    : '';
+  const fitxaPdf = s.fitxa && s.fitxa.pdf
+    ? `<a class="saio-baliabide saio-baliabide--pdf" href="${esc(s.fitxa.pdf)}" download title="${esc(s.fitxa.izena)} — PDF">${ICON('fitxa')} PDF</a>`
     : '';
   const atlasTxiki = s.atlas
     ? `<a class="saio-baliabide saio-baliabide--atlas" href="lenteen-atlasa.html">${ICON('lente')} Lenteen Atlasa</a>`
@@ -110,8 +120,9 @@ function saioTxartela(s) {
     <p class="saio__fenomenoa"><span class="saio__label">Fenomenoa</span>${esc(s.fenomenoa)}</p>
 
     <div class="saio__baliabideak">
-      <span class="saio-baliabide saio-baliabide--aurkezpena">${ICON('aurkezpena')} ${esc(s.aurkezpena)}</span>
+      ${aurkTxiki}
       ${fitxaTxiki}
+      ${fitxaPdf}
       ${atlasTxiki}
     </div>
 
@@ -137,15 +148,20 @@ function renderLanabesak(l) {
     </div>
     <div class="lanabes-sareta">
       ${l.fitxak.map(f => `
-        <a class="lanabes-txartela" href="${esc(f.lotura)}">
-          <div class="lanabes-buru">
-            <span class="lanabes-ikono">${ICON(f.ikonoa || 'fitxa')}</span>
-            <span class="lanabes-kodea">${esc(f.kodea)}</span>
+        <article class="lanabes-txartela">
+          <a class="lanabes-azala" href="${esc(f.lotura)}" aria-label="${esc(f.izena)} — ireki">
+            <div class="lanabes-buru">
+              <span class="lanabes-ikono">${ICON(f.ikonoa || 'fitxa')}</span>
+              <span class="lanabes-kodea">${esc(f.kodea)}</span>
+            </div>
+            <h3>${esc(f.izena)}</h3>
+            <p>${esc(f.deskribapena)}</p>
+          </a>
+          <div class="lanabes-ekintzak">
+            <a class="lanabes-sartu" href="${esc(f.lotura)}">Ireki eta inprimatu ${ICON('fletxa')}</a>
+            ${f.pdf ? `<a class="lanabes-pdf" href="${esc(f.pdf)}" download>PDF</a>` : ''}
           </div>
-          <h3>${esc(f.izena)}</h3>
-          <p>${esc(f.deskribapena)}</p>
-          <span class="lanabes-sartu">Ireki eta inprimatu ${ICON('fletxa')}</span>
-        </a>`).join('')}
+        </article>`).join('')}
     </div>`;
 }
 

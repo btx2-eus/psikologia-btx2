@@ -200,8 +200,11 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
   text-decoration: none; transition: all var(--t);
 }
 .saio-baliabide svg { width: 15px; height: 15px; color: var(--gaia); }
-.saio-baliabide--lotura:hover, .saio-baliabide--atlas:hover { border-color: var(--gaia); color: var(--gaia); }
+.saio-baliabide--lotura:hover, .saio-baliabide--atlas:hover,
+a.saio-baliabide--aurkezpena:hover, .saio-baliabide--pdf:hover { border-color: var(--gaia); color: var(--gaia); }
 .saio-baliabide--aurkezpena { background: var(--gaia-argi); border-color: transparent; color: var(--urdin); }
+a.saio-baliabide--aurkezpena svg { color: var(--urdin); }
+.saio-baliabide--pdf { font-weight: 800; letter-spacing: .03em; }
 
 .saio-zabaldu {
   width: 100%; border: 0; background: none; cursor: pointer; text-align: left;
@@ -224,20 +227,28 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 /* ----- Lanabes-kutxa ----- */
 .lanabes-sareta { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
 .lanabes-txartela {
-  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
   background: var(--surface); border: 1px solid var(--lerro); border-top: 4px solid var(--gaia);
   border-radius: var(--r); padding: 1.4rem; transition: transform var(--t), box-shadow var(--t);
 }
 .lanabes-txartela:hover { transform: translateY(-4px); box-shadow: var(--itzal-2); }
+.lanabes-azala { text-decoration: none; color: inherit; display: block; }
 .lanabes-buru { display: flex; align-items: center; justify-content: space-between; margin-bottom: .7rem; }
 .lanabes-ikono { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: var(--gaia-argi); color: var(--gaia); }
 .lanabes-ikono svg { width: 24px; height: 24px; }
 .lanabes-kodea { font-family: var(--f-izen); font-weight: 900; color: var(--gaia); font-size: .95rem; }
 .lanabes-txartela h3 { font-family: var(--f-izen); font-weight: 900; font-size: 1.12rem; color: var(--urdin); margin: 0 0 .3rem; }
 .lanabes-txartela p { font-size: .92rem; color: var(--ink-2); margin: 0 0 1rem; }
-.lanabes-sartu { margin-top: auto; display: inline-flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .9rem; color: var(--gaia); }
+.lanabes-ekintzak { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding-top: .6rem; border-top: 1px dashed var(--lerro); }
+.lanabes-sartu { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .9rem; color: var(--gaia); text-decoration: none; }
 .lanabes-sartu svg { width: 16px; height: 16px; transition: transform var(--t); }
 .lanabes-txartela:hover .lanabes-sartu svg { transform: translateX(4px); }
+.lanabes-pdf {
+  flex: 0 0 auto; font-family: var(--f-izen); font-weight: 800; font-size: .76rem; letter-spacing: .03em;
+  text-decoration: none; color: var(--gaia); background: var(--gaia-argi);
+  border-radius: 999px; padding: .3rem .8rem;
+}
+.lanabes-pdf:hover { background: var(--gaia); color: #fff; }
 
 /* ----- Atlas lotura ----- */
 .atlas-blokea {
