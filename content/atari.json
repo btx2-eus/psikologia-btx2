@@ -40,7 +40,7 @@
       "kolorea": "estruktura",
       "deskribapena": "Zer den psikologia, garunaren oinarriak eta nola hautematen, arreta jartzen eta gogoratzen dugun.",
       "gaiak": [
-        { "id": "zer-da", "izenburua": "Zer da psikologia?", "deskribapena": "Jakintzaren estatusa, metodo zientifikoa eta psikologia vs. sen ona.", "egoera": "laster", "ikonoa": "lente" },
+        { "id": "zer-da", "izenburua": "Zer da psikologia?", "deskribapena": "Jakintzaren estatusa, metodo zientifikoa eta psikologia vs. sen ona.", "egoera": "abian", "lotura": "zer-da-psikologia.html", "ikonoa": "lente" },
         { "id": "biologikoak", "izenburua": "Oinarri biologikoak", "deskribapena": "Garunak ez du determinatzen, baina bai baldintzatzen.", "egoera": "laster", "ikonoa": "garuna" },
         { "id": "pertzepzioa", "izenburua": "Pertzepzioa, arreta eta oroimena", "deskribapena": "Hautematea ez da errealitatearen kopia: eraikuntza da.", "egoera": "laster", "ikonoa": "begia" },
         { "id": "neuromitoak", "izenburua": "Neuromitoak eta amigdala", "deskribapena": "Kasua: neuromitoak, amigdala-bahiketa eta Black Mirror.", "egoera": "laster", "ikonoa": "garuna", "mota": "kasua" }
@@ -92,6 +92,7 @@
 
   "egoeraEtiketak": {
     "prest": "Prest",
+    "abian": "Abian",
     "laster": "Laster"
   }
 }

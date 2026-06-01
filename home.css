@@ -150,7 +150,8 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
   border-top: 4px solid var(--bloke, var(--urdin));
 }
-.gai-txartela--prest:hover { transform: translateY(-4px); box-shadow: var(--itzal-2); border-color: transparent; border-top-color: var(--bloke, var(--urdin)); }
+.gai-txartela--prest:hover,
+.gai-txartela--abian:hover { transform: translateY(-4px); box-shadow: var(--itzal-2); border-color: transparent; border-top-color: var(--bloke, var(--urdin)); }
 .gai-txartela--laster { opacity: .72; cursor: default; }
 .gai-txartela--laster:hover { box-shadow: var(--itzal-1); }
 
@@ -163,6 +164,7 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
   padding: .2rem .6rem; border-radius: 999px; white-space: nowrap;
 }
 .gai-egoera--prest { background: var(--berde); color: #fff; }
+.gai-egoera--abian { background: var(--anbar); color: #fff; }
 .gai-egoera--laster { background: var(--paper-2); color: var(--ink-3); border: 1px solid var(--lerro); }
 
 .gai-izenburua { font-family: var(--f-izen); font-weight: 900; font-size: 1.18rem; color: var(--urdin); margin: 0 0 .15rem; line-height: 1.2; }
@@ -174,7 +176,8 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 
 .gai-sartu { margin-top: auto; display: inline-flex; align-items: center; gap: .4rem; font-family: var(--f-izen); font-weight: 800; font-size: .92rem; color: var(--bloke, var(--urdin)); }
 .gai-sartu svg { width: 16px; height: 16px; transition: transform var(--t); }
-.gai-txartela--prest:hover .gai-sartu svg { transform: translateX(4px); }
+.gai-txartela--prest:hover .gai-sartu svg,
+.gai-txartela--abian:hover .gai-sartu svg { transform: translateX(4px); }
 
 /* =================== LAN MODUA =================== */
 .lan-modua { padding: 1rem clamp(1.2rem, 5vw, 2.4rem) 1rem; }

@@ -92,27 +92,34 @@ function renderLanModua() {
 }
 
 function gaiTxartela(g, et) {
-  const prest = g.egoera === 'prest';
+  const egoera = g.egoera || 'laster';
+  const klikagarri = (egoera === 'prest' || egoera === 'abian') && g.lotura;
+  const etiketa = et[egoera] || egoera;
+
   const etag = g.etiketak && g.etiketak.length
     ? `<div class="gai-etiketak">${g.etiketak.map(t => `<span class="gai-etiketa">${esc(t)}</span>`).join('')}</div>`
     : '';
   const azpi = g.azpititulua ? `<p class="gai-azpititulua">${esc(g.azpititulua)}</p>` : '';
 
+  const sartu = {
+    prest: `<span class="gai-sartu">Hasi gaia ${ICON('fletxa')}</span>`,
+    abian: `<span class="gai-sartu">Ireki gunea ${ICON('fletxa')}</span>`,
+    laster: `<span class="gai-sartu" style="color:var(--ink-3)">Prestatzen…</span>`
+  }[egoera] || '';
+
   const barnea = `
     <div class="gai-buru">
       <span class="gai-ikono">${ICON(g.ikonoa || 'lente')}</span>
-      <span class="gai-egoera gai-egoera--${prest ? 'prest' : 'laster'}">${esc(prest ? et.prest : et.laster)}</span>
+      <span class="gai-egoera gai-egoera--${esc(egoera)}">${esc(etiketa)}</span>
     </div>
     <h3 class="gai-izenburua">${esc(g.izenburua)}</h3>
     ${azpi}
     <p class="gai-deskribapena">${esc(g.deskribapena || '')}</p>
     ${etag}
-    ${prest
-      ? `<span class="gai-sartu">Hasi gaia ${ICON('fletxa')}</span>`
-      : `<span class="gai-sartu" style="color:var(--ink-3)">Prestatzen…</span>`}`;
+    ${sartu}`;
 
-  if (prest && g.lotura) {
-    return `<a class="gai-txartela gai-txartela--prest" href="${esc(g.lotura)}"
+  if (klikagarri) {
+    return `<a class="gai-txartela gai-txartela--${esc(egoera)}" href="${esc(g.lotura)}"
               aria-label="${esc(g.izenburua)} — gaia ireki">${barnea}</a>`;
   }
   return `<article class="gai-txartela gai-txartela--laster"
