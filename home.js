@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
   try {
-    const e = await fetch('content/atari.json');
+    const e = await fetch('content/atari.json', { cache: 'no-cache' });
     if (!e.ok) throw new Error('HTTP ' + e.status);
     DATA = await e.json();
   } catch (err) {
@@ -39,11 +39,46 @@ async function init() {
     setText('helburua-oharra', DATA.helburuNagusia.oharra);
   }
 
+  if (DATA.hasiHemen) renderHasiHemen(DATA.hasiHemen);
   renderBlokeak();
+  renderLegenda();
   renderLanModua();
 }
 
 function setText(id, t) { const el = document.getElementById(id); if (el && t != null) el.textContent = t; }
+
+/* ---------- HASI HEMEN ---------- */
+function renderHasiHemen(h) {
+  const s = document.getElementById('hasi-hemen');
+  if (!s) return;
+  s.innerHTML = `
+    <div class="hasi-hemen__bilgarria">
+      <div class="hasi-hemen__buru">
+        <span class="hasi-hemen__etiketa" id="hasi-hemen-h">${ICON('fletxa')} ${esc(h.izenburua)}</span>
+        <p>${esc(h.sarrera)}</p>
+      </div>
+      <ol class="hasi-hemen__pausoak">
+        ${h.pausoak.map(p => `
+          <a class="hasi-pauso" href="${esc(p.lotura)}">
+            <span class="hasi-pauso__zenb">${p.zenb}</span>
+            <span class="hasi-pauso__testua">
+              <strong>${esc(p.izena)}</strong>
+              <span>${esc(p.deskribapena)}</span>
+            </span>
+            <span class="hasi-pauso__gezi">${ICON('fletxa')}</span>
+          </a>`).join('')}
+      </ol>
+    </div>`;
+}
+
+/* ---------- EGOERA-LEGENDA ---------- */
+function renderLegenda() {
+  const el = document.getElementById('egoera-legenda');
+  if (!el || !DATA.egoeraLegenda) return;
+  const et = DATA.egoeraEtiketak || {};
+  el.innerHTML = DATA.egoeraLegenda.map(l => `
+    <li><span class="legenda-domina gai-egoera--${esc(l.egoera)}">${esc(et[l.egoera] || l.egoera)}</span>${esc(l.azalpena)}</li>`).join('');
+}
 
 function renderBlokeak() {
   const k = document.getElementById('blokeak-edukia');

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
   try {
-    const erantzuna = await fetch('content/psikologiaren-historia.json');
+    const erantzuna = await fetch('content/psikologiaren-historia.json', { cache: 'no-cache' });
     if (!erantzuna.ok) throw new Error('HTTP ' + erantzuna.status);
     DATA = await erantzuna.json();
   } catch (e) {

@@ -9,7 +9,7 @@ const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').r
 document.addEventListener('DOMContentLoaded', async () => {
   let D;
   try {
-    const r = await fetch('content/zer-da-psikologia.json');
+    const r = await fetch('content/zer-da-psikologia.json', { cache: 'no-cache' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     D = await r.json();
   } catch (e) {
