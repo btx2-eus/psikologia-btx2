@@ -274,11 +274,26 @@
         "pdf": "fitxak/pdf/sorrera.pdf"
       },
       "denborak": [
-        { "min": "5", "egitekoa": "Hasierako galdera: azalpen sinbolikoak gaur egun" },
-        { "min": "12", "egitekoa": "Lau geltoki: Platon, Aristoteles, Descartes, Wundt" },
-        { "min": "10", "egitekoa": "Kontzeptu-lerroa osatu (arima → laborategia)" },
-        { "min": "13", "egitekoa": "Fitxa: bi galdera kritiko + Lanabes-kutxarekin lotu" },
-        { "min": "10", "egitekoa": "Amaierako sintesia partekatu" }
+        {
+          "min": "5",
+          "egitekoa": "Hasierako galdera: azalpen sinbolikoak gaur egun"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Lau geltoki: Platon, Aristoteles, Descartes, Wundt"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Kontzeptu-lerroa osatu (arima → laborategia)"
+        },
+        {
+          "min": "13",
+          "egitekoa": "Fitxa: bi galdera kritiko + Lanabes-kutxarekin lotu"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Amaierako sintesia partekatu"
+        }
       ]
     },
     {
@@ -295,11 +310,26 @@
         "pdf": "fitxak/pdf/freud.pdf"
       },
       "denborak": [
-        { "min": "5", "egitekoa": "Galdera abiapuntua: zergatik egiten dugu ulertzen ez duguna?" },
-        { "min": "10", "egitekoa": "Wundt vs. Freud: bi bide; inkontzientearen mapa" },
-        { "min": "10", "egitekoa": "Izotz-mendia eta defentsa-mekanismoak azaldu" },
-        { "min": "15", "egitekoa": "Fitxa: defentsa-mekanismoak identifikatu (hizkera zuhurra)" },
-        { "min": "10", "egitekoa": "Freud gaur: zer hartu eta zer zaindu" }
+        {
+          "min": "5",
+          "egitekoa": "Galdera abiapuntua: zergatik egiten dugu ulertzen ez duguna?"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Wundt vs. Freud: bi bide; inkontzientearen mapa"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Izotz-mendia eta defentsa-mekanismoak azaldu"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Fitxa: defentsa-mekanismoak identifikatu (hizkera zuhurra)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Freud gaur: zer hartu eta zer zaindu"
+        }
       ]
     },
     {
@@ -316,11 +346,26 @@
       },
       "atlas": true,
       "denborak": [
-        { "min": "8", "egitekoa": "Watson eta Skinner: portaera neurgarria (Albert txikia, baldintzapena)" },
-        { "min": "8", "egitekoa": "Konduktismoaren mugak → iraultza kognitiboa" },
-        { "min": "10", "egitekoa": "Gizakia informazio-prozesadore gisa (Neisser, Piaget, Bandura)" },
-        { "min": "18", "egitekoa": "Talde-lana: Freud / Watson / Skinner konparatu eta kasuak aztertu" },
-        { "min": "6", "egitekoa": "Partekatzea eta ondorioak" }
+        {
+          "min": "8",
+          "egitekoa": "Watson eta Skinner: portaera neurgarria (Albert txikia, baldintzapena)"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Konduktismoaren mugak → iraultza kognitiboa"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Gizakia informazio-prozesadore gisa (Neisser, Piaget, Bandura)"
+        },
+        {
+          "min": "18",
+          "egitekoa": "Talde-lana: Freud / Watson / Skinner konparatu eta kasuak aztertu"
+        },
+        {
+          "min": "6",
+          "egitekoa": "Partekatzea eta ondorioak"
+        }
       ]
     },
     {
@@ -338,11 +383,26 @@
       },
       "atlas": true,
       "denborak": [
-        { "min": "8", "egitekoa": "Kasuaren laburpena + ohar etikoa (ez epaitu, ez morboa)" },
-        { "min": "12", "egitekoa": "5 pausoko analisia: behaketa → hipotesia → testuingurua" },
-        { "min": "15", "egitekoa": "Lentea: ikuspegi integratua (kognitiboa, biologikoa, soziala, etikoa)" },
-        { "min": "10", "egitekoa": "Mugak: zer ez dakigu? + sintesi integratua" },
-        { "min": "5", "egitekoa": "Amaierako gogoeta etikoa" }
+        {
+          "min": "8",
+          "egitekoa": "Kasuaren laburpena + ohar etikoa (ez epaitu, ez morboa)"
+        },
+        {
+          "min": "12",
+          "egitekoa": "5 pausoko analisia: behaketa → hipotesia → testuingurua"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Lentea: ikuspegi integratua (kognitiboa, biologikoa, soziala, etikoa)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Mugak: zer ez dakigu? + sintesi integratua"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Amaierako gogoeta etikoa"
+        }
       ]
     }
   ],
@@ -379,7 +439,7 @@
   "errepasoa": {
     "etiketa": "Errepasoa",
     "izenburua": "Errepaso interaktiboa",
-    "sarrera": "Hau ez da memoria-froga: pentsatzen ikasteko da. Bi ariketa dituzu, eta nahi adina aldiz egin ditzakezu. Helburua ez da 'asmatzea', baizik eta zergatiak ulertzea.",
+    "sarrera": "Hau ez da memoria-froga: pentsatzen ikasteko da. Bi ariketak gaiaren bi faseak biltzen dituzte — metodoa eta lenteen historia. Nahi adina aldiz egin ditzakezu; helburua ez da 'asmatzea', baizik eta zergatiak ulertzea.",
     "sailkapena": {
       "izenburua": "Behaketa ala interpretazioa?",
       "argibidea": "Esaldi bakoitza irakurri eta sailkatu. Gogoratu: behatzea ikusten dena esatea da; hipotesia azalpen posible bat; iritzia balorazioa; eta diagnostikoa etiketa kliniko bat, frogarik gabe arriskutsua dena.",
@@ -445,6 +505,21 @@
           "esaldia": "Begiak malkotan zituen hizketan ari zenean.",
           "erantzuna": "behaketa",
           "azalpena": "Ikus daitekeena deskribatzen du, esanahirik gehitu gabe. Ez du esaten triste dagoenik."
+        },
+        {
+          "esaldia": "Klasean ez du parte hartzen; ziur haurtzaroko trauma bat duela.",
+          "erantzuna": "diagnostikoa",
+          "azalpena": "Hau Freuden lentearen erabilera okerra da: jokabide batetik haurtzaroko trauma bat ondorioztatzea, frogarik gabe, diagnostiko arriskutsua da. Inkontzientea ez da edozer azaltzeko komodina."
+        },
+        {
+          "esaldia": "Agian isolamenduak eta estimulazio faltak eragin zuten Genieren hizkuntza-zailtasuna.",
+          "erantzuna": "hipotesia",
+          "azalpena": "Azalpen posible bat da ('agian'), kausa bakar gisa aurkeztu gabe. Genie bezalako kasuetan, hizkera zuhurra ezinbestekoa da: hipotesia bai, ziurtasuna ez."
+        },
+        {
+          "esaldia": "Haurrak kanpai-hotsa entzun eta berehala lerdea jariatu du.",
+          "erantzuna": "behaketa",
+          "azalpena": "Ikus eta neur daitekeen erantzuna deskribatzen du, interpretatu gabe. Hau da konduktismoak aztertzen duena: estimulua eta erantzun behagarria."
         }
       ]
     },
@@ -528,6 +603,61 @@
           ],
           "zuzena": 1,
           "azalpena": "'Lehen pausoa ez da azaltzea; ondo behatzea da.' Behaketa eta interpretazioa nahastea da akats ohikoena."
+        },
+        {
+          "galdera": "Zer aldaketa ekarri zuen Wundtek psikologiara 1879an?",
+          "aukerak": [
+            "Arima kontzeptua asmatu zuen",
+            "Lehen laborategi psikologikoa sortu zuen: psikologia zientzia esperimental bihurtu zen",
+            "Inkontzientea aurkitu zuen",
+            "Portaera bakarrik aztertu behar zela esan zuen"
+          ],
+          "zuzena": 1,
+          "azalpena": "Wundtek Leipzigen lehen laborategi psikologikoa ireki zuen. Hortik aurrera, psikologia filosofiatik bereizi eta modu esperimentalean aztertzen hasi zen."
+        },
+        {
+          "galdera": "Zergatik diogu inkontzientea ez dela 'edozer azaltzeko komodina'?",
+          "aukerak": [
+            "Inkontzientea ez delako existitzen",
+            "Edozein jokabide trauma ezkutu batekin azaltzea frogarik gabe diagnostiko arriskutsua delako",
+            "Freud beti oker zegoelako",
+            "Inkontzienteaz hitz egitea debekatuta dagoelako"
+          ],
+          "zuzena": 1,
+          "azalpena": "Inkontzientearen ideia baliagarria da, baina dena harekin azaltzea (frogarik gabe) etiketatzea da. Gure azalpenak hipotesiak dira, ez diagnostikoak."
+        },
+        {
+          "galdera": "Zein da konduktismoaren eta kognitibismoaren arteko alde nagusia?",
+          "aukerak": [
+            "Konduktismoak arima aztertzen du; kognitibismoak ez",
+            "Konduktismoak portaera behagarria aztertzen du; kognitibismoak buruko prozesuak ere bai",
+            "Biak gauza bera dira",
+            "Kognitibismoa zaharragoa da"
+          ],
+          "zuzena": 1,
+          "azalpena": "Konduktismoak ikus daitekeen portaeran zentratzen da. Kognitibismoak urrats bat gehiago egiten du: estimuluaren eta erantzunaren artean gertatzen dena (memoria, hizkuntza, pentsamendua) ere aztertzen du."
+        },
+        {
+          "galdera": "Defentsa-mekanismo bat (adib. proiekzioa edo ukazioa) erabiltzeak zer esan nahi du?",
+          "aukerak": [
+            "Pertsona 'zoratuta' dagoela",
+            "Antsietatea edo barne-gatazka kudeatzeko babes psikologiko bat erabil dezakeela",
+            "Beti gezurretan ari dela",
+            "Diagnostiko kliniko bat behar duela"
+          ],
+          "zuzena": 1,
+          "azalpena": "Defentsa-mekanismoak ez dira gaixotasun-seinale: pertsona ororen babes psikologiko arruntak dira, antsietatea edo lotsa kudeatzeko. Identifikatzean ere hizkera zuhurra erabili behar da."
+        },
+        {
+          "galdera": "Zergatik behar da ikuspegi integratua Genie bezalako kasu bat ulertzeko?",
+          "aukerak": [
+            "Lente bat aukeratzea zaila delako",
+            "Faktore askok batera eragiten dutelako: hizkuntza, garapena, harremanak, testuingurua eta etika",
+            "Genie kasua faltsua delako",
+            "Psikologoek beti ados egon behar dutelako"
+          ],
+          "zuzena": 1,
+          "azalpena": "Genie kasuak erakusten du errealitatea konplexua dela: lente bakar batek (biologikoa, soziala edo kognitiboa) ezin du dena azaldu. Horregatik behar dira denak batera, mugak aitortuz."
         }
       ]
     }
