@@ -6,7 +6,6 @@
     "galdera": "Nola eraikitzen dugu errealitatea?",
     "sarrera": "Psikologia ez da \"arazo mentalak\" bakarrik, ezta sen ona ere. Giza portaera eta prozesu mentalak modu zientifikoan aztertzen dituen jakintza da: behatuz, hipotesiak eginez eta mugak aitortuz. Gai honetan, gure burua eta besteak ulertzeko lehen tresnak landuko ditugu."
   },
-
   "nietzsche": {
     "etiketa": "Abiapuntua",
     "aipua": "Zenbat egia jasan dezake, eta zenbat egia arriskatu dezake espiritu batek? Hori izan da beti niretzat balioen benetako neurria.",
@@ -20,7 +19,6 @@
       "Sortzen al dit beldurrik barrura begiratzeak? Zergatik?"
     ]
   },
-
   "kontratua": {
     "etiketa": "Lehen kontratua",
     "izenburua": "Psikologiaz hitz egiteko 5 arauak",
@@ -34,101 +32,320 @@
     ],
     "oharra": "Psikologian lehen pausoa ez da azaltzea. Lehen pausoa ondo behatzea da."
   },
-
   "saioakIzenburua": "Saioen sekuentzia",
-  "saioakSarrera": "Bost saio, fenomeno errealetik abiatuta. Saio bakoitzak galdera gidari bat du, jarduera-fitxa bat eta gelan proiektatzeko aurkezpena. Denborak orientagarriak dira (50 minutuko saioa).",
+  "saioakSarrera": "Gaia bi fasetan antolatuta dago. Lehenik, pentsatzeko metodoa finkatzen dugu; gero, lenteen historia lantzen dugu kasuekin. Saio bakoitzak galdera gidari bat du, jarduera-fitxa bat eta gelan proiektatzeko aurkezpena. Denborak orientagarriak dira (50 minutuko saioa).",
+  "faseak": [
+    {
+      "id": 1,
+      "izena": "1. fasea · Metodoa",
+      "azalpena": "Nola pentsatu psikologiaz: ausardia, kontratua, behaketa eta lenteen ideia."
+    },
+    {
+      "id": 2,
+      "izena": "2. fasea · Edukia: lenteen historia",
+      "azalpena": "Eskola psikologikoen ibilbidea, arimatik garunera, kasu errealekin landua."
+    }
+  ],
   "saioak": [
     {
+      "fasea": 1,
       "zenb": 1,
       "izenburua": "Ikasturteko hasiera: ausardia eta kontratua",
       "fenomenoa": "Ikasturte berria. Aurkezpen baten ordez, Nietzscheren galdera bat: zenbat egia jasan dezake norbaitek?",
       "galdera": "Zergatik behar dugu ausardia geure burua ezagutzeko?",
       "aurkezpena": "01 · Zer da psikologia",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1DASjDlKcK-oXaMZoCJaOVAZCKT-zKlwfj8MAj1lwu_0/edit",
-      "fitxa": { "izena": "00.1 · Psikologiaren lehen atea", "lotura": "fitxak/lehen-atea.html", "pdf": "fitxak/pdf/lehen-atea.pdf" },
+      "fitxa": {
+        "izena": "00.1 · Psikologiaren lehen atea",
+        "lotura": "fitxak/lehen-atea.html",
+        "pdf": "fitxak/pdf/lehen-atea.pdf"
+      },
       "denborak": [
-        { "min": "5", "egitekoa": "Aurkezpena: azala eta ikasgaiaren tonua" },
-        { "min": "10", "egitekoa": "Nietzsche irakurri eta azaldu" },
-        { "min": "10", "egitekoa": "Banaka pentsatu" },
-        { "min": "12", "egitekoa": "Talde txikitan partekatu" },
-        { "min": "8", "egitekoa": "Talde handian 3-4 ideia jaso" },
-        { "min": "5", "egitekoa": "Kontratua sinatu eta irteera-galderak" }
+        {
+          "min": "5",
+          "egitekoa": "Aurkezpena: azala eta ikasgaiaren tonua"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Nietzsche irakurri eta azaldu"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Banaka pentsatu"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Talde txikitan partekatu"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Talde handian 3-4 ideia jaso"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Kontratua sinatu eta irteera-galderak"
+        }
       ]
     },
     {
+      "fasea": 1,
       "zenb": 2,
       "izenburua": "Zer da eta zer ez da psikologia",
       "fenomenoa": "Egunero esaten dugu \"X lotsatia da\" edo \"Y-ri ez zaio interesatzen\". Baina hori behaketa, hipotesia, iritzia ala etiketa da?",
       "galdera": "Non dago behaketaren eta interpretazioaren arteko muga?",
       "aurkezpena": "02 · Zer da psikologia",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1uP76crsp3-qGghNxdi1HbmDMCTdU7Y7gJSry2-1GXwc/edit",
-      "fitxa": { "izena": "00.2 · Zer da eta zer ez da psikologia", "lotura": "fitxak/zer-da-zer-ez.html", "pdf": "fitxak/pdf/zer-da-zer-ez.pdf" },
+      "fitxa": {
+        "izena": "00.2 · Zer da eta zer ez da psikologia",
+        "lotura": "fitxak/zer-da-zer-ez.html",
+        "pdf": "fitxak/pdf/zer-da-zer-ez.pdf"
+      },
       "denborak": [
-        { "min": "5", "egitekoa": "Aurreko saioa eta kontratua gogoratu" },
-        { "min": "10", "egitekoa": "Zer da psikologia azaldu" },
-        { "min": "10", "egitekoa": "Zer ez da psikologia azaldu" },
-        { "min": "15", "egitekoa": "Esaldiak sailkatu binaka (behaketa / hipotesi / iritzi / etiketa)" },
-        { "min": "5", "egitekoa": "Talde handian zuzendu" },
-        { "min": "5", "egitekoa": "Koadernoan azken esaldia" }
+        {
+          "min": "5",
+          "egitekoa": "Aurreko saioa eta kontratua gogoratu"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Zer da psikologia azaldu"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Zer ez da psikologia azaldu"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Esaldiak sailkatu binaka (behaketa / hipotesi / iritzi / etiketa)"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Talde handian zuzendu"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Koadernoan azken esaldia"
+        }
       ]
     },
     {
+      "fasea": 1,
       "zenb": 3,
       "izenburua": "Gaur egungo gizartea eta psikologiaren beharra",
       "fenomenoa": "Lehengo bizitza-markoak argiagoak ziren. Gaur askatasun gehiago dago, baina baita ziurgabetasun handiagoa ere.",
       "galdera": "Zergatik kostatzen zaigu gehiago nor izatea gaur egun?",
       "aurkezpena": "03 · Zer da psikologia",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1njxVeVosvuolBdSGxQcwBSaAVoMdd_Kn_8pvCRBJoHc/edit",
-      "fitxa": { "izena": "00.3 · Gaur egungo gizartea eta psikologiaren beharra", "lotura": "fitxak/gaur-egungo-gizartea.html", "pdf": "fitxak/pdf/gaur-egungo-gizartea.pdf" },
+      "fitxa": {
+        "izena": "00.3 · Gaur egungo gizartea eta psikologiaren beharra",
+        "lotura": "fitxak/gaur-egungo-gizartea.html",
+        "pdf": "fitxak/pdf/gaur-egungo-gizartea.pdf"
+      },
       "denborak": [
-        { "min": "5", "egitekoa": "Sarrera: zer da gaur gazteentzat zailena?" },
-        { "min": "7", "egitekoa": "Azalpena: gizartea aldatu da" },
-        { "min": "6", "egitekoa": "Lotura: zergatik psikologia" },
-        { "min": "12", "egitekoa": "Banaka fitxa bete" },
-        { "min": "10", "egitekoa": "Hirukoteka partekatu" },
-        { "min": "6", "egitekoa": "Talde handian jaso" },
-        { "min": "4", "egitekoa": "Amaierako esaldia" }
+        {
+          "min": "5",
+          "egitekoa": "Sarrera: zer da gaur gazteentzat zailena?"
+        },
+        {
+          "min": "7",
+          "egitekoa": "Azalpena: gizartea aldatu da"
+        },
+        {
+          "min": "6",
+          "egitekoa": "Lotura: zergatik psikologia"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Banaka fitxa bete"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Hirukoteka partekatu"
+        },
+        {
+          "min": "6",
+          "egitekoa": "Talde handian jaso"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Amaierako esaldia"
+        }
       ]
     },
     {
+      "fasea": 1,
       "zenb": 4,
       "izenburua": "Lente bakarrarekin ez da nahikoa",
       "fenomenoa": "Ikasle batek ez du inoiz klasean parte hartzen. Isilik egoten da, begirada jaitsita. Zer ari da gertatzen?",
       "galdera": "Lente desberdinek zer ikusten dute kasu berean?",
       "aurkezpena": "04 · Zer da psikologia",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1YXodvRMyoQWSJiPS7YyqAbHG7Y1rT-PNzNOmjH5Syo4/edit",
-      "fitxa": { "izena": "00.4 · Lenteen mapa", "lotura": "fitxak/lenteen-mapa.html", "pdf": "fitxak/pdf/lenteen-mapa.pdf" },
+      "fitxa": {
+        "izena": "00.4 · Lenteen mapa",
+        "lotura": "fitxak/lenteen-mapa.html",
+        "pdf": "fitxak/pdf/lenteen-mapa.pdf"
+      },
       "atlas": true,
       "denborak": [
-        { "min": "5", "egitekoa": "Aurreko saioa gogoratu" },
-        { "min": "5", "egitekoa": "Kasu laburra: zergatik ez du parte hartzen?" },
-        { "min": "8", "egitekoa": "Atlasa ireki eta lente bakoitzeko galdera gidatu" },
-        { "min": "2", "egitekoa": "Taldeak egin eta lenteak banatu" },
-        { "min": "15", "egitekoa": "Talde-lana fitxan (atlasa erabiliz)" },
-        { "min": "10", "egitekoa": "Taldeek partekatu, oso labur" },
-        { "min": "5", "egitekoa": "Amaierako esaldia banaka" }
+        {
+          "min": "5",
+          "egitekoa": "Aurreko saioa gogoratu"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Kasu laburra: zergatik ez du parte hartzen?"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Atlasa ireki eta lente bakoitzeko galdera gidatu"
+        },
+        {
+          "min": "2",
+          "egitekoa": "Taldeak egin eta lenteak banatu"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Talde-lana fitxan (atlasa erabiliz)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Taldeek partekatu, oso labur"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Amaierako esaldia banaka"
+        }
       ]
     },
     {
+      "fasea": 1,
       "zenb": 5,
       "izenburua": "Kasu psikologikoa aztertzeko fitxa",
       "fenomenoa": "Urte osoan kasuak aztertuko ditugu. Baina nola egin modu arduratsuan, etiketarik jarri gabe?",
       "galdera": "Nola aztertu kasu bat galdera hobeekin, erantzun azkarrik gabe?",
       "aurkezpena": "05 · Kasu psikologikoa aztertzeko fitxa",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1FxOAZN2_ylzIeaNQDnQQYyHfDBRoNbiCFlaTdHiQmDo/edit",
-      "fitxa": { "izena": "00.5 · Kasu psikologikoa aztertzeko fitxa", "lotura": "fitxak/kasu-azterketa.html", "pdf": "fitxak/pdf/kasu-azterketa.pdf" },
+      "fitxa": {
+        "izena": "00.5 · Kasu psikologikoa aztertzeko fitxa",
+        "lotura": "fitxak/kasu-azterketa.html",
+        "pdf": "fitxak/pdf/kasu-azterketa.pdf"
+      },
       "denborak": [
-        { "min": "5", "egitekoa": "Aurreko saioa gogoratu" },
-        { "min": "7", "egitekoa": "Zergatik behar dugun fitxa" },
-        { "min": "8", "egitekoa": "5 urratsak azaldu (labur)" },
-        { "min": "8", "egitekoa": "Kasu gidatua denon artean (ikasle isila)" },
-        { "min": "12", "egitekoa": "Talde-lana: A, B edo C kasua" },
-        { "min": "7", "egitekoa": "Partekatzea" },
-        { "min": "3", "egitekoa": "Amaierako esaldia banaka" }
+        {
+          "min": "5",
+          "egitekoa": "Aurreko saioa gogoratu"
+        },
+        {
+          "min": "7",
+          "egitekoa": "Zergatik behar dugun fitxa"
+        },
+        {
+          "min": "8",
+          "egitekoa": "5 urratsak azaldu (labur)"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Kasu gidatua denon artean (ikasle isila)"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Talde-lana: A, B edo C kasua"
+        },
+        {
+          "min": "7",
+          "egitekoa": "Partekatzea"
+        },
+        {
+          "min": "3",
+          "egitekoa": "Amaierako esaldia banaka"
+        }
+      ]
+    },
+    {
+      "fasea": 2,
+      "zenb": 6,
+      "izenburua": "Psikologiaren sorrera: arimatik laborategira",
+      "fenomenoa": "Gaur ere arima, energia edo zortea aipatzen ditugu barruko bizitza azaltzeko. Antzina hortik abiatu zen psikologia ere.",
+      "galdera": "Nola bihurtu zen galdera filosofiko bat zientzia?",
+      "aurkezpena": "01.1 · Arimatik laborategira",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1SsHrWrW9hjBai8uEvdloIdK4RPxAE4cK_DmmqOJ8mw4/edit",
+      "fitxa": {
+        "izena": "01.1 · Psikologiaren sorrera",
+        "lotura": "fitxak/sorrera.html",
+        "pdf": "fitxak/pdf/sorrera.pdf"
+      },
+      "denborak": [
+        { "min": "5", "egitekoa": "Hasierako galdera: azalpen sinbolikoak gaur egun" },
+        { "min": "12", "egitekoa": "Lau geltoki: Platon, Aristoteles, Descartes, Wundt" },
+        { "min": "10", "egitekoa": "Kontzeptu-lerroa osatu (arima → laborategia)" },
+        { "min": "13", "egitekoa": "Fitxa: bi galdera kritiko + Lanabes-kutxarekin lotu" },
+        { "min": "10", "egitekoa": "Amaierako sintesia partekatu" }
+      ]
+    },
+    {
+      "fasea": 2,
+      "zenb": 7,
+      "izenburua": "Freud eta inkontzientearen lentea",
+      "fenomenoa": "Batzuetan guk geuk guztiz ulertzen ez dugun zerbait egiten dugu: lapsus bat, amets arraro bat, erreakzio neurriz kanpoko bat.",
+      "galdera": "Zer egon daiteke kontzientziaren azpian lanean?",
+      "aurkezpena": "01.2 · Freud eta inkontzientea",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1-D8I8J0aOUdgC6MfbR6efxSEplW8mEc5Fb6lTDzBi8g/edit",
+      "fitxa": {
+        "izena": "01.2 · Freud eta inkontzientearen lentea",
+        "lotura": "fitxak/freud.html",
+        "pdf": "fitxak/pdf/freud.pdf"
+      },
+      "denborak": [
+        { "min": "5", "egitekoa": "Galdera abiapuntua: zergatik egiten dugu ulertzen ez duguna?" },
+        { "min": "10", "egitekoa": "Wundt vs. Freud: bi bide; inkontzientearen mapa" },
+        { "min": "10", "egitekoa": "Izotz-mendia eta defentsa-mekanismoak azaldu" },
+        { "min": "15", "egitekoa": "Fitxa: defentsa-mekanismoak identifikatu (hizkera zuhurra)" },
+        { "min": "10", "egitekoa": "Freud gaur: zer hartu eta zer zaindu" }
+      ]
+    },
+    {
+      "fasea": 2,
+      "zenb": 8,
+      "izenburua": "Konduktismoa eta kognitibismoa",
+      "fenomenoa": "Ohitura bat hartzen edo uzten dugunean, zerk eragiten du benetan: kanpoko sariek ala buruan gertatzen denak?",
+      "galdera": "Portaera neurtu bakarrik nahikoa al da, ala buruan begiratu behar dugu?",
+      "aurkezpena": "01.3 · Konduktismoa eta kognitibismoa",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1OzgaHPjLkMHLof9Qbvci7wcctZ24opQiIPdQxbyKV6k/edit",
+      "fitxa": {
+        "izena": "Talde-lana · Freud, Watson, Skinner",
+        "lotura": "https://docs.google.com/presentation/d/1B43jVGUJSdaGCcSpm6w0NbR-Glf60gLV6lk3IjnAI5A/edit"
+      },
+      "atlas": true,
+      "denborak": [
+        { "min": "8", "egitekoa": "Watson eta Skinner: portaera neurgarria (Albert txikia, baldintzapena)" },
+        { "min": "8", "egitekoa": "Konduktismoaren mugak → iraultza kognitiboa" },
+        { "min": "10", "egitekoa": "Gizakia informazio-prozesadore gisa (Neisser, Piaget, Bandura)" },
+        { "min": "18", "egitekoa": "Talde-lana: Freud / Watson / Skinner konparatu eta kasuak aztertu" },
+        { "min": "6", "egitekoa": "Partekatzea eta ondorioak" }
+      ]
+    },
+    {
+      "fasea": 2,
+      "zenb": 9,
+      "izenburua": "Kasu bera hainbat begiradetan: Genie",
+      "fenomenoa": "Genie: urte luzez isolatuta bizi izan zen neska, eta aurkitu zutenean hizkuntzan eta harremanetan zailtasun handiak zituen. Kasu errealak galdera handiak ireki zituen.",
+      "galdera": "Zergatik ez da nahikoa lente bakarra kasu bat ulertzeko?",
+      "aurkezpena": "01.4 · Genie kasua aztertzen",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1o2FBk9BPaoz7VtOYi27FLpj31H7H-ETQbDYOhiOnmGs/edit",
+      "fitxa": {
+        "izena": "01.4 · Genie kasua, ikuspegi integratua",
+        "lotura": "fitxak/genie.html",
+        "pdf": "fitxak/pdf/genie.pdf"
+      },
+      "atlas": true,
+      "denborak": [
+        { "min": "8", "egitekoa": "Kasuaren laburpena + ohar etikoa (ez epaitu, ez morboa)" },
+        { "min": "12", "egitekoa": "5 pausoko analisia: behaketa → hipotesia → testuingurua" },
+        { "min": "15", "egitekoa": "Lentea: ikuspegi integratua (kognitiboa, biologikoa, soziala, etikoa)" },
+        { "min": "10", "egitekoa": "Mugak: zer ez dakigu? + sintesi integratua" },
+        { "min": "5", "egitekoa": "Amaierako gogoeta etikoa" }
       ]
     }
   ],
-
   "lanabesak": {
     "etiketa": "Lanabes-kutxa",
     "izenburua": "Urte osorako fitxak",
@@ -152,7 +369,6 @@
       }
     ]
   },
-
   "atlasLotura": {
     "etiketa": "Lotura",
     "izenburua": "Lenteen Atlasa",
@@ -160,33 +376,78 @@
     "lotura": "lenteen-atlasa.html",
     "botoia": "Ireki Lenteen Atlasa"
   },
-
   "errepasoa": {
     "etiketa": "Errepasoa",
     "izenburua": "Errepaso interaktiboa",
     "sarrera": "Hau ez da memoria-froga: pentsatzen ikasteko da. Bi ariketa dituzu, eta nahi adina aldiz egin ditzakezu. Helburua ez da 'asmatzea', baizik eta zergatiak ulertzea.",
-
     "sailkapena": {
       "izenburua": "Behaketa ala interpretazioa?",
       "argibidea": "Esaldi bakoitza irakurri eta sailkatu. Gogoratu: behatzea ikusten dena esatea da; hipotesia azalpen posible bat; iritzia balorazioa; eta diagnostikoa etiketa kliniko bat, frogarik gabe arriskutsua dena.",
       "kategoriak": [
-        { "id": "behaketa", "izena": "Behaketa", "definizioa": "Ikus edo entzun daitekeena, interpretatu gabe." },
-        { "id": "hipotesia", "izena": "Hipotesia", "definizioa": "Azalpen posible bat, froga gehiago behar duena." },
-        { "id": "iritzia", "izena": "Iritzia", "definizioa": "Balorazio pertsonala, ona/txarra." },
-        { "id": "diagnostikoa", "izena": "Diagnostiko arriskutsua", "definizioa": "Etiketa klinikoa, frogarik gabe botata." }
+        {
+          "id": "behaketa",
+          "izena": "Behaketa",
+          "definizioa": "Ikus edo entzun daitekeena, interpretatu gabe."
+        },
+        {
+          "id": "hipotesia",
+          "izena": "Hipotesia",
+          "definizioa": "Azalpen posible bat, froga gehiago behar duena."
+        },
+        {
+          "id": "iritzia",
+          "izena": "Iritzia",
+          "definizioa": "Balorazio pertsonala, ona/txarra."
+        },
+        {
+          "id": "diagnostikoa",
+          "izena": "Diagnostiko arriskutsua",
+          "definizioa": "Etiketa klinikoa, frogarik gabe botata."
+        }
       ],
       "itemak": [
-        { "esaldia": "Anek ez du aurkezpenean hitz egin.", "erantzuna": "behaketa", "azalpena": "Ikus daitekeen jokabidea da, interpretaziorik gabe. Ez du esaten zergatik." },
-        { "esaldia": "Ane lotsatia da.", "erantzuna": "iritzia", "azalpena": "Izaerari buruzko balorazio orokorra da: jokabide bat nortasun-ezaugarri bihurtzen du, frogarik gabe." },
-        { "esaldia": "Agian urduri zegoen.", "erantzuna": "hipotesia", "azalpena": "Azalpen posible bat eskaintzen du ('agian'), egia absolutu gisa aurkeztu gabe." },
-        { "esaldia": "Mikelek 20 minututan 8 aldiz begiratu du mugikorra.", "erantzuna": "behaketa", "azalpena": "Datu zehatza eta neurgarria: zenbatu daiteke, ez du interpretatzen." },
-        { "esaldia": "Mikel mugikorraren adiktoa da.", "erantzuna": "diagnostikoa", "azalpena": "'Adikzioa' etiketa klinikoa da. Jokabide bat ikusita diagnostiko bat botatzea arriskutsua da: ez gara klinikoak, eta ez dugu frogarik." },
-        { "esaldia": "Taldeak ez dio lekurik eman parte hartzeko.", "erantzuna": "hipotesia", "azalpena": "Testuinguruari buruzko azalpen posible bat da: zergatia talde-dinamikan kokatzen du, baina ez daki ziur." },
-        { "esaldia": "Gaizki portatu da.", "erantzuna": "iritzia", "azalpena": "Balio-judizio bat da ('gaizki'), ez deskribapen objektiboa. Zer egin duen zehazki ez du esaten." },
-        { "esaldia": "Begiak malkotan zituen hizketan ari zenean.", "erantzuna": "behaketa", "azalpena": "Ikus daitekeena deskribatzen du, esanahirik gehitu gabe. Ez du esaten triste dagoenik." }
+        {
+          "esaldia": "Anek ez du aurkezpenean hitz egin.",
+          "erantzuna": "behaketa",
+          "azalpena": "Ikus daitekeen jokabidea da, interpretaziorik gabe. Ez du esaten zergatik."
+        },
+        {
+          "esaldia": "Ane lotsatia da.",
+          "erantzuna": "iritzia",
+          "azalpena": "Izaerari buruzko balorazio orokorra da: jokabide bat nortasun-ezaugarri bihurtzen du, frogarik gabe."
+        },
+        {
+          "esaldia": "Agian urduri zegoen.",
+          "erantzuna": "hipotesia",
+          "azalpena": "Azalpen posible bat eskaintzen du ('agian'), egia absolutu gisa aurkeztu gabe."
+        },
+        {
+          "esaldia": "Mikelek 20 minututan 8 aldiz begiratu du mugikorra.",
+          "erantzuna": "behaketa",
+          "azalpena": "Datu zehatza eta neurgarria: zenbatu daiteke, ez du interpretatzen."
+        },
+        {
+          "esaldia": "Mikel mugikorraren adiktoa da.",
+          "erantzuna": "diagnostikoa",
+          "azalpena": "'Adikzioa' etiketa klinikoa da. Jokabide bat ikusita diagnostiko bat botatzea arriskutsua da: ez gara klinikoak, eta ez dugu frogarik."
+        },
+        {
+          "esaldia": "Taldeak ez dio lekurik eman parte hartzeko.",
+          "erantzuna": "hipotesia",
+          "azalpena": "Testuinguruari buruzko azalpen posible bat da: zergatia talde-dinamikan kokatzen du, baina ez daki ziur."
+        },
+        {
+          "esaldia": "Gaizki portatu da.",
+          "erantzuna": "iritzia",
+          "azalpena": "Balio-judizio bat da ('gaizki'), ez deskribapen objektiboa. Zer egin duen zehazki ez du esaten."
+        },
+        {
+          "esaldia": "Begiak malkotan zituen hizketan ari zenean.",
+          "erantzuna": "behaketa",
+          "azalpena": "Ikus daitekeena deskribatzen du, esanahirik gehitu gabe. Ez du esaten triste dagoenik."
+        }
       ]
     },
-
     "autotesta": {
       "izenburua": "Ulertu duzu? — autotesta",
       "argibidea": "Galdera kontzeptualak dira: ez datak edo izenak, baizik eta ideia nagusiak. Aukeratu erantzun bat eta ikusiko duzu azalpena.",

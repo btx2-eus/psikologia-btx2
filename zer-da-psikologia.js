@@ -64,18 +64,33 @@ function renderKontratua(k) {
     <p class="kontratua-oharra">${ICON('begia')} ${esc(k.oharra)}</p>`;
 }
 
-/* ---------- SAIOEN SEKUENTZIA ---------- */
+/* ---------- SAIOEN SEKUENTZIA (fasetan) ---------- */
 function renderSaioak(D) {
   const s = document.getElementById('saioak');
+  const faseak = D.faseak || [{ id: 1, izena: '', azalpena: '' }];
+
+  const faseBlokeak = faseak.map(f => {
+    const saioak = D.saioak.filter(x => (x.fasea || 1) === f.id);
+    if (!saioak.length) return '';
+    return `
+      <div class="fase-blokea">
+        <div class="fase-buru">
+          <span class="fase-txartela">${esc(f.izena)}</span>
+          ${f.azalpena ? `<p class="fase-azalpena">${esc(f.azalpena)}</p>` : ''}
+        </div>
+        <div class="saioak-zerrenda">
+          ${saioak.map(saioTxartela).join('')}
+        </div>
+      </div>`;
+  }).join('');
+
   s.innerHTML = `
     <div class="atal__goiburua">
-      <span class="atal__etiketa">${ICON('denbora')} 5 saio</span>
+      <span class="atal__etiketa">${ICON('denbora')} ${D.saioak.length} saio</span>
       <h2 id="saioak-h">${esc(D.saioakIzenburua)}</h2>
       <p class="atal__sarrera">${esc(D.saioakSarrera)}</p>
     </div>
-    <div class="saioak-zerrenda">
-      ${D.saioak.map(saioTxartela).join('')}
-    </div>`;
+    ${faseBlokeak}`;
 
   s.querySelectorAll('.saio-zabaldu').forEach(btn => {
     btn.addEventListener('click', () => {

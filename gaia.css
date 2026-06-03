@@ -172,6 +172,15 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 .kontratua-oharra svg { width: 22px; height: 22px; flex: 0 0 auto; color: var(--gaia); }
 
 /* ----- Saioen sekuentzia ----- */
+.fase-blokea { margin-bottom: 2rem; }
+.fase-blokea:last-child { margin-bottom: 0; }
+.fase-buru { margin-bottom: 1rem; padding-bottom: .7rem; border-bottom: 2px solid var(--gaia-argi); }
+.fase-txartela {
+  display: inline-block; font-family: var(--f-izen); font-weight: 900; font-size: .82rem;
+  letter-spacing: .04em; text-transform: uppercase; color: #fff; background: var(--gaia);
+  padding: .35rem .9rem; border-radius: 999px;
+}
+.fase-azalpena { margin: .6rem 0 0; font-size: .92rem; color: var(--ink-2); }
 .saioak-zerrenda { display: grid; gap: 1rem; }
 .saio {
   background: var(--surface); border: 1px solid var(--lerro);
