@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   renderHero(D);
+  if (D.lanean) renderLanean(D.lanean);
   // Sarrera-blokea: Nietzsche, Braidot... edozein abiapuntu-aipu
   if (D.sarreraBlokea || D.nietzsche) renderSarreraBlokea(D.sarreraBlokea || D.nietzsche);
   if (D.kontratua) renderKontratua(D.kontratua);
@@ -45,6 +46,15 @@ function renderHero(D) {
 }
 
 function setText(id, t) { const el = document.getElementById(id); if (el && t != null) el.textContent = t; }
+
+/* ---------- LANEAN GABILTZA (egitenbidean oharra) ---------- */
+function renderLanean(l) {
+  const el = document.getElementById('lanean');
+  if (!el) return;
+  const testua = typeof l === 'string' ? l : l.testua;
+  el.innerHTML = `<span class="lanean__domina">${ICON('eraikuntza')} ${esc((typeof l === 'object' && l.etiketa) || 'Lanean')}</span><p>${esc(testua)}</p>`;
+  el.hidden = false;
+}
 
 /* ---------- SARRERA-BLOKEA (abiapuntu-aipua) ---------- */
 function renderSarreraBlokea(n) {

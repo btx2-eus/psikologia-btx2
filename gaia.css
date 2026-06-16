@@ -104,6 +104,21 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 }
 .ghero__sarrera { font-size: clamp(1.02rem, 2vw, 1.18rem); color: var(--ink-2); max-width: 60ch; }
 
+/* =================== LANEAN GABILTZA (oharra) =================== */
+.lanean {
+  max-width: var(--max); margin: 1.4rem auto 0;
+  padding: .9rem clamp(1.1rem, 3vw, 1.3rem);
+  display: flex; align-items: center; gap: .9rem; flex-wrap: wrap;
+  background: #FCF4E6; border: 1px solid #E9C58E; border-radius: var(--r);
+}
+.lanean__domina {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--f-izen); font-weight: 800; font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
+  color: #7a4a12; background: #FBEAD2; border: 1px solid #E9C58E; border-radius: 999px; padding: .35rem .8rem;
+}
+.lanean__domina svg { width: 15px; height: 15px; }
+.lanean p { margin: 0; font-size: .92rem; color: #7a4a12; }
+
 /* =================== NIETZSCHE AUSARDIA-MARKOA =================== */
 .nietzsche {
   margin: 2.2rem 0 0; padding: 1.6rem clamp(1.3rem, 3vw, 2rem);

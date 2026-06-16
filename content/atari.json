@@ -54,7 +54,7 @@
           "id": "biologikoak",
           "izenburua": "Portaeraren oinarri biologikoak",
           "deskribapena": "Garunak ez du determinatzen, baina bai baldintzatzen.",
-          "egoera": "abian",
+          "egoera": "prest",
           "ikonoa": "garuna",
           "lotura": "oinarri-biologikoak.html"
         },
@@ -62,8 +62,9 @@
           "id": "pertzepzioa",
           "izenburua": "Pertzepzioa, arreta eta oroimena",
           "deskribapena": "Hautematea ez da errealitatearen kopia: eraikuntza da.",
-          "egoera": "laster",
-          "ikonoa": "begia"
+          "egoera": "abian",
+          "ikonoa": "begia",
+          "lotura": "pertzepzioa.html"
         },
         {
           "id": "neuromitoak",

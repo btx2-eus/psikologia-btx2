@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "ebaluazioa": "1. ebaluazioa · Burua eta garuna",
+    "zenbakia": "03",
+    "izenburua": "Pertzepzioa, arreta eta oroimena",
+    "galdera": "Errealitatea ikusten dugu, ala interpretatzen dugu?",
+    "sarrera": "Uste dugu begiek argazki bat ateratzen dutela eta horixe dela errealitatea. Baina hautematea ez da kopia bat: eraikuntza aktiboa da. Garunak informazioa iragazi, antolatu eta osatu egiten du, eta horrek esan nahi du askotan ez dugula ikusten dagoena, baizik eta itxaroten duguna. Gai honetan, ilusio optikoetatik abiatuko gara gure pertzepzioaren mugak ulertzeko."
+  },
+
+  "lanean": {
+    "etiketa": "Lanean gabiltza",
+    "testua": "Gai hau prestatzen ari gara: oraingoz lehen hiru saioak daude prest. Gainerako saioak, fitxak eta errepaso interaktiboa laster gehituko dira."
+  },
+
+  "saioakIzenburua": "Saioen sekuentzia",
+  "saioakSarrera": "Pertzepzioaren mugetatik abiatuta: garuna ez da kamera bat. Hiru saio prest daude jada; gainerakoak bidean dira. Denborak orientagarriak dira (50 minutuko saioa).",
+  "saioak": [
+    {
+      "zenb": 1,
+      "izenburua": "Garuna ez da kamera bat",
+      "fenomenoa": "Ilusio optiko bat ikusten dugunean, badakigu engainua dela, baina hala ere ezin diogu utzi modu okerrean ikusteari. Zergatik?",
+      "galdera": "Zergatik ez dugu beti ikusten benetan dagoena?",
+      "aurkezpena": "03.1 · Garuna ez da kamera bat",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1eUGAz5T4zTwp-mMVHNRzgiOaaArE1M8i1XU8ICwfXO8/edit",
+      "denborak": [
+        { "min": "8", "egitekoa": "Ilusio optikoak: Rubin jarroia, lerro-ilusioak… zer ikusten duzu?" },
+        { "min": "12", "egitekoa": "Sentsazioa vs. pertzepzioa: garunak eraikitzen du" },
+        { "min": "15", "egitekoa": "Adibideak aztertu taldeka: zerk eragiten du engainua?" },
+        { "min": "10", "egitekoa": "Ondorioa: ikustea ez da kopiatzea, interpretatzea baizik" },
+        { "min": "5", "egitekoa": "Amaierako esaldia banaka" }
+      ]
+    },
+    {
+      "zenb": 2,
+      "izenburua": "Pertzepzioa: errealitatea ikusten dugu ala interpretatu?",
+      "fenomenoa": "Bi pertsonak gauza bera ikus dezakete eta erabat desberdin deskribatu. Bakoitzak bere itxaropenak, esperientziak eta testuingurua jartzen ditu jokoan.",
+      "galdera": "Zenbateraino baldintzatzen du gure itxaropenak ikusten duguna?",
+      "aurkezpena": "03.2 · Errealitatea ikusten dugu ala interpretatu?",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1lZo9jXZVR8ehQ5QQ4l04g4qAf00N15whzsBrchGcKz4/edit",
+      "denborak": [
+        { "min": "8", "egitekoa": "Itxaropenak eta testuinguruak: gauza bera, begirada desberdinak" },
+        { "min": "12", "egitekoa": "Pertzepzioaren antolaketa-printzipioak (Gestalt)" },
+        { "min": "15", "egitekoa": "Adibideak: nola osatzen du garunak falta dena" },
+        { "min": "10", "egitekoa": "Eztabaida: noiz da arriskutsua «ikusi dut, beraz egia da»?" },
+        { "min": "5", "egitekoa": "Ondorioa partekatu" }
+      ]
+    },
+    {
+      "zenb": 3,
+      "izenburua": "Garunak nola eraikitzen du ikusten duguna?",
+      "fenomenoa": "Garunak ez du itxaron informazio guztia jaso arte: aurreikuspenak egiten ditu etengabe, eta horiekin osatzen du errealitatea ia berehala.",
+      "galdera": "Nola eraikitzen du garunak errealitatearen bertsio koherente bat?",
+      "aurkezpena": "03.3 · Garunak nola eraikitzen du ikusten duguna?",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/10Zsv6n_nR1pnX1kjA1w3C3EXfhGPzvXZiepfqzBzCJ4/edit",
+      "denborak": [
+        { "min": "10", "egitekoa": "Garuna aurreikusten: itxaropena eta osaketa aktiboa" },
+        { "min": "12", "egitekoa": "Arreta selektiboa: zer iragazten dugu eta zer galtzen dugu" },
+        { "min": "15", "egitekoa": "Adibideak eta jarduerak: arreta eta pertzepzioa" },
+        { "min": "8", "egitekoa": "Lotura: pertzepzioa, oroimena eta interpretazioa" },
+        { "min": "5", "egitekoa": "Ondorioa: errealitatea eraikuntza partekatua eta pertsonala da" }
+      ]
+    }
+  ],
+
+  "atlasLotura": {
+    "etiketa": "Lotura",
+    "izenburua": "Lenteen Atlasa",
+    "testua": "Gai honek Gestalt eta ikuspegi kognitiboa jartzen ditu jokoan: pertzepzioa antolaketa aktiboa da. Ezagutu eskola guztiak eta haien arteko harremanak.",
+    "lotura": "lenteen-atlasa.html",
+    "botoia": "Ireki Lenteen Atlasa"
+  }
+}
