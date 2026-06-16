@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "ebaluazioa": "1. ebaluazioa · Burua eta garuna",
+    "zenbakia": "02",
+    "izenburua": "Portaeraren oinarri biologikoak",
+    "galdera": "Noraino gara libre, eta noraino baldintzatuta?",
+    "sarrera": "Giza jokabidea ezin da faktore bakar batez azaldu. Ez gara soilik geneak, ez soilik garuna, ez soilik ingurunea, ez soilik borondatea. Gizakia izaki biopsikosoziala da: faktore biologiko, psikologiko eta sozialek batera eragiten dute. Gai honetan, garunari eta gorputzari begiratuko diegu, baina determinismoan erori gabe."
+  },
+
+  "sarreraBlokea": {
+    "etiketa": "Abiapuntua",
+    "aipua": "Gure garunean idatzita daude sentitzeko, pentsatzeko, ikasteko, gogoratzeko, maitemintzeko, haserretzeko edo deprimitzeko gaitasunak. Eta garuna entrenatu eta zaindu egin daiteke.",
+    "egilea": "Néstor Braidot — ideiaren moldaketa",
+    "urteak": "",
+    "sarrera": "Baina galdera bat sortzen da berehala: garunak baldintzatzen gaitu, ala guk kontrolatzen dugu garuna? Hortik abiatuko gara.",
+    "galderak": [
+      "«Ni horrelakoa naiz» esatea zuzena al da?",
+      "Gure portaera gure garunak erabakitzen al du?",
+      "Geneek markatzen al gaituzte?",
+      "Entrenatu al daiteke arreta, emozioa edo autokontrola?"
+    ]
+  },
+
+  "saioakIzenburua": "Saioen sekuentzia",
+  "saioakSarrera": "Bost saio, fenomeno errealetik eta kasu errealetatik abiatuta. Garunetik abiatu, baina beti galdera berera itzuli: baldintzatuak gara, baina ez gara makina programatuak. Denborak orientagarriak dira (50 minutuko saioa).",
+  "saioak": [
+    {
+      "zenb": 1,
+      "izenburua": "Gizakia, eboluzioaren emaitza gisa",
+      "fenomenoa": "«Gizakia animalia bat da?» Galdera erraza dirudi, baina erantzunak gure buruari buruzko ikuspegi osoa erakusten du.",
+      "galdera": "Zergatik begiratu behar diogu eboluzioari gure burua ulertzeko?",
+      "aurkezpena": "02.1 · Oinarri biologikoak",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1hcOTo8vTYxEFM0ZX7Hm45uEX6BIS-H3qFmPyuAKD5rc/edit",
+      "fitxa": { "izena": "02 · Gizakia, eboluzioaren emaitza", "lotura": "fitxak/eboluzioa.html", "pdf": "fitxak/pdf/eboluzioa.pdf" },
+      "denborak": [
+        { "min": "8", "egitekoa": "Braidot testua eta hasierako eztabaida: garunak ala guk?" },
+        { "min": "10", "egitekoa": "Darwin eta psikologiaren galdera berria" },
+        { "min": "15", "egitekoa": "Fitxa: gizakiaren ezaugarri bereizgarriak (garuna, hizkuntza, kultura…)" },
+        { "min": "12", "egitekoa": "Galdera kritikoa: naturala = ona? (falazia naturalista)" },
+        { "min": "5", "egitekoa": "Ondorioa: gizakia ez da biologia hutsa" }
+      ]
+    },
+    {
+      "zenb": 2,
+      "izenburua": "Herentzia genetikoa eta ingurunea",
+      "fenomenoa": "«Hori aitaren berdina da» edo «jaiotzetik dakar». Egunero entzuten ditugu geneei buruzko esaldiak. Baina geneak patua al dira?",
+      "galdera": "Geneek determinatzen gaituzte, ala joerak eta aukerak soilik markatzen dituzte?",
+      "aurkezpena": "02.2 · Oinarri biologikoak",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1GkjCR2-jna50HUK6qmnWrPJrQoaAG6984-uxX0TW8gE/edit",
+      "fitxa": { "izena": "Talde-lana · Braidot: garunean idatzita?", "lotura": "https://docs.google.com/presentation/d/1nFINzxfXdHKH-SOQLD0C_15ztQv1GvgikJSB8XCbNjE/edit" },
+      "denborak": [
+        { "min": "8", "egitekoa": "Geneak ez dira patua: joerak vs. determinismoa" },
+        { "min": "12", "egitekoa": "Nerbio-sistema eta sistema endokrinoa: gorputzak nola erantzuten dien estimuluei" },
+        { "min": "18", "egitekoa": "Talde-lana: Braidot testua aztertu" },
+        { "min": "7", "egitekoa": "Ingurunea, heziketa eta esperientzia: joerak nola moldatzen diren" },
+        { "min": "5", "egitekoa": "Ondorioa partekatu" }
+      ]
+    },
+    {
+      "zenb": 3,
+      "izenburua": "Garunaren eremu nagusiak",
+      "fenomenoa": "Garuna ez da botoi solte batzuen bilduma: sare konplexu bat da. Baina eremu batzuek funtzio psikologiko jakinekin lotura dute.",
+      "galdera": "Nola lotzen dira garuneko eremuak eta gure funtzio psikologikoak?",
+      "aurkezpena": "02.3 · Oinarri biologikoak",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1qqlElkRNsI4NNS6RyxrFcbud7ystQQDMKXYt3k8gONw/edit",
+      "fitxa": { "izena": "Aurkezpenean: eskema eta jarduerak", "lotura": "" },
+      "denborak": [
+        { "min": "10", "egitekoa": "Garuneko eremuak: lobuluak, zerebeloa, hipokanpoa, amigdala" },
+        { "min": "12", "egitekoa": "Garuna eta nortasuna: Phineas Gage kasua" },
+        { "min": "13", "egitekoa": "Lesio batek nortasuna alda dezake? Eztabaida gidatua" },
+        { "min": "10", "egitekoa": "Eskema osatu: eremua → funtzioa" },
+        { "min": "5", "egitekoa": "Ondorioa: garuna sarea da, ez botoi-bilduma" }
+      ]
+    },
+    {
+      "zenb": 4,
+      "izenburua": "Garuna, emozioa eta portaera: bahiketa amigdalarra",
+      "fenomenoa": "Batzuetan emozioak «bolantea hartzen du»: oihu egiten dugu, blokeatzen gara, gero damutzen garen zerbait esaten dugu. Zer ari da gertatzen garunean?",
+      "galdera": "Nork hartu du bolantea, arrazoiak ala emozioak?",
+      "aurkezpena": "02.4 · Garuna, emozioa eta portaera",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1DDCi6nqcP2vluRBloDwjcY-uucnLQ4FYbCD038VA8GM/edit",
+      "fitxa": { "izena": "Nork hartu du bolantea? — galdetegia", "lotura": "fitxak/bahiketa-amigdalarra.html", "pdf": "fitxak/pdf/bahiketa-amigdalarra.pdf" },
+      "denborak": [
+        { "min": "8", "egitekoa": "Bahiketa amigdalarra: zer gertatzen da emozioak agintzen duenean" },
+        { "min": "15", "egitekoa": "Galdetegia banaka: nork hartu du bolantea?" },
+        { "min": "12", "egitekoa": "Gorputzaren seinaleak eta erantzunak partekatu (anonimoki)" },
+        { "min": "10", "egitekoa": "Emozioak kudeatzen ikas daiteke? Estrategiak" },
+        { "min": "5", "egitekoa": "Amaierako ideia: emozioa ez da etsaia" }
+      ]
+    },
+    {
+      "zenb": 5,
+      "izenburua": "Amaierako kasua: baldintzatuta, baina programatuta ez",
+      "fenomenoa": "Charles Whitman: 1966an sarraski bat egin zuen, eta autopsiak amigdala sakatzen zion tumore bat aurkitu zion. Berak idatzi zuen susmatzen zuela zerbait gertatzen ari zitzaiola garunean.",
+      "galdera": "Garunak gure portaera baldintzatzen badu, noraino gara erantzule?",
+      "aurkezpena": "02.5 · Amaierako kasua",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1LB6wKigoOApszthSL5DmcXbZ4n7yUbu1u2gAku__D2Y/edit",
+      "fitxa": { "izena": "02.5 · Baldintzatuta, baina programatuta ez", "lotura": "fitxak/baldintzatuta.html", "pdf": "fitxak/pdf/baldintzatuta.pdf" },
+      "atlas": true,
+      "denborak": [
+        { "min": "10", "egitekoa": "Whitman kasua aurkeztu (Eagleman) + ohar etikoa: ez morboa" },
+        { "min": "12", "egitekoa": "Faktore biologikoak / psikosozialak / zer ez dakigun bereizi" },
+        { "min": "13", "egitekoa": "Erantzukizunaren galdera: bi muturrak saihestu" },
+        { "min": "10", "egitekoa": "Ondorioa: «azaltzea ez da justifikatzea»" },
+        { "min": "5", "egitekoa": "Irteera-txartela banaka" }
+      ]
+    }
+  ],
+
+  "atalEtikoa": {
+    "etiketa": "Ohar etikoa",
+    "izenburua": "Kontuz biologiarekin",
+    "testua": "Gai honetan kasu errealak eta minak ukitzen ditugu (Phineas Gage, Whitman, emozioen kontrola). Hiru arau:",
+    "arauak": [
+      "Ez dugu inor diagnostikatuko ezta morboz landuko ere: kasuak pentsatzeko dira, ez epaitzeko.",
+      "Azalpen biologiko batek ez du automatikoki erantzukizuna ezabatzen: «azaltzea ez da justifikatzea».",
+      "Beti galdetuko dugu: zer EZIN dugu ondorioztatu hemen?"
+    ]
+  },
+
+  "errepasoa": {
+    "etiketa": "Errepasoa",
+    "izenburua": "Errepaso interaktiboa",
+    "sarrera": "Hau ez da memoria-froga: pentsatzeko da. Bi ariketa dituzu, eta nahi adina aldiz egin ditzakezu. Gakoa zergatiak ulertzea da, ez datak buruz ikastea.",
+
+    "sailkapena": {
+      "izenburua": "Azalpen biologikoa: ondo ala gehiegi?",
+      "argibidea": "Esaldi bakoitza irakurri eta sailkatu. Gogoratu: faktore biologikoek baldintzatzen gaituzte, baina ez gaituzte determinatzen. Adi neurri-falten eta neuromitoekin.",
+      "kategoriak": [
+        { "id": "zientifikoa", "izena": "Baieztapen zientifikoki onargarria", "definizioa": "Frogetan oinarritua, neurri zuzenarekin." },
+        { "id": "determinismoa", "izena": "Neuro-determinismoa", "definizioa": "Dena garunak/geneek erabakitzen dutela dioena, gehiegizko murrizketa." },
+        { "id": "neuromitoa", "izena": "Neuromitoa", "definizioa": "Garunari buruzko uste oker hedatua." }
+      ],
+      "itemak": [
+        { "esaldia": "Amigdalak beldurrari eta erasoari lotutako emozioetan parte hartzen du.", "erantzuna": "zientifikoa", "azalpena": "Baieztapen zuzena da: amigdalaren funtzioa frogatuta dago. Baina «parte hartzen du» dio, ez «bera bakarrik arduratzen dela»." },
+        { "esaldia": "Pertsona hau oldarkorra da; bere garunak hala programatu du eta ezin du ezer egin.", "erantzuna": "determinismoa", "azalpena": "Neuro-determinismoa: garunak joera baldintza dezake, baina «ezin du ezer egin» esateak autokontrola eta ingurunea ezabatzen ditu. Baldintzatuta ≠ programatuta." },
+        { "esaldia": "Garunaren %10 baino ez dugu erabiltzen.", "erantzuna": "neuromitoa", "azalpena": "Neuromito klasikoa: faltsua da. Garun osoa erabiltzen dugu, eremu desberdinak une desberdinetan." },
+        { "esaldia": "Garuneko lesio batek nortasuna eta jokabidea alda ditzake (Phineas Gage).", "erantzuna": "zientifikoa", "azalpena": "Frogatuta dago: lobulu frontaleko lesioek kontrola eta nortasuna alda ditzakete. Kasu dokumentatua da." },
+        { "esaldia": "Pertsona logikoak ezkerreko garuna erabiltzen dute; sortzaileek eskuinekoa.", "erantzuna": "neuromitoa", "azalpena": "«Ezker/eskuin garuna» neuromitoa da: bi hemisferioek elkarlanean dihardute ia jarduera guztietan." },
+        { "esaldia": "Estresak gorputzean eta garunean eragiten du, eta horrek erabakiak baldintza ditzake.", "erantzuna": "zientifikoa", "azalpena": "Zuzena: estresak (kortisola, amigdala) eragin neurgarria du. «Baldintza ditzake» dio, ez «erabakitzen dituela»." },
+        { "esaldia": "Tumore bat zuenez, ez du inolako erantzukizunik bere ekintzetan.", "erantzuna": "determinismoa", "azalpena": "Mutur deterministak: faktore biologikoak erantzukizunaren galdera konplexuagoa egiten du, baina ez du automatikoki ezabatzen. «Azaltzea ez da justifikatzea»." },
+        { "esaldia": "Musika klasikoa entzuteak haurrak adimentsuago bihurtzen ditu.", "erantzuna": "neuromitoa", "azalpena": "«Mozart efektua» neuromitoa da: ez dago froga sendorik. Estimulazioa ona da, baina ez formula magikorik." }
+      ]
+    },
+
+    "autotesta": {
+      "izenburua": "Ulertu duzu? — autotesta",
+      "argibidea": "Galdera kontzeptualak dira, ez datak. Aukeratu erantzun bat eta ikusiko duzu azalpena.",
+      "galderak": [
+        {
+          "galdera": "Zer esan nahi du «gizakia izaki biopsikosoziala da» esaldiak?",
+          "aukerak": [
+            "Gizakia animalia bat baino ez dela",
+            "Faktore biologiko, psikologiko eta sozialek batera eragiten dutela jokabidean",
+            "Biologia dela garrantzitsuena",
+            "Gizartea dela dena erabakitzen duena"
+          ],
+          "zuzena": 1,
+          "azalpena": "Jokabidea ezin da faktore bakar batez azaldu: hiru maila (biologikoa, psikologikoa, soziala) batera aztertu behar dira."
+        },
+        {
+          "galdera": "«Geneak ez dira patua» esaldiak zer esan nahi du?",
+          "aukerak": [
+            "Geneek ez dutela eraginik",
+            "Geneek joerak eta aukerak baldintza ditzaketela, baina inguruneak eta esperientziak moldatzen dituztela",
+            "Dena ingurunearen kontua dela",
+            "Portaera zuzenean heredatzen dela"
+          ],
+          "zuzena": 1,
+          "azalpena": "Geneek joerak markatzen dituzte, ez portaera zehatzak. Ingurunea, heziketa eta esperientzia funtsezkoak dira."
+        },
+        {
+          "galdera": "Zer erakusten du Phineas Gageren kasuak?",
+          "aukerak": [
+            "Garuna ez dela garrantzitsua",
+            "Garuneko lesio batek nortasuna eta jokabidea alda ditzakeela",
+            "Pertsonak ez direla aldatzen",
+            "Lesioek ez dutela eraginik"
+          ],
+          "zuzena": 1,
+          "azalpena": "Gageren lobulu frontaleko lesioak haren kontrola eta nortasuna aldatu zituen: garunaren eta jokabidearen arteko lotura zuzena erakusten du."
+        },
+        {
+          "galdera": "Zer da «bahiketa amigdalarra»?",
+          "aukerak": [
+            "Garuneko gaixotasun bat",
+            "Emozio indartsu batek erreakzioa hartzen duenean, arrazoiketa baino lehen",
+            "Oroimena galtzea",
+            "Beti txarra den zerbait"
+          ],
+          "zuzena": 1,
+          "azalpena": "Amigdala azkar aktibatzen da mehatxu baten aurrean, eta batzuetan erreakzioa lehertzen da arrazoiketak parte hartu baino lehen. Ez da «txarra»: ulertzea da gakoa."
+        },
+        {
+          "galdera": "Whitman kasuan, zer da ondorio zuzenena?",
+          "aukerak": [
+            "Tumorea zuenez, erabat errugabea zen",
+            "Biologiak ez du axola; dena borondatea da",
+            "Biologiak azaltzen laguntzen du, baina ez du automatikoki erantzukizuna ezabatzen",
+            "Garuneko tumore guztiek krimenak eragiten dituzte"
+          ],
+          "zuzena": 2,
+          "azalpena": "Bi muturrak saihestu behar dira: «dena biologia da» eta «biologiak ez du axola». Azaltzea ez da justifikatzea, baina ulertu gabe epaitzea ere pobrea da."
+        },
+        {
+          "galdera": "Zergatik diogu garuna «ez dela botoi solteen bilduma»?",
+          "aukerak": [
+            "Eremu bakoitzak funtzio bakarra duelako",
+            "Garuna sare konplexua delako: eremuek elkarlanean dihardute",
+            "Garuna ezin delako aztertu",
+            "Eremuek ez dutelako funtziorik"
+          ],
+          "zuzena": 1,
+          "azalpena": "Eremu batzuek funtzio jakinekin lotura dute, baina prozesu psikologikoak sare osoaren elkarlanetik sortzen dira, ez pieza isolatuetatik."
+        },
+        {
+          "galdera": "«Naturala da» esateak zerbait justifikatzen al du?",
+          "aukerak": [
+            "Bai, naturala bada ona da",
+            "Ez: zerbait naturala izateak ez du esan nahi ona edo justifikagarria denik (falazia naturalista)",
+            "Bai beti",
+            "Naturala dena ezin da aldatu"
+          ],
+          "zuzena": 1,
+          "azalpena": "Falazia naturalista da: «naturala» eta «ona/zuzena» ez dira gauza bera. Oldarkortasuna naturala izan daiteke, baina horrek ez du justifikatzen."
+        }
+      ]
+    }
+  },
+
+  "atlasLotura": {
+    "etiketa": "Lotura",
+    "izenburua": "Lenteen Atlasa",
+    "testua": "Gai honek lente biologikoa eta neurozientziaren ikuspegia jartzen ditu mahai gainean. Ezagutu eskola guztiak — eta gogoratu: garuna gabe ez dago gogamenik, baina gogamena ez da garuna bakarrik.",
+    "lotura": "lenteen-atlasa.html",
+    "botoia": "Ireki Lenteen Atlasa"
+  }
+}

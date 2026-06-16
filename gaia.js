@@ -1,57 +1,67 @@
 /* =================================================================
-   ZER DA PSIKOLOGIA? — gaiaren orria
-   Edukia content/zer-da-psikologia.json fitxategitik kargatzen da.
+   GAIAREN ORRIA — partekatutako logika (gaia.js)
+   Edukia <body data-edukia="content/...json"> bidez kargatzen da.
+   Atalak aukerakoak dira: bakoitza bere datuak baditu bakarrik agertzen da.
    ================================================================= */
 
 const ICON = (id, k = '') => `<svg class="${k}" aria-hidden="true"><use href="#ic-${id}"></use></svg>`;
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const bidea = document.body.dataset.edukia || 'content/zer-da-psikologia.json';
   let D;
   try {
-    const r = await fetch('content/zer-da-psikologia.json', { cache: 'no-cache' });
+    const r = await fetch(bidea, { cache: 'no-cache' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     D = await r.json();
   } catch (e) {
     document.getElementById('eduki-nagusia').insertAdjacentHTML('beforeend',
       `<p style="max-width:60ch;margin:3rem auto;padding:1.5rem;background:#fff;border-radius:12px;text-align:center">
-        Ezin izan da edukia kargatu (<code>content/zer-da-psikologia.json</code>). Zerbitzaritik ireki behar da.</p>`);
+        Ezin izan da edukia kargatu (<code>${esc(bidea)}</code>). Zerbitzaritik ireki behar da.</p>`);
     console.error(e);
     return;
   }
 
   renderHero(D);
-  renderKontratua(D.kontratua);
-  renderSaioak(D);
-  renderLanabesak(D.lanabesak);
+  // Sarrera-blokea: Nietzsche, Braidot... edozein abiapuntu-aipu
+  if (D.sarreraBlokea || D.nietzsche) renderSarreraBlokea(D.sarreraBlokea || D.nietzsche);
+  if (D.kontratua) renderKontratua(D.kontratua);
+  if (D.atalEtikoa) renderAtalEtikoa(D.atalEtikoa);
+  if (D.saioak) renderSaioak(D);
+  if (D.lanabesak) renderLanabesak(D.lanabesak);
   if (D.errepasoa) renderErrepasoa(D.errepasoa);
-  renderAtlas(D.atlasLotura);
+  if (D.atlasLotura) renderAtlas(D.atlasLotura);
 });
 
-/* ---------- HEROA + NIETZSCHE ---------- */
+/* ---------- HEROA ---------- */
 function renderHero(D) {
   const m = D.meta;
-  document.getElementById('kokapena').textContent = m.ebaluazioa;
-  document.getElementById('hero-zenb').textContent = m.zenbakia;
-  document.getElementById('hero-ebal').textContent = m.ebaluazioa;
-  document.getElementById('hero-izenburua').textContent = m.izenburua;
-  document.getElementById('hero-galdera').textContent = '«' + m.galdera + '»';
-  document.getElementById('hero-sarrera').textContent = m.sarrera;
-
-  const n = D.nietzsche;
-  document.getElementById('nietzsche').innerHTML = `
-    <span class="nietzsche__etiketa">${esc(n.etiketa)}</span>
-    <blockquote class="nietzsche__aipua">${esc(n.aipua)}</blockquote>
-    <figcaption class="nietzsche__egilea">${esc(n.egilea)} <span>${esc(n.urteak)}</span></figcaption>
-    <p class="nietzsche__sarrera">${esc(n.sarrera)}</p>
-    <ul class="nietzsche__galderak">
-      ${n.galderak.map(g => `<li>${esc(g)}</li>`).join('')}
-    </ul>`;
+  setText('kokapena', m.ebaluazioa);
+  setText('hero-zenb', m.zenbakia);
+  setText('hero-ebal', m.ebaluazioa);
+  setText('hero-izenburua', m.izenburua);
+  setText('hero-galdera', '«' + m.galdera + '»');
+  setText('hero-sarrera', m.sarrera);
 }
 
-/* ---------- LEHEN KONTRATUA ---------- */
+function setText(id, t) { const el = document.getElementById(id); if (el && t != null) el.textContent = t; }
+
+/* ---------- SARRERA-BLOKEA (abiapuntu-aipua) ---------- */
+function renderSarreraBlokea(n) {
+  const el = document.getElementById('sarrera-blokea') || document.getElementById('nietzsche');
+  if (!el) return;
+  el.innerHTML = `
+    <span class="nietzsche__etiketa">${esc(n.etiketa)}</span>
+    <blockquote class="nietzsche__aipua">${esc(n.aipua)}</blockquote>
+    <figcaption class="nietzsche__egilea">${esc(n.egilea)}${n.urteak ? ` <span>${esc(n.urteak)}</span>` : ''}</figcaption>
+    ${n.sarrera ? `<p class="nietzsche__sarrera">${esc(n.sarrera)}</p>` : ''}
+    ${n.galderak && n.galderak.length ? `<ul class="nietzsche__galderak">${n.galderak.map(g => `<li>${esc(g)}</li>`).join('')}</ul>` : ''}`;
+}
+
+/* ---------- KONTRATUA ---------- */
 function renderKontratua(k) {
   const s = document.getElementById('kontratua');
+  if (!s) return;
   s.innerHTML = `
     <div class="atal__goiburua">
       <span class="atal__etiketa">${ICON('kontratu')} ${esc(k.etiketa)}</span>
@@ -61,23 +71,42 @@ function renderKontratua(k) {
     <ol class="kontratua-zerrenda">
       ${k.arauak.map(a => `<li>${esc(a)}</li>`).join('')}
     </ol>
-    <p class="kontratua-oharra">${ICON('begia')} ${esc(k.oharra)}</p>`;
+    ${k.oharra ? `<p class="kontratua-oharra">${ICON('begia')} ${esc(k.oharra)}</p>` : ''}`;
+}
+
+/* ---------- ATAL ETIKOA ---------- */
+function renderAtalEtikoa(k) {
+  const s = document.getElementById('atal-etikoa');
+  if (!s) return;
+  s.innerHTML = `
+    <div class="atal__goiburua">
+      <span class="atal__etiketa">${ICON('kontratu')} ${esc(k.etiketa)}</span>
+      <h2>${esc(k.izenburua)}</h2>
+      <p class="atal__sarrera">${esc(k.testua)}</p>
+    </div>
+    <ol class="kontratua-zerrenda">
+      ${k.arauak.map(a => `<li>${esc(a)}</li>`).join('')}
+    </ol>`;
 }
 
 /* ---------- SAIOEN SEKUENTZIA (fasetan) ---------- */
 function renderSaioak(D) {
   const s = document.getElementById('saioak');
+  if (!s) return;
   const faseak = D.faseak || [{ id: 1, izena: '', azalpena: '' }];
 
   const faseBlokeak = faseak.map(f => {
     const saioak = D.saioak.filter(x => (x.fasea || 1) === f.id);
     if (!saioak.length) return '';
+    const buru = f.izena
+      ? `<div class="fase-buru">
+           <span class="fase-txartela">${esc(f.izena)}</span>
+           ${f.azalpena ? `<p class="fase-azalpena">${esc(f.azalpena)}</p>` : ''}
+         </div>`
+      : '';
     return `
       <div class="fase-blokea">
-        <div class="fase-buru">
-          <span class="fase-txartela">${esc(f.izena)}</span>
-          ${f.azalpena ? `<p class="fase-azalpena">${esc(f.azalpena)}</p>` : ''}
-        </div>
+        ${buru}
         <div class="saioak-zerrenda">
           ${saioak.map(saioTxartela).join('')}
         </div>
@@ -104,16 +133,14 @@ function renderSaioak(D) {
 function saioTxartela(s) {
   const guztira = s.denborak.reduce((a, d) => a + (parseInt(d.min, 10) || 0), 0);
 
-  // Aurkezpena: Drive-lotura badu, klikagarri (kanpora); bestela marka soila
   const aurkTxiki = s.aurkezpenaLotura
     ? `<a class="saio-baliabide saio-baliabide--aurkezpena" href="${esc(s.aurkezpenaLotura)}" target="_blank" rel="noopener">${ICON('aurkezpena')} ${esc(s.aurkezpena)}</a>`
-    : `<span class="saio-baliabide saio-baliabide--aurkezpena">${ICON('aurkezpena')} ${esc(s.aurkezpena)}</span>`;
+    : (s.aurkezpena ? `<span class="saio-baliabide saio-baliabide--aurkezpena">${ICON('aurkezpena')} ${esc(s.aurkezpena)}</span>` : '');
 
-  // Fitxa: lotura + aukeran PDF txiki bat
   const fitxaLotura = s.fitxa && s.fitxa.lotura;
   const fitxaTxiki = s.fitxa
     ? (fitxaLotura
-        ? `<a class="saio-baliabide saio-baliabide--lotura" href="${esc(s.fitxa.lotura)}">${ICON('fitxa')} ${esc(s.fitxa.izena)}${s.fitxa.pdf ? '' : ''}</a>`
+        ? `<a class="saio-baliabide saio-baliabide--lotura" href="${esc(s.fitxa.lotura)}">${ICON('fitxa')} ${esc(s.fitxa.izena)}</a>`
         : `<span class="saio-baliabide">${ICON('fitxa')} ${esc(s.fitxa.izena)}</span>`)
     : '';
   const fitxaPdf = s.fitxa && s.fitxa.pdf
@@ -156,6 +183,7 @@ function saioTxartela(s) {
 /* ---------- LANABES-KUTXA ---------- */
 function renderLanabesak(l) {
   const s = document.getElementById('lanabesak');
+  if (!s) return;
   s.innerHTML = `
     <div class="atal__goiburua">
       <span class="atal__etiketa">${ICON('eraikuntza')} ${esc(l.etiketa)}</span>
@@ -184,6 +212,7 @@ function renderLanabesak(l) {
 /* ---------- ATLAS LOTURA ---------- */
 function renderAtlas(a) {
   const s = document.getElementById('atlas-lotura');
+  if (!s) return;
   s.innerHTML = `
     <div class="atlas-blokea">
       <div class="atlas-blokea__testua">
@@ -198,6 +227,7 @@ function renderAtlas(a) {
 /* ---------- ERREPASO INTERAKTIBOA ---------- */
 function renderErrepasoa(e) {
   const s = document.getElementById('errepasoa');
+  if (!s) return;
   s.innerHTML = `
     <div class="atal__goiburua">
       <span class="atal__etiketa">${ICON('begia')} ${esc(e.etiketa)}</span>
@@ -205,8 +235,8 @@ function renderErrepasoa(e) {
       <p class="atal__sarrera">${esc(e.sarrera)}</p>
     </div>
     <div class="errepaso-blokeak">
-      <div class="errepaso-zatia" id="sailkapen-jokoa"></div>
-      <div class="errepaso-zatia" id="autotesta"></div>
+      ${e.sailkapena ? `<div class="errepaso-zatia" id="sailkapen-jokoa"></div>` : ''}
+      ${e.autotesta ? `<div class="errepaso-zatia" id="autotesta"></div>` : ''}
     </div>`;
   if (e.sailkapena) renderSailkapena(e.sailkapena);
   if (e.autotesta) renderAutotesta(e.autotesta);
@@ -215,7 +245,6 @@ function renderErrepasoa(e) {
 /* ----- Sailkapen-jokoa ----- */
 function renderSailkapena(d) {
   const wrap = document.getElementById('sailkapen-jokoa');
-  const azalpenaId = 'sailk-azalpena';
   wrap.innerHTML = `
     <div class="errepaso-buru">
       <h3>${ICON('lente')} ${esc(d.izenburua)}</h3>
@@ -229,7 +258,7 @@ function renderSailkapena(d) {
       <div class="sailk-botoiak" role="group" aria-label="Sailkatu esaldia">
         ${d.kategoriak.map(k => `<button class="sailk-botoi" data-id="${k.id}" title="${esc(k.definizioa)}">${esc(k.izena)}</button>`).join('')}
       </div>
-      <div class="sailk-feedback" id="${azalpenaId}" hidden></div>
+      <div class="sailk-feedback" hidden></div>
       <button class="errepaso-hurrengo" hidden>Hurrengoa ${ICON('fletxa')}</button>
     </div>
     <div class="sailk-amaiera" hidden></div>`;
@@ -274,7 +303,7 @@ function renderSailkapena(d) {
   }));
 
   hurrengoBtn.addEventListener('click', () => {
-    if (i + 1 < d.itemak.length) { i++; kargatu(); hurrengoBtn.scrollIntoView({block:'nearest'}); }
+    if (i + 1 < d.itemak.length) { i++; kargatu(); hurrengoBtn.scrollIntoView({ block: 'nearest' }); }
     else amaitu();
   });
 
@@ -373,7 +402,7 @@ function renderAutotesta(d) {
 }
 
 function emaitzaMezua(ehuneko) {
-  if (ehuneko >= 85) return 'Bikain! Kontzeptuak argi dituzu eta behaketa eta interpretazioa ondo bereizten dituzu.';
-  if (ehuneko >= 60) return 'Ondo bidean. Begiratu berriz huts egin dituzun azalpenak: askotan behaketa eta iritzia nahasten dira.';
+  if (ehuneko >= 85) return 'Bikain! Kontzeptuak argi dituzu eta arrazoiketa zaindua egiten duzu.';
+  if (ehuneko >= 60) return 'Ondo bidean. Begiratu berriz huts egin dituzun azalpenak: zergatiak ulertzea da gakoa.';
   return 'Lasai: hau ez da azterketa. Irakurri berriz azalpenak eta egin berriz — pentsatzeko da, ez asmatzeko.';
 }
