@@ -4,16 +4,50 @@
     "zenbakia": "03",
     "izenburua": "Pertzepzioa, arreta eta oroimena",
     "galdera": "Errealitatea ikusten dugu, ala interpretatzen dugu?",
-    "sarrera": "Uste dugu begiek argazki bat ateratzen dutela eta horixe dela errealitatea. Baina hautematea ez da kopia bat: eraikuntza aktiboa da. Garunak informazioa iragazi, antolatu eta osatu egiten du, eta horrek esan nahi du askotan ez dugula ikusten dagoena, baizik eta itxaroten duguna. Gai honetan, ilusio optikoetatik abiatuko gara gure pertzepzioaren mugak ulertzeko."
+    "sarrera": "Uste dugu begiek argazki bat ateratzen dutela eta oroimenak bideo bat gordetzen duela. Baina ez da horrela: hautematea eraikuntza aktiboa da, arretak aukeratu egiten du zer sartzen den, eta oroimenak ez du iragana gordetzen, berreraiki egiten du. Gai honetan ilusio optikoetatik abiatuko gara, gure arretaren eta memoriaren mugak ezagutuko ditugu, eta Black Mirror-en kapitulu batekin dena kasu bakarrean jarriko dugu lanean."
   },
-
-  "lanean": {
-    "etiketa": "Lanean gabiltza",
-    "testua": "Gai hau prestatzen ari gara: oraingoz lehen hiru saioak daude prest. Gainerako saioak, fitxak eta errepaso interaktiboa laster gehituko dira."
+  "sarreraBlokea": {
+    "etiketa": "Abiapuntua",
+    "aipua": "Errealitatea ez dugu kopiatzen. Hautatu, interpretatu eta berreraiki egiten dugu.",
+    "egilea": "Gai honen ideia nagusia",
+    "urteak": "",
+    "sarrera": "Hiru prozesu, hiru galdera: zer sartzen da (pertzepzioa), zer aukeratzen dut (arreta) eta zer gordetzen da (oroimena)?",
+    "galderak": [
+      "Zergatik ikusten dugu ilusio bat, engainua dela jakin arren?",
+      "Zer izan duzu gaur begien aurrean… eta ez duzu benetan ikusi?",
+      "«Irakurri dut» eta «ikasi dut» gauza bera al dira?",
+      "Dena grabatuko bagenu, objektiboagoak izango ginateke?"
+    ]
   },
-
+  "atalEtikoa": {
+    "etiketa": "Ohar etikoa",
+    "izenburua": "Kontuz etiketekin",
+    "testua": "Gai honetan arreta-arazoak, kasu klinikoak eta fikziozko pertsonaia baten jokabidea aztertzen ditugu. Hiru arau:",
+    "arauak": [
+      "Ez autodiagnostikorik: distrakzioa ez da beti TDAH. Nekea, estresa, antsietatea, motibazioa edo pantailak ere tartean egon daitezke.",
+      "Kasu klinikoak (H.M.) ez dira kuriositate hutsa: pertsonen bizitzak dira, eta errespetuz lantzen ditugu.",
+      "Ez diagnostikatu pertsonaia: Liamen kasuan, azaldu prozesuak, aukerak eta ondorioak, ez etiketak."
+    ]
+  },
   "saioakIzenburua": "Saioen sekuentzia",
-  "saioakSarrera": "Pertzepzioaren mugetatik abiatuta: garuna ez da kamera bat. Hiru saio prest daude jada; gainerakoak bidean dira. Denborak orientagarriak dira (50 minutuko saioa).",
+  "saioakSarrera": "Zortzi saio, hiru fasetan: pertzepzioa, arreta eta oroimena, eta amaieran kasu-sintesi bat Black Mirror-ekin (kapitulua + bi lan-saio). Denborak orientagarriak dira (50 minutuko saioa).",
+  "faseak": [
+    {
+      "id": 1,
+      "izena": "1. fasea · Pertzepzioa",
+      "azalpena": "Garuna ez da kamera bat: hautematea antolatu, osatu eta interpretatu egiten da."
+    },
+    {
+      "id": 2,
+      "izena": "2. fasea · Arreta eta oroimena",
+      "azalpena": "Zer aukeratzen dugu eta zer gordetzen dugu. Arreta da memoriaren atea."
+    },
+    {
+      "id": 3,
+      "izena": "3. fasea · Kasu-sintesia: The Entire History of You",
+      "azalpena": "03.1–03.5ean ikasitakoa kasu bakarrean: kapitulua ikusi eta taldeka defendatu tesi psikologiko bat."
+    }
+  ],
   "saioak": [
     {
       "zenb": 1,
@@ -23,12 +57,28 @@
       "aurkezpena": "03.1 · Garuna ez da kamera bat",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1eUGAz5T4zTwp-mMVHNRzgiOaaArE1M8i1XU8ICwfXO8/edit",
       "denborak": [
-        { "min": "8", "egitekoa": "Ilusio optikoak: Rubin jarroia, lerro-ilusioak… zer ikusten duzu?" },
-        { "min": "12", "egitekoa": "Sentsazioa vs. pertzepzioa: garunak eraikitzen du" },
-        { "min": "15", "egitekoa": "Adibideak aztertu taldeka: zerk eragiten du engainua?" },
-        { "min": "10", "egitekoa": "Ondorioa: ikustea ez da kopiatzea, interpretatzea baizik" },
-        { "min": "5", "egitekoa": "Amaierako esaldia banaka" }
-      ]
+        {
+          "min": "8",
+          "egitekoa": "Ilusio optikoak: Rubin jarroia, lerro-ilusioak… zer ikusten duzu?"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Sentsazioa vs. pertzepzioa: garunak eraikitzen du"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Adibideak aztertu taldeka: zerk eragiten du engainua?"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Ondorioa: ikustea ez da kopiatzea, interpretatzea baizik"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Amaierako esaldia banaka"
+        }
+      ],
+      "fasea": 1
     },
     {
       "zenb": 2,
@@ -38,12 +88,28 @@
       "aurkezpena": "03.2 · Errealitatea ikusten dugu ala interpretatu?",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1lZo9jXZVR8ehQ5QQ4l04g4qAf00N15whzsBrchGcKz4/edit",
       "denborak": [
-        { "min": "8", "egitekoa": "Itxaropenak eta testuinguruak: gauza bera, begirada desberdinak" },
-        { "min": "12", "egitekoa": "Pertzepzioaren antolaketa-printzipioak (Gestalt)" },
-        { "min": "15", "egitekoa": "Adibideak: nola osatzen du garunak falta dena" },
-        { "min": "10", "egitekoa": "Eztabaida: noiz da arriskutsua «ikusi dut, beraz egia da»?" },
-        { "min": "5", "egitekoa": "Ondorioa partekatu" }
-      ]
+        {
+          "min": "8",
+          "egitekoa": "Itxaropenak eta testuinguruak: gauza bera, begirada desberdinak"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Pertzepzioaren antolaketa-printzipioak (Gestalt)"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Adibideak: nola osatzen du garunak falta dena"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Eztabaida: noiz da arriskutsua «ikusi dut, beraz egia da»?"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Ondorioa partekatu"
+        }
+      ],
+      "fasea": 1
     },
     {
       "zenb": 3,
@@ -53,19 +119,412 @@
       "aurkezpena": "03.3 · Garunak nola eraikitzen du ikusten duguna?",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/10Zsv6n_nR1pnX1kjA1w3C3EXfhGPzvXZiepfqzBzCJ4/edit",
       "denborak": [
-        { "min": "10", "egitekoa": "Garuna aurreikusten: itxaropena eta osaketa aktiboa" },
-        { "min": "12", "egitekoa": "Arreta selektiboa: zer iragazten dugu eta zer galtzen dugu" },
-        { "min": "15", "egitekoa": "Adibideak eta jarduerak: arreta eta pertzepzioa" },
-        { "min": "8", "egitekoa": "Lotura: pertzepzioa, oroimena eta interpretazioa" },
-        { "min": "5", "egitekoa": "Ondorioa: errealitatea eraikuntza partekatua eta pertsonala da" }
+        {
+          "min": "10",
+          "egitekoa": "Garuna aurreikusten: itxaropena eta osaketa aktiboa"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Arreta selektiboa: zer iragazten dugu eta zer galtzen dugu"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Adibideak eta jarduerak: arreta eta pertzepzioa"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Lotura: pertzepzioa, oroimena eta interpretazioa"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Ondorioa: errealitatea eraikuntza partekatua eta pertsonala da"
+        }
+      ],
+      "fasea": 1
+    },
+    {
+      "zenb": 4,
+      "fasea": 2,
+      "izenburua": "Arreta: zer ikusten ez dugun",
+      "fenomenoa": "Pentsatu azken 24 orduetan: zenbat gauza izan dituzu begien aurrean… eta ez dituzu benetan ikusi? Ez dugu dena jasotzen: aukeratu egiten dugu.",
+      "galdera": "Nola aukeratzen, baztertzen eta antolatzen du arretak gure esperientzia?",
+      "aurkezpena": "03.4 · Arreta",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1zQlmlCeE6-coPCNzD0doCLaBI9O3YWSdqoyBc_SXcX8/edit",
+      "fitxa": {
+        "izena": "03.4 · 24 orduko informazio-auditoria",
+        "lotura": "fitxak/informazio-auditoria.html",
+        "pdf": "fitxak/pdf/informazio-auditoria.pdf"
+      },
+      "denborak": [
+        {
+          "min": "5",
+          "egitekoa": "Minutu bateko esperimentua: zer izan duzu aurrean eta ez duzu ikusi?"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Arreta: fokua eta iragazkia. Hiru arau: hautapenezkoa, mugatua, aldakorra"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Arreta motak: jendetzan zure izena (selektiboa) eta multitasking-aren kostua (banatua)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Arreta iraunkorra eta arreta zaintzeko bost palankak"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Kontuz etiketekin: distrakzioa ez da beti TDAH"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Proiektu txikia aurkeztu: 24 orduko informazio-auditoria + itxiera (arreta da memoriaren atea)"
+        }
+      ]
+    },
+    {
+      "zenb": 5,
+      "fasea": 2,
+      "izenburua": "Oroimena ez da disko gogor bat",
+      "fenomenoa": "Hamabi hitz, 30 segundo. Ondoren pantaila kendu eta idatzi: denok ez ditugu hitz berak gogoratzen. Gogoratzea ez da «play» sakatzea.",
+      "galdera": "Iragana gordetzen dugu, ala berreraiki egiten dugu?",
+      "aurkezpena": "03.5 · Oroimena",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1T-GOoYjORwHw9PovnKHqzShgupwu9lhs7ethf4BtYzg/edit",
+      "fitxa": {
+        "izena": "03.5 · Oroimena + irteera-txartela",
+        "lotura": "fitxak/oroimena.html",
+        "pdf": "fitxak/pdf/oroimena.pdf"
+      },
+      "denborak": [
+        {
+          "min": "8",
+          "egitekoa": "30 segundoko esperimentua: zer gertatu da? (hasiera, amaiera, esanahia, emozioa)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Hiru mugimenduak: kodifikazioa, biltegiratzea, berreskuratzea + arreta da atea"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Memoria ez da bakarra: sentsoriala, lan-memoria (Cowan, chunk-ak), epe luzekoa"
+        },
+        {
+          "min": "7",
+          "egitekoa": "H.M. kasua: orainaldian harrapatuta (kasu klinikoak ez dira kuriositate hutsa)"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Loa, emozioa eta finkapena + memoria hobetzeko bost tresna"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Irteera-txartela: ikasi dut ala ezaguna egiten zait?"
+        }
+      ]
+    },
+    {
+      "zenb": 6,
+      "fasea": 3,
+      "izenburua": "The Entire History of You: kapitulua ikusi",
+      "fenomenoa": "Egon al zara inoiz WhatsAppeko mezu bat behin eta berriz irakurtzen? Kapituluan, Grain-ak dena grabatzen du eta Liamek behin eta berriz berrikusten du.",
+      "galdera": "Oroimen perfektuak objektiboago egiten gaitu?",
+      "aurkezpena": "03.6 · The Entire History of You",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1q3NHvXldhFDwnyFUmwF_FgxzsOf0AGRTlltcMr8COps/edit",
+      "fitxa": {
+        "izena": "03.6 · Lana: kasuaren defentsa psikologikoa",
+        "lotura": "fitxak/entire-history-of-you.html",
+        "pdf": "fitxak/pdf/entire-history-of-you.pdf"
+      },
+      "denborak": [
+        {
+          "min": "5",
+          "egitekoa": "Kasu-sintesia: pertzepzioa, arreta eta oroimena kasu bakarrean + hiru markak azaldu"
+        },
+        {
+          "min": "45",
+          "egitekoa": "Kapitulua ikusi (Black Mirror S1E3), hiru marka hartuz: berrikusketa, fokua, interpretazioa"
+        }
+      ]
+    },
+    {
+      "zenb": 7,
+      "fasea": 3,
+      "izenburua": "Lana 1: frogak bildu eta tesia eraiki",
+      "fenomenoa": "Grain-ak gordetzen du; pertsonak interpretatzen du. Datua ≠ esanahia: «froga perfektuak» ere ez du interpretazio neutrala bermatzen.",
+      "galdera": "Grain-a egiaren leiho bat da, ala fokuaren anplifikadorea?",
+      "aurkezpena": "03.6 · Lana · 1. saioa",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1q3NHvXldhFDwnyFUmwF_FgxzsOf0AGRTlltcMr8COps/edit",
+      "fitxa": {
+        "izena": "Froga-taula eta checkpoint-a",
+        "lotura": "fitxak/entire-history-of-you.html",
+        "pdf": "fitxak/pdf/entire-history-of-you.pdf"
+      },
+      "denborak": [
+        {
+          "min": "5",
+          "egitekoa": "Lehen tesia: galdera nagusiari erantzun provisionala (taldeak 3–4 ikasle, rolak banatuta)"
+        },
+        {
+          "min": "20",
+          "egitekoa": "3 eszena: froga zehatzak aukeratu eta froga-taula osatu"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Mapa psikologikoa: gutxienez 4 kontzeptu frogekin lotu (berrespen-joera, ruminazioa…)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Kontrargudioa: zer esango luke aurkako talde batek?"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Checkpoint: tesia eta frogak irakaslearekin egiaztatu"
+        }
+      ]
+    },
+    {
+      "zenb": 8,
+      "fasea": 3,
+      "izenburua": "Lana 2: defentsa eta eztabaida",
+      "fenomenoa": "Helburua ez da «filmari buruz hitz egitea»: kontzeptuekin arrazoitzea da. Lau diapositiba, hiru minutu, tesi bat.",
+      "galdera": "Zer froga izango litzateke zuen tesiaren aurka?",
+      "aurkezpena": "03.6 · Lana · 2. saioa",
+      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1q3NHvXldhFDwnyFUmwF_FgxzsOf0AGRTlltcMr8COps/edit",
+      "fitxa": {
+        "izena": "Aurkezpena, ebaluazioa eta banakako itxiera",
+        "lotura": "fitxak/entire-history-of-you.html",
+        "pdf": "fitxak/pdf/entire-history-of-you.pdf"
+      },
+      "atlas": true,
+      "denborak": [
+        {
+          "min": "15",
+          "egitekoa": "Aurkezpena amaitu: tesia, froga, mekanismoa, kontrargudioa"
+        },
+        {
+          "min": "32",
+          "egitekoa": "Taldeen defentsak: 3 min defentsa + 1 min galdera / kontra (deabruaren abokatua)"
+        },
+        {
+          "min": "3",
+          "egitekoa": "Banakako itxiera: Grain-a jarriko zenuke? (120–150 hitz)"
+        }
       ]
     }
   ],
-
+  "lanabesak": {
+    "etiketa": "Fitxak eta lana",
+    "izenburua": "Gai honetako fitxak",
+    "sarrera": "Bi fitxa saioetarako eta ebaluazioko lan aplikatua (Black Mirror). Ireki, inprimatu edo PDF gisa gorde.",
+    "fitxak": [
+      {
+        "izena": "24 orduko informazio-auditoria",
+        "kodea": "03.4",
+        "deskribapena": "Proiektu txikia: bildu, sailkatu, irudikatu eta ondorioztatu nola borrokatzen den zure arreta egun batean.",
+        "lotura": "fitxak/informazio-auditoria.html",
+        "pdf": "fitxak/pdf/informazio-auditoria.pdf",
+        "ikonoa": "begia"
+      },
+      {
+        "izena": "Oroimena ez da disko gogor bat",
+        "kodea": "03.5",
+        "deskribapena": "30 segundoko esperimentua, memoriaren mapa eta irteera-txartela: ikasi dut ala ezaguna egiten zait?",
+        "lotura": "fitxak/oroimena.html",
+        "pdf": "fitxak/pdf/oroimena.pdf",
+        "ikonoa": "garuna"
+      },
+      {
+        "izena": "Lana: kasuaren defentsa psikologikoa",
+        "kodea": "03.6",
+        "deskribapena": "The Entire History of You: rolak, froga-taula, aurkezpenaren egitura, ebaluazioa (10 puntu) eta banakako itxiera.",
+        "lotura": "fitxak/entire-history-of-you.html",
+        "pdf": "fitxak/pdf/entire-history-of-you.pdf",
+        "ikonoa": "fitxa"
+      }
+    ]
+  },
+  "errepasoa": {
+    "etiketa": "Errepasoa",
+    "izenburua": "Errepaso interaktiboa",
+    "sarrera": "Hau ez da memoria-froga: pentsatzeko da. Bi ariketa dituzu, eta nahi adina aldiz egin ditzakezu. Gogoratu: berreskuratzea bera da ikasteko modurik onenetako bat.",
+    "sailkapena": {
+      "izenburua": "Zein prozesu dago jokoan?",
+      "argibidea": "Egoera bakoitza irakurri eta erabaki zein prozesu den nagusia: pertzepzioa, arreta ala oroimena. Batzuetan biak daude; aukeratu garrantzitsuena.",
+      "kategoriak": [
+        {
+          "id": "pertzepzioa",
+          "izena": "Pertzepzioa",
+          "definizioa": "Zer esanahi ematen diogu sartzen denari? Garunak antolatu, osatu eta interpretatu."
+        },
+        {
+          "id": "arreta",
+          "izena": "Arreta",
+          "definizioa": "Zer aukeratzen dugu? Fokua eta iragazkia: hautapenezkoa, mugatua, aldakorra."
+        },
+        {
+          "id": "oroimena",
+          "izena": "Oroimena",
+          "definizioa": "Zer gordetzen eta berreskuratzen dugu? Kodifikatu, biltegiratu, berreskuratu."
+        }
+      ],
+      "itemak": [
+        {
+          "esaldia": "Rubin jarroian, batzuetan jarroia ikusten duzu eta beste batzuetan bi aurpegi, irudia aldatu gabe.",
+          "erantzuna": "pertzepzioa",
+          "azalpena": "Estimulua berdina da; aldatzen dena garunaren antolaketa da (irudia eta hondoa). Ikustea interpretatzea da."
+        },
+        {
+          "esaldia": "Jendetza zaratatsu batean norbaitek zure izena esaten du, eta berehala entzuten duzu.",
+          "erantzuna": "arreta",
+          "azalpena": "Arreta selektiboa: zarata guztia bigarren planoan geratzen da eta estimulu esanguratsu batek kontzientzia hartzen du."
+        },
+        {
+          "esaldia": "Ilusio optiko bat dela jakin arren, lerro bat bestea baino luzeago ikusten jarraitzen duzu.",
+          "erantzuna": "pertzepzioa",
+          "azalpena": "Jakiteak ez du hautematea zuzentzen: garunak bere arau automatikoekin eraikitzen du ikusten duguna. Garuna ez da kamera bat."
+        },
+        {
+          "esaldia": "Mezuei erantzuten ari zaren bitartean ariketak egiten, akats gehiago egin eta denbora gehiago behar duzu.",
+          "erantzuna": "arreta",
+          "azalpena": "Arreta banatua: ez gara bi gauza batera egiten ari, saltoka baizik, eta salto bakoitzak kostua dauka (denbora, akatsak, nekea)."
+        },
+        {
+          "esaldia": "Azterketa bezperan apunteak hiru aldiz irakurri dituzu, baina liburua ixtean ezin duzu ezer azaldu.",
+          "erantzuna": "oroimena",
+          "azalpena": "«Ezaguna egiten zait» ez da «ikasi dut». Irakurtzeak ez du berreskuratzea entrenatzen: berreskuratze aktiboa behar da."
+        },
+        {
+          "esaldia": "Testu batean letra batzuk falta dira, baina arazorik gabe irakurtzen duzu.",
+          "erantzuna": "pertzepzioa",
+          "azalpena": "Garunak aurreikusi eta osatu egiten du falta dena. Ez du informazio guztia itxaroten: bertsio koherente bat eraikitzen du."
+        },
+        {
+          "esaldia": "Ikasketa-saio luze batean, 25 minuturen buruan irakurtzen ari zarena ez zaizu sartzen.",
+          "erantzuna": "arreta",
+          "azalpena": "Arreta iraunkorra nekatu egiten da. Ez da borondate hutsa: loa, interesa eta atsedenak sartzen dira jokoan."
+        },
+        {
+          "esaldia": "Bizikletan ibiltzen badakizu, baina ezin duzu hitzez azaldu nola mantentzen duzun oreka.",
+          "erantzuna": "oroimena",
+          "azalpena": "Memoria prozedurala (ez-deklaratiboa edo inplizitua): trebetasunak gordetzen ditu, hitzez azaldu ezin badira ere."
+        },
+        {
+          "esaldia": "Urte batzuk geroago, zuk eta lagun batek bidaia bera xehetasun desberdinekin kontatzen duzue, eta biak ziur zaudete.",
+          "erantzuna": "oroimena",
+          "azalpena": "Gogoratzea berreraikitzea da: oroitzapen bakoitza pistekin, testuinguruarekin eta emozioarekin berreraikitzen da, ez da kopia bat."
+        }
+      ]
+    },
+    "autotesta": {
+      "izenburua": "Ulertu duzu? — autotesta",
+      "argibidea": "Galdera kontzeptualak dira, ez datak. Aukeratu erantzun bat eta ikusiko duzu azalpena.",
+      "galderak": [
+        {
+          "galdera": "Zergatik diogu «garuna ez da kamera bat»?",
+          "aukerak": [
+            "Begiek ez dutelako irudirik jasotzen",
+            "Garunak jasotako informazioa antolatu, osatu eta interpretatu egiten duelako",
+            "Kamerak garuna baino okerragoak direlako",
+            "Pertzepzioa beti okerra delako"
+          ],
+          "zuzena": 1,
+          "azalpena": "Sentsazioa ez da pertzepzioa: garunak estimuluak antolatzen ditu eta itxaropenekin osatzen ditu. Horregatik ikusten ditugu ilusioak."
+        },
+        {
+          "galdera": "Zein EZ da arretaren ezaugarria?",
+          "aukerak": [
+            "Hautapenezkoa da",
+            "Mugatua da",
+            "Aldakorra da",
+            "Mugagabea da: nahi adina estimulu prozesa ditzakegu batera"
+          ],
+          "zuzena": 3,
+          "azalpena": "Arreta mugatua da: fokua zabaltzean sakontasuna galtzen dugu. Hautapenezkoa eta aldakorra ere bada (nekea, motibazioa, emozioa)."
+        },
+        {
+          "galdera": "Zer gertatzen da normalean «multitasking» egiten dugunean?",
+          "aukerak": [
+            "Bi zereginak hobeto egiten ditugu",
+            "Zeregin batetik bestera saltoka ari gara, eta salto bakoitzak kostua dauka",
+            "Garunak bi foku independente ditu",
+            "Arreta iraunkorra indartzen da"
+          ],
+          "zuzena": 1,
+          "azalpena": "Multitasking-a ez da superboterea: saltoek denbora, akatsak eta nekea gehitzen dituzte."
+        },
+        {
+          "galdera": "Zergatik diogu «arreta da memoriaren atea»?",
+          "aukerak": [
+            "Arreta eta memoria gauza bera direlako",
+            "Arreta jarri ez zaion informazioa nekez kodifikatzen delako",
+            "Memoriak arreta kontrolatzen duelako",
+            "Arretak oroitzapenak ezabatzen dituelako"
+          ],
+          "zuzena": 1,
+          "azalpena": "Ez da gogoratzen inoiz benetan sartu ez dena. «Entzun dut» ez da «kodifikatu dut»."
+        },
+        {
+          "galdera": "Zer esan daiteke gaur egun lan-memoriari buruz?",
+          "aukerak": [
+            "Ia mugagabea dela",
+            "Beti 7 elementu gordetzen dituela, zehazki",
+            "Oso mugatua dela (3–5 unitate inguru), baina unitateak esanahidun bloke (chunk) bihur daitezkeela",
+            "Epe luzeko memoriaren berdina dela"
+          ],
+          "zuzena": 2,
+          "azalpena": "Cowan-en ikuspegia: muga arreta aktiboaren edukieran dago. Horregatik laguntzen du azalpenak zatitzeak eta eskemetan antolatzeak."
+        },
+        {
+          "galdera": "Zer erakusten du H.M.-ren kasuak?",
+          "aukerak": [
+            "Memoria gordailu bakarra dela",
+            "Memoria-sistema desberdinak daudela: batzuk kaltetu daitezke beste batzuk mantenduta",
+            "Ebakuntzek memoria hobetzen dutela",
+            "Oroimena ez dagoela garunean"
+          ],
+          "zuzena": 1,
+          "azalpena": "H.M.-k ezin zituen esperientzia berriak epe luzera finkatu, baina beste gaitasun batzuk mantendu zituen. Memoria ez da bakarra."
+        },
+        {
+          "galdera": "Zein da ikasteko estrategiarik eraginkorrena aurkezpenaren arabera?",
+          "aukerak": [
+            "Apunteak behin eta berriz irakurri",
+            "Dena azterketa bezperan ikasi",
+            "Berreskuratze aktiboa: liburua itxi eta azaldu zer gogoratzen dudan",
+            "Musikarekin eta mugikorrarekin ikasi, lasaiago egoteko"
+          ],
+          "zuzena": 2,
+          "azalpena": "Berreskuratzeak arrastoa indartzen du. Praktika banatuarekin, elaborazioarekin, antolaketarekin eta loarekin batera, hori da gakoa."
+        },
+        {
+          "galdera": "The Entire History of You-n Grain-ak dena grabatzen du. Zer da ondorio psikologiko zuzenena?",
+          "aukerak": [
+            "Grabazioa egia da, beraz eztabaida guztiak konpontzen dira",
+            "Datua ≠ esanahia: arretak zer bilatu aukeratzen du eta interpretazioak esanahia eraikitzen du",
+            "Oroimen perfektuak beti zoriontsuago egiten gaitu",
+            "Teknologiak ez du eraginik gure portaeran"
+          ],
+          "zuzena": 1,
+          "azalpena": "«Froga perfektuak» ere ez du interpretazio neutrala bermatzen. Grain-a fokuaren anplifikadore bihur daiteke."
+        },
+        {
+          "galdera": "Zer da berrespen-joera?",
+          "aukerak": [
+            "Gertatutakoa berriro gogoratzeko gaitasuna",
+            "Aurrez dugun susmoarekin bat datozen frogak lehenago bilatu edo gehiago baloratzeko joera",
+            "Arazo berera etengabe itzultzea",
+            "Diagnostiko kliniko bat"
+          ],
+          "zuzena": 1,
+          "azalpena": "Ez da diagnostikoa, jokabidea ulertzeko kontzeptua da. Arazo berera konponbiderik gabe itzultzea, berriz, ruminazioa da."
+        }
+      ]
+    }
+  },
   "atlasLotura": {
     "etiketa": "Lotura",
     "izenburua": "Lenteen Atlasa",
-    "testua": "Gai honek Gestalt eta ikuspegi kognitiboa jartzen ditu jokoan: pertzepzioa antolaketa aktiboa da. Ezagutu eskola guztiak eta haien arteko harremanak.",
+    "testua": "Gai honek Gestalt eta ikuspegi kognitiboa jartzen ditu jokoan: pertzepzioa antolaketa aktiboa da, eta arreta eta oroimena informazio-prozesamenduaren gakoak. Ezagutu eskola guztiak eta haien arteko harremanak.",
     "lotura": "lenteen-atlasa.html",
     "botoia": "Ireki Lenteen Atlasa"
   }
