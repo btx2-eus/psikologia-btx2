@@ -30,7 +30,7 @@
     ]
   },
   "saioakIzenburua": "Saioen sekuentzia",
-  "saioakSarrera": "Zortzi saio, hiru fasetan: pertzepzioa, arreta eta oroimena, eta amaieran kasu-sintesi bat Black Mirror-ekin (kapitulua + bi lan-saio). Denborak orientagarriak dira (50 minutuko saioa).",
+  "saioakSarrera": "Sei saio, hiru fasetan: pertzepzioa, arreta eta oroimena, eta amaieran kasu-sintesi bat Black Mirror-ekin (kapitulua + bi lan-saio, denborak fitxan zehaztuta). Denborak orientagarriak dira (50 minutuko saioa).",
   "faseak": [
     {
       "id": 1,
@@ -45,7 +45,7 @@
     {
       "id": 3,
       "izena": "3. fasea · Kasu-sintesia: The Entire History of You",
-      "azalpena": "03.1–03.5ean ikasitakoa kasu bakarrean: kapitulua ikusi eta taldeka defendatu tesi psikologiko bat."
+      "azalpena": "03.1–03.5ean ikasitakoa kasu bakarrean: kapitulua ikusi eta taldeka defendatu tesi psikologiko bat (3 saio)."
     }
   ],
   "saioak": [
@@ -225,8 +225,8 @@
     {
       "zenb": 6,
       "fasea": 3,
-      "izenburua": "The Entire History of You: kapitulua ikusi",
-      "fenomenoa": "Egon al zara inoiz WhatsAppeko mezu bat behin eta berriz irakurtzen? Kapituluan, Grain-ak dena grabatzen du eta Liamek behin eta berriz berrikusten du.",
+      "izenburua": "The Entire History of You: kasu-sintesia",
+      "fenomenoa": "Egon al zara inoiz WhatsAppeko mezu bat behin eta berriz irakurtzen? Kapituluan, Grain-ak dena grabatzen du eta Liamek behin eta berriz berrikusten du. Kapitulua ikusi ondoren, taldeka tesi psikologiko bat eraiki eta defendatuko dugu (hiru saio: ikusi + bi lan-saio).",
       "galdera": "Oroimen perfektuak objektiboago egiten gaitu?",
       "aurkezpena": "03.6 · The Entire History of You",
       "aurkezpenaLotura": "https://docs.google.com/presentation/d/1q3NHvXldhFDwnyFUmwF_FgxzsOf0AGRTlltcMr8COps/edit",
@@ -238,82 +238,34 @@
       "denborak": [
         {
           "min": "5",
-          "egitekoa": "Kasu-sintesia: pertzepzioa, arreta eta oroimena kasu bakarrean + hiru markak azaldu"
+          "egitekoa": "1. saioa · Kasu-sintesia: pertzepzioa, arreta eta oroimena kasu bakarrean + hiru markak azaldu"
         },
         {
           "min": "45",
-          "egitekoa": "Kapitulua ikusi (Black Mirror S1E3), hiru marka hartuz: berrikusketa, fokua, interpretazioa"
-        }
-      ]
-    },
-    {
-      "zenb": 7,
-      "fasea": 3,
-      "izenburua": "Lana 1: frogak bildu eta tesia eraiki",
-      "fenomenoa": "Grain-ak gordetzen du; pertsonak interpretatzen du. Datua ≠ esanahia: «froga perfektuak» ere ez du interpretazio neutrala bermatzen.",
-      "galdera": "Grain-a egiaren leiho bat da, ala fokuaren anplifikadorea?",
-      "aurkezpena": "03.6 · Lana · 1. saioa",
-      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1q3NHvXldhFDwnyFUmwF_FgxzsOf0AGRTlltcMr8COps/edit",
-      "fitxa": {
-        "izena": "Froga-taula eta checkpoint-a",
-        "lotura": "fitxak/entire-history-of-you.html",
-        "pdf": "fitxak/pdf/entire-history-of-you.pdf"
-      },
-      "denborak": [
-        {
-          "min": "10",
-          "egitekoa": "Ikusi ondoren: datua ≠ esanahia, berrespen-joera, ruminazioa eta Liamen zikloa (aurkezpenean)"
-        },
-        {
-          "min": "5",
-          "egitekoa": "Lehen tesia: galdera nagusiari erantzun provisionala (taldeak 3–4 ikasle, rolak banatuta)"
-        },
-        {
-          "min": "15",
-          "egitekoa": "3 eszena: froga zehatzak aukeratu eta froga-taula osatu"
+          "egitekoa": "1. saioa · Kapitulua ikusi (Black Mirror S1E3), hiru marka hartuz: berrikusketa, fokua, interpretazioa"
         },
         {
           "min": "10",
-          "egitekoa": "Mapa psikologikoa: gutxienez 4 kontzeptu frogekin lotu"
+          "egitekoa": "2. saioa · Ikusi ondoren: datua ≠ esanahia, berrespen-joera, ruminazioa eta Liamen zikloa"
         },
         {
-          "min": "7",
-          "egitekoa": "Kontrargudioa: zer esango luke aurkako talde batek?"
+          "min": "40",
+          "egitekoa": "2. saioa · Lana: lehen tesia, froga-taula (3 eszena), mapa psikologikoa, kontrargudioa eta checkpoint-a"
         },
-        {
-          "min": "3",
-          "egitekoa": "Checkpoint: tesia eta frogak irakaslearekin egiaztatu"
-        }
-      ]
-    },
-    {
-      "zenb": 8,
-      "fasea": 3,
-      "izenburua": "Lana 2: defentsa eta eztabaida",
-      "fenomenoa": "Helburua ez da «filmari buruz hitz egitea»: kontzeptuekin arrazoitzea da. Lau diapositiba, hiru minutu, tesi bat.",
-      "galdera": "Zer froga izango litzateke zuen tesiaren aurka?",
-      "aurkezpena": "03.6 · Lana · 2. saioa",
-      "aurkezpenaLotura": "https://docs.google.com/presentation/d/1q3NHvXldhFDwnyFUmwF_FgxzsOf0AGRTlltcMr8COps/edit",
-      "fitxa": {
-        "izena": "Aurkezpena, ebaluazioa eta banakako itxiera",
-        "lotura": "fitxak/entire-history-of-you.html",
-        "pdf": "fitxak/pdf/entire-history-of-you.pdf"
-      },
-      "atlas": true,
-      "denborak": [
         {
           "min": "15",
-          "egitekoa": "Aurkezpena amaitu: tesia, froga, mekanismoa, kontrargudioa"
+          "egitekoa": "3. saioa · Aurkezpena amaitu: tesia, froga, mekanismoa, kontrargudioa"
         },
         {
           "min": "32",
-          "egitekoa": "Taldeen defentsak: 3 min defentsa + 1 min galdera / kontra (deabruaren abokatua)"
+          "egitekoa": "3. saioa · Taldeen defentsak: 3 min defentsa + 1 min galdera / kontra (deabruaren abokatua)"
         },
         {
           "min": "3",
-          "egitekoa": "Banakako itxiera: Grain-a jarriko zenuke? (120–150 hitz)"
+          "egitekoa": "3. saioa · Banakako itxiera: Grain-a jarriko zenuke? (120–150 hitz)"
         }
-      ]
+      ],
+      "atlas": true
     }
   ],
   "lanabesak": {
