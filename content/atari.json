@@ -79,9 +79,10 @@
         {
           "id": "ikaskuntza",
           "izenburua": "Ikaskuntza-kapsula",
-          "deskribapena": "Kondizionamendua eta ikaskuntza soziala, praktikan.",
-          "egoera": "laster",
-          "ikonoa": "portaera"
+          "deskribapena": "Kondizionamendua eta ikaskuntza soziala, praktikan. Ikerketa: ikasten duguna ulertzen al dugu?",
+          "egoera": "prest",
+          "ikonoa": "portaera",
+          "lotura": "ikaskuntza.html"
         },
         {
           "id": "motibazioa",
