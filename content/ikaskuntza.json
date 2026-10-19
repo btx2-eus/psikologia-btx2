@@ -1,0 +1,626 @@
+{
+  "meta": {
+    "ebaluazioa": "2. ebaluazioa · Emozioa eta harremana",
+    "zenbakia": "04",
+    "izenburua": "Ikaskuntza: ikasten duguna ulertzen al dugu?",
+    "galdera": "Primateek nola ikasten duten aztertuta, zer ikas dezakegu gizakion ikaskuntzaz?",
+    "sarrera": "Gai hau ez da buruz ikasten: ikertu egiten da. Benetako lau ikerketa aztertuko ditugu (Köhlerren txinpantzeak, Nim Chimpsky, Minekaren tximinoak eta kutxa misteriotsua), esperimentu txiki bat egingo dugu gelan, eta hirukoteka ondorio garbiak defendatuko ditugu. Kondizionamendu klasikoa, operantea, ikaskuntza kognitiboa eta behaketa bidezko ikaskuntza tresna gisa agertuko dira: datuak interpretatzeko behar ditugunean."
+  },
+  "sarreraBlokea": {
+    "etiketa": "Abiapuntua",
+    "aipua": "Ikasi dugula jakiteak ez du esan nahi ulertu dugunik.",
+    "egilea": "Gai honen ideia nagusia",
+    "urteak": "",
+    "sarrera": "Lau mekanismo, lau kasu eta galdera bakarra: noiz ikasten dugu ulertuz, eta noiz ulertu gabe?",
+    "galderak": [
+      "Zergatik kopiatzen dugu ezertarako balio ez duen ekintza bat, hala dela jakin arren?",
+      "Txalo batzuekin jokabide bat ikas dezakezu araua ulertu gabe?",
+      "Zeinuak ikasteak hizkuntza ikastea esan nahi du?",
+      "Edozeri ikas al diezaiokegu beldurra?"
+    ]
+  },
+  "atalEtikoa": {
+    "etiketa": "Ohar etikoa",
+    "izenburua": "Ikertzen dugu, baina ez edozein preziotan",
+    "testua": "Gai honetan animaliekin eta haurrekin egindako esperimentuak aztertzen ditugu, eta geuk ere esperimentu bat egingo dugu. Hiru arau:",
+    "arauak": [
+      "Kasuak ez dira kuriositate hutsa: Nimen bizitza edo «Albert txikiaren» esperimentua etikaren argitan ere aztertzen ditugu.",
+      "Gure esperimentuan, parte-hartzaileek badakite zertan ari diren eta uko egin dezakete; datuak anonimoak dira eta ez da inor barregarri uzten.",
+      "Jarduera pertsonalak (beldurrak, nazkak) pribatuak dira: ez da partekatu behar, eta ez dugu inor diagnostikatzen."
+    ]
+  },
+  "saioakIzenburua": "Saioen sekuentzia",
+  "saioakSarrera": "Hamar saio, hiru fasetan: fenomenoa eta lehen mekanismoa, lau kasuen azterketa, eta ikerketa propioa eta defentsa. Denborak orientagarriak dira (50 minutuko saioa). Material guztia ikerketa-koadernoan dago.",
+  "faseak": [
+    {
+      "id": 1,
+      "izena": "1. fasea · Fenomenoa",
+      "azalpena": "Kutxa misteriotsua gelan bertan eta moldaketa-jokoa: ikertzaile eta ikerketa-objektu."
+    },
+    {
+      "id": 2,
+      "izena": "2. fasea · Lau kasu",
+      "azalpena": "Sultan, Nim, Minekaren tximinoak eta kutxa: kasu bakoitzeko ebidentzia-orria, bakarka."
+    },
+    {
+      "id": 3,
+      "izena": "3. fasea · Ikerketa eta defentsa",
+      "azalpena": "Gure esperimentua, ondorio garbiak, txostena eta ahozko defentsa zozketarekin."
+    }
+  ],
+  "saioak": [
+    {
+      "zenb": 1,
+      "fasea": 1,
+      "izenburua": "Kutxa misteriotsua",
+      "fenomenoa": "Irakasleak kutxa bat irekitzen du ezertarako balio ez duten ekintza batzuk eginez. Hiru ikaskidek errepikatu behar dute: batek kutxa opakoarekin, besteak gardenarekin eta hirugarrenak erakustaldirik gabe.",
+      "galdera": "Zergatik egiten dugu, edo ez dugu egiten, ezertarako balio ez duen ekintza bat?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.1 · Kutxa misteriotsua: behaketa eta hipotesiak",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s1",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "15",
+          "egitekoa": "Erakustaldia eta behaketa-orria (A, B, C)"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Ikerketaren aurkezpena: galdera, kasuak, produktuak eta ebaluazioa"
+        },
+        {
+          "min": "3",
+          "egitekoa": "Hirukoteak eta rolak"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Hiru hipotesi lehiakide"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Aurreikuspena: txinpantzeak eta haurrak"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Irteera-txartela"
+        }
+      ]
+    },
+    {
+      "zenb": 2,
+      "fasea": 1,
+      "izenburua": "Moldaketa-jokoa",
+      "fenomenoa": "Ikaskide bat gelara sartzen da arau bakar batekin: «Txaloak entzuten badituzu, ondo zoaz». Minutu batzuk geroago, jokabide zehatz bat egiten du, eta askotan ez daki zergatik.",
+      "galdera": "Ikasi al du? Ulertu al du? Gauza bera al da?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.2 · Moldaketa-jokoa eta kondizionamendu operantea",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s2",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "15",
+          "egitekoa": "Jokoa, bi txandatan, eta boluntarioaren elkarrizketa"
+        },
+        {
+          "min": "8",
+          "egitekoa": "Dosierra: Thorndike eta Skinner"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Jokoa kontzeptuekin deskribatu"
+        },
+        {
+          "min": "13",
+          "egitekoa": "2×2 taula: errefortzua eta zigorra, adibide propioekin"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Irteera-txartela"
+        }
+      ],
+      "atlas": true
+    },
+    {
+      "zenb": 3,
+      "fasea": 2,
+      "izenburua": "Sultan eta kaxak",
+      "fenomenoa": "Bederatzi puntu, lau lerro zuzen, arkatza altxatu gabe. Batzuetan soluzioa bat-batean agertzen da; beste batzuetan, ez da inoiz iristen.",
+      "galdera": "Ikasteko beti saiatu eta huts egin behar al da, ala bat-batean uler daiteke?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.3 · 1. kasua: Sultan (ikaskuntza kognitiboa)",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s3",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "6",
+          "egitekoa": "Bederatzi puntuen problema"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Dosierra: Thorndikeren katuak eta Köhlerren Sultan"
+        },
+        {
+          "min": "15",
+          "egitekoa": "1. ebidentzia-orria, bakarka"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Hiru irizpide: noiz esan dezakegu norbaitek ulertu duela?"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Irteera-txartela: bi ikaskuntza-kurba"
+        }
+      ],
+      "atlas": true
+    },
+    {
+      "zenb": 4,
+      "fasea": 2,
+      "izenburua": "Nim Chimpsky",
+      "fenomenoa": "«Give orange me give eat orange me eat orange give me eat orange give me you»: Nim txinpantzearen 16 zeinuko segida. Esaldi bat al da?",
+      "galdera": "Errefortzuz ikas daiteke hizkuntza bat?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.4 · 2. kasua: Nim Chimpsky (operantea)",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s4",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "5",
+          "egitekoa": "Nimen segida aztertu"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Dosierra eta datuak: Skinner, Chomsky eta Terrace"
+        },
+        {
+          "min": "9",
+          "egitekoa": "César (fikzioa) ala Nim (datuak)?"
+        },
+        {
+          "min": "12",
+          "egitekoa": "2. ebidentzia-orria, bakarka"
+        },
+        {
+          "min": "5",
+          "egitekoa": "Etika, idatziz"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Irteera-txartela"
+        }
+      ]
+    },
+    {
+      "zenb": 5,
+      "fasea": 2,
+      "izenburua": "Tximinoak eta sugeak",
+      "fenomenoa": "Janari bat jan ondoren gaixotu zinen eta geroztik ezin duzu jan, janariak errurik ez zuela jakin arren. Nola ikasi zenuen nazka hori?",
+      "galdera": "Beldurrak eta nazkak ikasi egiten al dira? Eta edozeri ikas al diezaiokegu beldurra?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.5 · 3. kasua: Mineka (klasikoa eta behaketa)",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s5",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "6",
+          "egitekoa": "Nazka-oroitzapena (pribatua)"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Dosierra: Pavlov, Albert txikia, Garcia eta Mineka"
+        },
+        {
+          "min": "8",
+          "egitekoa": "EN / BGE / BGEr / EB / EBr hiru kasutan"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Zergatik ez loreen beldurra?"
+        },
+        {
+          "min": "12",
+          "egitekoa": "3. ebidentzia-orria, bakarka"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Irteera-txartela"
+        }
+      ],
+      "atlas": true
+    },
+    {
+      "zenb": 6,
+      "fasea": 2,
+      "izenburua": "Kutxara itzuli",
+      "fenomenoa": "Gure S1eko datuak, txinpantzeenak, haurrenak eta helduenak mahai gainean: nork kopiatzen du gehien ezertarako balio ez duena?",
+      "galdera": "Zergatik kopiatzen dugu, alferrikakoa dela dakigunean ere?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.6 · 4. kasua: kutxa misteriotsua (behaketa)",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s6",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "10",
+          "egitekoa": "Gure datuak vs Horner eta Whiten (2005)"
+        },
+        {
+          "min": "6",
+          "egitekoa": "Emaitza, interpretazioa ala gehiegizko orokortzea?"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Hiru azalpen: zein da sinesgarriena?"
+        },
+        {
+          "min": "12",
+          "egitekoa": "4. ebidentzia-orria, bakarka"
+        },
+        {
+          "min": "3",
+          "egitekoa": "S7rako protokoloa aukeratu"
+        },
+        {
+          "min": "4",
+          "egitekoa": "Irteera-txartela"
+        }
+      ]
+    },
+    {
+      "zenb": 7,
+      "fasea": 3,
+      "izenburua": "Gure esperimentua",
+      "fenomenoa": "Orain arte besteen datuak irakurri ditugu. Gaur geuk sortuko ditugu, gelakideekin, protokolo eta etika-kontrol batekin.",
+      "galdera": "Gelan bertan froga dezakegu ikasten dugula ulertu gabe?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.7 · Gure esperimentua: protokoloak eta etika",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s7",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "15",
+          "egitekoa": "Esperimentu-fitxa, etika-kontrola eta onespena"
+        },
+        {
+          "min": "25",
+          "egitekoa": "Datu-bilketa, hiru txandatan"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Datuak taulan eta lehen irakurketa"
+        }
+      ]
+    },
+    {
+      "zenb": 8,
+      "fasea": 3,
+      "izenburua": "Ondorioak eraiki",
+      "fenomenoa": "Lau kasu, esperimentu bat eta hiru iritzi hirukote bakoitzean. Zer esan dezakegu ziur?",
+      "galdera": "Zer esan dezakegu ziur, zer ez, eta zergatik?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.8 · Ondorioak eta ikerketa-txostena",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s8",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "18",
+          "egitekoa": "Banakako sintesia, isilik (250-300 hitz)"
+        },
+        {
+          "min": "22",
+          "egitekoa": "Hiru ondorio garbi: ondorioa, ebidentzia, mekanismoa, muga"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Txostena banatu eta aurkezpena prestatu"
+        }
+      ]
+    },
+    {
+      "zenb": 9,
+      "fasea": 3,
+      "izenburua": "Defentsa I",
+      "fenomenoa": "Lau minutu hiru ondorio defendatzeko, eta gero zozketa: kide bat, kasu bat, galdera bat, oharrik gabe.",
+      "galdera": "Zuen ondorioek eusten diote besteen galderen aurrean?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.9 · Aurkezpena, zozketa eta errubrika",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s9",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "7",
+          "egitekoa": "Antolaketa eta txandak"
+        },
+        {
+          "min": "28",
+          "egitekoa": "Hirukoteen erdiaren aurkezpena + zozketa"
+        },
+        {
+          "min": "15",
+          "egitekoa": "Jasotako galdera kritikoei erantzuna prestatu"
+        }
+      ]
+    },
+    {
+      "zenb": 10,
+      "fasea": 3,
+      "izenburua": "Defentsa II",
+      "fenomenoa": "Beste erdiaren aurkezpenak, eta amaieran galdera irekia: kultura ulertu gabe ikasitakoaren gainean eraikita badago?",
+      "galdera": "Gainbalioesten ari al gara ulertzea?",
+      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
+      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "fitxa": {
+        "izena": "04.10 · Defentsa eta itxiera",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s10",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+      },
+      "denborak": [
+        {
+          "min": "28",
+          "egitekoa": "Beste erdiaren aurkezpena + zozketa"
+        },
+        {
+          "min": "12",
+          "egitekoa": "Galdera kritikoei erantzunak"
+        },
+        {
+          "min": "10",
+          "egitekoa": "Galdera irekiaren eztabaida"
+        }
+      ]
+    }
+  ],
+  "lanabesak": {
+    "etiketa": "Fitxak eta lana",
+    "izenburua": "Gai honetako materiala",
+    "sarrera": "Ikerketa osoa koaderno bakarrean dago: dosierrak, saioz saioko pausoak, txantiloiak eta ebaluazioa. Ireki, inprimatu edo PDF gisa gorde.",
+    "fitxak": [
+      {
+        "izena": "Ikerketa-koadernoa",
+        "kodea": "04",
+        "deskribapena": "Lau kasuen dosierrak, saioz saioko pausoak, kontzeptu-gutxienekoak eta bi arau: emaitza ≠ interpretazioa, fikzioa ez da froga.",
+        "lotura": "fitxak/ikerketa-koadernoa.html",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf",
+        "ikonoa": "fitxa"
+      },
+      {
+        "izena": "Txantiloiak",
+        "kodea": "04.T",
+        "deskribapena": "Ebidentzia-orria (lau aldiz), hipotesi-orria eta esperimentu-fitxa.",
+        "lotura": "fitxak/ikerketa-koadernoa.html#txantiloiak",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf",
+        "ikonoa": "lente"
+      },
+      {
+        "izena": "Ebaluazioa eta errubrika",
+        "kodea": "04.E",
+        "deskribapena": "Pisuak (% 55 bakarka), txostenaren egitura eta errubrika: zer dakizuen baloratzen da, ez estetika.",
+        "lotura": "fitxak/ikerketa-koadernoa.html#ebaluazioa",
+        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf",
+        "ikonoa": "portaera"
+      }
+    ]
+  },
+  "errepasoa": {
+    "etiketa": "Errepasoa",
+    "izenburua": "Errepaso interaktiboa",
+    "sarrera": "Ez da memoria-froga: pentsatzeko da. Egoera bakoitzean, zein mekanismo dago jokoan? Gero, autotesta. Nahi adina aldiz egin dezakezu.",
+    "sailkapena": {
+      "izenburua": "Zein ikaskuntza-mota da?",
+      "argibidea": "Irakurri egoera eta erabaki zein mekanismo den nagusia. Batzuetan bi daude; aukeratu garrantzitsuena.",
+      "kategoriak": [
+        {
+          "id": "klasikoa",
+          "izena": "Klasikoa",
+          "definizioa": "Bi estimulu lotzen dira: lehen neutroa zena erantzun bat sortzera iristen da."
+        },
+        {
+          "id": "operantea",
+          "izena": "Operantea",
+          "definizioa": "Jokabide baten ondorioek (errefortzua, zigorra) zehazten dute errepikatuko den."
+        },
+        {
+          "id": "kognitiboa",
+          "izena": "Kognitiboa",
+          "definizioa": "Arazoaren egitura ulertzen da; soluzioa bat-batean agertu eta transferitu daiteke."
+        },
+        {
+          "id": "behaketa",
+          "izena": "Behaketa",
+          "definizioa": "Beste bati begiratuz ikasten da: imitazioa, emulazioa, ikaskuntza bikarioa."
+        }
+      ],
+      "itemak": [
+        {
+          "esaldia": "Dentistaren itxaron-gelako usaina sumatu orduko, urduri jartzen zara.",
+          "erantzuna": "klasikoa",
+          "azalpena": "Usaina (lehen neutroa) mina edo larritasuna eragiten zuen esperientziarekin lotu da, eta orain berak sortzen du erantzuna."
+        },
+        {
+          "esaldia": "Etxeko lanak egiten dituzunean gurasoek eteten dizute errieta; geroztik, lehenago egiten dituzu.",
+          "erantzuna": "operantea",
+          "azalpena": "Desatsegina den zerbait (errieta) kentzen da eta jokabidea handitzen da: errefortzu negatiboa, ez zigorra."
+        },
+        {
+          "esaldia": "Zure ahizpa txikiak zure aurpegiera eta esaldiak kopiatzen ditu, inork saririk eman gabe.",
+          "erantzuna": "behaketa",
+          "azalpena": "Eredu bati begiratuz ikasten da. Banduraren arabera, ez da beharrezkoa saririk jasotzea."
+        },
+        {
+          "esaldia": "Ordu erdi saiatu ondoren problema batekin, dutxan bat-batean ikusten duzu nola ebatzi, eta gero antzeko guztiak ebazten dituzu.",
+          "erantzuna": "kognitiboa",
+          "azalpena": "Bat-bateko ulermena (insight): arazoa berregituratzen da eta soluzioa beste egoeretara transferitzen da, Sultanen kasuan bezala."
+        },
+        {
+          "esaldia": "Usoak argia piztean palanka sakatzen du, horrela janaria jasotzen baitu.",
+          "erantzuna": "operantea",
+          "azalpena": "Jokabidearen ondorioak (janaria) indartzen du jokabidea. Argia seinalea da, baina ikaskuntza ondorioek gidatzen dute."
+        },
+        {
+          "esaldia": "Laborategiko tximinoak beste tximino bat sugearen aurrean izututa ikusi du, eta orain berak ere badio beldurra sugeari.",
+          "erantzuna": "behaketa",
+          "azalpena": "Ikaskuntza bikarioa da: beldurra ikasi du esperientzia zuzenik gabe (Mineka). Klasikoarekin lotura du, baina bidea behaketa da."
+        },
+        {
+          "esaldia": "Tutorial batean ikusi duzun bezala egiten duzu errezeta, baita ezertarako balio ez duen urratsa ere (ontzia hiru aldiz jotzea).",
+          "erantzuna": "behaketa",
+          "azalpena": "Gehiegizko imitazioa: ereduaren ekintza guztiak kopiatzen dira, alferrikakoak barne."
+        },
+        {
+          "esaldia": "Kanpaia jotzen duen bakoitzean ikasleak motxila gordetzen hasten dira, irakasleak ezer esan baino lehen.",
+          "erantzuna": "klasikoa",
+          "azalpena": "Kanpaia saio-amaierarekin lotu da eta erantzun automatikoa sortzen du. Operantea ere egon daiteke (irtetea indargarria da); hemen lotura da gakoa."
+        },
+        {
+          "esaldia": "Bideojoko batean noizean behin bakarrik jasotzen duzu saria, baina ezin duzu jolasteari utzi.",
+          "erantzuna": "operantea",
+          "azalpena": "Errefortzu aldakorra: aurreikusi ezin den saria da, eta horregatik da jokabidea hain iraunkorra."
+        },
+        {
+          "esaldia": "Zure lagunak sushi jan ondoren goragalea izan zuen, eta orain ezin du usaina jasan, sushiak errurik ez bazuen ere.",
+          "erantzuna": "klasikoa",
+          "azalpena": "Zaporea eta gaixotasuna saiakera bakar batean lotzen dira (Garcia). Prestutasun biologikoa."
+        }
+      ]
+    },
+    "autotesta": {
+      "izenburua": "Ulertu duzu? — autotesta",
+      "argibidea": "Galdera kontzeptualak dira. Aukeratu erantzun bat eta ikusiko duzu azalpena.",
+      "galderak": [
+        {
+          "galdera": "Zer da errefortzu negatiboa?",
+          "aukerak": [
+            "Jokabide bat zigortzea",
+            "Desatsegina den zerbait kentzea, jokabidea handituz",
+            "Saria kentzea, jokabidea gutxituz",
+            "Errefortzurik ez ematea"
+          ],
+          "zuzena": 1,
+          "azalpena": "«Negatiboa» kentzea da, ez txarra. Errefortzu guztiek (positiboek eta negatiboek) jokabidea handitzen dute; zigorrek gutxitu."
+        },
+        {
+          "galdera": "Horner eta Whitenen kutxa gardenarekin, zer egin zuten txinpantzeek?",
+          "aukerak": [
+            "Ekintza guztiak kopiatu zituzten",
+            "Ez zuten kutxa ireki",
+            "Alferrikako ekintzak baztertu zituzten (% 6)",
+            "Haurrek baino gehiago kopiatu zuten"
+          ],
+          "zuzena": 2,
+          "azalpena": "Kutxa gardenarekin ikusten zen goiko zuloak ez zuela ezertarako balio. Txinpantzeek baztertu egin zuten; haurrek % 80an kopiatu zuten."
+        },
+        {
+          "galdera": "Zer frogatu zuen Birch-ek (1945) Köhlerren «insight»-ari buruz?",
+          "aukerak": [
+            "Insight-a ez dela existitzen",
+            "Bat-bateko ulermenak aurreko esperientzia behar duela",
+            "Txinpantzeek ezin dituztela tresnak erabili",
+            "Katuek ere insight-a dutela"
+          ],
+          "zuzena": 1,
+          "azalpena": "Makilekin inoiz jolastu ez zuten txinpantze gehienek ez zuten arazoa ebatzi. Ulermena aurretik ikasitakoaren gainean eraikitzen da."
+        },
+        {
+          "galdera": "Nimen esaldien batez besteko luzerak ez zuen gora egin (1,1-1,6). Zer adierazten du horrek?",
+          "aukerak": [
+            "Nimek ez zuela zeinurik ikasi",
+            "Ez zegoela sintaxiaren garapenik, haurrengan ez bezala",
+            "Nimek gizakiek bezala hitz egiten zuela",
+            "Ikertzaileek gaizki zenbatu zutela"
+          ],
+          "zuzena": 1,
+          "azalpena": "Nimek 125 zeinu ikasi zituen, baina haurrek ez bezala, ez zituen esaldi luzeagoak eta konplexuagoak eraiki. Ikastea ez da hizkuntza ikastea."
+        },
+        {
+          "galdera": "Cook eta Minekaren tximinoek ez zuten loreen beldurrik ikasi. Zein da ikertzaileen interpretazioa?",
+          "aukerak": [
+            "Loreak ez zirela ondo ikusten bideoan",
+            "Prestutasun biologikoa: eboluzioak lotura batzuk errazten ditu",
+            "Tximinoek loreak maite dituztela",
+            "Behaketa bidez ezin dela beldurrik ikasi"
+          ],
+          "zuzena": 1,
+          "azalpena": "Eredu beraren erreakzioak sugearen beldurra sortu zuen, ez loreena. Lotura guztiak ez dira berdin errazak."
+        },
+        {
+          "galdera": "Zein da emaitza bat, eta ez interpretazio bat?",
+          "aukerak": [
+            "Haurrek uste dute helduaren ekintzek helburu bat dutela",
+            "Gehiegizko imitazioak kultura transmititzen laguntzen du",
+            "Haurren % 80k alferrikako ekintza kopiatu zuen kutxa gardenarekin",
+            "Txinpantzeak haurrak baino adimentsuagoak dira"
+          ],
+          "zuzena": 2,
+          "azalpena": "Emaitza neurtu zena da. Besteak interpretazioak dira (A, B) edo gehiegizko orokortzea (D)."
+        },
+        {
+          "galdera": "Kondizionamendu klasikoan, zer bihurtzen da estimulu neutroa?",
+          "aukerak": [
+            "Baldintzatu gabeko estimulu",
+            "Estimulu baldintzatu",
+            "Errefortzu",
+            "Erantzun baldintzatu"
+          ],
+          "zuzena": 1,
+          "azalpena": "BGErekin behin eta berriz lotu ondoren, ENk berak sortzen du erantzuna: estimulu baldintzatua (EB) bihurtzen da."
+        },
+        {
+          "galdera": "Zertan dira desberdinak imitazioa eta emulazioa?",
+          "aukerak": [
+            "Imitazioa animalietan bakarrik gertatzen da",
+            "Imitazioak ekintzak kopiatzen ditu; emulazioak emaitza, bidea norberak asmatuz",
+            "Emulazioa sariekin bakarrik gertatzen da",
+            "Ez dago alderik"
+          ],
+          "zuzena": 1,
+          "azalpena": "Kutxa gardenarekin, txinpantzeek emulatu egin zuten (emaitza); haurrek, imitatu (ekintza guztiak)."
+        },
+        {
+          "galdera": "Zergatik izan daiteke adimentsua ulertu gabe imitatzea?",
+          "aukerak": [
+            "Ez da inoiz adimentsua",
+            "Prozedura konplexuak transmititzea ahalbidetzen duelako, zergatia jakin gabe ere",
+            "Bizkorragoa delako beti",
+            "Helduek horrela agintzen dutelako"
+          ],
+          "zuzena": 1,
+          "azalpena": "Kultura-ikaskuntza: errezetak, teknikak edo erritualak zehaztasunez kopiatuz transmititzen dira. Arriskua: alferrikakoa ere kopiatzen da."
+        }
+      ]
+    }
+  },
+  "atlasLotura": {
+    "etiketa": "Lotura",
+    "izenburua": "Lenteen Atlasa",
+    "testua": "Gai honek hiru eskola jartzen ditu elkarrizketan: konduktismoa (Pavlov, Thorndike, Skinner), Gestalt (Köhler eta Sultanen «insight»-a) eta ikaskuntza soziala (Bandura). Ezagutu eskola guztiak eta haien arteko harremanak.",
+    "lotura": "lenteen-atlasa.html",
+    "botoia": "Ireki Lenteen Atlasa"
+  }
+}
