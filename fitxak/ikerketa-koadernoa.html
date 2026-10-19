@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ikerketa-koadernoa · UD04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --psi-bloke1:#1B3A5C; --psi-bloke1-argia:#D6E8F7;
+  --psi-bloke2:#1A5C3A; --psi-bloke2-argia:#D4EDE1;
+  --psi-bloke3:#5C1A5C; --psi-bloke3-argia:#EDD4ED;
+  --psi-proiektua:#8C3A00; --psi-proiektua-argia:#FAE5D3;
+  --psi-argia:#F7F7F5; --psi-iluna:#1A1A1A;
+  --psi-font-izenburu:'Nunito',sans-serif; --psi-font-gorputz:'Inter',sans-serif;
+  --psi-erradio:12px;
+  --bloke-nagusia:var(--psi-bloke1); --bloke-argia:var(--psi-bloke1-argia);
+  --lerroa:#D9DDE3; --apala:#5B6573;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--psi-argia);color:var(--psi-iluna);font-family:var(--psi-font-gorputz);font-size:16px;line-height:1.6}
+.edukia{max-width:860px;margin:0 auto;padding:0 16px 64px}
+h1,h2,h3,h4{font-family:var(--psi-font-izenburu);color:var(--bloke-nagusia);line-height:1.25}
+h1{font-size:2.3rem;font-weight:900;margin:.4rem 0 .3rem}
+h2{font-size:1.6rem;font-weight:900;margin:0 0 .6rem}
+h3{font-size:1.15rem;font-weight:800;margin:1.6rem 0 .5rem}
+h4{font-size:1rem;margin:1.1rem 0 .3rem}
+p{margin:.5rem 0}
+a{color:var(--bloke-nagusia)}
+/* Goiburua */
+.goiburua{background:#fff;border-bottom:1px solid var(--lerroa)}
+.goiburua .edukia{padding-top:28px;padding-bottom:24px}
+.etiketak{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:.6rem}
+.etiketa{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--bloke-argia);color:var(--bloke-nagusia)}
+.etiketa.berdea{background:var(--psi-bloke2-argia);color:var(--psi-bloke2)}
+.etiketa.laranja{background:var(--psi-proiektua-argia);color:var(--psi-proiektua)}
+.etiketa.morea{background:var(--psi-bloke3-argia);color:var(--psi-bloke3)}
+.azpititulua{font-size:1.1rem;color:var(--apala);margin:0}
+/* Nabigazioa */
+nav.saioak{position:sticky;top:0;z-index:5;background:rgba(247,247,245,.96);backdrop-filter:blur(4px);border-bottom:1px solid var(--lerroa)}
+nav.saioak .edukia{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav.saioak a{flex:0 0 auto;text-decoration:none;font-size:.82rem;font-weight:600;padding:5px 10px;border-radius:8px;color:var(--bloke-nagusia);background:#fff;border:1px solid var(--lerroa)}
+nav.saioak a:hover{background:var(--bloke-argia)}
+/* Atalak */
+section.atala{background:#fff;border:1px solid var(--lerroa);border-radius:var(--psi-erradio);padding:28px 26px;margin-top:28px}
+.saio-goiburua{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:.4rem}
+.saio-zenbakia{font-family:var(--psi-font-izenburu);font-weight:900;font-size:.85rem;color:#fff;background:var(--bloke-nagusia);border-radius:8px;padding:3px 10px}
+.denbora{font-size:.8rem;color:var(--apala)}
+.galdera-gidaria{font-family:var(--psi-font-izenburu);font-size:1.4rem;font-weight:900;color:var(--bloke-nagusia);line-height:1.3;border-left:4px solid var(--bloke-nagusia);padding-left:1rem;margin:1.2rem 0}
+.fenomenoa{background:var(--bloke-argia);border-radius:var(--psi-erradio);padding:1.1rem 1.2rem;font-style:italic;margin-bottom:1.2rem}
+.fenomenoa p:first-child{margin-top:0}.fenomenoa p:last-child{margin-bottom:0}
+.pauso-etiketa{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bloke-nagusia);margin:1.4rem 0 .3rem}
+.dosierra{border:1px solid var(--lerroa);border-radius:var(--psi-erradio);padding:1rem 1.2rem;margin:.8rem 0;background:#FCFCFB}
+.dosierra.morea{background:#FBF6FB;border-color:var(--psi-bloke3-argia)}
+.dosierra h4{margin-top:.4rem}
+.dosierra.morea h4{color:var(--psi-bloke3)}
+.oharra{font-size:.9rem;color:var(--apala)}
+.pausoak{counter-reset:p;list-style:none;padding:0;margin:.6rem 0}
+.pausoak[start="2"]{counter-reset:p 1}.pausoak[start="3"]{counter-reset:p 2}.pausoak[start="4"]{counter-reset:p 3}
+.pausoak li{counter-increment:p;position:relative;padding:.55rem .6rem .55rem 2.8rem;margin:.4rem 0;border-radius:10px;background:var(--psi-argia)}
+.pausoak li::before{content:counter(p);position:absolute;left:.7rem;top:.55rem;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--bloke-nagusia);color:#fff;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.pausoak li.bakarka{background:var(--psi-bloke2-argia)}
+.pausoak li.taldean{background:var(--psi-proiektua-argia)}
+.modua{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-left:.3rem}
+.bakarka .modua{color:var(--psi-bloke2)}.taldean .modua{color:var(--psi-proiektua)}
+.min{font-size:.8rem;color:var(--apala);margin-left:.3rem}
+.produktua{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:.8rem 1rem;margin-top:1rem;background:var(--psi-proiektua-argia)}
+.produktua.bakarka{background:var(--psi-bloke2-argia)}
+.produktua b{font-family:var(--psi-font-izenburu)}
+.irteera{border:2px dashed var(--bloke-nagusia);border-radius:var(--psi-erradio);padding:.9rem 1.1rem;margin-top:1rem}
+.irteera .pauso-etiketa{margin-top:0}
+.galdera-irekia{background:var(--bloke-nagusia);color:#fff;border-radius:var(--psi-erradio);padding:1.1rem 1.2rem;margin-top:1.2rem;font-family:var(--psi-font-izenburu);font-weight:700;font-size:1.1rem}
+.galdera-irekia .pauso-etiketa{color:#CFE0F2;margin:0 0 .3rem}
+table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.92rem}
+th,td{border:1px solid var(--lerroa);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--bloke-argia);color:var(--bloke-nagusia);font-weight:700}
+.taula-ondo{overflow-x:auto}
+td.hutsa{height:2.4rem}
+.datua{font-family:var(--psi-font-izenburu);font-weight:900;color:var(--bloke-nagusia)}
+.koadroa{border:1px solid #BFC6CF;border-radius:8px;padding:.5rem .7rem;margin:.5rem 0;min-height:4.2rem}
+.koadroa b{font-size:.85rem;color:var(--bloke-nagusia)}
+.koadroa small{display:block;color:var(--apala);font-size:.8rem}
+.koadroa.handia{min-height:6.5rem}
+.bi-zutabe{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lau-kasu{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:.8rem 0}
+.kasu-txartela{border-radius:var(--psi-erradio);padding:.9rem 1rem;background:var(--bloke-argia)}
+.kasu-txartela.morea{background:var(--psi-bloke3-argia)}
+.kasu-txartela.laranja{background:var(--psi-proiektua-argia)}
+.kasu-txartela h4{margin:.1rem 0 .3rem}
+.kasu-txartela p{margin:.2rem 0;font-size:.92rem}
+.kasu-txartela .mek{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--apala)}
+.zitazioa{font-family:var(--psi-font-izenburu);font-size:1.15rem;font-weight:700;background:#fff;border:1px solid var(--lerroa);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0}
+.puntuak{display:grid;grid-template-columns:repeat(3,22px);gap:34px;justify-content:center;padding:26px;margin:.6rem auto;width:max-content;background:#fff;border:1px solid var(--lerroa);border-radius:10px}
+.puntuak span{width:22px;height:22px;border-radius:50%;background:var(--bloke-nagusia)}
+.anatomia{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:.7rem 0}
+.anatomia div{border-radius:10px;padding:.7rem;background:var(--bloke-argia);font-size:.88rem}
+.anatomia b{display:block;font-family:var(--psi-font-izenburu);color:var(--bloke-nagusia);font-size:.95rem}
+.adibide-txarra,.adibide-ona{border-radius:10px;padding:.7rem 1rem;margin:.5rem 0;font-size:.93rem}
+.adibide-txarra{background:#F6E3E3}.adibide-ona{background:var(--psi-bloke2-argia)}
+.kontrol-zerrenda{list-style:none;padding:0}
+.kontrol-zerrenda li{padding:.3rem 0 .3rem 1.9rem;position:relative}
+.kontrol-zerrenda li::before{content:"";position:absolute;left:0;top:.45rem;width:1.05rem;height:1.05rem;border:2px solid var(--bloke-nagusia);border-radius:4px}
+.pribatua{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--psi-bloke2);background:var(--psi-bloke2-argia);padding:2px 8px;border-radius:99px}
+footer{font-size:.85rem;color:var(--apala);margin-top:32px}
+@media (max-width:640px){
+  h1{font-size:1.8rem}
+  section.atala{padding:20px 16px}
+  .bi-zutabe,.lau-kasu{grid-template-columns:1fr}
+  .anatomia{grid-template-columns:1fr 1fr}
+}
+@media print{
+  body{background:#fff;font-size:11pt}
+  nav.saioak{display:none}
+  section.atala{border:none;padding:0;margin-top:0;page-break-before:always}
+  #ikerketa{page-break-before:auto;margin-top:12px}
+  tr,.koadroa,.pausoak li,.dosierra h4{page-break-inside:avoid}
+  .goiburua{border:none}
+  .koadroa{min-height:5.5rem}.koadroa.handia{min-height:9rem}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="goiburua">
+  <div class="edukia">
+    <div class="etiketak">
+      <span class="etiketa">UD04 · Ikaskuntza, psikologiatik</span>
+      <span class="etiketa laranja">Ikerketa-proiektua · hirukoteak</span>
+      <span class="etiketa">10 saio × 50 min</span>
+    </div>
+    <h1>Ikasten duguna ulertzen al dugu?</h1>
+    <p class="azpititulua">Primateak, gizakiak eta ikaskuntzaren misterioak · Ikerketa-koadernoa</p>
+  </div>
+</header>
+
+<nav class="saioak" aria-label="Atalak">
+  <div class="edukia">
+    <a href="#ikerketa">Ikerketa</a><a href="#s1">S1</a><a href="#s2">S2</a><a href="#s3">S3</a><a href="#s4">S4</a><a href="#s5">S5</a><a href="#s6">S6</a><a href="#s7">S7</a><a href="#s8">S8</a><a href="#s9">S9</a><a href="#s10">S10</a><a href="#txantiloiak">Txantiloiak</a><a href="#ebaluazioa">Ebaluazioa</a>
+  </div>
+</nav>
+
+<main class="edukia">
+
+<!-- ============ IKERKETA ============ -->
+<section class="atala" id="ikerketa">
+  <h2>Zer ikertuko dugu, eta nola</h2>
+  <div class="galdera-gidaria">Primateek nola ikasten duten aztertuta, zer ikas dezakegu gizakion ikaskuntzaz?</div>
+  <p>Hurrengo hamar saioetan ez duzue teoria bat buruz ikasiko eta gero errepikatuko. Ikertu egingo duzue. Benetako lau ikerketa aztertuko dituzue, esperimentu txiki bat diseinatu eta egingo duzue, eta zuen ondorioak defendatuko dituzue. Teoria psikologikoak (Pavlov, Thorndike, Skinner, Köhler, Bandura) tresna gisa agertuko dira: datuak interpretatzeko behar ditugunean.</p>
+  <p>Psikologian berezitasun bat dugu: ikertzaile eta ikerketa-objektu zarete aldi berean. Lehen saiotik bertatik zuek izango zarete datuak.</p>
+
+  <h3>Lau kasu eta zuen esperimentua</h3>
+  <div class="lau-kasu">
+    <div class="kasu-txartela"><span class="mek">1. kasua · S3</span><h4>Sultan eta kaxak</h4><p>Köhlerren txinpantzeak, Tenerifen (1914-1920). Ulertuz ikas daiteke, ala saiakera eta huts eginez bakarrik?</p><p class="mek">Ikaskuntza kognitiboa · <i>insight</i>a</p></div>
+    <div class="kasu-txartela"><span class="mek">2. kasua · S4</span><h4>Nim Chimpsky</h4><p>Zeinu-hizkuntza ikasi zuen txinpantzea (1973-1977). Errefortzuz ikas daiteke hizkuntza bat?</p><p class="mek">Kondizionamendu operantea</p></div>
+    <div class="kasu-txartela"><span class="mek">3. kasua · S5</span><h4>Tximinoak eta sugeak</h4><p>Minekaren rhesus tximinoak (1984-1989). Nola ikasten da beldurra? Edozeri izan diezaiokegu beldurra?</p><p class="mek">Kondizionamendu klasikoa · behaketa</p></div>
+    <div class="kasu-txartela morea"><span class="mek">4. kasua · S1 + S6</span><h4>Kutxa misteriotsua</h4><p>Txinpantzeak, haurrak eta helduak (2005-2011). Zergatik kopiatzen dugu alferrikakoa dena?</p><p class="mek">Behaketa bidezko ikaskuntza · imitazioa</p></div>
+  </div>
+  <div class="kasu-txartela laranja"><span class="mek">S7</span><h4>Gure esperimentua</h4><p>Hirukote bakoitzak esperimentu txiki bat diseinatu eta egingo du gelan, gelakideekin.</p></div>
+
+  <h3>Zer entregatuko duzue</h3>
+  <div class="bi-zutabe">
+    <div class="produktua bakarka"><div><b>Bakarka</b><br>4 ebidentzia-orri (kasu bakoitzeko bat) · irteera-txartelak saio bakoitzean · banakako sintesia (S8) · ahozko egiaztapena zozketaz (S9-S10)</div></div>
+    <div class="produktua"><div><b>Hirukotean</b><br>Hipotesi-orria (S1) · esperimentu-fitxa (S7) · ikerketa-txostena, 1.500-2.000 hitz (S8) · aurkezpena, 4 minutu (S9-S10)</div></div>
+  </div>
+  <p class="oharra">Ebaluazioaren % 55 bakarkako lanari dagokio. Taldean lan egiten da, baina bakoitzak frogatu behar du zer ikasi duen.</p>
+
+  <h3>Hirukotearen rolak</h3>
+  <table>
+    <tr><th>Rola</th><th>Zer egiten du</th></tr>
+    <tr><td><b>Koordinatzailea</b></td><td>Denbora eta entregak zaintzen ditu. Saioaren amaieran egiaztatzen du produktua beteta dagoela.</td></tr>
+    <tr><td><b>Ebidentzia-zaindaria</b></td><td>Baieztapen bakoitzaren aurrean galdetzen du: «Non dago hori? Zein datuk dio hori?».</td></tr>
+    <tr><td><b>Aholkulari kritikoa</b></td><td>Kontrako azalpena bilatzen du: «Eta beste modu batera azal badaiteke?».</td></tr>
+  </table>
+  <p class="oharra">Rolak S5ean txandakatzen dira. Rolak edozein izanda ere, hiruron artean idazten da.</p>
+
+  <h3>Bi arau, ikerketa osorako</h3>
+  <div class="bi-zutabe">
+    <div class="dosierra"><h4>Emaitza ≠ interpretazioa</h4><p>Emaitza neurtu zena da: «Haurren % 80k kopiatu zuen ekintza». Interpretazioa, ikertzaileek uste dutena: «Haurrek uste dute helduaren ekintza guztiek badutela helburu bat». Txostenean beti bereizi behar dira.</p></div>
+    <div class="dosierra"><h4>Fikzioa ez da froga</h4><p>Filmek galderak pizten dituzte, baina ez dute ezer frogatzen. <i>El origen del planeta de los simios</i> filmak zerbait suposatzen badu, kontrastatu egin behar da datuekin.</p></div>
+  </div>
+
+  <h3>Kontzeptu-gutxienekoak</h3>
+  <p>Kontzeptu hauek zuzen erabili behar dituzue txostenean eta ahozko egiaztapenean. Ez dira buruz ikasteko zerrenda bat: saio bakoitzean bere lekuan agertuko dira.</p>
+  <div class="taula-ondo"><table>
+    <tr><th>Mekanismoa</th><th>Kontzeptuak</th><th>Saioa</th></tr>
+    <tr><td>Kondizionamendu klasikoa</td><td>Estimulu neutroa (EN), baldintzatu gabeko estimulua (BGE) eta erantzuna (BGEr), estimulu baldintzatua (EB) eta erantzun baldintzatua (EBr), orokortzea, iraungitzea, prestutasun biologikoa</td><td>S5</td></tr>
+    <tr><td>Kondizionamendu operantea</td><td>Efektuaren legea, errefortzu positiboa/negatiboa, zigor positiboa/negatiboa, moldaketa, iraungitzea</td><td>S2, S4</td></tr>
+    <tr><td>Ikaskuntza kognitiboa</td><td>Saiakera-errorea, bat-bateko ulermena (<i>insight</i>), arazoaren berregituraketa, transferentzia</td><td>S3</td></tr>
+    <tr><td>Behaketa bidezko ikaskuntza</td><td>Eredua, ikaskuntza bikarioa, Banduraren lau prozesuak, imitazioa vs emulazioa, gehiegizko imitazioa</td><td>S5, S6</td></tr>
+    <tr><td>Ikerketa</td><td>Hipotesia, aldagai independentea eta mendekoa, baldintza / kontrol-taldea, lagina, emaitza vs interpretazioa, orokortzea</td><td>S1, S6, S7</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ S1 ============ -->
+<section class="atala" id="s1">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S1</span><span class="etiketa morea">Fenomenoa</span><span class="denbora">50 min</span></div>
+  <h2>Kutxa misteriotsua</h2>
+  <div class="fenomenoa">
+    <p>Irakasleak kutxa bat irekiko du saria ateratzeko. Hiru ikaskide kanpoan egongo dira eta banan-banan sartuko dira: A eta B ikaskideek irakaslea kutxa irekitzen ikusiko dute, eta gero haien txanda izango da. C ikaskideak ez du erakustaldirik ikusiko. Gainerakoak behatzaileak zarete.</p>
+  </div>
+  <div class="galdera-gidaria">Zergatik egiten dugu, edo ez dugu egiten, ezertarako balio ez duen ekintza bat?</div>
+
+  <p class="pauso-etiketa">Behaketa</p>
+  <ol class="pausoak">
+    <li class="bakarka">Erregistratu irakasleak erakustaldian egiten dituen ekintza guztiak, ordenan. Gero, markatu A, B eta C ikaskideek zein ekintza errepikatu dituzten (✓ / ✗).<span class="modua">Bakarka</span><span class="min">15 min</span></li>
+    <li>Irakasleak ikerketa aurkezten du: galdera, kasuak, produktuak eta ebaluazioa (koaderno honen lehen atala).<span class="min">8 min</span></li>
+  </ol>
+  <div class="taula-ondo"><table>
+    <tr><th>Irakaslearen ekintzak (ordenan)</th><th>A · kutxa opakoa</th><th>B · kutxa gardena</th><th>C · erakustaldirik gabe</th></tr>
+    <tr><td class="hutsa">1.</td><td></td><td></td><td></td></tr>
+    <tr><td class="hutsa">2.</td><td></td><td></td><td></td></tr>
+    <tr><td class="hutsa">3.</td><td></td><td></td><td></td></tr>
+    <tr><td class="hutsa">4.</td><td></td><td></td><td></td></tr>
+    <tr><td class="hutsa">Zenbat denbora behar izan du?</td><td></td><td></td><td></td></tr>
+  </table></div>
+
+  <p class="pauso-etiketa">Analisia</p>
+  <ol class="pausoak" start="3">
+    <li class="taldean">Osatu hirukotea eta banatu rolak.<span class="modua">Taldean</span><span class="min">3 min</span></li>
+    <li class="taldean">Idatzi <b>hiru hipotesi lehiakide</b> ikusi duzuena azaltzeko. Hipotesi on batek hiru gauza ditu: zer gertatu den, zergatik uste duzuen gertatu dela eta zer behaketak frogatuko lukeen.<span class="modua">Taldean</span><span class="min">12 min</span></li>
+    <li class="taldean"><b>Aurreikuspena.</b> 2005ean, ikertzaile batzuek antzeko kutxa bat erabili zuten 2 eta 6 urte bitarteko txinpantzeekin eta 3-4 urteko haurrekin. Zer uste duzue egin zutela txinpantzeek kutxa opakoarekin? Eta gardenarekin? Eta haurrek? Arrazoitu eta gorde: S6an egiaztatuko dugu.<span class="modua">Taldean</span><span class="min">8 min</span></li>
+  </ol>
+  <div class="produktua"><div><b>Produktua · Hipotesi-orria</b> (taldekoa; txantiloia koadernoaren amaieran). Gorde: txostenaren lehen atala izango da.</div></div>
+
+  <div class="irteera"><p class="pauso-etiketa">Irteera-txartela · 4 min</p>Zer alde dago ekintza bat errepikatzearen eta ekintza hori ulertzearen artean? Jarri adibide bat zure ikasle-bizitzatik.</div>
+</section>
+
+<!-- ============ S2 ============ -->
+<section class="atala" id="s2">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S2</span><span class="etiketa">Kondizionamendu operantea</span><span class="denbora">50 min</span></div>
+  <h2>Moldaketa-jokoa</h2>
+  <div class="fenomenoa">
+    <p>Boluntario bat gelatik aterako da. Gainerakoek jokabide sinple bat aukeratuko duzue: segurua eta duina izan behar du (adibidez, leihora joan eta gortina ukitzea). Boluntarioak arau bakarra jasoko du: «Txaloak entzuten badituzu, ondo zoaz». Hurbiltzen den bakoitzean, gelak txalo bat joko du. Debekatuta daude hitzak, keinuak eta barreak.</p>
+  </div>
+  <div class="galdera-gidaria">Ikasi al du? Ulertu al du? Gauza bera al da?</div>
+
+  <p class="pauso-etiketa">Behaketa</p>
+  <ol class="pausoak">
+    <li class="taldean">Jokoa, bi txandatan. Hirukote bakoitzak erregistratzen du: zenbat txalo behar izan diren, zenbat denbora, eta noiz aldatu den jokabidea nabarmen. Amaieran, boluntarioari galdetu: <i>Zer ikasi duzu? Zein zen araua? Noiz konturatu zara?</i><span class="modua">Taldean</span><span class="min">15 min</span></li>
+  </ol>
+
+  <p class="pauso-etiketa">Teoria · irakurri jokoaren ondoren</p>
+  <div class="dosierra">
+    <h4>Thorndike: kutxa-arazoak eta efektuaren legea</h4>
+    <p>1898an, Edward Thorndikek katu gose bat kutxa batean sartu zuen. Kutxaren kanpoaldean janaria zegoen, eta katuak palanka bati eragin behar zion irteteko. Lehen aldietan, katuak ausaz mugitzen ziren, eta halabeharrez jotzen zuten palanka. Saiakeraz saiakera, irteteko denbora pixkanaka jaitsi zen, ez bat-batean. Thorndikek ondorioztatu zuen katuek ez zutela «ulertzen» kutxa nola zebilen: emaitza atsegina zekarten ekintzak sendotu egiten ziren, eta besteak ahuldu. Hori da <b>efektuaren legea</b>, eta ikaskuntza mota honi <b>saiakera-errorea</b> deritzo.</p>
+    <h4>Skinner: ondorioek moldatzen dute jokabidea</h4>
+    <p>B. F. Skinnerrek ideia hori sistematizatu zuen. <b>Kondizionamendu operantean</b>, organismoak jokabide bat egiten du eta haren ondorioek zehazten dute jokabide hori errepikatuko den ala ez. Ondorioak lau motatakoak izan daitezke:</p>
+    <table>
+      <tr><th></th><th>Zerbait <b>gehitzen</b> da</th><th>Zerbait <b>kentzen</b> da</th></tr>
+      <tr><th>Jokabidea <b>handitzen</b> da</th><td><b>Errefortzu positiboa</b>: txaloa, ona den nota, «like» bat</td><td><b>Errefortzu negatiboa</b>: alarma isiltzen da gerrikoa lotzean</td></tr>
+      <tr><th>Jokabidea <b>gutxitzen</b> da</th><td><b>Zigor positiboa</b>: isuna, errieta</td><td><b>Zigor negatiboa</b>: mugikorrik gabe asteburuan</td></tr>
+    </table>
+    <p><b>Moldaketa</b>: Skinnerrek usoei jokabide konplexuak irakatsi zizkien, jokabide horretara gero eta gehiago hurbiltzen ziren urratsak indartuz. Hori da zuek egin duzuena txaloekin. Errefortzua desagertzen bada, jokabidea pixkanaka itzaltzen da: <b>iraungitzea</b>. Errefortzua beti ematen ez bada, baizik eta noizean behin eta modu aurreikusezinean (<b>errefortzu aldakorra</b>), jokabidea oso iraunkorra bihurtzen da.</p>
+  </div>
+
+  <p class="pauso-etiketa">Analisia</p>
+  <ol class="pausoak" start="2">
+    <li class="bakarka">Irakurri dosierra.<span class="modua">Bakarka</span><span class="min">8 min</span></li>
+    <li class="taldean">Deskribatu jokoa kontzeptuekin: zer izan da errefortzua? Zein jokabide moldatu dira, eta zein urratsetan? Zer gertatuko litzateke txaloak bat-batean geldituko balira?<span class="modua">Taldean</span><span class="min">10 min</span></li>
+    <li class="bakarka">Bete 2×2 taula zure eguneroko adibide propioekin (dosierrekoak ez!). Ondoren, alderatu hirukotekideenekin: adibide guztiak ondo kokatuta daude?<span class="modua">Bakarka → taldean</span><span class="min">13 min</span></li>
+  </ol>
+  <div class="taula-ondo"><table>
+    <tr><th></th><th>Zerbait gehitzen da</th><th>Zerbait kentzen da</th></tr>
+    <tr><th>Jokabidea handitzen da</th><td class="hutsa"></td><td></td></tr>
+    <tr><th>Jokabidea gutxitzen da</th><td class="hutsa"></td><td></td></tr>
+  </table></div>
+
+  <div class="irteera"><p class="pauso-etiketa">Irteera-txartela · 4 min</p>1. Errefortzu negatiboa eta zigorra ez dira gauza bera. Azaldu zergatik, adibide batekin.<br>2. Boluntarioak jokabidea ikasi zuen. Araua ulertu zuen jokabidea ikasi aurretik, ala ondoren? Zer ondorioztatzen duzu horretatik?</div>
+</section>
+
+<!-- ============ S3 ============ -->
+<section class="atala" id="s3">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S3</span><span class="etiketa">1. kasua · Ikaskuntza kognitiboa</span><span class="denbora">50 min</span></div>
+  <h2>Sultan eta kaxak</h2>
+  <div class="fenomenoa">
+    <p>Lotu bederatzi puntuak <b>lau lerro zuzenekin</b>, arkatza paperetik altxatu gabe eta lerro batetik bitan pasatu gabe. Lau minutu dituzu, eta gero bi minutu hitz egiteko. Konpondu baduzu: nola etorri zaizu soluzioa? Ez baduzu konpondu: zerk blokeatu zaitu?</p>
+  </div>
+  <div class="puntuak" aria-label="Bederatzi puntu, 3x3 sarean"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="galdera-gidaria">Ikasteko beti saiatu eta huts egin behar al da, ala bat-batean uler daiteke?</div>
+
+  <p class="pauso-etiketa">Teoria</p>
+  <div class="dosierra">
+    <h4>Tenerifeko estazioa</h4>
+    <p>1912an, Prusiako Zientzia Akademiak antropoideak ikertzeko estazio bat ireki zuen Tenerifen, Puerto de la Cruzen. Wolfgang Köhler psikologo alemaniarra izan zen estazioaren zuzendaria 1914tik 1920ra. Bertan zeuden txinpantzeen artean, Sultan nabarmendu zen. Kamerunen harrapatu zuten, eta bost urte inguru zituen uhartera iritsi zenean.</p>
+    <h4>Esperimentuak</h4>
+    <p><b>Makilak.</b> Sultan kaiola barruan zegoen, eta banana bat kanpoan, besotik urrunegi. Bi makila zituen, baina bakoitza laburregia zen. Köhlerren kontakizunaren arabera, Sultanek denbora luzez egin zuen alferrikako saiakeretan. Gero, makilekin jolasean ari zela, bata bestearen barruan sartu zituen. Berehala joan zen barrotetara eta makila luzatuarekin erakarri zuen banana. Hurrengo aldietan ez zuen dudarik izan.</p>
+    <p><b>Kaxak.</b> Banana sabaitik zintzilik zegoen. Txinpantzeek kaxak mugitu eta bata bestearen gainean pilatu zituzten hara iristeko. Kaxarik ez zegoen gela batean, beste txinpantze batzuek mahai bat edo aulki bat erabili zuten.</p>
+    <h4>Köhlerren interpretazioa</h4>
+    <p>Köhlerrek <b>bat-bateko ulermena</b> (<i>insight</i>) deitu zion horri: animaliak arazoaren elementuak berregituratzen ditu eta haien arteko erlazioa «ikusten» du. Hiru ezaugarri bereizi zituen. Lehenik, soluzioa bat-batean agertzen da, ez pixkanaka. Bigarrenik, behin aurkituta, ia hutsik gabe errepikatzen da. Hirugarrenik, beste egoeretara transferitzen da (kaxarik ez badago, aulkia). Thorndikeren katuek, aldiz, pixkanaka ikasten zuten. Köhlerrek <i>Intelligenzprüfungen an Menschenaffen</i> argitaratu zuen 1917an.</p>
+    <h4>Muga bat</h4>
+    <p>1945ean, Herbert Birch-ek antzeko arazo bat aurkeztu zien makilekin inoiz jolastu ez zuten txinpantzeei, eta gehienek ez zuten ebatzi. Egun batzuetan makilekin jolastu ondoren, ordea, arazoa erraz konpondu zuten. Beraz, bat-bateko ulermena ez da hutsetik sortzen: aurretik ikasitakoaren gainean eraikitzen da.</p>
+    <p class="oharra">Estazioa 1920an itxi zen. Sultan Berlingo zoora eraman zuten, eta 1923an hil zen.</p>
+  </div>
+
+  <p class="pauso-etiketa">Analisia</p>
+  <ol class="pausoak">
+    <li class="bakarka">Irakurri dosierra. Markatu hiru koloretan: zer egin zuten, zer ikusi zuten eta zer interpretatu zuten.<span class="modua">Bakarka</span><span class="min">10 min</span></li>
+    <li class="bakarka">Bete <b>1. ebidentzia-orria</b>.<span class="modua">Bakarka</span><span class="min">15 min</span></li>
+    <li class="taldean">Adostu <b>hiru irizpide</b> galdera honi erantzuteko: <i>zer froga beharko genuke esateko norbaitek zerbait ulertu duela, eta ez soilik ikasi?</i> Gorde irizpideak: zuen esperimentuan eta txostenean erabiliko dituzue.<span class="modua">Taldean</span><span class="min">15 min</span></li>
+  </ol>
+
+  <div class="irteera"><p class="pauso-etiketa">Irteera-txartela · 4 min</p>Marraztu bi ikaskuntza-kurba (X ardatza: saiakerak; Y ardatza: arazoa ebazteko denbora): bata Thorndikeren katuena eta bestea Sultanena. Azaldu zertan diren desberdinak, esaldi batean.</div>
+</section>
+
+<!-- ============ S4 ============ -->
+<section class="atala" id="s4">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S4</span><span class="etiketa">2. kasua · Kondizionamendu operantea</span><span class="denbora">50 min</span></div>
+  <h2>Nim Chimpsky</h2>
+  <div class="fenomenoa">
+    <p>Hau da Nim txinpantzeak zeinu-hizkuntzan sortu zuen segidarik luzeena (16 zeinu):</p>
+    <div class="zitazioa">«Give orange me give eat orange me eat orange give me eat orange give me you»</div>
+    <p>(Eman laranja ni eman jan laranja ni jan laranja eman ni jan laranja eman ni zu.)</p>
+  </div>
+  <div class="galdera-gidaria">Errefortzuz ikas daiteke hizkuntza bat?</div>
+
+  <p class="pauso-etiketa">Teoria</p>
+  <div class="dosierra">
+    <h4>Eztabaida: Skinner eta Chomsky</h4>
+    <p>1957an, Skinnerrek <i>Verbal Behavior</i> argitaratu zuen. Haren ustez, hizkuntza beste edozein jokabide bezala ikasten da: errefortzuz. 1959an, Noam Chomsky hizkuntzalariak liburua gogor kritikatu zuen. Haurrek inoiz entzun ez dituzten esaldiak sortzen dituzte, eta gramatika ez da saririk gabe ikasten. Chomskyren ustez, gizakiok hizkuntzarako gaitasun biologiko berezi bat dugu. Herbert Terrace psikologoak Chomsky gezurtatu nahi zuen, eta txinpantze bati Nim Chimpsky izena jarri zion, txantxetan.</p>
+    <h4>Proiektua</h4>
+    <p>Nim 1973ko azaroan jaio zen Oklahoman. Egun gutxira, New Yorkera eraman zuten, LaFarge familiaren etxera, giza haur bat bezala hazteko. Terracek, Columbia Unibertsitatean, Amerikako zeinu-hizkuntza (ASL) irakatsi nahi zion. Urteetan, 60 bat zaintzaile ibili ziren Nimekin, gehienak ikasleak eta boluntarioak, eta gutxik zekiten zeinu-hizkuntza ondo. Zeinuak irakasteko sariak erabiltzen zituzten: janaria, jolasa, besarkadak. 1977ko irailean, Nimek 125 zeinu ezagutzen zituen.</p>
+    <h4>Datuak: Terrace eta lankideak (1979, <i>Science</i>)</h4>
+    <p>Terracek 19.000 esaldi baino gehiago eta grabazioak aztertu zituen. Hauek dira datu nagusiak:</p>
+    <table>
+      <tr><th>Neurketa</th><th>Nim</th><th>Gizakien haurrak</th></tr>
+      <tr><td>Esaldien batez besteko luzera (zeinuak / hitzak)</td><td><span class="datua">1,1–1,6</span>, ez zen hazi azken 19 hilabeteetan</td><td>Adinarekin hazten da</td></tr>
+      <tr><td>Irakaslearen aurreko esaldia imitatu edo laburtu</td><td><span class="datua">% 39</span></td><td><span class="datua">% 18</span> hasieran → <span class="datua">% 2</span> geroago</td></tr>
+      <tr><td>Irakaslearekin batera zeinuak egin (hitza moztuz)</td><td><span class="datua">% 71</span></td><td>Ia inoiz ez</td></tr>
+    </table>
+    <p>Terraceren ondorioa: «Ez dago arrazoirik tximino baten zeinu-segida bat esaldi gisa hartzeko». Haren ustez, Nimek irakasleak imitatzen zituen, sariak lortzeko. Terracek berak onartu zuen grabazioak aztertu arte ez zuela hori ikusi.</p>
+    <h4>Kontrako irakurketa</h4>
+    <p>Beste ikertzaile batzuen ustez, proiektuaren baldintzak kaotikoak izan ziren: zaintzaile asko, gutxik zekiten zeinu-hizkuntza eta Nim behin eta berriz aldatu zuten etxez. Beraz, emaitza negatiboak baldintza horien ondorio izan zitezkeen, eta ez txinpantzeen mugen ondorio.</p>
+    <h4>Nimen bizitza, proiektuaren ondoren</h4>
+    <p>1977an, proiektua amaitu zenean, Nim Oklahomara itzuli zuten, kaiola batera. 1980ko hamarkadaren hasieran, laborategi biomediko bati (LEMSIP) saldu zioten. Protesta publikoen ondorioz atera zuten handik. 1983tik aurrera, Texasko santutegi batean (Black Beauty Ranch) bizi izan zen, eta han hil zen 2000n, 26 urterekin.</p>
+    <h4>Fikzioa</h4>
+    <p><i>El origen del planeta de los simios</i> (2011) filmean, César txinpantzea giza familia batean hazten da, Nim bezala. Gaitasun kognitiboak handitzen dizkion farmako baten ondorioz, gizakiek bezala hitz egitera iristen da. 2011 urte berean estreinatu zen <i>Project Nim</i> dokumentala (James Marsh).</p>
+  </div>
+
+  <p class="pauso-etiketa">Analisia</p>
+  <ol class="pausoak">
+    <li class="taldean">Aztertu Nimen segida: esaldi bat al da? Zer behar du zeinu-segida batek esaldi bat izateko?<span class="modua">Taldean</span><span class="min">5 min</span></li>
+    <li class="bakarka">Irakurri dosierra eta erantzun: zer erakusten du esaldien luzerak? Zer esan nahi du % 39ak? Zer azalpen operante eman daiteke Nimen zeinuez?<span class="modua">Bakarka</span><span class="min">12 min</span></li>
+    <li class="taldean">César: ikusi irakasleak hautatutako pasartea. Bete bi zutabe: «Filmak erakusten duena» / «Nimen datuek diotena». Zer suposatzen du filmak adimenaz eta hizkuntzaz?<span class="modua">Taldean</span><span class="min">9 min</span></li>
+    <li class="bakarka">Bete <b>2. ebidentzia-orria</b>.<span class="modua">Bakarka</span><span class="min">12 min</span></li>
+    <li class="bakarka"><b>Etika</b>, idatziz eta hiru lerrotan: ikerketaren galderak justifikatzen al zuen Nimi gertatu zitzaiona? Zer baldintza ezarriko zenituzke zuk?<span class="modua">Bakarka</span><span class="min">5 min</span></li>
+  </ol>
+
+  <div class="irteera"><p class="pauso-etiketa">Irteera-txartela · 4 min</p>Nimek zeinuak ikasi zituen. Hizkuntza ikasi zuen? Erantzun dosierreko datu bat erabiliz.</div>
+</section>
+
+<!-- ============ S5 ============ -->
+<section class="atala" id="s5">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S5</span><span class="etiketa">3. kasua · Kondizionamendu klasikoa</span><span class="denbora">50 min</span></div>
+  <h2>Tximinoak eta sugeak</h2>
+  <div class="fenomenoa">
+    <p>Pentsatu janari batean. Jan ondoren gaixo egon zinen, eta geroztik ezin duzu jan, nahiz eta jakin agian janariak ez zuela errurik izan. Idatzi zure koadernoan zer janari zen eta zer sentitzen duzun orain hura usaintzean. <span class="pribatua">Ez da partekatu behar</span></p>
+  </div>
+  <div class="galdera-gidaria">Beldurrak eta nazkak ikasi egiten al dira? Eta edozeri ikas al diezaiokegu beldurra?</div>
+
+  <p class="pauso-etiketa">Teoria</p>
+  <div class="dosierra">
+    <h4>Pavlov: bi estimulu lotzea</h4>
+    <p>Ivan Pavlov fisiologo errusiarra txakurren digestioa ikertzen ari zen. Konturatu zen txakurrek listua botatzen zutela janaria iritsi aurretik, laguntzailearen pausoak entzutean. Kondizionamendu klasikoan, berez erantzunik sortzen ez duen estimulu bat erantzun bat sortzen duen beste estimulu batekin lotzen da:</p>
+    <table>
+      <tr><th>Aurretik</th><th>Kondizionamenduan</th><th>Ondoren</th></tr>
+      <tr><td>Txirrina (EN) → ezer ez<br>Janaria (BGE) → listua (BGEr)</td><td>Txirrina (EN) + janaria (BGE) → listua (BGEr), behin eta berriz</td><td>Txirrina (EB) → listua (EBr)</td></tr>
+    </table>
+    <p>Erantzun baldintzatua antzeko estimuluetara zabal daiteke (<b>orokortzea</b>). Estimulu baldintzatua janaririk gabe behin eta berriz agertzen bada, erantzuna ahultzen da (<b>iraungitzea</b>).</p>
+    <h4>Watson eta Rayner (1920): «Albert txikia»</h4>
+    <p>John B. Watsonek 11 hilabeteko haur bati arratoi zuri bat erakutsi zion, eta haurrak ukitzen zuen bakoitzean, zarata ikaragarri bat egin zuen haren atzean. Laster, haurrak arratoiaren beldurra zuen, baita beste gauza iletsu batzuena ere (orokortzea). Gaur egun, esperimentu hori ez litzateke onartuko: ez zuten benetako baimen informaturik eskatu, haurrari kalte egin zioten eta ez zuten beldurra desegin.</p>
+    <h4>Garcia: lotura batzuk errazagoak dira</h4>
+    <p>1960ko hamarkadan, John Garciak eta haren lankideek frogatu zuten arratoiek erraz lotzen dituztela zapore bat eta gaixotasuna, saiakera bakar batean eta orduak igaro ondoren ere. Argi bat edo soinu bat gaixotasunarekin lotzea, ordea, askoz zailagoa da. Martin Seligmanek <b>prestutasun biologikoa</b> deitu zion horri: eboluzioak erraztu egiten ditu lotura batzuk (zaporea eta gaixotasuna, sugea eta arriskua) eta zaildu beste batzuk. Agian horregatik izan zaitezke zu zure janariarekin.</p>
+    <h4>Mineka: beldurra besteei begiratuz ikasten da</h4>
+    <p>Basatian hazitako rhesus tximinoek sugeen beldurra dute. Laborategian hazitakoek, ordea, ez. Susan Minekak eta haren taldeak frogatu zuten laborategiko tximinoek beldur hori ikas zezaketela beste tximino bat sugearen aurrean beldurtuta ikusiz. Ez zen behar sugeak inolako kalterik egitea.</p>
+    <p><b>Cook eta Mineka (1989).</b> Bideo-grabazioak editatu zituzten: eredu-tximinoen beldur-erreakzioa berdina zen, baina erreakzioaren aurrean ageri zen objektua aldatu zuten. Talde batek ikusi zuen ereduak <b>suge-jostailu</b> baten beldur zirela; beste batek, <b>lore</b> batzuen beldur. Bigarren esperimentu batean, krokodilo-jostailu bat eta untxi-jostailu bat erabili zituzten.</p>
+    <p><b>Emaitzak:</b> tximinoek sugearen eta krokodiloaren beldurra ikasi zuten, baina ez loreena, ezta untxiarena ere. Ikertzaileen interpretazioa: beldurra behaketa bidez ikas daiteke, baina ez edozein objekturi. Prestutasun biologikoaren alde egiten du.</p>
+    <p class="oharra">Fobiak eta haien tratamendua 12. gaian landuko dira. Gaur ikaskuntza-mekanismoa aztertuko dugu, ez nahasmendua.</p>
+  </div>
+
+  <p class="pauso-etiketa">Analisia</p>
+  <ol class="pausoak">
+    <li class="bakarka">Irakurri dosierra.<span class="modua">Bakarka</span><span class="min">10 min</span></li>
+    <li class="bakarka">Identifikatu terminologia hiru kasutan. Hirugarrena pribatua da.<span class="modua">Bakarka</span><span class="min">8 min</span></li>
+  </ol>
+  <div class="taula-ondo"><table>
+    <tr><th></th><th>EN</th><th>BGE</th><th>BGEr</th><th>EB</th><th>EBr</th></tr>
+    <tr><td>Albert txikia</td><td class="hutsa"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Minekaren tximinoa</td><td class="hutsa"></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Zure janaria <span class="pribatua">pribatua</span></td><td class="hutsa"></td><td></td><td></td><td></td><td></td></tr>
+  </table></div>
+  <ol class="pausoak" start="3">
+    <li class="taldean">Zergatik ez zuten loreen beldurra ikasi? Proposatu bi azalpen, eta esan zer datu beharko zenuketen bata ala bestea aukeratzeko.<span class="modua">Taldean</span><span class="min">10 min</span></li>
+    <li class="bakarka">Bete <b>3. ebidentzia-orria</b>.<span class="modua">Bakarka</span><span class="min">12 min</span></li>
+  </ol>
+  <p class="oharra">Gaur rolak txandakatzen dira.</p>
+
+  <div class="irteera"><p class="pauso-etiketa">Irteera-txartela · 4 min</p>Minekaren tximinoek beldurra ikasi zuten, sugeak inolako kalterik egin gabe. Zer esan nahi du horrek kondizionamendu klasikoaz? Ikasten al da beti norberaren esperientzia zuzenetik?</div>
+</section>
+
+<!-- ============ S6 ============ -->
+<section class="atala" id="s6" style="--bloke-nagusia:var(--psi-bloke3);--bloke-argia:var(--psi-bloke3-argia)">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S6</span><span class="etiketa morea">4. kasua · Behaketa bidezko ikaskuntza</span><span class="denbora">50 min</span></div>
+  <h2>Kutxara itzuli</h2>
+  <div class="fenomenoa">
+    <p>Atera S1eko behaketa-orria eta zuen aurreikuspena. Gaur jakingo duzue zer gertatu zen txinpantzeekin eta haurrekin, eta helduekin ere bai.</p>
+  </div>
+  <div class="galdera-gidaria">Zergatik kopiatzen dugu, alferrikakoa dela dakigunean ere?</div>
+
+  <p class="pauso-etiketa">Teoria</p>
+  <div class="dosierra morea">
+    <h4>Bandura: besteei begiratuz ikastea</h4>
+    <p>Albert Bandurak frogatu zuen (Bobo panpina, 1961) haurrek ereduen jokabideak ikasten dituztela, nahiz eta inork ez dien saririk eman. Behaketa bidezko ikaskuntzak lau prozesu behar ditu: <b>arreta</b> (ereduari begiratzea), <b>atxikipena</b> (gogoratzea), <b>erreprodukzioa</b> (egiteko gai izatea) eta <b>motibazioa</b> (egin nahi izatea).</p>
+    <h4>Bi modutan kopia daiteke</h4>
+    <p><b>Imitazioa</b>: ereduaren ekintzak kopiatzea, urratsez urrats. <b>Emulazioa</b>: emaitza kopiatzea (kutxa irekitzea) eta bidea norberak asmatzea.</p>
+    <h4>Horner eta Whiten (2005)</h4>
+    <p>Parte-hartzaileak: Ugandako Ngamba uharteko santutegiko 12 txinpantze (2-6 urte) eta Eskoziako 16 haur (3-4 urte). Kutxak bi «defentsa» zituen: goiko zulo bat, ezertarako balio ez zuena (barruan hesi bat zegoen), eta aurreko ate bat, saria zegoen hodira zeramana. Ereduak bi ekintzak egin zituen. Kutxaren bi bertsio zeuden: <b>opakoa</b>, goiko zuloa alferrikakoa zela ikusi ezin zena, eta <b>gardena</b>, ikus zitekeena.</p>
+    <table>
+      <tr><th>Alferrikako ekintzak (mediana)</th><th>Kutxa opakoa</th><th>Kutxa gardena</th></tr>
+      <tr><td>Txinpantzeak</td><td><span class="datua">% 59</span></td><td><span class="datua">% 6</span></td></tr>
+      <tr><td>Haurrak</td><td><span class="datua">% 71</span></td><td><span class="datua">% 80</span></td></tr>
+    </table>
+    <p class="oharra">Datuak lehenik kutxa opakoa ikusi zuten taldeenak dira. Kutxa gardena lehenik ikusi zuten txinpantzeek ia ez zuten alferrikako ekintzarik egin, ezta gero kutxa opakoarekin ere.</p>
+    <h4>Lyons, Young eta Keil (2007)</h4>
+    <p>3-5 urteko haurrei ekintza «tontoak» identifikatzen irakatsi zieten. Gero, esplizituki esan zieten: «Egin behar duzuna bakarrik egin». Hala ere, alferrikako ekintzak kopiatzen jarraitu zuten.</p>
+    <h4>McGuigan, Makinson eta Whiten (2011)</h4>
+    <p>Kutxa gardena erabili zuten haurrekin eta helduekin. Helduek haurrek baino <b>gehiago</b> kopiatu zituzten alferrikako ekintzak, eta denbora gehiago behar izan zuten. Adin guztietan, gehiago kopiatu zuten eredua heldu bat zenean haur bat zenean baino.</p>
+    <h4>Hiru azalpen (ez dira elkarren aurkakoak)</h4>
+    <p><b>A. Kodetze kausal automatikoa</b> (Lyons): helduaren ekintza nahita egina denez, kausa gisa kodetzen dugu automatikoki. Ondorioz, gaizki ulertzen dugu kutxa nola dabilen.<br>
+    <b>B. Arrazoi soziala</b>: ereduarekin lotzea, «horrela egiten da» onartzea. 10. gaian sakonduko dugu.<br>
+    <b>C. Kultura-ikaskuntza</b>: zehatz kopiatzeak aukera ematen du prozedura konplexuak belaunaldiz belaunaldi transmititzeko (errezetak, teknikak, erritualak), haien zergatia ulertu gabe ere.</p>
+  </div>
+
+  <p class="pauso-etiketa">Analisia</p>
+  <ol class="pausoak">
+    <li class="taldean">Alderatu zuen S1eko datuak eta aurreikuspena ikerketen emaitzekin. Zertan datoz bat? Zertan ez? Zergatik ez dira zuzenean konparagarriak (lagina, adina, saria, egoera)?<span class="modua">Taldean</span><span class="min">10 min</span></li>
+    <li class="bakarka"><b>Emaitza, interpretazioa ala gehiegizko orokortzea?</b> Sailkatu esaldi bakoitza (E / I / GO).<span class="modua">Bakarka</span><span class="min">6 min</span></li>
+  </ol>
+  <div class="taula-ondo"><table>
+    <tr><th>Esaldia</th><th>E / I / GO</th></tr>
+    <tr><td>a) Kutxa gardenarekin, txinpantzeek alferrikako ekintzen % 6 egin zuten.</td><td></td></tr>
+    <tr><td>b) Txinpantzeak haurrak baino adimentsuagoak dira.</td><td></td></tr>
+    <tr><td>c) Haurrek ekintzak kopiatu zituzten, kutxa gardena izan arren.</td><td></td></tr>
+    <tr><td>d) Haurrek uste dute helduaren ekintza guztiek badutela helburu bat.</td><td></td></tr>
+    <tr><td>e) Gizakiok ez dugu ezer ulertzen; dena kopiatzen dugu.</td><td></td></tr>
+    <tr><td>f) Gehiegizko imitazioak kultura transmititzen laguntzen du.</td><td></td></tr>
+  </table></div>
+  <ol class="pausoak" start="3">
+    <li class="taldean">Hiru azalpenetatik, zein da sinesgarriena zuen S1eko datuen arabera? Zer datu falta zaizue erabakitzeko?<span class="modua">Taldean</span><span class="min">10 min</span></li>
+    <li class="bakarka">Bete <b>4. ebidentzia-orria</b>.<span class="modua">Bakarka</span><span class="min">12 min</span></li>
+    <li class="taldean">Aukeratu S7rako protokoloa (A, B edo C) eta irakurri.<span class="modua">Taldean</span><span class="min">3 min</span></li>
+  </ol>
+
+  <div class="irteera"><p class="pauso-etiketa">Irteera-txartela · 4 min</p>Bereizi imitazioa eta emulazioa, zure bizitzako adibide banarekin (kirola, sukaldaritza, ikasketak...).</div>
+</section>
+
+<!-- ============ S7 ============ -->
+<section class="atala" id="s7" style="--bloke-nagusia:var(--psi-proiektua);--bloke-argia:var(--psi-proiektua-argia)">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S7</span><span class="etiketa laranja">Gure esperimentua</span><span class="denbora">50 min</span></div>
+  <h2>Gure esperimentua</h2>
+  <div class="fenomenoa"><p>Orain arte besteen datuak irakurri dituzue. Gaur zuek sortuko dituzue. Lagina txikia izango da eta ez du ezer frogatuko. Hala ere, ikertzaileek bizi dituzten arazoak bizi izango dituzue.</p></div>
+  <div class="galdera-gidaria">Gelan bertan froga dezakegu ikasten dugula ulertu gabe?</div>
+
+  <p class="pauso-etiketa">Aukeratu protokolo bat</p>
+  <div class="dosierra">
+    <h4>A · Alferrikako urratsa (imitazioa)</h4>
+    <p>Asmatu zeregin labur bat (paperezko figura bat tolestea, ontzi bat irekitzea, puzzle txiki bat egitea) eta sartu alferrikako urrats bat (adibidez, mahaian hiru aldiz kolpatzea). <b>Aldagai independentea</b>: alferrikako urratsa erakusten duzuenean, «Hau ez da beharrezkoa» esaten duzue (1. baldintza), edo ezer ez (2. baldintza). <b>Mendeko aldagaia</b>: parte-hartzaileak urratsa errepikatzen duen (bai/ez).</p>
+    <h4>B · Moldaketa (operantea)</h4>
+    <p>Moldatu jokabide sinple bat txalo bidez, S2an bezala, baina banaka eta mahai baten inguruan (adibidez, boligrafo jakin bat hartu eta ezkerreko eskuan jartzea). <b>Aldagai independentea</b>: hasieran pista bat ematen da («Eskuekin du zerikusia») ala ez. <b>Mendeko aldagaiak</b>: zenbat txalo behar diren jokabidea lortzeko, eta parte-hartzaileak araua azaltzeko gai den amaieran (bai/ez).</p>
+    <h4>C · Prozedura vs ulermena (kognitiboa)</h4>
+    <p>Irakatsi 11z biderkatzeko trikimailua (23 × 11: 2 | 2+3 | 3 → 253). 1. baldintzan, urratsak bakarrik irakasten dira. 2. baldintzan, zergatik funtzionatzen duen ere bai (23 × 11 = 23 × 10 + 23). <b>Mendeko aldagaia</b>: transferentzia-ariketa bat ebazten duten (adibidez, 78 × 11, non bururakoa dagoen).</p>
+  </div>
+
+  <p class="pauso-etiketa">Pausoak</p>
+  <ol class="pausoak">
+    <li class="taldean">Bete esperimentu-fitxa: hipotesia, aldagaiak eta prozedura zehatza (zer esango duzuen hitzez hitz). Pasatu etika-kontrola eta lortu irakaslearen onespena.<span class="modua">Taldean</span><span class="min">15 min</span></li>
+    <li class="taldean"><b>Datu-bilketa, hiru txandatan</b> (8 min txanda bakoitza). Txanda bakoitzean, kide bat esperimentatzaile gisa geratzen da eta beste biak beste hirukote batera joaten dira parte-hartzaile gisa (irakasleak adieraziko du nora). Gutxienez 6 parte-hartzaile, 3 baldintza bakoitzeko.<span class="modua">Taldean</span><span class="min">25 min</span></li>
+    <li class="taldean">Bildu datuak taulan eta idatzi lehen irakurketa bat: zer ikusi duzue? Zer ezin duzue ondorioztatu?<span class="modua">Taldean</span><span class="min">10 min</span></li>
+  </ol>
+
+  <h3>Etika-kontrola</h3>
+  <ul class="kontrol-zerrenda">
+    <li>Parte-hartzaileek badakite esperimentu batean daudela, eta uko egin dezakete.</li>
+    <li>Ez dago kalte fisiko edo emozionalik, ezta inor barregarri uzteko arriskurik ere.</li>
+    <li>Helburuaren zati bat ezkutatzen bada, amaieran azaltzen da.</li>
+    <li>Datuak anonimoak dira (P1, P2...).</li>
+    <li>Gelakideekin bakarrik egiten da: ez ikastetxeko haur txikiekin, ez senideekin.</li>
+    <li>Ez dago janari-saririk (alergiak).</li>
+    <li>Irakasleak protokoloa onartu du.</li>
+  </ul>
+  <div class="produktua"><div><b>Produktua · Esperimentu-fitxa</b> (taldekoa; txantiloia amaieran). Txostenaren 3. atala izango da.</div></div>
+</section>
+
+<!-- ============ S8 ============ -->
+<section class="atala" id="s8">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S8</span><span class="etiketa">Ondorioak</span><span class="denbora">50 min</span></div>
+  <h2>Ondorioak eraiki</h2>
+  <div class="galdera-gidaria">Zer esan dezakegu ziur, zer ez, eta zergatik?</div>
+
+  <ol class="pausoak">
+    <li class="bakarka"><b>Banakako sintesia.</b> Isilik, zure oharrak eta ebidentzia-orriak erabilita. Erantzun 250-300 hitzetan: <i>ikasten duguna ulertzen al dugu?</i> Aipatu gutxienez hiru kasu (horietako bat zuen esperimentua izan daiteke). Saio amaieran entregatuko duzu.<span class="modua">Bakarka</span><span class="min">18 min</span></li>
+    <li class="taldean">Irakurri hiruren sintesiak eta eraiki <b>hiru ondorio garbi</b> anatomia honekin:<span class="modua">Taldean</span><span class="min">22 min</span></li>
+  </ol>
+  <div class="anatomia">
+    <div><b>Ondorioa</b>Esaldi bakarra, baieztapen zehatza.</div>
+    <div><b>Ebidentzia</b>Gutxienez bi kasu, datu zehatzekin.</div>
+    <div><b>Mekanismoa</b>Zein ikaskuntza-mota dagoen jokoan.</div>
+    <div><b>Muga</b>Zer ez dugun frogatu eta noraino orokor daitekeen.</div>
+  </div>
+  <div class="adibide-txarra"><b>Ahula:</b> «Gizakiok gehiago imitatzen dugu». Gehiago nork baino? Zein ebidentziarekin? Zer mekanismo? Zer muga?</div>
+  <div class="adibide-ona"><b>Garbia:</b> «Gizakiok ekintzak kopiatzen ditugu, ezertarako balio ez dutela ikus dezakegunean ere. Horner eta Whitenen kutxa gardenarekin, haurrek alferrikako ekintzen % 80 kopiatu zuten, eta txinpantzeek % 6; McGuiganen ikerketan, helduek are gehiago kopiatu zuten. Behaketa bidezko ikaskuntza da, baina ez du eraginkortasuna bilatzen. Muga: laginak txikiak dira eta egoera artifizialak».</div>
+  <ol class="pausoak" start="3">
+    <li class="taldean">Erakutsi zuen hiru ondorioak irakasleari (2 min hirukote bakoitzeko) eta zuzendu behar dena.<span class="modua">Taldean</span><span class="min">jarduerarekin batera</span></li>
+    <li class="taldean">Banatu txostenaren atalak eta adostu aurkezpenaren gidoia.<span class="modua">Taldean</span><span class="min">10 min</span></li>
+  </ol>
+
+  <h3>Ikerketa-txostena · 1.500-2.000 hitz</h3>
+  <table>
+    <tr><th>Atala</th><th>Edukia</th><th>Hitzak</th></tr>
+    <tr><td>1. Galdera eta hipotesiak</td><td>Ikerketaren galdera eta S1eko hipotesiak</td><td>~150</td></tr>
+    <tr><td>2. Lau kasuak</td><td>Kasu bakoitzeko: diseinua, emaitzak (datuekin), interpretazioa eta mekanismoa. Ebidentzia-orrietatik abiatuta.</td><td>~800</td></tr>
+    <tr><td>3. Gure esperimentua</td><td>Hipotesia, aldagaiak, prozedura, datuak, mugak</td><td>~300</td></tr>
+    <tr><td>4. Hiru ondorio</td><td>Anatomiarekin: ondorioa, ebidentzia, mekanismoa, muga</td><td>~450</td></tr>
+    <tr><td>5. Eta guk?</td><td><i>Noiz da adimentsua ulertu gabe imitatzea, eta noiz ez?</i> Bi adibide erreal (ikasketak, kirola, lana, sare sozialak...), moralizatu gabe</td><td>~200</td></tr>
+    <tr><td>6. Iturriak</td><td>Erabilitako ikerketak eta dosierrak</td><td>—</td></tr>
+  </table>
+  <p class="oharra">Adimen artifiziala erabil dezakezue iturriak ulertzeko edo testua berrikusteko, baina txostenean idatzitako guztia ahoz defendatu beharko duzue, eta zozketaz erabakiko da nork zer defendatzen duen. Irakasleak adieraziko du entrega-data.</p>
+</section>
+
+<!-- ============ S9 ============ -->
+<section class="atala" id="s9">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S9</span><span class="saio-zenbakia">S10</span><span class="etiketa laranja">Aurkezpena eta defentsa</span><span class="denbora">2 × 50 min</span></div>
+  <h2>Ondorioak defendatu</h2>
+  <div class="galdera-gidaria">Zuen ondorioek eusten diote besteen galderen aurrean?</div>
+
+  <div class="bi-zutabe">
+    <div class="dosierra">
+      <h4>Aurkezpena · 4 minutu</h4>
+      <p>30 segundo: galdera eta hasierako hipotesia.<br>2 min 30 s: hiru ondorioak, anatomiarekin.<br>1 min: <i>Eta guk?</i></p>
+      <p class="oharra">Gehienez lau diapositiba. Testu gutxi; datu bat ondorio bakoitzeko.</p>
+    </div>
+    <div class="dosierra">
+      <h4>Zozketa · 1 min 30 s</h4>
+      <p>Irakasleak hirukoteko kide bat eta txartel bat aterako ditu: kasu bat (1-4 edo zuen esperimentua) eta galdera mota bat (<i>diseinua</i>, <i>emaitzak</i>, <i>mekanismoa</i> edo <i>muga</i>). Oharrik gabe erantzun behar da.</p>
+    </div>
+  </div>
+
+  <h3 id="s10">Bi saiotan</h3>
+  <div class="taula-ondo"><table>
+    <tr><th></th><th>S9</th><th>S10</th></tr>
+    <tr><td>Aurkezpenak eta zozketa</td><td>Hirukoteen erdia · 28 min</td><td>Beste erdia · 28 min</td></tr>
+    <tr><td>Galdera kritikoak</td><td>Talde bakoitzak jasotako txartelak irakurri eta erantzuna prestatu · 15 min</td><td>Erantzunak, ozenki · 12 min</td></tr>
+    <tr><td>Itxiera</td><td>Antolaketa eta txandak · 7 min</td><td>Galdera irekiaren eztabaida · 10 min</td></tr>
+  </table></div>
+  <ol class="pausoak">
+    <li class="taldean"><b>Entzuleak.</b> Hirukote bakoitzak beste talde baten aurkezpena jarraitzen du eta <b>galdera kritiko bat</b> idazten du txartel batean («Zuen X ondorioak ebidentzia gehiago behar du...», «Z kasuak kontraesaten du...»). Txartela talde horri ematen zaio.<span class="modua">Taldean</span></li>
+  </ol>
+  <div class="galdera-irekia"><p class="pauso-etiketa">Galdera irekia</p>Kultura ulertu gabe ikasitakoaren gainean eraikita badago, gainbalioesten ari al gara ulertzea? Edo, alderantziz, horregatik da hain beharrezkoa?</div>
+</section>
+
+<!-- ============ TXANTILOIAK ============ -->
+<section class="atala" id="txantiloiak">
+  <h2>Txantiloiak</h2>
+  <p class="oharra">Inprimatu edo kopiatu zuen dokumentura. Ebidentzia-orria lau aldiz beteko duzue, kasu bakoitzeko behin.</p>
+
+  <h3>Ebidentzia-orria · __ . kasua: ____________________</h3>
+  <div class="koadroa"><b>1. Zer galderari erantzun nahi zion ikerketak?</b></div>
+  <div class="koadroa handia"><b>2. Zer egin zuten? (diseinua)</b><small>Nor izan ziren parte-hartzaileak, zer baldintza zeuden, zer neurtu zen</small></div>
+  <div class="koadroa handia"><b>3. Zer aurkitu zuten? (emaitzak)</b><small>Gutxienez datu zehatz bat</small></div>
+  <div class="koadroa"><b>4. Nola interpretatu zuten?</b><small>Eta ados zaude? Ba al dago beste interpretaziorik?</small></div>
+  <div class="koadroa"><b>5. Zein ikaskuntza-mekanismo dago jokoan?</b><small>Erabili gutxienez bi kontzeptu-gutxieneko</small></div>
+  <div class="koadroa"><b>6. Muga bat edo zalantza bat</b></div>
+  <div class="koadroa"><b>7. Zer dio kasu honek gure galderaz: ikasten duguna ulertzen al dugu?</b></div>
+
+  <h3>Hipotesi-orria (S1)</h3>
+  <div class="koadroa"><b>1. hipotesia</b><small>Zer gertatu da · zergatik · zer behaketak frogatuko luke</small></div>
+  <div class="koadroa"><b>2. hipotesia</b></div>
+  <div class="koadroa"><b>3. hipotesia</b></div>
+  <div class="koadroa"><b>Aurreikuspena</b><small>Txinpantzeak, kutxa opakoarekin / gardenarekin · Haurrak, kutxa opakoarekin / gardenarekin</small></div>
+
+  <h3>Esperimentu-fitxa (S7)</h3>
+  <div class="koadroa"><b>Protokoloa eta hipotesia</b></div>
+  <div class="bi-zutabe">
+    <div class="koadroa"><b>Aldagai independentea (baldintzak)</b></div>
+    <div class="koadroa"><b>Mendeko aldagaia (zer neurtzen dugu)</b></div>
+  </div>
+  <div class="koadroa handia"><b>Prozedura, hitzez hitz</b></div>
+  <div class="taula-ondo"><table>
+    <tr><th>Parte-hartzailea</th><th>Baldintza</th><th>Emaitza</th><th>Oharrak</th></tr>
+    <tr><td>P1</td><td></td><td></td><td></td></tr><tr><td>P2</td><td></td><td></td><td></td></tr><tr><td>P3</td><td></td><td></td><td></td></tr>
+    <tr><td>P4</td><td></td><td></td><td></td></tr><tr><td>P5</td><td></td><td></td><td></td></tr><tr><td>P6</td><td></td><td></td><td></td></tr>
+  </table></div>
+  <div class="koadroa"><b>Lehen irakurketa eta mugak</b></div>
+</section>
+
+<!-- ============ EBALUAZIOA ============ -->
+<section class="atala" id="ebaluazioa">
+  <h2>Ebaluazioa</h2>
+  <div class="taula-ondo"><table>
+    <tr><th>Zer</th><th>Nork</th><th>Pisua</th></tr>
+    <tr><td>Ebidentzia-orriak (4)</td><td>Bakarka</td><td>% 20</td></tr>
+    <tr><td>Banakako sintesia (S8)</td><td>Bakarka</td><td>% 15</td></tr>
+    <tr><td>Zozketa bidezko ahozko egiaztapena (S9-S10)</td><td>Bakarka</td><td>% 20</td></tr>
+    <tr><td>Ikerketa-txostena (esperimentua barne)</td><td>Hirukotean</td><td>% 30</td></tr>
+    <tr><td>Aurkezpena</td><td>Hirukotean</td><td>% 15</td></tr>
+  </table></div>
+  <p class="oharra">Irteera-txartelek ez dute notarik: zuek eta irakasleak zer ulertu den eta zer ez jakiteko dira.</p>
+
+  <h3>Txostenaren eta aurkezpenaren errubrika</h3>
+  <p class="oharra">Aurkezpenaren estetikak ez du punturik ematen. Zer dakizuen eta nola arrazoitzen duzuen baloratzen da.</p>
+  <div class="taula-ondo"><table>
+    <tr><th>Irizpidea</th><th>Hasiberria</th><th>Garatzen</th><th>Lortua</th><th>Bikaina</th></tr>
+    <tr><td><b>Zehaztasun enpirikoa</b></td><td>Kasuak orokorrean kontatzen dira, daturik gabe</td><td>Diseinua edo emaitzak deskribatzen dira, ez biak</td><td>Diseinua eta emaitzak zuzen, datuekin</td><td>Gainera, xehetasun garrantzitsuak (baldintzak, lagina) erabiltzen dira argudiatzeko</td></tr>
+    <tr><td><b>Kontzeptuen aplikazioa</b></td><td>Terminoak ageri dira, baina gaizki erabiliak</td><td>Mekanismoa identifikatzen da, baina azaldu gabe</td><td>Kasu bakoitzean mekanismoa zuzen identifikatu eta azaltzen da</td><td>Mekanismoak alderatzen dira eta haien mugak erakusten</td></tr>
+    <tr><td><b>Emaitza / interpretazioa</b></td><td>Nahastu egiten dira</td><td>Batzuetan bereizten dira</td><td>Beti bereizten dira</td><td>Interpretazio alternatiboak ebaluatzen dira</td></tr>
+    <tr><td><b>Ondorioen argitasuna</b></td><td>Iritziak dira, ez ondorioak</td><td>Ondorioak bai, baina ebidentzia ahularekin</td><td>Hiru ondorioak anatomia osoarekin</td><td>Gainera, ondorioak elkarren artean lotzen dira galdera nagusiari erantzuteko</td></tr>
+    <tr><td><b>Transferentzia (Eta guk?)</b></td><td>Moralizatu egiten da edo ez dago</td><td>Adibide orokorrak</td><td>Bi adibide erreal, mekanismoarekin lotuak</td><td>Adibideek «noiz bai, noiz ez» bereizten dute arrazoiekin</td></tr>
+    <tr><td><b>Defentsa (aurkezpena)</b></td><td>Irakurri egiten da</td><td>Azaltzen da, baina galderek blokeatzen dute</td><td>Argi azaltzen da eta galderei erantzuten zaie</td><td>Galdera kritikoak argudiatzeko erabiltzen dira</td></tr>
+  </table></div>
+
+  <h3>Iturriak</h3>
+  <p class="oharra">Birch, H. G. (1945). <i>J. Comp. Psychol.</i>, 38 · Cook, M. eta Mineka, S. (1989). <i>J. Abnorm. Psychol.</i>, 98(4) · Garcia, J. eta Koelling, R. (1966). <i>Psychon. Sci.</i>, 4 · Horner, V. eta Whiten, A. (2005). <i>Animal Cognition</i>, 8, 164-181 · Köhler, W. (1917). <i>Intelligenzprüfungen an Menschenaffen</i> · Lyons, D., Young, A. eta Keil, F. (2007). <i>PNAS</i>, 104(50) · McGuigan, N., Makinson, J. eta Whiten, A. (2011). <i>Br. J. Psychol.</i>, 102 · Terrace, H. eta lank. (1979). <i>Science</i>, 206, 891-902 · Thorndike, E. (1898). <i>Animal Intelligence</i> · Watson, J. eta Rayner, R. (1920). <i>J. Exp. Psychol.</i>, 3</p>
+</section>
+
+<footer>Psikologia · 2. Batxilergoa · UD04 Ikaskuntza, psikologiatik · Ikerketa-proiektua</footer>
+</main>
+</body>
+</html>
