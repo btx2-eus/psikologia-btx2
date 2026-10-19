@@ -381,10 +381,9 @@ svg:has(> use) { width: 1.2em; height: 1.2em; vertical-align: middle; }
 .fitxa-botoia.is-aktibo { background: var(--lente, var(--urdin)); border-color: var(--lente, var(--urdin)); color: #fff; }
 
 .eskola-edukia {
-  display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t);
+  display: none;
 }
-.eskola-edukia > div { overflow: hidden; }
-.eskola-txartela.is-zabalik .eskola-edukia { grid-template-rows: 1fr; }
+.eskola-txartela.is-zabalik .eskola-edukia { display: block; }
 .eskola-panela { padding-top: 1rem; }
 .eskola-panela h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--lente, var(--ink-3)); margin: 0 0 .25rem; }
 .eskola-panela p { font-size: .92rem; color: var(--ink-2); margin: 0 0 .8rem; }
