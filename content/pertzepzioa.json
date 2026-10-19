@@ -261,23 +261,27 @@
       },
       "denborak": [
         {
+          "min": "10",
+          "egitekoa": "Ikusi ondoren: datua ≠ esanahia, berrespen-joera, ruminazioa eta Liamen zikloa (aurkezpenean)"
+        },
+        {
           "min": "5",
           "egitekoa": "Lehen tesia: galdera nagusiari erantzun provisionala (taldeak 3–4 ikasle, rolak banatuta)"
         },
         {
-          "min": "20",
+          "min": "15",
           "egitekoa": "3 eszena: froga zehatzak aukeratu eta froga-taula osatu"
         },
         {
           "min": "10",
-          "egitekoa": "Mapa psikologikoa: gutxienez 4 kontzeptu frogekin lotu (berrespen-joera, ruminazioa…)"
+          "egitekoa": "Mapa psikologikoa: gutxienez 4 kontzeptu frogekin lotu"
         },
         {
-          "min": "10",
+          "min": "7",
           "egitekoa": "Kontrargudioa: zer esango luke aurkako talde batek?"
         },
         {
-          "min": "5",
+          "min": "3",
           "egitekoa": "Checkpoint: tesia eta frogak irakaslearekin egiaztatu"
         }
       ]
