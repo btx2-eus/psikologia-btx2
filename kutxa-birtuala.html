@@ -61,11 +61,14 @@
 
     /* ===== ESPERIMENTUA ===== */
     .agertokia { position: relative; background: #fff; border: 1px solid var(--lerro); border-radius: 16px; overflow: hidden; }
-    .agertokia svg { display: block; width: 100%; height: auto; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+    .agertokia svg { display: block; width: 100%; height: auto; touch-action: none; user-select: none; -webkit-user-select: none; }
     .agertokia.arkatza-eskuan svg { cursor: none; }
     .mezua { position: absolute; top: .8rem; left: 50%; transform: translateX(-50%); font-family: var(--f-izen); font-weight: 900; font-size: clamp(1.1rem, 3.5vw, 1.6rem); color: var(--urdin); background: rgba(255,255,255,.92); border: 1px solid var(--lerro); border-radius: 999px; padding: .35rem 1.2rem; width: max-content; max-width: calc(100% - 2rem); text-align: center; pointer-events: none; transition: opacity .4s; }
     .mezua.ezkutu { opacity: 0; }
     .denbora-barra { position: absolute; left: 0; bottom: 0; height: 4px; background: var(--gaia); width: 0; opacity: .5; }
+    .utzi { position: absolute; top: .5rem; right: .5rem; width: 2rem; height: 2rem; border-radius: 999px; border: 1px solid var(--lerro); background: rgba(255,255,255,.85); color: var(--ink-3); font-size: 1.1rem; line-height: 1; cursor: pointer; }
+    .utzi:hover { color: var(--abisu); border-color: #E2B8A5; }
+    .abisua { background: #FBE9E1; border: 1px solid #E2B8A5; color: #7A3418; border-radius: 10px; padding: .6rem .9rem; font-size: .9rem; margin: 0 0 1rem; }
     .eskuan { position: absolute; right: .8rem; bottom: .7rem; font-size: .8rem; color: var(--ink-3); pointer-events: none; }
 
     .amaiera { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; background: rgba(252,250,245,.94); text-align: center; padding: 1rem; }
@@ -120,6 +123,7 @@
       <h1>Kutxa misteriotsua</h1>
       <p class="sarrera">Kutxa fisikoaren bertsio birtuala. Aukeratu baldintza, eman gailua parte-hartzaileari, eta emaitzak gailu honetan gordeko dira.</p>
 
+      <p class="abisua" id="biltegi-abisua" hidden>Arakatzaile honek ez du datuak gordetzen uzten (nabigazio pribatua?). Txandak ez dira gordeko: erabili amaierako kodeak, edo ireki orria beste arakatzaile batean.</p>
       <div class="txartela">
         <h2 style="margin-top:0">Baldintza</h2>
         <div class="baldintzak" role="group" aria-label="Baldintza aukeratu">
@@ -140,6 +144,8 @@
             <li><b>Gailu bakoitzean:</b> aukeratu «Ausaz». Parte-hartzaileak ez du jakingo zein baldintzatan dagoen; amaieran, bere emaitzaren kodea erakutsiko zaio.</li>
             <li>Erakustaldian bi gauza bakarrik esaten dira: «Begira» eta «Zure txanda». Txandak minutu bat irauten du gehienez.</li>
             <li>Ez esan zer ikertzen den, ezta emaitza-panela erakutsi ere, parte-hartzaile guztiek amaitu arte.</li>
+            <li><b>Gailu bakoitzean egitean:</b> ikasleek ez dezatela alboko pantaila ikusi (erakustaldiak C baldintza «kutsatzen» du), eta jaso ikasle bakoitzaren lehen kodea bakarrik: berriz eginez gero, ez da jada parte-hartzaile inozoa.</li>
+            <li><b>Mugak (S6rako):</b> erakuslea ez da pertsona bat, eta klik bat egitea ez da kutxa bat jotzea bezain «garestia». Emaitzak ez dira zuzenean konparagarriak kutxa fisikoarekin edo Horner eta Whitenekin: hori bera eztabaidagai ona da.</li>
           </ul>
         </details>
       </div>
@@ -152,7 +158,7 @@
     <!-- ===== 2. ESPERIMENTUA ===== -->
     <section id="esperimentua" hidden>
       <div class="agertokia" id="agertokia">
-        <svg id="eszena" viewBox="0 -60 640 500" role="img" aria-label="Kutxa bat mahai baten gainean, arkatz bat ondoan">
+        <svg id="eszena" viewBox="0 -60 640 500" role="group" aria-label="Kutxa bat mahai baten gainean, arkatz bat ondoan">
           <defs>
             <clipPath id="barrua"><rect x="0" y="147" width="640" height="300"/></clipPath>
             <clipPath id="kanpoa"><rect x="0" y="-60" width="640" height="207"/></clipPath>
@@ -176,10 +182,10 @@
           <!-- barrualdea -->
           <g id="atzealdea"></g>
           <rect id="barru-iluna" x="250" y="262" width="120" height="76" fill="#0D0F12"/>
-          <g id="saria" class="mugi leun klik" tabindex="0" role="button" aria-label="Saria">
+          <g id="saria" class="mugi leun klik" tabindex="-1" role="button" aria-label="Saria">
             <polygon id="izarra" fill="#F2B632" stroke="#C98A10" stroke-width="1.5"/>
           </g>
-          <polygon id="hesia" points="282,206 312,186 408,186 378,206" fill="#C8A26B" stroke="#A9834D"/>
+          <polygon id="hesia" points="170,206 230,161 510,161 450,206" fill="#C8A26B" fill-opacity=".85" stroke="#A9834D"/>
           <!-- arkatza barruan (moztua) -->
           <g id="arkatz-barrua" class="mugi" clip-path="url(#barrua)" opacity="0" pointer-events="none"><use href="#arkatz-forma"/></g>
 
@@ -210,6 +216,7 @@
         <div class="mezua ezkutu" id="mezua"></div>
         <div class="denbora-barra" id="denbora-barra"></div>
         <div class="eskuan" id="eskuan"></div>
+        <button class="utzi" id="utzi-btn" title="Txanda bertan behera utzi (ez da gordeko)" aria-label="Txanda bertan behera utzi">×</button>
 
         <div class="hasi-pantaila" id="hasi-pantaila">
           <p>Prest?</p>
@@ -282,7 +289,8 @@
     try { var d = JSON.parse(localStorage.getItem(GAKOA)); return Array.isArray(d) ? d : []; }
     catch (e) { return []; }
   }
-  function gorde(d) { try { localStorage.setItem(GAKOA, JSON.stringify(d)); } catch (e) { /* ez dago biltegirik */ } }
+  function gorde(d) { try { localStorage.setItem(GAKOA, JSON.stringify(d)); return true; } catch (e) { return false; } }
+  function biltegiaDabil() { try { localStorage.setItem(GAKOA + '-proba', '1'); localStorage.removeItem(GAKOA + '-proba'); return true; } catch (e) { return false; } }
   var datuak = irakurri();
 
   /* ---------- soinua ---------- */
@@ -302,7 +310,12 @@
   }
 
   /* ---------- laguntzaileak ---------- */
-  var itxaron = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  // Txanda bertan behera uzten denean, martxan dagoen animazioa eten egiten da
+  var belaunaldia = 0;
+  var itxaron = function (ms) {
+    var b = belaunaldia;
+    return new Promise(function (ok, ez) { setTimeout(function () { b === belaunaldia ? ok() : ez(new Error('eten')); }, ms); });
+  };
   function tr(g, s) { g.style.transform = s; }
   function pos(p, rot) { return 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + (rot || 0) + 'deg)'; }
   function uhina(x, y) {
@@ -468,7 +481,7 @@
   var txanda = null;   // { baldintza, garden, hasiera, sek, ... }
   var eskuan = 'esku'; // 'esku' | 'arkatza'
   var sartuta = false;
-  var tenporizadorea = null, barraTimer = null;
+  var tenporizadorea = null;
 
   function erregistratu(kodea) {
     if (!txanda || txanda.amaituta) return;
@@ -490,13 +503,13 @@
   }
 
   async function txandaHasi() {
+    var nire = txanda;
     $('hasi-pantaila').hidden = true;
     berrabiarazi();
     kutxaMota(txanda.garden);
     if (txanda.baldintza !== 'C') {
-      txanda.erakusten = true;
-      await erakustaldia();
-      txanda.erakusten = false;
+      try { await erakustaldia(); } catch (e) { return; }
+      if (txanda !== nire || nire.amaituta) return;
       mezua('Zure txanda', 2200);
     } else {
       mezua('Ireki kutxa eta atera barruan dagoena');
@@ -545,10 +558,10 @@
 
   // Kode laburra: baldintza, E, Z, leihoa, saria, denbora → irakaslearen gailuan gehitzeko
   function kodeaSortu(r) {
-    return [r.b, 'E' + Math.min(r.E, 9), 'Z' + Math.min(r.Z, 9) + (r.Za ? 'a' : ''), (r.L ? 'L' : '-') + (r.S ? 'S' : '-'), Math.round(r.t)].join('-');
+    return [r.b, 'E' + Math.min(r.E, 9), 'Z' + Math.min(r.Z, 9) + (r.Za ? 'a' : ''), (r.L ? 'L' : '0') + (r.S ? 'S' : '0'), Math.round(r.t)].join('-');
   }
   function kodeaIrakurri(k) {
-    var m = /^\s*([ABC])-E(\d)-Z(\d)(a?)-([L-])([S-])-(\d{1,2})\s*$/i.exec(k || '');
+    var m = /^\s*([ABC])-E(\d)-Z(\d)(a?)-([L0-])([S0-])-(\d{1,2})\s*$/i.exec(k || '');
     if (!m) return null;
     var E = +m[2], Z = +m[3];
     return {
@@ -580,8 +593,12 @@
     if (zer === 'zuloa') {
       if (eskuan === 'arkatza') {
         if (!sartuta) { sartuta = true; arkatzaSartuta(true, ZULO_BARRUAN.y); }
-        barruanJo(1);
+        barruanJo(1).catch(function () {});
         erregistratu('Za');
+      } else if (p && Math.pow((p.x - 340) / 19, 2) + Math.pow((p.y - 147) / 9, 2) > 1) {
+        // ukipen-eremua handia da arkatzarentzat; eskuz, zulotik kanpo sakatzea estalkia jotzea da
+        uhina(p.x, p.y); toc(false);
+        erregistratu('E');
       } else {
         uhina(340, 147); toc(false);
         erregistratu('Ze');
@@ -596,6 +613,7 @@
       if (!txanda.leihoaIrekita) {
         txanda.leihoaIrekita = true;
         tr(el.leihoa, LEIHO_IREKITA);
+        el.saria.setAttribute('tabindex', '0');
         erregistratu('L');
       }
     } else if (zer === 'saria') {
@@ -609,13 +627,37 @@
     }
   }
 
+  // Arrastatu eta askatu ondoren nabigatzaileak klik bat bidal dezake (adib. svg-ra): hura ez zenbatzeko
+  var klikaSahiestuArte = 0;
+  function klikaSahiestu() { return performance.now() < klikaSahiestuArte; }
+
   function lotu(elem, zer) {
-    elem.addEventListener('click', function (ev) { ekintza(zer, ev); });
+    elem.addEventListener('click', function (ev) { if (!klikaSahiestu()) ekintza(zer, ev); });
     elem.addEventListener('keydown', function (ev) {
       if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); ekintza(zer, null); }
     });
   }
-  lotu(el.tokia, 'tokia');
+  // Arkatza: sakatu hartzeko/uzteko, edo arrastatu zulora (edo leihora) eta askatu
+  var arrastaka = null;
+  el.tokia.addEventListener('pointerdown', function (ev) {
+    if (!aktibo()) return;
+    ev.preventDefault();
+    var hartzen = eskuan === 'esku';
+    ekintza('tokia', ev);
+    arrastaka = hartzen ? { x: ev.clientX, y: ev.clientY } : null;
+  });
+  el.tokia.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); ekintza('tokia', null); }
+  });
+  document.addEventListener('pointerup', function (ev) {
+    var a = arrastaka; arrastaka = null;
+    if (!a || !aktibo() || eskuan !== 'arkatza') return;
+    if (Math.abs(ev.clientX - a.x) + Math.abs(ev.clientY - a.y) < 12) return;   // sakatze hutsa, ez arrastatzea
+    var t = document.elementFromPoint(ev.clientX, ev.clientY);
+    klikaSahiestuArte = performance.now() + 350;
+    if (t === el.zuloHit) ekintza('zuloa', ev);
+    else if (t && t.closest && t.closest('#leihoa')) ekintza('leihoa', ev);
+  });
   lotu(el.zuloHit, 'zuloa');
   lotu(el.estalkia, 'estalkia');
   lotu(el.leihoa, 'leihoa');
@@ -624,7 +666,7 @@
   lotu(el.eskuin, 'beste');
   // mahaian edo hutsean sakatzea arkatzarekin: ez du ezer erregistratzen
   svg.addEventListener('click', function (ev) {
-    if (!aktibo()) return;
+    if (!aktibo() || klikaSahiestu()) return;
     if (ev.target === el.barruIluna) { ekintza(txanda.leihoaIrekita ? 'saria' : 'beste', ev); return; }
     if (ev.target === svg || ev.target.classList.contains('mahaia')) arkatzaAtera();
   });
@@ -658,7 +700,10 @@
 
   $('hasi-btn').addEventListener('click', function () {
     var b = aukeratua === '?' ? ausazkoBaldintza() : aukeratua;
+    belaunaldia++;
     txanda = { baldintza: b, garden: b === 'B', sek: [], amaituta: false, aktibo: false, leihoaIrekita: false };
+    eskuan = 'esku'; sartuta = false; eskuanEguneratu();
+    el.saria.setAttribute('tabindex', '-1');
     berrabiarazi();
     kutxaMota(txanda.garden);
     $('amaiera').hidden = true;
@@ -675,6 +720,17 @@
       } catch (e) { /* soinurik gabe */ }
     }
     txandaHasi();
+  });
+  $('utzi-btn').addEventListener('click', function () {
+    if (!txanda || txanda.amaituta) return;
+    if (!confirm('Txanda hau bertan behera utzi? Ez da gordeko.')) return;
+    belaunaldia++;
+    txanda.amaituta = true; txanda.aktibo = false;
+    clearTimeout(tenporizadorea);
+    txanda = null; eskuan = 'esku'; sartuta = false; eskuanEguneratu();
+    mezua('');
+    berrabiarazi();
+    erakutsi('prestaketa');
   });
   $('hurrengoa-btn').addEventListener('click', function () {
     txanda = null; eskuanEguneratu();
@@ -695,7 +751,8 @@
       return '<article class="laburpen-txartela"><h3>' + IZENAK[b] + '</h3><dl>' +
         '<dt>Parte-hartzaileak</dt><dd>' + n + '</dd>' +
         '<dt>Estalkia jo dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.E > 0; }).length, n) + '</dd>' +
-        '<dt>Zuloa erabili dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.Z > 0; }).length, n) + '</dd>' +
+        '<dt>Arkatza zulotik sartu dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.Za; }).length, n) + '</dd>' +
+        '<dt>Zuloa erabili dute (eskuz edo arkatzez)</dt><dd>' + ehuneko(d.filter(function (x) { return x.Z > 0; }).length, n) + '</dd>' +
         '<dt>Alferrikako ekintza motak (0–2)</dt><dd>' + zenb(batezbeste(d.map(function (x) { return x.alf; })), 1) + '</dd>' +
         '<dt>Saria atera dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.S; }).length, n) + '</dd>' +
         '<dt>Denbora (bb.)</dt><dd>' + (n ? zenb(batezbeste(d.map(function (x) { return x.t; })), 1) + ' s' : '—') + '</dd>' +
@@ -733,7 +790,7 @@
   });
 
   $('gehitu-btn').addEventListener('click', function () {
-    var k = prompt('Idatzi ikaslearen kodea (adib. B-E2-Z3a-LS-24):');
+    var k = prompt('Idatzi ikaslearen kodea (adib. B-E2-Z3a-LS-24 edo C-E0-Z0-00-60):');
     if (k == null) return;
     var r = kodeaIrakurri(k);
     if (!r) { toast('Kode hori ez da zuzena'); return; }
@@ -747,6 +804,7 @@
     datuak = []; gorde(datuak); emaitzakMarraztu(); kontagailua();
   });
 
+  if (!biltegiaDabil()) $('biltegi-abisua').hidden = false;
   kontagailua();
   berrabiarazi();
   kutxaMota(false);
