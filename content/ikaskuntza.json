@@ -418,6 +418,13 @@
         "ikonoa": "aurkezpena"
       },
       {
+        "izena": "Kutxa misteriotsua (birtuala)",
+        "kodea": "04.K",
+        "deskribapena": "S1eko kutxaren bertsio digitala: erakustaldi animatua (A opakoa, B gardena) edo erakustaldirik gabe (C). Proiektorean edo ikasle bakoitzaren gailuan; emaitzak irakaslearen panelean.",
+        "lotura": "kutxa-birtuala.html",
+        "ikonoa": "eraikuntza"
+      },
+      {
         "izena": "Txantiloiak",
         "kodea": "04.T",
         "deskribapena": "Ebidentzia-orria (lau aldiz), hipotesi-orria eta esperimentu-fitxa. Koadernoaren amaieran.",

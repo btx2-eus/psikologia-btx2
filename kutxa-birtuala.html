@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kutxa misteriotsua · BTX2 Psikologia</title>
+  <meta name="description" content="Kutxa misteriotsua, bertsio birtuala: barruan sari bat dago. 2. Batxilergoko Psikologia, euskaraz.">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F4F1E9; --surface: #FCFAF5; --ink: #1E2A33; --ink-2: #4A565F; --ink-3: #7A858D;
+      --urdin: #1B3A5C; --lerro: #D8D1C2; --lerro-sendoa: #C3BBAA;
+      --gaia: #2F7D5B; --gaia-argi: #DCEFE4; --abisu: #B4532A;
+      --f-izen: 'Nunito', system-ui, sans-serif; --f-gorp: 'Inter', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { font-family: var(--f-gorp); color: var(--ink); background: var(--paper); line-height: 1.5; min-height: 100vh; }
+    button { font: inherit; }
+    [hidden] { display: none !important; }
+
+    .gnav { display: flex; align-items: center; gap: .8rem; padding: .7rem 16px; border-bottom: 1px solid var(--lerro); background: rgba(244,241,233,.92); }
+    .gnav a { font-family: var(--f-izen); font-weight: 800; color: var(--urdin); text-decoration: none; font-size: .9rem; }
+    .gnav .tartea { flex: 1; }
+    .gnav .txikia { font-size: .8rem; color: var(--ink-3); font-family: var(--f-izen); font-weight: 700; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 1.2rem 16px 3rem; }
+    h1 { font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: clamp(1.6rem, 5vw, 2.3rem); margin: .4rem 0 .3rem; line-height: 1.1; }
+    h2 { font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: 1.2rem; margin: 1.4rem 0 .5rem; }
+    .sarrera { color: var(--ink-2); margin: 0 0 1rem; max-width: 62ch; }
+
+    .txartela { background: var(--surface); border: 1px solid var(--lerro); border-radius: 14px; padding: 1.1rem 1.2rem; margin-bottom: 1rem; }
+    .etiketa { display: inline-block; font-family: var(--f-izen); font-weight: 900; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gaia); background: var(--gaia-argi); padding: .2rem .6rem; border-radius: 999px; }
+
+    .baldintzak { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); margin: .8rem 0 1rem; }
+    .baldintza { text-align: left; cursor: pointer; background: #fff; border: 2px solid var(--lerro); border-radius: 12px; padding: .75rem .9rem; color: var(--ink); }
+    .baldintza:hover { border-color: var(--lerro-sendoa); }
+    .baldintza[aria-pressed="true"] { border-color: var(--gaia); background: var(--gaia-argi); }
+    .baldintza b { display: block; font-family: var(--f-izen); font-weight: 900; color: var(--urdin); }
+    .baldintza span { font-size: .85rem; color: var(--ink-2); }
+
+    .botoiak { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+    .btn { cursor: pointer; font-family: var(--f-izen); font-weight: 800; font-size: .95rem; border-radius: 999px; padding: .6rem 1.3rem; border: 0; background: var(--urdin); color: #fff; }
+    .btn:hover { background: #224a73; }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn--bigarren { background: #fff; color: var(--urdin); border: 1.5px solid var(--lerro-sendoa); }
+    .btn--bigarren:hover { background: var(--surface); border-color: var(--urdin); }
+    .btn--arrisku { background: #fff; color: var(--abisu); border: 1.5px solid #E2B8A5; }
+    .btn--handi { font-size: 1.15rem; padding: .85rem 2rem; }
+    .kontrola { display: inline-flex; align-items: center; gap: .4rem; font-size: .88rem; color: var(--ink-2); cursor: pointer; }
+
+    details.gida { margin-top: .4rem; }
+    details.gida summary { cursor: pointer; font-family: var(--f-izen); font-weight: 800; color: var(--urdin); }
+    details.gida ol, details.gida ul { margin: .5rem 0 0; padding-left: 1.2rem; color: var(--ink-2); font-size: .9rem; }
+    details.gida li { margin-bottom: .3rem; }
+
+    /* ===== ESPERIMENTUA ===== */
+    .agertokia { position: relative; background: #fff; border: 1px solid var(--lerro); border-radius: 16px; overflow: hidden; }
+    .agertokia svg { display: block; width: 100%; height: auto; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+    .agertokia.arkatza-eskuan svg { cursor: none; }
+    .mezua { position: absolute; top: .8rem; left: 50%; transform: translateX(-50%); font-family: var(--f-izen); font-weight: 900; font-size: clamp(1.1rem, 3.5vw, 1.6rem); color: var(--urdin); background: rgba(255,255,255,.92); border: 1px solid var(--lerro); border-radius: 999px; padding: .35rem 1.2rem; width: max-content; max-width: calc(100% - 2rem); text-align: center; pointer-events: none; transition: opacity .4s; }
+    .mezua.ezkutu { opacity: 0; }
+    .denbora-barra { position: absolute; left: 0; bottom: 0; height: 4px; background: var(--gaia); width: 0; opacity: .5; }
+    .eskuan { position: absolute; right: .8rem; bottom: .7rem; font-size: .8rem; color: var(--ink-3); pointer-events: none; }
+
+    .amaiera { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; background: rgba(252,250,245,.94); text-align: center; padding: 1rem; }
+    .amaiera p { font-family: var(--f-izen); font-weight: 900; font-size: clamp(1.3rem, 4vw, 1.9rem); color: var(--urdin); margin: 0; }
+
+    .hasi-pantaila { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; background: rgba(252,250,245,.96); text-align: center; padding: 1rem; }
+    .hasi-pantaila p { margin: 0; font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: clamp(1.2rem, 4vw, 1.8rem); }
+    .hasi-pantaila small { color: var(--ink-2); font-size: .95rem; }
+
+    /* SVG elementuak */
+    .mugi { transform-box: view-box; transform-origin: 0 0; }
+    .leun { transition: transform .55s cubic-bezier(.45,.05,.3,1); }
+    .azkar { transition: transform .14s ease-in-out; }
+    .klik { cursor: pointer; }
+    .klik:focus { outline: none; }
+    .klik:focus-visible { stroke: var(--gaia); stroke-width: 3; }
+    .uhina { fill: none; stroke: #1B3A5C; stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: uhina .55s ease-out forwards; pointer-events: none; }
+    @keyframes uhina { from { transform: scale(.15); opacity: .9; } to { transform: scale(1); opacity: 0; } }
+    .esku-marka { transition: transform .55s cubic-bezier(.45,.05,.3,1), opacity .3s; }
+
+    /* ===== EMAITZAK ===== */
+    .laburpena { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); margin: .6rem 0 1rem; }
+    .laburpen-txartela { background: #fff; border: 1px solid var(--lerro); border-radius: 12px; padding: .8rem 1rem; }
+    .laburpen-txartela h3 { font-family: var(--f-izen); font-weight: 900; color: var(--urdin); font-size: 1rem; margin: 0 0 .4rem; }
+    .laburpen-txartela dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: .15rem .8rem; font-size: .88rem; }
+    .laburpen-txartela dt { color: var(--ink-2); }
+    .laburpen-txartela dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+    .taula-ondo { overflow-x: auto; border: 1px solid var(--lerro); border-radius: 12px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    th, td { padding: .5rem .6rem; border-bottom: 1px solid var(--lerro); text-align: left; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    th { font-family: var(--f-izen); font-weight: 800; color: var(--urdin); background: var(--gaia-argi); font-size: .8rem; }
+    tr:last-child td { border-bottom: 0; }
+    td.sek { white-space: normal; min-width: 14ch; color: var(--ink-2); }
+    .hutsik { padding: 1rem; color: var(--ink-3); text-align: center; }
+    .oharra { font-size: .85rem; color: var(--ink-2); margin: .6rem 0 0; }
+    .legenda { font-size: .82rem; color: var(--ink-3); margin: .5rem 0 0; }
+    .toast { position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%); background: var(--urdin); color: #fff; padding: .55rem 1.1rem; border-radius: 999px; font-size: .9rem; opacity: 0; transition: opacity .3s; pointer-events: none; }
+    .toast.ikusgai { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header class="gnav">
+    <a href="ikaskuntza.html">← Ikaskuntza</a>
+    <span class="tartea"></span>
+    <span class="txikia">BTX2 Psikologia</span>
+  </header>
+
+  <main>
+    <!-- ===== 1. PRESTAKETA (irakaslea) ===== -->
+    <section id="prestaketa">
+      <span class="etiketa">Irakaslearentzat</span>
+      <h1>Kutxa misteriotsua</h1>
+      <p class="sarrera">Kutxa fisikoaren bertsio birtuala. Aukeratu baldintza, eman gailua parte-hartzaileari, eta emaitzak gailu honetan gordeko dira.</p>
+
+      <div class="txartela">
+        <h2 style="margin-top:0">Baldintza</h2>
+        <div class="baldintzak" role="group" aria-label="Baldintza aukeratu">
+          <button class="baldintza" data-b="A" aria-pressed="false"><b>A · kutxa opakoa</b><span>Erakustaldia ikusten du, gero bere txanda.</span></button>
+          <button class="baldintza" data-b="B" aria-pressed="false"><b>B · kutxa gardena</b><span>Erakustaldia ikusten du, gero bere txanda.</span></button>
+          <button class="baldintza" data-b="C" aria-pressed="false"><b>C · erakustaldirik gabe</b><span>Kutxa opakoa, zuzenean bere txanda.</span></button>
+          <button class="baldintza" data-b="?" aria-pressed="false"><b>Ausaz (ezkutuan)</b><span>Gailu bakoitzean: baldintza orekatua, parte-hartzaileak jakin gabe.</span></button>
+        </div>
+        <div class="botoiak">
+          <button class="btn btn--handi" id="hasi-btn" disabled>Prestatu txanda</button>
+          <label class="kontrola"><input type="checkbox" id="soinua" checked> Soinua</label>
+          <span class="kontrola" id="kontagailua"></span>
+        </div>
+        <details class="gida">
+          <summary>Nola erabili</summary>
+          <ul>
+            <li><b>Proiektorean (S1):</b> kutxa fisikoaren ordez. Aukeratu A, B edo C boluntario bakoitzarentzat. Gainerakoek behaketa-orrian erregistratzen dute, kutxa fisikoarekin bezala.</li>
+            <li><b>Gailu bakoitzean:</b> aukeratu «Ausaz». Parte-hartzaileak ez du jakingo zein baldintzatan dagoen; amaieran, bere emaitzaren kodea erakutsiko zaio.</li>
+            <li>Erakustaldian bi gauza bakarrik esaten dira: «Begira» eta «Zure txanda». Txandak minutu bat irauten du gehienez.</li>
+            <li>Ez esan zer ikertzen den, ezta emaitza-panela erakutsi ere, parte-hartzaile guztiek amaitu arte.</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="botoiak">
+        <button class="btn btn--bigarren" id="emaitzak-btn">Emaitzak ikusi</button>
+      </div>
+    </section>
+
+    <!-- ===== 2. ESPERIMENTUA ===== -->
+    <section id="esperimentua" hidden>
+      <div class="agertokia" id="agertokia">
+        <svg id="eszena" viewBox="0 -60 640 500" role="img" aria-label="Kutxa bat mahai baten gainean, arkatz bat ondoan">
+          <defs>
+            <clipPath id="barrua"><rect x="0" y="147" width="640" height="300"/></clipPath>
+            <clipPath id="kanpoa"><rect x="0" y="-60" width="640" height="207"/></clipPath>
+            <g id="arkatz-forma">
+              <rect x="-5" y="-125" width="10" height="9" rx="2" fill="#E07B7B"/>
+              <rect x="-5.5" y="-117" width="11" height="6" fill="#B9BEC4"/>
+              <rect x="-5" y="-111" width="10" height="93" fill="#F2C230" stroke="#C99A16" stroke-width=".8"/>
+              <polygon points="-5,-18 5,-18 0,0" fill="#EBCB9E"/>
+              <polygon points="-1.8,-6.5 1.8,-6.5 0,0" fill="#2E2E2E"/>
+            </g>
+          </defs>
+
+          <!-- mahaia -->
+          <rect class="mahaia" x="0" y="360" width="640" height="80" fill="#E9DFCB"/>
+          <line x1="0" y1="360" x2="640" y2="360" stroke="#D3C6AC" stroke-width="2"/>
+          <!-- erretilua -->
+          <ellipse cx="585" cy="408" rx="40" ry="11" fill="#D9CDB4" stroke="#C3B597"/>
+          <!-- arkatzaren tokia mahaian -->
+          <rect id="arkatz-tokia" class="klik" x="10" y="385" width="150" height="40" rx="8" fill="transparent" tabindex="0" role="button" aria-label="Arkatza mahaian"/>
+
+          <!-- barrualdea -->
+          <g id="atzealdea"></g>
+          <rect id="barru-iluna" x="250" y="262" width="120" height="76" fill="#0D0F12"/>
+          <g id="saria" class="mugi leun klik" tabindex="0" role="button" aria-label="Saria">
+            <polygon id="izarra" fill="#F2B632" stroke="#C98A10" stroke-width="1.5"/>
+          </g>
+          <polygon id="hesia" points="282,206 312,186 408,186 378,206" fill="#C8A26B" stroke="#A9834D"/>
+          <!-- arkatza barruan (moztua) -->
+          <g id="arkatz-barrua" class="mugi" clip-path="url(#barrua)" opacity="0" pointer-events="none"><use href="#arkatz-forma"/></g>
+
+          <!-- aurpegiak -->
+          <polygon id="aurpegi-eskuin" class="klik" points="450,170 510,125 510,315 450,360"/>
+          <path id="aurpegi-aurre" class="klik" fill-rule="evenodd" d="M170 170 H450 V360 H170 Z M250 262 V338 H370 V262 Z"/>
+          <!-- leihoa -->
+          <g id="leihoa" class="mugi leun klik" tabindex="0" role="button" aria-label="Aurreko leihoa">
+            <rect id="leiho-panela" x="250" y="262" width="120" height="76" rx="3"/>
+            <rect x="290" y="255" width="40" height="15" rx="2" fill="rgba(238,214,128,.85)" stroke="rgba(190,160,70,.9)"/>
+            <rect x="302" y="326" width="16" height="6" rx="3" fill="#8C96A2"/>
+          </g>
+          <!-- estalkia eta zuloa -->
+          <polygon id="estalkia" class="klik" points="170,170 230,125 510,125 450,170" tabindex="0" role="button" aria-label="Estalkia"/>
+          <ellipse id="zuloa" cx="340" cy="147" rx="16" ry="6" fill="#111" stroke="#7D8794" stroke-width="1.5" pointer-events="none"/>
+          <ellipse id="zulo-hit" class="klik" cx="340" cy="147" rx="28" ry="13" fill="transparent" tabindex="0" role="button" aria-label="Goiko zuloa"/>
+          <!-- arkatza kanpoan (moztua, sartuta dagoenean) -->
+          <g id="arkatz-kanpoa" class="mugi" clip-path="url(#kanpoa)" opacity="0" pointer-events="none"><use href="#arkatz-forma"/></g>
+
+          <g id="uhinak" pointer-events="none"></g>
+          <!-- arkatza (librea / mahaian) -->
+          <g id="arkatza" class="mugi" pointer-events="none"><use href="#arkatz-forma"/></g>
+          <!-- erakuslearen eskua -->
+          <g id="esku" class="mugi esku-marka" pointer-events="none" opacity="0">
+            <circle r="15" fill="rgba(27,58,92,.82)" stroke="#fff" stroke-width="3"/>
+          </g>
+        </svg>
+        <div class="mezua ezkutu" id="mezua"></div>
+        <div class="denbora-barra" id="denbora-barra"></div>
+        <div class="eskuan" id="eskuan"></div>
+
+        <div class="hasi-pantaila" id="hasi-pantaila">
+          <p>Prest?</p>
+          <small>Sakatu botoia hasteko.</small>
+          <button class="btn btn--handi" id="txanda-hasi">Hasi</button>
+        </div>
+        <div class="amaiera" id="amaiera" hidden>
+          <p>Eskerrik asko!</p>
+          <small id="amaiera-kodea" style="color:var(--ink-2)"></small>
+          <button class="btn" id="hurrengoa-btn">Amaitu</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. EMAITZAK ===== -->
+    <section id="emaitzak" hidden>
+      <span class="etiketa">Irakaslearentzat</span>
+      <h1>Emaitzak</h1>
+      <p class="sarrera">Gailu honetan gordetako txandak. Alferrikako ekintzak: estalkia jotzea eta goiko zuloa erabiltzea (eskuz edo arkatzez).</p>
+      <div class="laburpena" id="laburpena"></div>
+      <div class="taula-ondo" id="taula"></div>
+      <p class="legenda">Sekuentzia: E = estalkia jo · Z = zuloa (a: arkatzez, e: eskuz) · L = leihoa ireki · S = saria atera · X = kutxaren beste toki bat.</p>
+      <div class="botoiak" style="margin-top:1rem">
+        <button class="btn" id="itzuli-btn">← Prestaketara</button>
+        <button class="btn btn--bigarren" id="csv-btn">Kopiatu datuak (CSV)</button>
+        <button class="btn btn--bigarren" id="gehitu-btn">Gehitu kode bat</button>
+        <button class="btn btn--arrisku" id="ezabatu-btn">Ezabatu datu guztiak</button>
+      </div>
+      <p class="oharra">Gailu bakoitzean egindako txandak bertan gordetzen dira. Ikasleek beren gailuan egin badute, amaierako kodea esan dezatela eta «Gehitu kode bat» erabili hemen biltzeko.</p>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+  var GAKOA = 'kutxa-birtuala-v1';
+  var TXANDA_MS = 60000;
+
+  /* ---------- geometria ---------- */
+  var ARKATZ_TOKIA = 'translate(28px,405px) rotate(90deg)';
+  var ZULO_GAINEAN = { x: 340, y: 100 };
+  var ZULO_BARRUAN = { x: 340, y: 180 };
+  var SARI_TOKIA = 'translate(310px,300px)';
+  var SARI_ERRETILUA = 'translate(585px,398px) scale(.8)';
+  var LEIHO_IREKITA = 'translateY(-76px)';
+
+  (function izarra() {
+    var p = [], r1 = 20, r2 = 9;
+    for (var i = 0; i < 10; i++) {
+      var r = i % 2 ? r2 : r1, a = Math.PI / 5 * i - Math.PI / 2;
+      p.push((r * Math.cos(a)).toFixed(1) + ',' + (r * Math.sin(a)).toFixed(1));
+    }
+    document.getElementById('izarra').setAttribute('points', p.join(' '));
+  })();
+
+  var $ = function (id) { return document.getElementById(id); };
+  var svg = $('eszena');
+  var el = {
+    arkatza: $('arkatza'), barrua: $('arkatz-barrua'), kanpoa: $('arkatz-kanpoa'),
+    esku: $('esku'), saria: $('saria'), leihoa: $('leihoa'), panela: $('leiho-panela'),
+    estalkia: $('estalkia'), zuloHit: $('zulo-hit'), aurre: $('aurpegi-aurre'), eskuin: $('aurpegi-eskuin'),
+    hesia: $('hesia'), barruIluna: $('barru-iluna'), atzea: $('atzealdea'), tokia: $('arkatz-tokia'),
+    uhinak: $('uhinak'), mezua: $('mezua'), barra: $('denbora-barra'), eskuan: $('eskuan'),
+    agertokia: $('agertokia')
+  };
+
+  /* ---------- biltegia ---------- */
+  function irakurri() {
+    try { var d = JSON.parse(localStorage.getItem(GAKOA)); return Array.isArray(d) ? d : []; }
+    catch (e) { return []; }
+  }
+  function gorde(d) { try { localStorage.setItem(GAKOA, JSON.stringify(d)); } catch (e) { /* ez dago biltegirik */ } }
+  var datuak = irakurri();
+
+  /* ---------- soinua ---------- */
+  var audio = null;
+  function toc(altua) {
+    if (!$('soinua').checked) return;
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      var t = audio.currentTime, o = audio.createOscillator(), g = audio.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(altua ? 900 : 520, t);
+      o.frequency.exponentialRampToValueAtTime(altua ? 500 : 180, t + .08);
+      g.gain.setValueAtTime(.35, t);
+      g.gain.exponentialRampToValueAtTime(.001, t + .12);
+      o.connect(g); g.connect(audio.destination); o.start(t); o.stop(t + .13);
+    } catch (e) { /* soinurik gabe */ }
+  }
+
+  /* ---------- laguntzaileak ---------- */
+  var itxaron = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  function tr(g, s) { g.style.transform = s; }
+  function pos(p, rot) { return 'translate(' + p.x + 'px,' + p.y + 'px) rotate(' + (rot || 0) + 'deg)'; }
+  function uhina(x, y) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 26); c.setAttribute('class', 'uhina');
+    el.uhinak.appendChild(c);
+    setTimeout(function () { c.remove(); }, 650);
+  }
+  function mezua(t, iraupena) {
+    el.mezua.textContent = t;
+    el.mezua.classList.toggle('ezkutu', !t);
+    if (t && iraupena) setTimeout(function () { if (el.mezua.textContent === t) el.mezua.classList.add('ezkutu'); }, iraupena);
+  }
+  function svgPuntua(ev) {
+    var p = svg.createSVGPoint();
+    var s = ev.touches ? ev.touches[0] : ev;
+    p.x = s.clientX; p.y = s.clientY;
+    return p.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  function toast(t) {
+    var e = $('toast'); e.textContent = t; e.classList.add('ikusgai');
+    setTimeout(function () { e.classList.remove('ikusgai'); }, 2200);
+  }
+
+  /* ---------- kutxaren itxura ---------- */
+  function kutxaMota(garden) {
+    var f = garden
+      ? { aurre: 'rgba(190,225,245,.32)', goi: 'rgba(212,236,250,.5)', eskuin: 'rgba(168,208,234,.38)', marra: '#5B8DB5', panel: 'rgba(222,241,252,.55)', panelMarra: '#5B8DB5' }
+      : { aurre: '#262A31', goi: '#30353D', eskuin: '#1C1F24', marra: '#121418', panel: '#3B414A', panelMarra: '#5E6671' };
+    el.aurre.setAttribute('fill', f.aurre); el.aurre.setAttribute('stroke', f.marra); el.aurre.setAttribute('stroke-width', 2);
+    el.estalkia.setAttribute('fill', f.goi); el.estalkia.setAttribute('stroke', f.marra); el.estalkia.setAttribute('stroke-width', 2);
+    el.eskuin.setAttribute('fill', f.eskuin); el.eskuin.setAttribute('stroke', f.marra); el.eskuin.setAttribute('stroke-width', 2);
+    el.panela.setAttribute('fill', f.panel); el.panela.setAttribute('stroke', f.panelMarra); el.panela.setAttribute('stroke-width', 2);
+    el.barruIluna.setAttribute('fill', garden ? 'rgba(235,245,252,.4)' : '#0D0F12');
+    el.atzea.innerHTML = garden
+      ? '<g stroke="#9DBBD3" stroke-width="1.2" stroke-dasharray="5 4" fill="none"><line x1="230" y1="125" x2="230" y2="315"/><line x1="230" y1="315" x2="510" y2="315"/><line x1="230" y1="315" x2="170" y2="360"/></g>'
+      : '';
+  }
+
+  function berrabiarazi() {
+    [el.arkatza, el.barrua, el.kanpoa, el.saria, el.leihoa, el.esku].forEach(function (g) { g.style.transition = 'none'; });
+    tr(el.arkatza, ARKATZ_TOKIA); el.arkatza.style.opacity = 1;
+    el.barrua.style.opacity = 0; el.kanpoa.style.opacity = 0;
+    tr(el.saria, SARI_TOKIA); tr(el.leihoa, 'translateY(0)');
+    tr(el.esku, 'translate(600px,40px)'); el.esku.style.opacity = 0;
+    svg.getBoundingClientRect();
+    [el.arkatza, el.barrua, el.kanpoa, el.saria, el.leihoa, el.esku].forEach(function (g) { g.style.transition = ''; });
+    el.uhinak.innerHTML = '';
+  }
+
+  /* ---------- erakustaldia (irakasle-gidako gidoia) ---------- */
+  function eskua(x, y, ms) {
+    el.esku.style.transitionDuration = (ms || 550) + 'ms';
+    tr(el.esku, 'translate(' + x + 'px,' + y + 'px)');
+  }
+  async function eskuraMugitu(x, y, ms) {
+    eskua(x, y, ms);
+    await itxaron(ms || 550);
+  }
+  async function eskuKolpe(x, y) {
+    el.esku.style.transitionDuration = '100ms';
+    tr(el.esku, 'translate(' + x + 'px,' + (y + 4) + 'px) scale(.8)');
+    await itxaron(110);
+    uhina(x, y); toc(false);
+    tr(el.esku, 'translate(' + x + 'px,' + y + 'px)');
+    await itxaron(380);
+  }
+  async function arkatzaMugitu(p, rot, ms) {
+    el.arkatza.classList.add('leun');
+    el.arkatza.style.transitionDuration = (ms || 550) + 'ms';
+    tr(el.arkatza, pos(p, rot));
+    await itxaron(ms || 550);
+    el.arkatza.classList.remove('leun');
+  }
+  function arkatzaSartuta(sartuta, y) {
+    if (sartuta) {
+      var s = pos({ x: ZULO_BARRUAN.x, y: y }, 0);
+      tr(el.barrua, s); tr(el.kanpoa, s);
+      el.barrua.style.opacity = 1; el.kanpoa.style.opacity = 1; el.arkatza.style.opacity = 0;
+    } else {
+      el.barrua.style.opacity = 0; el.kanpoa.style.opacity = 0; el.arkatza.style.opacity = 1;
+    }
+  }
+  async function barruanJo(kopurua) {
+    [el.barrua, el.kanpoa].forEach(function (g) { g.classList.add('azkar'); });
+    for (var i = 0; i < kopurua; i++) {
+      tr(el.barrua, pos({ x: ZULO_BARRUAN.x, y: ZULO_BARRUAN.y - 12 })); tr(el.kanpoa, pos({ x: ZULO_BARRUAN.x, y: ZULO_BARRUAN.y - 12 }));
+      await itxaron(170);
+      tr(el.barrua, pos(ZULO_BARRUAN)); tr(el.kanpoa, pos(ZULO_BARRUAN));
+      await itxaron(150);
+      toc(true); uhina(ZULO_BARRUAN.x, ZULO_BARRUAN.y + 4);
+      await itxaron(260);
+    }
+    [el.barrua, el.kanpoa].forEach(function (g) { g.classList.remove('azkar'); });
+  }
+
+  async function erakustaldia() {
+    mezua('Begira');
+    el.esku.style.opacity = 1;
+    await itxaron(500);
+    // 1. Estalkia bi aldiz jo eskuarekin (alferrikakoa)
+    await eskuraMugitu(255, 152, 800);
+    await eskuKolpe(255, 152);
+    await eskuKolpe(255, 152);
+    // 2. Arkatza goiko zulotik sartu eta barruan hiru aldiz jo (alferrikakoa)
+    await eskuraMugitu(90, 400, 800);
+    await itxaron(250);
+    eskua(90, 40, 550);
+    await arkatzaMugitu({ x: 90, y: 110 }, 0, 550);
+    eskua(340, 30, 650);
+    await arkatzaMugitu(ZULO_GAINEAN, 0, 650);
+    await itxaron(200);
+    arkatzaSartuta(true, ZULO_GAINEAN.y);
+    svg.getBoundingClientRect();
+    [el.barrua, el.kanpoa].forEach(function (g) { g.classList.add('leun'); });
+    tr(el.barrua, pos(ZULO_BARRUAN)); tr(el.kanpoa, pos(ZULO_BARRUAN));
+    eskua(340, 110, 550);
+    await itxaron(600);
+    [el.barrua, el.kanpoa].forEach(function (g) { g.classList.remove('leun'); });
+    await barruanJo(3);
+    [el.barrua, el.kanpoa].forEach(function (g) { g.classList.add('leun'); });
+    tr(el.barrua, pos(ZULO_GAINEAN)); tr(el.kanpoa, pos(ZULO_GAINEAN));
+    eskua(340, 30, 550);
+    await itxaron(600);
+    [el.barrua, el.kanpoa].forEach(function (g) { g.classList.remove('leun'); });
+    tr(el.arkatza, pos(ZULO_GAINEAN));
+    arkatzaSartuta(false);
+    eskua(90, 40, 650);
+    await arkatzaMugitu({ x: 90, y: 110 }, 0, 650);
+    el.arkatza.classList.add('leun');
+    el.arkatza.style.transitionDuration = '550ms';
+    tr(el.arkatza, ARKATZ_TOKIA);
+    eskua(90, 400, 550);
+    await itxaron(600);
+    el.arkatza.classList.remove('leun');
+    // 3. Aurreko leihoa ireki
+    await eskuraMugitu(310, 330, 800);
+    tr(el.leihoa, LEIHO_IREKITA);
+    eskua(310, 254, 550);
+    await itxaron(650);
+    // 4. Saria atera
+    await eskuraMugitu(310, 300, 500);
+    await itxaron(200);
+    tr(el.saria, SARI_ERRETILUA);
+    eskua(585, 398, 550);
+    await itxaron(900);
+    // Saria berriro barruan eta leihoa itxi
+    tr(el.saria, SARI_TOKIA);
+    eskua(310, 300, 550);
+    await itxaron(800);
+    eskua(310, 254, 400);
+    await itxaron(400);
+    tr(el.leihoa, 'translateY(0)');
+    eskua(310, 330, 550);
+    await itxaron(650);
+    await eskuraMugitu(620, 20, 700);
+    el.esku.style.opacity = 0;
+    mezua('');
+    await itxaron(500);
+  }
+
+  /* ---------- parte-hartzailearen txanda ---------- */
+  var txanda = null;   // { baldintza, garden, hasiera, sek, ... }
+  var eskuan = 'esku'; // 'esku' | 'arkatza'
+  var sartuta = false;
+  var tenporizadorea = null, barraTimer = null;
+
+  function erregistratu(kodea) {
+    if (!txanda || txanda.amaituta) return;
+    txanda.sek.push(kodea);
+  }
+  function eskuanEguneratu() {
+    el.agertokia.classList.toggle('arkatza-eskuan', eskuan === 'arkatza' && !!txanda);
+    el.eskuan.textContent = txanda && eskuan === 'arkatza' ? 'Eskuan: arkatza (sakatu mahaia uzteko)' : '';
+  }
+  function arkatzaJarraitu(p) {
+    if (eskuan !== 'arkatza' || sartuta) return;
+    tr(el.arkatza, pos({ x: p.x, y: p.y }, 0));
+  }
+  function arkatzaAtera() {
+    if (!sartuta) return;
+    sartuta = false;
+    tr(el.arkatza, pos(ZULO_GAINEAN));
+    arkatzaSartuta(false);
+  }
+
+  async function txandaHasi() {
+    $('hasi-pantaila').hidden = true;
+    berrabiarazi();
+    kutxaMota(txanda.garden);
+    if (txanda.baldintza !== 'C') {
+      txanda.erakusten = true;
+      await erakustaldia();
+      txanda.erakusten = false;
+      mezua('Zure txanda', 2200);
+    } else {
+      mezua('Ireki kutxa eta atera barruan dagoena');
+    }
+    txanda.hasiera = performance.now();
+    txanda.aktibo = true;
+    eskuan = 'esku'; sartuta = false; eskuanEguneratu();
+    el.barra.style.transition = 'none'; el.barra.style.width = '0';
+    el.barra.getBoundingClientRect();
+    el.barra.style.transition = 'width ' + TXANDA_MS + 'ms linear'; el.barra.style.width = '100%';
+    tenporizadorea = setTimeout(function () { txandaAmaitu(false); }, TXANDA_MS);
+  }
+
+  function txandaAmaitu(saria) {
+    if (!txanda || txanda.amaituta) return;
+    txanda.amaituta = true; txanda.aktibo = false;
+    clearTimeout(tenporizadorea);
+    el.barra.style.transition = 'none';
+    var s = txanda.sek;
+    var E = s.filter(function (k) { return k === 'E'; }).length;
+    var Z = s.filter(function (k) { return k[0] === 'Z'; }).length;
+    var lehenL = s.indexOf('L');
+    var aurretik = lehenL === -1 ? s : s.slice(0, lehenL);
+    var erregistroa = {
+      id: (datuak.reduce(function (m, d) { return Math.max(m, d.id || 0); }, 0)) + 1,
+      b: txanda.baldintza,
+      E: E, Z: Z,
+      Za: s.indexOf('Za') !== -1,
+      L: lehenL !== -1,
+      S: !!saria,
+      alf: (E > 0 ? 1 : 0) + (Z > 0 ? 1 : 0),
+      alfAurretik: (aurretik.indexOf('E') !== -1 ? 1 : 0) + (aurretik.some(function (k) { return k[0] === 'Z'; }) ? 1 : 0),
+      t: Math.round((performance.now() - txanda.hasiera) / 100) / 10,
+      sek: s.join(' '),
+      data: new Date().toISOString().slice(0, 16).replace('T', ' ')
+    };
+    datuak.push(erregistroa);
+    gorde(datuak);
+    mezua('');
+    eskuan = 'esku'; eskuanEguneratu();
+    setTimeout(function () {
+      $('amaiera-kodea').textContent = 'Zure kodea: ' + kodeaSortu(erregistroa);
+      $('amaiera').hidden = false;
+    }, saria ? 900 : 200);
+  }
+
+  // Kode laburra: baldintza, E, Z, leihoa, saria, denbora → irakaslearen gailuan gehitzeko
+  function kodeaSortu(r) {
+    return [r.b, 'E' + Math.min(r.E, 9), 'Z' + Math.min(r.Z, 9) + (r.Za ? 'a' : ''), (r.L ? 'L' : '-') + (r.S ? 'S' : '-'), Math.round(r.t)].join('-');
+  }
+  function kodeaIrakurri(k) {
+    var m = /^\s*([ABC])-E(\d)-Z(\d)(a?)-([L-])([S-])-(\d{1,2})\s*$/i.exec(k || '');
+    if (!m) return null;
+    var E = +m[2], Z = +m[3];
+    return {
+      b: m[1].toUpperCase(), E: E, Z: Z, Za: !!m[4], L: m[5].toUpperCase() === 'L', S: m[6].toUpperCase() === 'S',
+      alf: (E > 0 ? 1 : 0) + (Z > 0 ? 1 : 0), alfAurretik: null, t: +m[7], sek: '(kodea)',
+      data: new Date().toISOString().slice(0, 16).replace('T', ' ')
+    };
+  }
+
+  /* ---------- interakzioak ---------- */
+  function aktibo() { return txanda && txanda.aktibo && !txanda.amaituta; }
+
+  svg.addEventListener('pointermove', function (ev) {
+    if (!aktibo()) return;
+    arkatzaJarraitu(svgPuntua(ev));
+  });
+
+  function ekintza(zer, ev) {
+    if (!aktibo()) return;
+    var p = ev && ev.clientX != null ? svgPuntua(ev) : null;
+    if (eskuan === 'arkatza' && p) arkatzaJarraitu(p);
+
+    if (zer === 'tokia') {
+      if (eskuan === 'esku') { eskuan = 'arkatza'; if (p) arkatzaJarraitu(p); else tr(el.arkatza, pos({ x: 90, y: 330 })); }
+      else { arkatzaAtera(); eskuan = 'esku'; el.arkatza.classList.add('leun'); tr(el.arkatza, ARKATZ_TOKIA); setTimeout(function () { el.arkatza.classList.remove('leun'); }, 600); }
+      eskuanEguneratu();
+      return;
+    }
+    if (zer === 'zuloa') {
+      if (eskuan === 'arkatza') {
+        if (!sartuta) { sartuta = true; arkatzaSartuta(true, ZULO_BARRUAN.y); }
+        barruanJo(1);
+        erregistratu('Za');
+      } else {
+        uhina(340, 147); toc(false);
+        erregistratu('Ze');
+      }
+      return;
+    }
+    arkatzaAtera();
+    if (zer === 'estalkia') {
+      if (p) uhina(p.x, p.y); toc(false);
+      erregistratu('E');
+    } else if (zer === 'leihoa') {
+      if (!txanda.leihoaIrekita) {
+        txanda.leihoaIrekita = true;
+        tr(el.leihoa, LEIHO_IREKITA);
+        erregistratu('L');
+      }
+    } else if (zer === 'saria') {
+      if (!txanda.leihoaIrekita) { if (p) uhina(p.x, p.y); erregistratu('X'); return; }
+      erregistratu('S');
+      tr(el.saria, SARI_ERRETILUA);
+      txandaAmaitu(true);
+    } else if (zer === 'beste') {
+      if (p) uhina(p.x, p.y);
+      erregistratu('X');
+    }
+  }
+
+  function lotu(elem, zer) {
+    elem.addEventListener('click', function (ev) { ekintza(zer, ev); });
+    elem.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); ekintza(zer, null); }
+    });
+  }
+  lotu(el.tokia, 'tokia');
+  lotu(el.zuloHit, 'zuloa');
+  lotu(el.estalkia, 'estalkia');
+  lotu(el.leihoa, 'leihoa');
+  lotu(el.saria, 'saria');
+  lotu(el.aurre, 'beste');
+  lotu(el.eskuin, 'beste');
+  // mahaian edo hutsean sakatzea arkatzarekin: ez du ezer erregistratzen
+  svg.addEventListener('click', function (ev) {
+    if (!aktibo()) return;
+    if (ev.target === el.barruIluna) { ekintza(txanda.leihoaIrekita ? 'saria' : 'beste', ev); return; }
+    if (ev.target === svg || ev.target.classList.contains('mahaia')) arkatzaAtera();
+  });
+
+  /* ---------- baldintza ausaz, orekatuta ---------- */
+  function ausazkoBaldintza() {
+    var k = { A: 0, B: 0, C: 0 };
+    datuak.forEach(function (d) { if (k[d.b] != null) k[d.b]++; });
+    var min = Math.min(k.A, k.B, k.C);
+    var aukerak = ['A', 'B', 'C'].filter(function (b) { return k[b] === min; });
+    return aukerak[Math.floor(Math.random() * aukerak.length)];
+  }
+
+  /* ---------- pantailak ---------- */
+  var aukeratua = null;
+  function erakutsi(id) {
+    ['prestaketa', 'esperimentua', 'emaitzak'].forEach(function (s) { $(s).hidden = s !== id; });
+    window.scrollTo(0, 0);
+  }
+  function kontagailua() {
+    $('kontagailua').textContent = datuak.length ? datuak.length + ' txanda gordeta' : '';
+  }
+
+  document.querySelectorAll('.baldintza').forEach(function (b) {
+    b.addEventListener('click', function () {
+      aukeratua = b.dataset.b;
+      document.querySelectorAll('.baldintza').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      $('hasi-btn').disabled = false;
+    });
+  });
+
+  $('hasi-btn').addEventListener('click', function () {
+    var b = aukeratua === '?' ? ausazkoBaldintza() : aukeratua;
+    txanda = { baldintza: b, garden: b === 'B', sek: [], amaituta: false, aktibo: false, leihoaIrekita: false };
+    berrabiarazi();
+    kutxaMota(txanda.garden);
+    $('amaiera').hidden = true;
+    $('hasi-pantaila').hidden = false;
+    mezua('');
+    el.barra.style.transition = 'none'; el.barra.style.width = '0';
+    erakutsi('esperimentua');
+  });
+  $('txanda-hasi').addEventListener('click', function () {
+    if ($('soinua').checked) {
+      try {
+        audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+        if (audio.state === 'suspended') audio.resume();
+      } catch (e) { /* soinurik gabe */ }
+    }
+    txandaHasi();
+  });
+  $('hurrengoa-btn').addEventListener('click', function () {
+    txanda = null; eskuanEguneratu();
+    kontagailua();
+    erakutsi('prestaketa');
+  });
+
+  /* ---------- emaitzak ---------- */
+  var IZENAK = { A: 'A · opakoa + erakustaldia', B: 'B · gardena + erakustaldia', C: 'C · erakustaldirik gabe' };
+  function ehuneko(n, guztira) { return guztira ? Math.round(n / guztira * 100) + ' %' : '—'; }
+  function batezbeste(a) { return a.length ? (a.reduce(function (x, y) { return x + y; }, 0) / a.length) : null; }
+  function zenb(x, h) { return x == null ? '—' : x.toFixed(h).replace('.', ','); }
+
+  function emaitzakMarraztu() {
+    var lab = ['A', 'B', 'C'].map(function (b) {
+      var d = datuak.filter(function (x) { return x.b === b; });
+      var n = d.length;
+      return '<article class="laburpen-txartela"><h3>' + IZENAK[b] + '</h3><dl>' +
+        '<dt>Parte-hartzaileak</dt><dd>' + n + '</dd>' +
+        '<dt>Estalkia jo dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.E > 0; }).length, n) + '</dd>' +
+        '<dt>Zuloa erabili dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.Z > 0; }).length, n) + '</dd>' +
+        '<dt>Alferrikako ekintza motak (0–2)</dt><dd>' + zenb(batezbeste(d.map(function (x) { return x.alf; })), 1) + '</dd>' +
+        '<dt>Saria atera dute</dt><dd>' + ehuneko(d.filter(function (x) { return x.S; }).length, n) + '</dd>' +
+        '<dt>Denbora (bb.)</dt><dd>' + (n ? zenb(batezbeste(d.map(function (x) { return x.t; })), 1) + ' s' : '—') + '</dd>' +
+        '</dl></article>';
+    }).join('');
+    $('laburpena').innerHTML = lab;
+
+    if (!datuak.length) { $('taula').innerHTML = '<p class="hutsik">Oraindik ez dago txandarik gailu honetan.</p>'; return; }
+    var errenkadak = datuak.map(function (d) {
+      return '<tr><td>' + d.id + '</td><td><b>' + d.b + '</b></td><td>' + d.E + '</td><td>' + d.Z + (d.Za ? ' (a)' : '') + '</td>' +
+        '<td>' + (d.L ? '✓' : '✗') + '</td><td>' + (d.S ? '✓' : '✗') + '</td><td>' + d.alf + '</td><td>' + zenb(d.t, 1) + ' s</td>' +
+        '<td class="sek">' + d.sek + '</td><td>' + d.data + '</td></tr>';
+    }).join('');
+    $('taula').innerHTML = '<table><thead><tr><th>#</th><th>Baldintza</th><th>Estalkia</th><th>Zuloa</th><th>Leihoa</th><th>Saria</th><th>Alferrikakoak</th><th>Denbora</th><th>Sekuentzia</th><th>Data</th></tr></thead><tbody>' + errenkadak + '</tbody></table>';
+  }
+
+  $('emaitzak-btn').addEventListener('click', function () { emaitzakMarraztu(); erakutsi('emaitzak'); });
+  $('itzuli-btn').addEventListener('click', function () { kontagailua(); erakutsi('prestaketa'); });
+
+  $('csv-btn').addEventListener('click', function () {
+    var lerroak = ['id;baldintza;estalkia_kolpeak;zulo_kolpeak;zuloa_arkatzez;leihoa;saria;alferrikako_motak;alferrikakoak_leihoa_aurretik;denbora_s;sekuentzia;data'];
+    datuak.forEach(function (d) {
+      lerroak.push([d.id, d.b, d.E, d.Z, d.Za ? 1 : 0, d.L ? 1 : 0, d.S ? 1 : 0, d.alf, d.alfAurretik == null ? '' : d.alfAurretik, String(d.t).replace('.', ','), d.sek, d.data].join(';'));
+    });
+    var testua = lerroak.join('\n');
+    var ondo = function () { toast('Datuak kopiatuta: itsatsi kalkulu-orri batean'); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(testua).then(ondo, function () { eskuzKopiatu(testua); });
+    } else eskuzKopiatu(testua);
+    function eskuzKopiatu(t) {
+      var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ondo(); } catch (e) { toast('Ezin izan da kopiatu'); }
+      ta.remove();
+    }
+  });
+
+  $('gehitu-btn').addEventListener('click', function () {
+    var k = prompt('Idatzi ikaslearen kodea (adib. B-E2-Z3a-LS-24):');
+    if (k == null) return;
+    var r = kodeaIrakurri(k);
+    if (!r) { toast('Kode hori ez da zuzena'); return; }
+    r.id = (datuak.reduce(function (m, d) { return Math.max(m, d.id || 0); }, 0)) + 1;
+    datuak.push(r); gorde(datuak); emaitzakMarraztu(); toast('Gehituta: ' + k.trim().toUpperCase());
+  });
+
+  $('ezabatu-btn').addEventListener('click', function () {
+    if (!datuak.length) return;
+    if (!confirm('Gailu honetako ' + datuak.length + ' txanda ezabatuko dira, eta ezin da desegin. Lehenik «Kopiatu datuak» erabili nahi baduzu, sakatu Utzi. Ezabatu?')) return;
+    datuak = []; gorde(datuak); emaitzakMarraztu(); kontagailua();
+  });
+
+  kontagailua();
+  berrabiarazi();
+  kutxaMota(false);
+})();
+</script>
+</body>
+</html>
