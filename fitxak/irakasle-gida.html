@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Irakasle-gida · UD04 Ikaskuntza · BTX2 Psikologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --psi-bloke1:#1B3A5C; --psi-bloke1-argia:#D6E8F7;
+  --psi-bloke2:#1A5C3A; --psi-bloke2-argia:#D4EDE1;
+  --psi-bloke3:#5C1A5C; --psi-bloke3-argia:#EDD4ED;
+  --psi-proiektua:#8C3A00; --psi-proiektua-argia:#FAE5D3;
+  --psi-argia:#F7F7F5; --psi-iluna:#1A1A1A;
+  --psi-font-izenburu:'Nunito',sans-serif; --psi-font-gorputz:'Inter',sans-serif;
+  --psi-erradio:12px;
+  --bloke-nagusia:var(--psi-bloke1); --bloke-argia:var(--psi-bloke1-argia);
+  --lerroa:#D9DDE3; --apala:#5B6573;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--psi-argia);color:var(--psi-iluna);font-family:var(--psi-font-gorputz);font-size:16px;line-height:1.6}
+.edukia{max-width:860px;margin:0 auto;padding:0 16px 64px}
+h1,h2,h3,h4{font-family:var(--psi-font-izenburu);color:var(--bloke-nagusia);line-height:1.25}
+h1{font-size:2.3rem;font-weight:900;margin:.4rem 0 .3rem}
+h2{font-size:1.6rem;font-weight:900;margin:0 0 .6rem}
+h3{font-size:1.15rem;font-weight:800;margin:1.6rem 0 .5rem}
+h4{font-size:1rem;margin:1.1rem 0 .3rem}
+p{margin:.5rem 0}
+a{color:var(--bloke-nagusia)}
+/* Goiburua */
+.goiburua{background:#fff;border-bottom:1px solid var(--lerroa)}
+.goiburua .edukia{padding-top:28px;padding-bottom:24px}
+.etiketak{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:.6rem}
+.etiketa{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--bloke-argia);color:var(--bloke-nagusia)}
+.etiketa.berdea{background:var(--psi-bloke2-argia);color:var(--psi-bloke2)}
+.etiketa.laranja{background:var(--psi-proiektua-argia);color:var(--psi-proiektua)}
+.etiketa.morea{background:var(--psi-bloke3-argia);color:var(--psi-bloke3)}
+.azpititulua{font-size:1.1rem;color:var(--apala);margin:0}
+/* Nabigazioa */
+nav.saioak{position:sticky;top:0;z-index:5;background:rgba(247,247,245,.96);backdrop-filter:blur(4px);border-bottom:1px solid var(--lerroa)}
+nav.saioak .edukia{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav.saioak a{flex:0 0 auto;text-decoration:none;font-size:.82rem;font-weight:600;padding:5px 10px;border-radius:8px;color:var(--bloke-nagusia);background:#fff;border:1px solid var(--lerroa)}
+nav.saioak a:hover{background:var(--bloke-argia)}
+/* Atalak */
+section.atala{background:#fff;border:1px solid var(--lerroa);border-radius:var(--psi-erradio);padding:28px 26px;margin-top:28px}
+.saio-goiburua{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:.4rem}
+.saio-zenbakia{font-family:var(--psi-font-izenburu);font-weight:900;font-size:.85rem;color:#fff;background:var(--bloke-nagusia);border-radius:8px;padding:3px 10px}
+.denbora{font-size:.8rem;color:var(--apala)}
+.galdera-gidaria{font-family:var(--psi-font-izenburu);font-size:1.4rem;font-weight:900;color:var(--bloke-nagusia);line-height:1.3;border-left:4px solid var(--bloke-nagusia);padding-left:1rem;margin:1.2rem 0}
+.fenomenoa{background:var(--bloke-argia);border-radius:var(--psi-erradio);padding:1.1rem 1.2rem;font-style:italic;margin-bottom:1.2rem}
+.fenomenoa p:first-child{margin-top:0}.fenomenoa p:last-child{margin-bottom:0}
+.pauso-etiketa{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bloke-nagusia);margin:1.4rem 0 .3rem}
+.dosierra{border:1px solid var(--lerroa);border-radius:var(--psi-erradio);padding:1rem 1.2rem;margin:.8rem 0;background:#FCFCFB}
+.dosierra.morea{background:#FBF6FB;border-color:var(--psi-bloke3-argia)}
+.dosierra h4{margin-top:.4rem}
+.dosierra.morea h4{color:var(--psi-bloke3)}
+.oharra{font-size:.9rem;color:var(--apala)}
+.pausoak{counter-reset:p;list-style:none;padding:0;margin:.6rem 0}
+.pausoak[start="2"]{counter-reset:p 1}.pausoak[start="3"]{counter-reset:p 2}.pausoak[start="4"]{counter-reset:p 3}
+.pausoak li{counter-increment:p;position:relative;padding:.55rem .6rem .55rem 2.8rem;margin:.4rem 0;border-radius:10px;background:var(--psi-argia)}
+.pausoak li::before{content:counter(p);position:absolute;left:.7rem;top:.55rem;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--bloke-nagusia);color:#fff;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.pausoak li.bakarka{background:var(--psi-bloke2-argia)}
+.pausoak li.taldean{background:var(--psi-proiektua-argia)}
+.modua{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-left:.3rem}
+.bakarka .modua{color:var(--psi-bloke2)}.taldean .modua{color:var(--psi-proiektua)}
+.min{font-size:.8rem;color:var(--apala);margin-left:.3rem}
+.produktua{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:.8rem 1rem;margin-top:1rem;background:var(--psi-proiektua-argia)}
+.produktua.bakarka{background:var(--psi-bloke2-argia)}
+.produktua b{font-family:var(--psi-font-izenburu)}
+.irteera{border:2px dashed var(--bloke-nagusia);border-radius:var(--psi-erradio);padding:.9rem 1.1rem;margin-top:1rem}
+.irteera .pauso-etiketa{margin-top:0}
+.galdera-irekia{background:var(--bloke-nagusia);color:#fff;border-radius:var(--psi-erradio);padding:1.1rem 1.2rem;margin-top:1.2rem;font-family:var(--psi-font-izenburu);font-weight:700;font-size:1.1rem}
+.galdera-irekia .pauso-etiketa{color:#CFE0F2;margin:0 0 .3rem}
+table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.92rem}
+th,td{border:1px solid var(--lerroa);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--bloke-argia);color:var(--bloke-nagusia);font-weight:700}
+.taula-ondo{overflow-x:auto}
+td.hutsa{height:2.4rem}
+.datua{font-family:var(--psi-font-izenburu);font-weight:900;color:var(--bloke-nagusia)}
+.koadroa{border:1px solid #BFC6CF;border-radius:8px;padding:.5rem .7rem;margin:.5rem 0;min-height:4.2rem}
+.koadroa b{font-size:.85rem;color:var(--bloke-nagusia)}
+.koadroa small{display:block;color:var(--apala);font-size:.8rem}
+.koadroa.handia{min-height:6.5rem}
+.bi-zutabe{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lau-kasu{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:.8rem 0}
+.kasu-txartela{border-radius:var(--psi-erradio);padding:.9rem 1rem;background:var(--bloke-argia)}
+.kasu-txartela.morea{background:var(--psi-bloke3-argia)}
+.kasu-txartela.laranja{background:var(--psi-proiektua-argia)}
+.kasu-txartela h4{margin:.1rem 0 .3rem}
+.kasu-txartela p{margin:.2rem 0;font-size:.92rem}
+.kasu-txartela .mek{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--apala)}
+.zitazioa{font-family:var(--psi-font-izenburu);font-size:1.15rem;font-weight:700;background:#fff;border:1px solid var(--lerroa);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0}
+.puntuak{display:grid;grid-template-columns:repeat(3,22px);gap:34px;justify-content:center;padding:26px;margin:.6rem auto;width:max-content;background:#fff;border:1px solid var(--lerroa);border-radius:10px}
+.puntuak span{width:22px;height:22px;border-radius:50%;background:var(--bloke-nagusia)}
+.anatomia{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:.7rem 0}
+.anatomia div{border-radius:10px;padding:.7rem;background:var(--bloke-argia);font-size:.88rem}
+.anatomia b{display:block;font-family:var(--psi-font-izenburu);color:var(--bloke-nagusia);font-size:.95rem}
+.adibide-txarra,.adibide-ona{border-radius:10px;padding:.7rem 1rem;margin:.5rem 0;font-size:.93rem}
+.adibide-txarra{background:#F6E3E3}.adibide-ona{background:var(--psi-bloke2-argia)}
+.kontrol-zerrenda{list-style:none;padding:0}
+.kontrol-zerrenda li{padding:.3rem 0 .3rem 1.9rem;position:relative}
+.kontrol-zerrenda li::before{content:"";position:absolute;left:0;top:.45rem;width:1.05rem;height:1.05rem;border:2px solid var(--bloke-nagusia);border-radius:4px}
+.pribatua{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--psi-bloke2);background:var(--psi-bloke2-argia);padding:2px 8px;border-radius:99px}
+footer{font-size:.85rem;color:var(--apala);margin-top:32px}
+@media (max-width:640px){
+  h1{font-size:1.8rem}
+  section.atala{padding:20px 16px}
+  .bi-zutabe,.lau-kasu{grid-template-columns:1fr}
+  .anatomia{grid-template-columns:1fr 1fr}
+}
+@media print{
+  body{background:#fff;font-size:11pt}
+  nav.saioak{display:none}
+  section.atala{border:none;padding:0;margin-top:0;page-break-before:always}
+  #ikerketa{page-break-before:auto;margin-top:12px}
+  tr,.koadroa,.pausoak li,.dosierra h4{page-break-inside:avoid}
+  .goiburua{border:none}
+  .koadroa{min-height:5.5rem}.koadroa.handia{min-height:9rem}
+  a{color:inherit;text-decoration:none}
+}
+/* ===== Irakasle-gidaren gehigarriak ===== */
+.sarrera-testua{font-size:1.02rem;max-width:68ch}
+.bi-bloke{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:.8rem 0}
+.blokea{border:1px solid var(--lerroa);border-radius:10px;padding:.8rem 1rem;background:#FCFCFB}
+.blokea h4{margin:0 0 .35rem;font-size:.95rem}
+.blokea ul{margin:.2rem 0;padding-left:1.1rem}
+.blokea li{margin:.2rem 0}
+.denb{display:grid;grid-template-columns:4.6rem 1fr;gap:.35rem .9rem;margin:.6rem 0 0}
+.denb dt{font-family:var(--psi-font-izenburu);font-weight:800;color:var(--bloke-nagusia);font-variant-numeric:tabular-nums;white-space:nowrap}
+.denb dd{margin:0;padding-bottom:.35rem;border-bottom:1px solid #EEF0F3}
+.denb dd:last-of-type{border-bottom:none}
+.denb dd b{font-weight:600}
+.hasiera-dd{background:var(--bloke-argia);border-radius:8px;padding:.35rem .6rem !important;border-bottom:none !important}
+.aldaketa{font-size:.86rem;background:var(--psi-proiektua-argia);color:#5A2600;border-radius:8px;padding:.55rem .8rem;margin:.7rem 0}
+.aldaketa b{color:var(--psi-proiektua)}
+.egiaztatu{border-left:4px solid var(--psi-bloke2);background:#F4FAF7;border-radius:0 10px 10px 0;padding:.7rem 1rem;margin-top:.9rem}
+.egiaztatu h4{margin:0 0 .3rem;color:var(--psi-bloke2)}
+.egiaztatu p{margin:.3rem 0}
+.gakoa td,.gakoa th{font-size:.88rem}
+.saio-galdera{font-family:var(--psi-font-izenburu);font-weight:800;color:var(--bloke-nagusia);font-size:1.05rem;margin:.2rem 0 .6rem}
+.puntu-svg{display:block;margin:.5rem auto;max-width:220px}
+.galdera-irekia p{margin:.3rem 0 0;font-weight:700}
+/* Txanda-sortzailea */
+.tresna{background:#fff}
+.tresna-kontrolak{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:.6rem 0}
+.tresna label{font-size:.85rem;font-weight:600;display:flex;flex-direction:column;gap:4px}
+.tresna input,.tresna select{font:inherit;font-size:.9rem;padding:5px 8px;border:1px solid #BFC6CF;border-radius:8px;background:#fff;color:var(--psi-iluna)}
+.tresna input[type=number]{width:5.5rem}
+.taldeak-sarrera{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:.6rem 0}
+.talde-txartela{border:1px solid var(--lerroa);border-radius:10px;padding:.5rem .6rem;display:flex;align-items:center;gap:6px;font-size:.88rem}
+.talde-txartela b{font-family:var(--psi-font-izenburu);color:var(--bloke-nagusia);min-width:2.2rem}
+.botoia{font:inherit;font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:8px;border:1px solid var(--bloke-nagusia);cursor:pointer;background:var(--bloke-nagusia);color:#fff}
+.botoia.bigarren{background:#fff;color:var(--bloke-nagusia)}
+.botoia:focus-visible,.tresna select:focus-visible,.tresna input:focus-visible,nav.saioak a:focus-visible{outline:3px solid #7FA7CF;outline-offset:2px}
+.emaitza td{font-size:.86rem}
+.emaitza td .geratu{font-weight:700;color:var(--bloke-nagusia);display:block}
+.emaitza td .jaso{display:block;color:var(--apala);font-size:.78rem;margin-top:2px}
+.emaitza td.guztira{font-family:var(--psi-font-izenburu);font-weight:900;text-align:center}
+.emaitza td.gutxi{color:#A33}
+.abisua{font-size:.88rem;background:#F6E3E3;border-radius:8px;padding:.5rem .8rem;margin:.5rem 0}
+.prot{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;margin-left:4px}
+.prot-A{background:var(--psi-bloke2-argia);color:var(--psi-bloke2)}
+.prot-B{background:var(--psi-proiektua-argia);color:var(--psi-proiektua)}
+.prot-C{background:var(--psi-bloke3-argia);color:var(--psi-bloke3)}
+@media (max-width:640px){
+  .bi-bloke{grid-template-columns:1fr}
+  .denb{grid-template-columns:3.8rem 1fr}
+}
+@media print{
+  .ez-inprimatu{display:none !important}
+  .egiaztatu,.blokea{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="goiburua">
+  <div class="edukia">
+    <div class="etiketak">
+      <span class="etiketa">UD04 · Ikaskuntza, psikologiatik</span>
+      <span class="etiketa laranja">Irakaslearentzat</span>
+      <span class="etiketa">Ikerketa-koadernoaren eranskina</span>
+    </div>
+    <h1>Irakasle-gida</h1>
+    <p class="azpititulua">Ikasleek zer egin behar duten <a href="ikerketa-koadernoa.html">ikerketa-koadernoan</a> dago. Hemen, zuk zer egin behar duzun: saio bakoitzean zer prestatu, zer esan, zer jaso eta zer egiaztatu.</p>
+  </div>
+</header>
+
+<nav class="saioak" aria-label="Atalak">
+  <div class="edukia">
+    <a href="#aurretik">Aurretik</a><a href="#haria">Haria</a><a href="#s1">S1</a><a href="#s2">S2</a><a href="#s3">S3</a><a href="#s4">S4</a><a href="#s5">S5</a><a href="#s6">S6</a><a href="#s7">S7</a><a href="#s8">S8</a><a href="#s9">S9</a><a href="#s10">S10</a><a href="#jasoketa">Jasoketa</a><a href="#txandak">Txandak</a>
+  </div>
+</nav>
+
+<main class="edukia">
+
+<!-- ===== AURRETIK ===== -->
+<section class="atala" id="aurretik">
+  <h2>Gaia hasi aurretik</h2>
+
+  <h3>Hirukoteak</h3>
+  <p>Zuk osatu, S1 aurretik. Ikasleei uzten badiezu, hiru minutuak hamar bihurtuko dira eta lagun-taldeak aterako dira. 30 ikaslerekin, hamar hirukote. Ikasle kopurua hiruren multiploa ez bada, hirukote bat edo bi lau kidekoak izan daitezke. Hirukote bakoitzak bere kideak 1, 2 eta 3 zenbakiekin identifikatzen ditu: S7ko txandetan eta S9–S10eko zozketan erabiliko dira.</p>
+
+  <h3>Kutxa misteriotsua</h3>
+  <p>Gaiaren pieza nagusia da: S1ean erabiltzen da eta S6an itzultzen da. Horner eta Whitenen (2005) logika errespetatu behar du: bide alferrikako bat eta benetako bide bat.</p>
+  <div class="dosierra">
+    <h4>Nola eraiki</h4>
+    <p>Plastikozko ontzi garden bat, tupper motakoa (20 × 15 × 10 cm inguru). Estalkian, arkatz bat sartzeko adinako zulo bat ireki; barruan, zuloaren azpian, kartoi zati bat itsatsi, zulotik ezer lortu ezin izateko. Hori da <b>bide alferrikakoa</b>. Ontziaren aurrealdean leiho bat ebaki, eta zinta itsasgarriarekin edo pinza batekin itxi. Hori da <b>benetako bidea</b>. Saria leihoaren atzean jarri: txartel bat edo pegatina bat, inoiz ez janaria.</p>
+    <p><b>Bertsio opakoa:</b> bigarren ontzi berdina, kartulina beltzez estalita, zuloa eta leihoa agerian utzita. Bi kutxa izatea hobe da ontzi bera estaltzea baino: ez duzu denborarik galduko txanden artean.</p>
+  </div>
+  <div class="dosierra">
+    <h4>Erakustaldiaren gidoia</h4>
+    <p>Beti ekintza berak, beti ordena berean, abiadura berean. Behatzaileek erregistratu egin behar dituzte.</p>
+    <ol class="pausoak">
+      <li>Estalkia bi aldiz jo eskuarekin. <span class="oharra">(alferrikakoa)</span></li>
+      <li>Arkatza goiko zulotik sartu eta barruan hiru aldiz jo. <span class="oharra">(alferrikakoa)</span></li>
+      <li>Aurreko leihoa ireki.</li>
+      <li>Saria atera.</li>
+    </ol>
+    <p>Erakustaldian bi gauza bakarrik esaten dira: «Begira» eta «Zure txanda». Ez azaldu ezer, ez barre egin, ez lagundu. Txanda bakoitzaren ondoren, saria berriro barruan jarri eta leihoa itxi. Hiru sari prest izan.</p>
+  </div>
+
+  <h3>Gainerako materiala</h3>
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Saio jakinetarako</h4>
+      <ul>
+        <li><b>S3:</b> bederatzi puntuak proiektatzeko, eta soluzioa (S3an dago).</li>
+        <li><b>S4:</b> <i>El origen del planeta de los simios</i> (2011) filmaren pasarte bat, 3–4 minutukoa. Argiena Césarren «No!» eszena da, filmaren azken zatian.</li>
+        <li><b>S9–S10:</b> 20 zozketa-txartel (S9an azalduta) eta txartel zuriak galdera kritikoetarako.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Gai osorako</h4>
+      <ul>
+        <li><b>Horma-taula:</b> arbelaren zati bat edo paper handi bat, lau zutaberekin (Sultan, Nim, Mineka, kutxa). S3tik aurrera betetzen da. Ikus hurrengo atala.</li>
+        <li><b>Kronometro ikusgarri bat:</b> S2, S7 eta S9–S10ean ezinbestekoa.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HARIA ===== -->
+<section class="atala" id="haria">
+  <h2>Gaiaren haria: zuk buruan eraman behar duzuna</h2>
+  <p class="sarrera-testua">Ikasleek dosierrak bakarrik irakurtzen dituzte eta ebidentzia-orriak bakarka betetzen dituzte. Koadernoan, inork ez die esaten kasu bakoitzak galdera nagusiari zer erantzuten dion, eta haria S8an bakarrik agertzen da. Hori zure lana da: S3tik S6ra, saio bakoitzaren <b>lehen hiru minutuetan</b>, aurreko saioko irteera-txarteletatik abiatuta, galdetu «Zer dio kasu honek gure galderaz?» eta idatzi erantzuna horma-taulan. S8an ikasleek begien aurrean izango dute.</p>
+
+  <p class="galdera-gidaria">Primateek nola ikasten duten aztertuta, zer ikas dezakegu gizakion ikaskuntzaz?</p>
+
+  <div class="taula-ondo">
+  <table class="gakoa">
+    <thead><tr><th>Kasua</th><th>Mekanismoa</th><th>Zer erantzuten dio galderari (zuretzat, ez emateko)</th><th>Ohiko akatsa</th></tr></thead>
+    <tbody>
+      <tr><td><b>S2</b> Moldaketa-jokoa</td><td>Operantea</td><td>Jokabidea ikas daiteke araua ulertu gabe. Ulermena, iristen bada, gero iristen da.</td><td>«Boluntarioak ulertu zuen», jokabidea egin zuelako.</td></tr>
+      <tr><td><b>S3</b> Sultan</td><td>Kognitiboa</td><td>Batzuetan ulertuz ikasten dugu: soluzioa bat-batean agertzen da eta transferitu egiten da. Baina ulermen hori aurretik ikasitakoaren gainean eraikitzen da (Birch).</td><td>Insighta hutsetik sortzen den argialdi gisa ulertzea.</td></tr>
+      <tr><td><b>S4</b> Nim</td><td>Operantea</td><td>Errefortzuak jokabidea sortzen du, ez hizkuntza: 125 zeinu, baina sintaxirik ez. Ikastea ez da hizkuntza ikastea.</td><td>«Nimek ez zuen ezer ikasi».</td></tr>
+      <tr><td><b>S5</b> Mineka</td><td>Klasikoa eta behaketa</td><td>Beldurra besteei begiratuz ikas daiteke, esperientzia zuzenik gabe. Baina ez edozeri: biologiak lotura batzuk errazten ditu.</td><td>Estimulu baldintzatua estimulu «berritzat» hartzea.</td></tr>
+      <tr><td><b>S1 + S6</b> Kutxa</td><td>Behaketa</td><td>Ekintzak kopiatzen ditugu alferrikakoak direla ikusten dugunean ere, eta gizakiek txinpantzeek baino gehiago. Ulertzeko gaitasun handiena dugunok kopiatzen dugu gehien.</td><td>«Txinpantzeak adimentsuagoak dira» (gehiegizko orokortzea).</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="galdera-irekia">
+    <div class="pauso-etiketa">Paradoxa, S10erako</div>
+    Kultura ulertu gabe ikasitakoaren gainean eraikita badago, gainbalioesten ari al gara ulertzea? Edo, alderantziz, horregatik da hain beharrezkoa?
+  </div>
+</section>
+
+<!-- ===== S1 ===== -->
+<section class="atala" id="s1">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S1</span><span class="denbora">Fenomenoa · 50 min</span></div>
+  <h2>Kutxa misteriotsua</h2>
+  <p class="saio-galdera">Zergatik egiten dugu, edo ez dugu egiten, ezertarako balio ez duen ekintza bat?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>Bi kutxak, arkatza eta hiru sari, mahai batean, denek ikusteko moduan.</li>
+        <li>Hiru boluntario, klasea hasi aurretik. Korridorean argibide bakarra: «Banan-banan deituko zaituztet. Barruan, egin nahi duzuena». Ez esan zer ikertzen den.</li>
+        <li>Hirukoteen zerrenda, proiektatzeko.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso</h4>
+      <ul>
+        <li>Irteera-txartelak.</li>
+        <li>Arbeleko datuen argazkia (A, B eta C-k zein ekintza errepikatu dituzten): S6an behar dituzu.</li>
+        <li>Hipotesi-orria ez da jasotzen: hirukoteak gordetzen du, txostenaren lehen atala delako.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–15</dt><dd><b>Erakustaldia.</b> A sartu: erakustaldia kutxa opakoarekin, eta haren txanda (minutu bat gehienez). Saria berriro barruan. B sartu: erakustaldia kutxa gardenarekin, eta haren txanda. C sartu: «Ireki kutxa eta atera barruan dagoena», erakustaldirik gabe. Gainerakoek isilik erregistratzen dute.</dd>
+    <dt>15–23</dt><dd><b>Ikerketa aurkeztu</b>, koadernoaren lehen atalarekin: galdera, lau kasuak, bi arauak, produktuak eta ebaluazioa. Ez aurreratu kutxaren emaitzarik.</dd>
+    <dt>23–26</dt><dd><b>Hirukoteak eta rolak</b>, zuk osatuak.</dd>
+    <dt>26–38</dt><dd><b>Hiru hipotesi.</b> Zirkulatu eta egin galdera bera behin eta berriz: «Zer behaketak frogatuko luke hori?».</dd>
+    <dt>38–46</dt><dd><b>Aurreikuspena</b>: txinpantzeak eta haurrak, kutxa opakoarekin eta gardenarekin.</dd>
+    <dt>46–50</dt><dd><b>Irteera-txartela.</b></dd>
+  </dl>
+  <div class="aldaketa"><b>Denbora falta bada</b> (erakustaldia luzatuko da): aurreikuspena etxerako, bakarka. S6aren hasieran alderatzen dira hirukotean.</div>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Hipotesi on batek hiru zati ditu: zer gertatu den, zergatik uste duten gertatu dela eta zer behaketak frogatuko lukeen. Ohikoena hirugarrena falta izatea da: hor jarri arreta.</p>
+  </div>
+</section>
+
+<!-- ===== S2 ===== -->
+<section class="atala" id="s2">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S2</span><span class="denbora">Kondizionamendu operantea · 50 min</span></div>
+  <h2>Moldaketa-jokoa</h2>
+  <p class="saio-galdera">Ikasi al du? Ulertu al du? Gauza bera al da?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>Kronometroa.</li>
+        <li>Jokoaren arauak arbelean: hitzik, keinurik eta barrerik ez.</li>
+        <li>Hiru «txalo-emaile» izendatu. Gela osoak txalo egiten badu, seinalea nahasi egiten da eta jokoa kaosa bihurtzen da.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso</h4>
+      <ul>
+        <li>Irteera-txartelak. Bigarren galdera da gakoa: araua ikasi aurretik ala ondoren ulertu zuen?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–15</dt><dd><b>Jokoa, bi txandatan.</b> Boluntarioa kanpora. Gelak jokabidea proposatzen du eta zuk onartu: segurua, duina eta bizpahiru urratsekoa. Boluntarioari araua eman: «Txaloak entzuten badituzu, ondo zoaz». Amaieran, hiru galderak: Zer ikasi duzu? Zein zen araua? Noiz konturatu zara?</dd>
+    <dt>15–23</dt><dd><b>Dosierra</b>, bakarka: Thorndike eta Skinner.</dd>
+    <dt>23–33</dt><dd><b>Jokoa kontzeptuekin deskribatu</b>, hirukotean.</dd>
+    <dt>33–46</dt><dd><b>2×2 taula</b>, adibide propioekin. Zirkulatu eta zuzendu ozenki errefortzu negatiboaren adibide bat gutxienez.</dd>
+    <dt>46–50</dt><dd><b>Irteera-txartela.</b></dd>
+  </dl>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Errefortzu negatiboa eta zigorra nahasten dituzte ia beti. Bi galdera, ordena honetan: lehenik «Jokabidea handitu ala gutxitu da?», gero «Zerbait gehitu ala kendu da?». Handitu bada, errefortzua da, ondorioa desatsegina izan arren.</p>
+  </div>
+</section>
+
+<!-- ===== S3 ===== -->
+<section class="atala" id="s3">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S3</span><span class="denbora">1. kasua · ikaskuntza kognitiboa · 50 min</span></div>
+  <h2>Sultan eta kaxak</h2>
+  <p class="saio-galdera">Ikasteko beti saiatu eta huts egin behar al da, ala bat-batean uler daiteke?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>Bederatzi puntuak proiektatzeko.</li>
+        <li>Soluzioa (behean). Gakoa: lerroak laukiaren mugatik ateratzea.</li>
+      </ul>
+      <svg class="puntu-svg" viewBox="20 -10 160 150" role="img" aria-label="Bederatzi puntuen soluzioa: lau lerro, laukitik kanpora ateraz">
+        <g fill="none" stroke="#1A5C3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="40,120 160,120 40,0 40,120 120,40"/>
+        </g>
+        <g fill="#1B3A5C">
+          <circle cx="40" cy="40" r="6"/><circle cx="80" cy="40" r="6"/><circle cx="120" cy="40" r="6"/>
+          <circle cx="40" cy="80" r="6"/><circle cx="80" cy="80" r="6"/><circle cx="120" cy="80" r="6"/>
+          <circle cx="40" cy="120" r="6"/><circle cx="80" cy="120" r="6"/><circle cx="120" cy="120" r="6"/>
+        </g>
+        <g font-family="Inter,sans-serif" font-size="11" fill="#5B6573">
+          <text x="92" y="136">1</text><text x="104" y="62">2</text><text x="26" y="62">3</text><text x="86" y="96">4</text>
+        </g>
+      </svg>
+      <p class="oharra">Behe-ezkerreko puntutik eskuinera, laukitik kanpora; handik diagonalean goi-ezkerrera, laukitik kanpora; handik behera, hasierako puntura; eta azkenik diagonal nagusia.</p>
+    </div>
+    <div class="blokea">
+      <h4>Jaso</h4>
+      <ul>
+        <li>Irteera-txartelak (bi kurbak).</li>
+        <li>Hirukoteen hiru irizpideak: argazkia atera edo idatziz jaso. S7an eta txostenean erabiliko dituzte.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–3</dt><dd class="hasiera-dd"><b>Haria.</b> S2ko irteera-txarteletatik: «Boluntarioak araua ikasi aurretik ala ondoren ulertu zuen?». Horma-taula estreinatu.</dd>
+    <dt>3–9</dt><dd><b>Bederatzi puntuak</b>: lau minutu saiatzeko eta bi hitz egiteko. Soluzioa erakutsi eta galdetu: nola etorri zaizue? Zerk blokeatu zaituzte?</dd>
+    <dt>9–19</dt><dd><b>Dosierra</b>, hiru koloretan: zer egin zuten, zer ikusi zuten, zer interpretatu zuten.</dd>
+    <dt>19–34</dt><dd><b>1. ebidentzia-orria</b>, bakarka.</dd>
+    <dt>34–46</dt><dd><b>Hiru irizpide</b>: noiz esan dezakegu norbaitek ulertu duela, eta ez soilik ikasi?</dd>
+    <dt>46–50</dt><dd><b>Irteera-txartela</b>: bi ikaskuntza-kurba.</dd>
+  </dl>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Kurbetan: Thorndikeren katuena pixkanaka jaisten da; Sultanena, bat-batean, eta behean geratzen da. Irizpideetan, seinale ona da «transferentzia» edo «azaltzeko gai izatea» agertzea. Koloreen markaketan, «zer ikusi zuten» eta «zer interpretatu zuten» bereizten dituzten begiratu: horixe da gai osorako araua (emaitza ≠ interpretazioa).</p>
+  </div>
+</section>
+
+<!-- ===== S4 ===== -->
+<section class="atala" id="s4">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S4</span><span class="denbora">2. kasua · kondizionamendu operantea · 50 min</span></div>
+  <h2>Nim Chimpsky</h2>
+  <p class="saio-galdera">Errefortzuz ikas daiteke hizkuntza bat?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>Nimen 16 zeinuko segida, proiektatzeko.</li>
+        <li>Filmeko pasartea, abiatzeko prest (3–4 min).</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso eta etxerako</h4>
+      <ul>
+        <li>Irteera-txartelak.</li>
+        <li><b>Etxerako:</b> S5eko dosierra irakurri (Pavlov, Albert txikia, Garcia, Mineka). Kondizionamendu klasikoa saio bakarrean sartzen da, eta bestela ez da sartzen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–3</dt><dd class="hasiera-dd"><b>Haria.</b> Sultan: «Batzuetan ulertuz ikasten dugu, baina aurretik ikasitakoaren gainean». Horma-taulan.</dd>
+    <dt>3–8</dt><dd><b>Nimen segida</b>: esaldi bat al da?</dd>
+    <dt>8–20</dt><dd><b>Dosierra eta datuak</b>: Skinner, Chomsky eta Terrace.</dd>
+    <dt>20–29</dt><dd><b>César ala Nim</b>: pasartea, eta bi zutabeak.</dd>
+    <dt>29–41</dt><dd><b>2. ebidentzia-orria</b>, bakarka.</dd>
+    <dt>41–46</dt><dd><b>Etika</b>, idatziz, hiru lerrotan.</dd>
+    <dt>46–50</dt><dd><b>Irteera-txartela.</b></dd>
+  </dl>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Bi datuak ulertu dituztela: esaldien batez besteko luzera ez zen hazi (1,1–1,6), eta horrek sintaxirik ez zegoela adierazten du; % 39an Nimek irakaslearen aurreko esaldia imitatu edo laburtu zuen. Ohiko akatsa: «Nimek ez zuen ezer ikasi». Ikasi zuen, 125 zeinu; galdera da <i>zer</i> ikasi zuen. Kontrako irakurketa (baldintza kaotikoak, 60 zaintzaile) ebidentzia-orriaren 6. galderan agertu behar da, muga gisa.</p>
+  </div>
+</section>
+
+<!-- ===== S5 ===== -->
+<section class="atala" id="s5">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S5</span><span class="denbora">3. kasua · kondizionamendu klasikoa eta behaketa · 50 min</span></div>
+  <h2>Tximinoak eta sugeak</h2>
+  <p class="saio-galdera">Beldurrak eta nazkak ikasi egiten al dira? Eta edozeri ikas al diezaiokegu beldurra?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>Terminologia-taula proiektatzeko, lehen bi lerroak zuzentzeko.</li>
+        <li>Rolak txandakatzeko oharra.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso</h4>
+      <ul>
+        <li>Irteera-txartelak.</li>
+        <li><b>Ez</b> jaso nazka-oroitzapenik, ezta terminologia-taularen hirugarren lerroa ere.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–3</dt><dd class="hasiera-dd"><b>Haria.</b> Nim: «Errefortzuak jokabidea sortzen du, ez hizkuntza». Horma-taulan.</dd>
+    <dt>3–9</dt><dd><b>Nazka-oroitzapena.</b> Hasi aurretik, argi esan: idatzitakoa ez da partekatzen, ez da jasotzen eta ez du notarik.</dd>
+    <dt>9–16</dt><dd><b>Dosierraren berrikuspena</b> (etxean irakurri badute). Ez badute irakurri, 10 minutu, eta loreen galdera 7ra.</dd>
+    <dt>16–24</dt><dd><b>Terminologia-taula</b>, bakarka. Gero zuzendu ozenki Albert txikiaren eta tximinoaren lerroak.</dd>
+    <dt>24–34</dt><dd><b>Zergatik ez loreen beldurra?</b> Bi azalpen eta behar luketen datua.</dd>
+    <dt>34–46</dt><dd><b>3. ebidentzia-orria</b>, bakarka.</dd>
+    <dt>46–50</dt><dd><b>Irteera-txartela.</b> Rolak txandakatu.</dd>
+  </dl>
+  <div class="aldaketa"><b>Dosierra etxean:</b> koadernoak S4aren amaieran eskatzen du. Gelan berrikusi besterik ez da egiten.</div>
+
+  <div class="taula-ondo">
+  <table class="gakoa">
+    <thead><tr><th></th><th>EN</th><th>BGE</th><th>BGEr</th><th>EB</th><th>EBr</th></tr></thead>
+    <tbody>
+      <tr><td><b>Albert txikia</b></td><td>Arratoi zuria</td><td>Zarata ikaragarria</td><td>Beldurra, negarra</td><td>Arratoi zuria</td><td>Beldurra</td></tr>
+      <tr><td><b>Minekaren tximinoa</b></td><td>Sugea</td><td>Ereduaren beldur-erreakzioa</td><td>Beldurra</td><td>Sugea</td><td>Beldurra</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Akatsik ohikoena: estimulu baldintzatua estimulu berritzat hartzea. EN eta EB estimulu bera dira; aldatzen dena da orain erantzuna sortzen duela. Minekaren kasuan, BGEa beste tximinoaren erreakzioa da, ez sugea: hor lotzen dira klasikoa eta behaketa. Eztabaidagarria da, eta ondo dago ikasleek hala ikustea.</p>
+    <p><b>Muga:</b> norbaitek bere fobia bat aipatzen badu, ez sakondu: «Hori 12. gaian landuko dugu; gaur mekanismoa aztertzen ari gara».</p>
+  </div>
+</section>
+
+<!-- ===== S6 ===== -->
+<section class="atala" id="s6">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S6</span><span class="denbora">4. kasua · behaketa bidezko ikaskuntza · 50 min</span></div>
+  <h2>Kutxara itzuli</h2>
+  <p class="saio-galdera">Zergatik kopiatzen dugu, alferrikakoa dela dakigunean ere?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>S1eko datuen argazkia, proiektatzeko.</li>
+        <li>Horner eta Whitenen taula, ezkutuan, aurreikuspenak entzun ondoren erakusteko.</li>
+        <li>Hirukoteen zerrenda, protokoloak idazteko.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso eta etxerako</h4>
+      <ul>
+        <li>Irteera-txartelak eta protokoloen zerrenda.</li>
+        <li><b>Etxerako:</b> esperimentu-fitxaren lehen atalak (hipotesia, aldagaiak, prozedura hitzez hitz). Bestela, S7ko 15 minutuetan ez dago hamar fitxa onartzeko denborarik.</li>
+        <li><b>Klasearen ondoren:</b> <a href="#txandak">txanda-taula sortu</a>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–3</dt><dd class="hasiera-dd"><b>Haria.</b> Mineka: «Beldurra besteei begiratuz ikas daiteke, baina ez edozeri». Horma-taulan.</dd>
+    <dt>3–13</dt><dd><b>Datuak alderatu.</b> Lehenik, bizpahiru hirukotek beren aurreikuspena esan. Gero, taula erakutsi. Galdera gakoa: zergatik ez dira gure datuak zuzenean konparagarriak?</dd>
+    <dt>13–19</dt><dd><b>Emaitza, interpretazioa ala gehiegizko orokortzea</b>, bakarka.</dd>
+    <dt>19–29</dt><dd><b>Hiru azalpen</b>: zein da sinesgarriena gure datuen arabera?</dd>
+    <dt>29–41</dt><dd><b>4. ebidentzia-orria</b>, bakarka.</dd>
+    <dt>41–44</dt><dd><b>Protokoloa aukeratu.</b> Banaketa orekatua izan dadila: gutxi gorabehera heren bat protokolo bakoitzeko.</dd>
+    <dt>44–47</dt><dd class="hasiera-dd"><b>Haria itxi.</b> Horma-taularen laugarren zutabea bete, eta galdera bakarra: zer dute komunean lau kasuek?</dd>
+    <dt>47–50</dt><dd><b>Irteera-txartela.</b></dd>
+  </dl>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Sailkapenaren gakoa: a) emaitza · b) gehiegizko orokortzea · c) emaitza · d) interpretazioa · e) gehiegizko orokortzea · f) interpretazioa. Konparagarritasunean, lau arrazoi espero dira: lagina (3 vs 12–16), adina (helduak vs 3–4 urteko haurrak), saria eta egoera (gela, ikaskideak begira).</p>
+  </div>
+</section>
+
+<!-- ===== S7 ===== -->
+<section class="atala" id="s7">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S7</span><span class="denbora">Ikerketa propioa · 50 min</span></div>
+  <h2>Gure esperimentua</h2>
+  <p class="saio-galdera">Gelan bertan froga dezakegu ikasten dugula ulertu gabe?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li><a href="#txandak">Txanda-taula</a>, inprimatuta edo proiektatzeko.</li>
+        <li>Kronometro ikusgarria.</li>
+        <li>Mahaiak, hirukote bakoitzak bere «laborategia» izateko, elkarrengandik aldenduta.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso</h4>
+      <ul>
+        <li>Ezer ez. Esperimentu-fitxa, sinatuta, hirukoteak gordetzen du: txostenaren hirugarren atala da.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–15</dt><dd><b>Onespena</b>, hirukotez hirukote, minutu bat bakoitzari. Lau puntu begiratu: hipotesia aurreikuspen gisa idatzita dago; aldagai independentea eta mendekoa argiak dira; prozedura hitzez hitz dago eta bi baldintzetan esaldi bera da, aldagaia izan ezik; etika-kontroleko zazpi puntuak beteta daude. Sinatu fitxa.</dd>
+    <dt>15–40</dt><dd><b>Hiru txanda</b>, 8 minutu bakoitza, eta 30 segundo mugitzeko. Hasieran argi esan: parte-hartzaileek ez diote inori kontatzen zer gertatu den, saioa amaitu arte.</dd>
+    <dt>40–50</dt><dd><b>Datuak taulan</b> eta lehen irakurketa.</dd>
+  </dl>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Datu-bilketan zirkulatu. A protokoloan: «Hau ez da beharrezkoa» esaldia hitzez hitz esaten da, eta beti une berean. B protokoloan: esperimentatzaileak bakarrik egiten du txalo. C protokoloan: parte-hartzaileak ez du ikusten beste baten erantzuna.</p>
+    <p>Txostenerako muga on bat, ikasleek beraiek aurki dezaketena: hiru esperimentatzaile desberdinek bildu dituzte datuak, eta horrek ere eragin dezake emaitzan.</p>
+  </div>
+</section>
+
+<!-- ===== S8 ===== -->
+<section class="atala" id="s8">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S8</span><span class="denbora">Ondorioak · 50 min</span></div>
+  <h2>Ondorioak eraiki</h2>
+  <p class="saio-galdera">Zer esan dezakegu ziur, zer ez, eta zergatik?</p>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li>Koadernoko «ondorio ahula / ondorio garbia» adibidea, proiektatzeko.</li>
+        <li>Horma-taula osorik, ikusgai.</li>
+        <li>Txostenaren entrega-data erabakita.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Jaso</h4>
+      <ul>
+        <li>Banakako sintesiak.</li>
+        <li>Lau ebidentzia-orriak, izenarekin eta grapatuta. Orain jasotzen dira, sintesia idazteko behar izan dituztelako.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–18</dt><dd><b>Sintesia, isilik.</b> Ez erantzun edukiari buruzko galderarik: «Idatzi zure zalantza; hori ere datua da».</dd>
+    <dt>18–40</dt><dd><b>Hiru ondorio garbi.</b> Bitartean, hirukotez hirukote, bi minutu: begiratu ondorio bakoitzak lau zatiak dituen. Galdera bakarra aski izaten da: «Non dago muga?» edo «Zein bi kasu?».</dd>
+    <dt>40–50</dt><dd><b>Txostena banatu</b> eta aurkezpenaren gidoia adostu. Iragarri entrega-data.</dd>
+  </dl>
+  <div class="aldaketa"><b>Entrega-data, proposamena:</b> txostena S10etik astebetera, jasotako galdera kritikoak txertatuta. Aurkezpenak S8ko ondorioetan oinarritzen dira, ez txostenean; beraz, ez da behar aurretik idaztea, eta horrela defentsak txostena hobetzeko balio du.</div>
+
+  <div class="egiaztatu">
+    <h4>Egiaztatu</h4>
+    <p>Hiru akats ohiko: ebidentzia kasu bakarrekoa da; ez dago mugarik; «ondorioa» iritzia da. Hiru horietako bat ikusten baduzu, hirukoteak berridazten du zure aurrean egon gabe.</p>
+  </div>
+</section>
+
+<!-- ===== S9 ===== -->
+<section class="atala" id="s9">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S9</span><span class="denbora">Defentsa I · 50 min</span></div>
+  <h2>Ondorioak defendatu (I)</h2>
+  <p class="saio-galdera">Zuen ondorioek eusten diote besteen galderen aurrean?</p>
+
+  <div class="aldaketa"><b>Zozketa hiru kideei.</b> % 20ko ahozko nota bakarkakoa da; beraz, kide bakoitzak frogatu behar du zer dakien, ez bakarrak. Hirukote bakoitzak 7 minutu behar ditu (4 + 3), eta bost hirukote 35 minututan sartzen dira.</div>
+
+  <div class="bi-bloke">
+    <div class="blokea">
+      <h4>Prestatu</h4>
+      <ul>
+        <li><b>20 zozketa-txartel:</b> bost kasu (Sultan, Nim, Mineka, kutxa, gure esperimentua) bider lau galdera-mota. Diseinua: «Zer egin zuten, eta nor izan ziren parte-hartzaileak?». Emaitzak: «Esan datu zehatz bat eta zer neurtzen duen». Mekanismoa: «Zein ikaskuntza-mekanismo dago jokoan, eta zergatik ez beste bat?». Muga: «Zer ez du frogatzen kasu honek?».</li>
+        <li>Txartel zuriak galdera kritikoetarako.</li>
+        <li>Aurkezpen-ordena eta entzule-txandak: hirukote bakoitzak hurrengoaren aurkezpena jarraitzen du (1.ak 2.arena, 2.ak 3.arena…).</li>
+        <li>Errubrika-orria hirukote bakoitzeko, eta zozketa-eskala.</li>
+      </ul>
+    </div>
+    <div class="blokea">
+      <h4>Kalifikatu, bertan</h4>
+      <ul>
+        <li>Koadernoko errubrikaren «Defentsa» lerroa, hirukotearentzat.</li>
+        <li>Zozketa, kide bakoitzarentzat, eskala honekin:</li>
+      </ul>
+      <table class="gakoa">
+        <tbody>
+          <tr><td><b>0</b></td><td>Ez du erantzuten, edo orokorkeriak.</td></tr>
+          <tr><td><b>1</b></td><td>Zuzena, baina daturik edo kontzepturik gabe.</td></tr>
+          <tr><td><b>2</b></td><td>Zuzena, datu zehatz batekin edo kontzeptu-gutxieneko batekin.</td></tr>
+          <tr><td><b>3</b></td><td>Gainera, muga bat edo beste interpretazio bat.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–5</dt><dd><b>Antolaketa</b>: ordena, entzule-txandak eta txartel zuriak banatu.</dd>
+    <dt>5–40</dt><dd><b>Bost hirukote.</b> Aurkezpena, 4 minutu. Gero zozketa: kide bakoitzak txartel bat ateratzen du eta minutu batean erantzuten du, oharrik gabe. Entzuleek galdera kritiko bat idazten dute.</dd>
+    <dt>40–50</dt><dd><b>Galdera kritikoak</b>: txartelak talde bakoitzari eman, eta erantzuna prestatu.</dd>
+  </dl>
+</section>
+
+<!-- ===== S10 ===== -->
+<section class="atala" id="s10">
+  <div class="saio-goiburua"><span class="saio-zenbakia">S10</span><span class="denbora">Defentsa II eta itxiera · 50 min</span></div>
+  <h2>Ondorioak defendatu (II)</h2>
+  <p class="saio-galdera">Gainbalioesten ari al gara ulertzea?</p>
+
+  <h4>Saioan</h4>
+  <dl class="denb">
+    <dt>0–35</dt><dd><b>Beste bost hirukoteak</b>, S9an bezala.</dd>
+    <dt>35–43</dt><dd><b>S9ko galdera kritikoen erantzunak</b>, ozenki. Gaurko hirukoteek jasotako galderak txostenean erantzungo dituzte.</dd>
+    <dt>43–50</dt><dd><b>Galdera irekia.</b> Irakurri eta utzi bi minutu isilik idazten. Gero, bizpahiru ahots.</dd>
+  </dl>
+
+  <div class="egiaztatu">
+    <h4>Zure rola galdera irekian</h4>
+    <p>Ez erantzun, eta ez laburbildu amaieran. Eztabaida geldotzen bada, hiru galdera hauek balia ditzakezu: «Zer ikasi duzue zuek ulertu gabe, eta ondo dago horrela?»; «Noiz da arriskutsua ulertu gabe kopiatzea?»; «Kutxako haurrek gaizki egin zuten, ala ondo?». Galdera irekita geratzen bada, saioak bere lana egin du.</p>
+  </div>
+</section>
+
+<!-- ===== JASOKETA ===== -->
+<section class="atala" id="jasoketa">
+  <h2>Zer jaso, noiz eta nola zuzendu</h2>
+  <div class="taula-ondo">
+  <table>
+    <thead><tr><th>Produktua</th><th>Noiz</th><th>Zer egin</th><th>Pisua</th></tr></thead>
+    <tbody>
+      <tr><td>Irteera-txartelak</td><td>Saio bakoitzaren amaieran</td><td>Etxean, bost minutuan irakurri, zuzendu gabe. Bizpahiru akats ohiko bilatu, eta horiekin hasi hurrengo saioa.</td><td>Notarik gabe</td></tr>
+      <tr><td>Hipotesi-orria</td><td>S1</td><td>Ez jaso. Bistaz begiratu hiru zatiak dituen.</td><td>Txostenaren barruan</td></tr>
+      <tr><td>Ebidentzia-orriak (4)</td><td>S8aren amaieran</td><td>Zuzenketa azkarra: 3., 5. eta 7. galderak (datua, mekanismoa, galdera nagusiarekiko lotura), 0–2 puntu bakoitza.</td><td>% 20</td></tr>
+      <tr><td>Banakako sintesia</td><td>S8aren amaieran</td><td>Begiratu ea gutxienez hiru kasu aipatzen dituen datuekin, eta galderari erantzuten dion.</td><td>% 15</td></tr>
+      <tr><td>Esperimentu-fitxa</td><td>S7aren hasieran</td><td>Onartu eta sinatu. Hirukoteak gordetzen du.</td><td>Txostenaren barruan</td></tr>
+      <tr><td>Zozketa</td><td>S9–S10</td><td>Bertan, 0–3 eskalarekin, kide bakoitzarentzat.</td><td>% 20</td></tr>
+      <tr><td>Aurkezpena</td><td>S9–S10</td><td>Bertan, errubrikarekin.</td><td>% 15</td></tr>
+      <tr><td>Ikerketa-txostena</td><td>S10etik astebetera (proposamena)</td><td>Errubrikarekin. Galdera kritikoei erantzun dien begiratu.</td><td>% 30</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="oharra">30 ikaslerekin: 120 ebidentzia-orri, 30 sintesi eta 10 txosten. Ebidentzia-orrietan hiru galdera bakarrik zuzentzeak lana erdira jaisten du, eta galdera horiek dira, hain zuzen, ikasleak ulertu duen ala ez erakusten dutenak.</p>
+</section>
+
+<!-- ===== TXANDAK ===== -->
+<section class="atala tresna" id="txandak">
+  <h2>S7rako txanda-sortzailea</h2>
+  <p class="sarrera-testua">S7ko datuek balio izateko, parte-hartzaileek ez dute protokolo beraren bi esperimentutan parte hartzen, ezta beren hirukotearen protokoloan ere. 11z biderkatzeko trikimailua behin ikasita, ezin da berriro ikasi. Hirukote bakoitzean kide bakoitza esperimentatzaile da txanda batean (1. kidea 1. txandan, 2.a 2.ean, 3.a 3.ean) eta parte-hartzaile beste bietan. Horrela, bakoitzak beste bi protokoloetan parte hartzen du, behin bakarrik.</p>
+
+  <div class="ez-inprimatu">
+    <div class="tresna-kontrolak">
+      <label>Talde kopurua<input type="number" id="talde-kop" min="2" max="15" value="10"></label>
+      <button class="botoia bigarren" id="eguneratu" type="button">Eguneratu zerrenda</button>
+    </div>
+    <p class="oharra">Talde bakoitzarentzat, S6an aukeratutako protokoloa eta kide kopurua.</p>
+    <div class="taldeak-sarrera" id="taldeak-sarrera"></div>
+    <div class="tresna-kontrolak">
+      <button class="botoia" id="sortu" type="button">Sortu txandak</button>
+      <button class="botoia bigarren" id="inprimatu" type="button">Inprimatu</button>
+    </div>
+  </div>
+
+  <div id="txanda-emaitza" aria-live="polite"></div>
+</section>
+
+<footer>Psikologia · 2. Batxilergoa · UD04 Ikaskuntza, psikologiatik · Irakasle-gida (ikerketa-koadernoaren eranskina)</footer>
+</main>
+
+<script>
+(function(){
+  var PROT = ['A','B','C'];
+  var sarrera = document.getElementById('taldeak-sarrera');
+  var kopInput = document.getElementById('talde-kop');
+  var emaitza = document.getElementById('txanda-emaitza');
+
+  function eraiki(){
+    var n = Math.max(2, Math.min(15, parseInt(kopInput.value,10) || 10));
+    kopInput.value = n;
+    var aurrekoak = irakurri();
+    sarrera.innerHTML = '';
+    for (var i = 0; i < n; i++){
+      var p = aurrekoak[i] ? aurrekoak[i].p : PROT[i % 3];
+      var k = aurrekoak[i] ? aurrekoak[i].n : 3;
+      var div = document.createElement('div');
+      div.className = 'talde-txartela';
+      div.innerHTML = '<b>T' + (i+1) + '</b>' +
+        '<select aria-label="T' + (i+1) + ' protokoloa" data-mota="p">' +
+          PROT.map(function(x){ return '<option' + (x===p?' selected':'') + '>' + x + '</option>'; }).join('') +
+        '</select>' +
+        '<select aria-label="T' + (i+1) + ' kide kopurua" data-mota="n">' +
+          '<option value="3"' + (k===3?' selected':'') + '>3 kide</option>' +
+          '<option value="4"' + (k===4?' selected':'') + '>4 kide</option>' +
+        '</select>';
+      sarrera.appendChild(div);
+    }
+  }
+
+  function irakurri(){
+    var t = [];
+    sarrera.querySelectorAll('.talde-txartela').forEach(function(d, i){
+      t.push({ id: i+1, p: d.querySelector('[data-mota=p]').value, n: parseInt(d.querySelector('[data-mota=n]').value,10) });
+    });
+    return t;
+  }
+
+  function nahastu(a){
+    for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var x = a[i]; a[i] = a[j]; a[j] = x; }
+    return a;
+  }
+
+  // Kide bakoitza zein txandatan geratzen den: k<=3 → k. txandan; 4. kidea 3. txandan, erregistratzaile gisa.
+  function geratzeTxanda(k){ return k <= 3 ? k : 3; }
+
+  function sortu(){
+    var taldeak = irakurri();
+    var dauden = PROT.filter(function(p){ return taldeak.some(function(t){ return t.p === p; }); });
+    var kideak = [];
+    taldeak.forEach(function(t){ for (var k = 1; k <= t.n; k++) kideak.push({ g: t.id, k: k, p: t.p }); });
+
+    var onena = null;
+    for (var saio = 0; saio < 3000; saio++){
+      var karga = [null, {}, {}, {}], guztira = {};
+      taldeak.forEach(function(t){ karga[1][t.id]=0; karga[2][t.id]=0; karga[3][t.id]=0; guztira[t.id]=0; });
+      var beharra = kideak.map(function(m){ return nahastu(dauden.filter(function(p){ return p !== m.p; })); });
+      var esleipena = {};
+      for (var r = 1; r <= 3; r++){
+        var bisitariak = [];
+        kideak.forEach(function(m, idx){ if (geratzeTxanda(m.k) !== r) bisitariak.push(idx); });
+        nahastu(bisitariak);
+        bisitariak.forEach(function(idx){
+          var m = kideak[idx];
+          var hautagaiak = taldeak.filter(function(t){ return t.id !== m.g && beharra[idx].indexOf(t.p) !== -1; });
+          if (!hautagaiak.length){ esleipena[m.g+'-'+m.k+'-'+r] = 'L'; return; }
+          nahastu(hautagaiak);
+          hautagaiak.sort(function(a,b){ return (karga[r][a.id]-karga[r][b.id]) || (guztira[a.id]-guztira[b.id]); });
+          var helburua = hautagaiak[0];
+          esleipena[m.g+'-'+m.k+'-'+r] = helburua.id;
+          karga[r][helburua.id]++; guztira[helburua.id]++;
+          beharra[idx].splice(beharra[idx].indexOf(helburua.p), 1);
+        });
+      }
+      var puntuak = 0;
+      for (var rr = 1; rr <= 3; rr++){
+        var balioak = taldeak.map(function(t){ return karga[rr][t.id]; });
+        var bb = balioak.reduce(function(a,b){return a+b;},0) / balioak.length;
+        balioak.forEach(function(v){ puntuak += (v-bb)*(v-bb); if (v === 0) puntuak += 4; });
+      }
+      var gz = taldeak.map(function(t){ return guztira[t.id]; });
+      var bg = gz.reduce(function(a,b){return a+b;},0) / gz.length;
+      gz.forEach(function(v){ puntuak += 0.5*(v-bg)*(v-bg); });
+      if (!onena || puntuak < onena.puntuak){ onena = { puntuak: puntuak, esleipena: esleipena, karga: karga, guztira: guztira }; }
+      if (puntuak === 0) break;
+    }
+    erakutsi(taldeak, dauden, onena);
+  }
+
+  function erakutsi(taldeak, dauden, o){
+    var html = '';
+    if (dauden.length < 3){
+      html += '<p class="abisua">Protokolo bat edo bi bakarrik daude. Kide batzuek ezin dute bi aldiz parte hartu protokoloa errepikatu gabe: taulan «laguntzaile» gisa agertzen dira (beren hirukotean geratzen dira, datuak idazten).</p>';
+    }
+    html += '<div class="taula-ondo"><table class="emaitza"><thead><tr><th>Taldea</th><th>1. txanda</th><th>2. txanda</th><th>3. txanda</th><th>Parte-hartzaileak</th></tr></thead><tbody>';
+    var gutxi = 0;
+    taldeak.forEach(function(t){
+      html += '<tr><td><b>T' + t.id + '</b><span class="prot prot-' + t.p + '">' + t.p + '</span></td>';
+      for (var r = 1; r <= 3; r++){
+        var geratu = [], joan = [];
+        for (var k = 1; k <= t.n; k++){
+          if (geratzeTxanda(k) === r){ geratu.push(k + '. kidea'); }
+          else {
+            var h = o.esleipena[t.id+'-'+k+'-'+r];
+            joan.push(k + '. kidea → ' + (h === 'L' ? 'laguntzaile' : 'T' + h));
+          }
+        }
+        html += '<td><span class="geratu">Geratzen: ' + geratu.join(', ') + '</span>' + joan.join('<br>') +
+                '<span class="jaso">Jasotzen ditu: ' + o.karga[r][t.id] + '</span></td>';
+      }
+      var g = o.guztira[t.id];
+      if (g < 6) gutxi++;
+      html += '<td class="guztira' + (g < 6 ? ' gutxi' : '') + '">' + g + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    if (gutxi){
+      html += '<p class="abisua">' + gutxi + ' taldek 6 parte-hartzaile baino gutxiago dituzte (koadernoak gutxienez 6 eskatzen ditu). Protokolo batek beste biek baino talde gehiago dituenean, haren taldeek parte-hartzaile gutxiago jasotzen dituzte, eta ezin da saihestu araua hautsi gabe. Banaketa ahalik eta orekatuena izan dadila, eta txostenean muga gisa aipa dezatela.</p>';
+    } else {
+      html += '<p class="oharra">Talde guztiek 6 parte-hartzaile edo gehiago dituzte. Esperimentatzaileak baldintzak txandakatzen ditu: 1. parte-hartzailea 1. baldintzan, 2.a 2.ean, eta horrela.</p>';
+    }
+    html += '<p class="oharra">Kide bakoitzak bere errenkadan bilatzen du nora joan behar duen txanda bakoitzean. Lau kideko taldeetan, 4. kidea 3. txandan geratzen da, erregistratzaile gisa.</p>';
+    emaitza.innerHTML = html;
+  }
+
+  document.getElementById('eguneratu').addEventListener('click', eraiki);
+  kopInput.addEventListener('change', eraiki);
+  document.getElementById('sortu').addEventListener('click', sortu);
+  document.getElementById('inprimatu').addEventListener('click', function(){ window.print(); });
+  eraiki();
+})();
+</script>
+</body>
+</html>

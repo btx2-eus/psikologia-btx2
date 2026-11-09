@@ -30,7 +30,7 @@
     ]
   },
   "saioakIzenburua": "Saioen sekuentzia",
-  "saioakSarrera": "Hamar saio, hiru fasetan: fenomenoa eta lehen mekanismoa, lau kasuen azterketa, eta ikerketa propioa eta defentsa. Denborak orientagarriak dira (50 minutuko saioa). Material guztia ikerketa-koadernoan dago.",
+  "saioakSarrera": "Hamar saio, hiru fasetan: fenomenoa eta lehen mekanismoa, lau kasuen azterketa, eta ikerketa propioa eta defentsa. Denborak orientagarriak dira (50 minutuko saioa). Saio bakoitzak koadernoaren atal bat eta aurkezpenaren diapositiba batzuk ditu; biak dokumentu bakarrak dira, beheko «Gai honetako materiala» atalean.",
   "faseak": [
     {
       "id": 1,
@@ -55,12 +55,10 @@
       "izenburua": "Kutxa misteriotsua",
       "fenomenoa": "Irakasleak kutxa bat irekitzen du ezertarako balio ez duten ekintza batzuk eginez. Hiru ikaskidek errepikatu behar dute: batek kutxa opakoarekin, besteak gardenarekin eta hirugarrenak erakustaldirik gabe.",
       "galdera": "Zergatik egiten dugu, edo ez dugu egiten, ezertarako balio ez duen ekintza bat?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 1–9. diapositibak",
       "fitxa": {
-        "izena": "04.1 · Kutxa misteriotsua: behaketa eta hipotesiak",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s1",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S1 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s1"
       },
       "denborak": [
         {
@@ -95,12 +93,10 @@
       "izenburua": "Moldaketa-jokoa",
       "fenomenoa": "Ikaskide bat gelara sartzen da arau bakar batekin: «Txaloak entzuten badituzu, ondo zoaz». Minutu batzuk geroago, jokabide zehatz bat egiten du, eta askotan ez daki zergatik.",
       "galdera": "Ikasi al du? Ulertu al du? Gauza bera al da?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 10–13. diapositibak",
       "fitxa": {
-        "izena": "04.2 · Moldaketa-jokoa eta kondizionamendu operantea",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s2",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S2 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s2"
       },
       "denborak": [
         {
@@ -132,14 +128,16 @@
       "izenburua": "Sultan eta kaxak",
       "fenomenoa": "Bederatzi puntu, lau lerro zuzen, arkatza altxatu gabe. Batzuetan soluzioa bat-batean agertzen da; beste batzuetan, ez da inoiz iristen.",
       "galdera": "Ikasteko beti saiatu eta huts egin behar al da, ala bat-batean uler daiteke?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 14–17. diapositibak",
       "fitxa": {
-        "izena": "04.3 · 1. kasua: Sultan (ikaskuntza kognitiboa)",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s3",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S3 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s3"
       },
       "denborak": [
+        {
+          "min": "3",
+          "egitekoa": "Haria: zer dio S2k gure galderaz? (horma-taula)"
+        },
         {
           "min": "6",
           "egitekoa": "Bederatzi puntuen problema"
@@ -153,7 +151,7 @@
           "egitekoa": "1. ebidentzia-orria, bakarka"
         },
         {
-          "min": "15",
+          "min": "12",
           "egitekoa": "Hiru irizpide: noiz esan dezakegu norbaitek ulertu duela?"
         },
         {
@@ -169,14 +167,16 @@
       "izenburua": "Nim Chimpsky",
       "fenomenoa": "«Give orange me give eat orange me eat orange give me eat orange give me you»: Nim txinpantzearen 16 zeinuko segida. Esaldi bat al da?",
       "galdera": "Errefortzuz ikas daiteke hizkuntza bat?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 18–22. diapositibak",
       "fitxa": {
-        "izena": "04.4 · 2. kasua: Nim Chimpsky (operantea)",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s4",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S4 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s4"
       },
       "denborak": [
+        {
+          "min": "3",
+          "egitekoa": "Haria: zer dio Sultanek gure galderaz?"
+        },
         {
           "min": "5",
           "egitekoa": "Nimen segida aztertu"
@@ -209,21 +209,23 @@
       "izenburua": "Tximinoak eta sugeak",
       "fenomenoa": "Janari bat jan ondoren gaixotu zinen eta geroztik ezin duzu jan, janariak errurik ez zuela jakin arren. Nola ikasi zenuen nazka hori?",
       "galdera": "Beldurrak eta nazkak ikasi egiten al dira? Eta edozeri ikas al diezaiokegu beldurra?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 23–27. diapositibak",
       "fitxa": {
-        "izena": "04.5 · 3. kasua: Mineka (klasikoa eta behaketa)",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s5",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S5 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s5"
       },
       "denborak": [
+        {
+          "min": "3",
+          "egitekoa": "Haria: zer dio Nimek gure galderaz?"
+        },
         {
           "min": "6",
           "egitekoa": "Nazka-oroitzapena (pribatua)"
         },
         {
-          "min": "10",
-          "egitekoa": "Dosierra: Pavlov, Albert txikia, Garcia eta Mineka"
+          "min": "7",
+          "egitekoa": "Dosierra (etxean irakurrita): Pavlov, Albert txikia, Garcia eta Mineka"
         },
         {
           "min": "8",
@@ -250,14 +252,16 @@
       "izenburua": "Kutxara itzuli",
       "fenomenoa": "Gure S1eko datuak, txinpantzeenak, haurrenak eta helduenak mahai gainean: nork kopiatzen du gehien ezertarako balio ez duena?",
       "galdera": "Zergatik kopiatzen dugu, alferrikakoa dela dakigunean ere?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 28–32. diapositibak",
       "fitxa": {
-        "izena": "04.6 · 4. kasua: kutxa misteriotsua (behaketa)",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s6",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S6 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s6"
       },
       "denborak": [
+        {
+          "min": "3",
+          "egitekoa": "Haria: zer dio Minekak gure galderaz?"
+        },
         {
           "min": "10",
           "egitekoa": "Gure datuak vs Horner eta Whiten (2005)"
@@ -279,7 +283,11 @@
           "egitekoa": "S7rako protokoloa aukeratu"
         },
         {
-          "min": "4",
+          "min": "3",
+          "egitekoa": "Haria itxi: zer dute komunean lau kasuek?"
+        },
+        {
+          "min": "3",
           "egitekoa": "Irteera-txartela"
         }
       ]
@@ -290,12 +298,10 @@
       "izenburua": "Gure esperimentua",
       "fenomenoa": "Orain arte besteen datuak irakurri ditugu. Gaur geuk sortuko ditugu, gelakideekin, protokolo eta etika-kontrol batekin.",
       "galdera": "Gelan bertan froga dezakegu ikasten dugula ulertu gabe?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 33–35. diapositibak",
       "fitxa": {
-        "izena": "04.7 · Gure esperimentua: protokoloak eta etika",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s7",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S7 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s7"
       },
       "denborak": [
         {
@@ -318,12 +324,10 @@
       "izenburua": "Ondorioak eraiki",
       "fenomenoa": "Lau kasu, esperimentu bat eta hiru iritzi hirukote bakoitzean. Zer esan dezakegu ziur?",
       "galdera": "Zer esan dezakegu ziur, zer ez, eta zergatik?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 36–39. diapositibak",
       "fitxa": {
-        "izena": "04.8 · Ondorioak eta ikerketa-txostena",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s8",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S8 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s8"
       },
       "denborak": [
         {
@@ -344,26 +348,24 @@
       "zenb": 9,
       "fasea": 3,
       "izenburua": "Defentsa I",
-      "fenomenoa": "Lau minutu hiru ondorio defendatzeko, eta gero zozketa: kide bat, kasu bat, galdera bat, oharrik gabe.",
+      "fenomenoa": "Lau minutu hiru ondorio defendatzeko, eta gero zozketa: kide bakoitzak kasu bat eta galdera bat, oharrik gabe.",
       "galdera": "Zuen ondorioek eusten diote besteen galderen aurrean?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 40–43. diapositibak",
       "fitxa": {
-        "izena": "04.9 · Aurkezpena, zozketa eta errubrika",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s9",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S9 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s9"
       },
       "denborak": [
         {
-          "min": "7",
+          "min": "5",
           "egitekoa": "Antolaketa eta txandak"
         },
         {
-          "min": "28",
-          "egitekoa": "Hirukoteen erdiaren aurkezpena + zozketa"
+          "min": "35",
+          "egitekoa": "Hirukoteen erdiaren aurkezpena + zozketa (hiru kideak)"
         },
         {
-          "min": "15",
+          "min": "10",
           "egitekoa": "Jasotako galdera kritikoei erantzuna prestatu"
         }
       ]
@@ -374,24 +376,22 @@
       "izenburua": "Defentsa II",
       "fenomenoa": "Beste erdiaren aurkezpenak, eta amaieran galdera irekia: kultura ulertu gabe ikasitakoaren gainean eraikita badago?",
       "galdera": "Gainbalioesten ari al gara ulertzea?",
-      "aurkezpena": "04 · Ikerketa-aurkezpena (saio guztiak)",
-      "aurkezpenaLotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+      "aurkezpena": "Aurkezpena: 40–43. diapositibak",
       "fitxa": {
-        "izena": "04.10 · Defentsa eta itxiera",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s10",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf"
+        "izena": "Koadernoa: S10 atala",
+        "lotura": "fitxak/ikerketa-koadernoa.html#s10"
       },
       "denborak": [
         {
-          "min": "28",
-          "egitekoa": "Beste erdiaren aurkezpena + zozketa"
+          "min": "35",
+          "egitekoa": "Beste erdiaren aurkezpena + zozketa (hiru kideak)"
         },
         {
-          "min": "12",
+          "min": "8",
           "egitekoa": "Galdera kritikoei erantzunak"
         },
         {
-          "min": "10",
+          "min": "7",
           "egitekoa": "Galdera irekiaren eztabaida"
         }
       ]
@@ -400,7 +400,7 @@
   "lanabesak": {
     "etiketa": "Fitxak eta lana",
     "izenburua": "Gai honetako materiala",
-    "sarrera": "Ikerketa osoa koaderno bakarrean dago: dosierrak, saioz saioko pausoak, txantiloiak eta ebaluazioa. Ireki, inprimatu edo PDF gisa gorde.",
+    "sarrera": "Gai osorako bi dokumentu: ikerketa-koadernoa (dosierrak, saioz saioko pausoak, txantiloiak eta ebaluazioa) eta aurkezpena. Saio bakoitzak bere atala du bietan.",
     "fitxak": [
       {
         "izena": "Ikerketa-koadernoa",
@@ -411,20 +411,32 @@
         "ikonoa": "fitxa"
       },
       {
+        "izena": "Ikerketa-aurkezpena",
+        "kodea": "04.A",
+        "deskribapena": "Aurkezpen bakarra saio guztietarako (43 diapositiba). Saio bakoitzaren diapositibak saioen sekuentzian adierazita daude.",
+        "lotura": "fitxak/UD04_ikerketa_aurkezpena.pptx",
+        "ikonoa": "aurkezpena"
+      },
+      {
         "izena": "Txantiloiak",
         "kodea": "04.T",
-        "deskribapena": "Ebidentzia-orria (lau aldiz), hipotesi-orria eta esperimentu-fitxa.",
+        "deskribapena": "Ebidentzia-orria (lau aldiz), hipotesi-orria eta esperimentu-fitxa. Koadernoaren amaieran.",
         "lotura": "fitxak/ikerketa-koadernoa.html#txantiloiak",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf",
         "ikonoa": "lente"
       },
       {
         "izena": "Ebaluazioa eta errubrika",
         "kodea": "04.E",
-        "deskribapena": "Pisuak (% 55 bakarka), txostenaren egitura eta errubrika: zer dakizuen baloratzen da, ez estetika.",
+        "deskribapena": "Pisuak (% 55 bakarka), txostenaren egitura eta errubrika: zer dakizuen baloratzen da, ez estetika. Koadernoaren amaieran.",
         "lotura": "fitxak/ikerketa-koadernoa.html#ebaluazioa",
-        "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf",
-        "ikonoa": "portaera"
+        "ikonoa": "kontratu"
+      },
+      {
+        "izena": "Irakasle-gida",
+        "kodea": "04.I",
+        "deskribapena": "Irakaslearentzat: saio bakoitzean zer prestatu, zer esan, zer jaso eta zer egiaztatu, eta S7rako txanda-sortzailea.",
+        "lotura": "fitxak/irakasle-gida.html",
+        "ikonoa": "begia"
       }
     ]
   },
