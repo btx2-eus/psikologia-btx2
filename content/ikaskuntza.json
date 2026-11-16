@@ -58,7 +58,8 @@
       "aurkezpena": "Aurkezpena: 1–9. diapositibak",
       "fitxa": {
         "izena": "Koadernoa: S1 atala",
-        "lotura": "fitxak/ikerketa-koadernoa.html#s1"
+        "lotura": "fitxak/ikerketa-koadernoa.html#s1",
+        "pdf": "fitxak/pdf/s1-orriak.pdf"
       },
       "denborak": [
         {
@@ -408,6 +409,14 @@
         "deskribapena": "Lau kasuen dosierrak, saioz saioko pausoak, kontzeptu-gutxienekoak eta bi arau: emaitza ≠ interpretazioa, fikzioa ez da froga.",
         "lotura": "fitxak/ikerketa-koadernoa.html",
         "pdf": "fitxak/pdf/ikerketa-koadernoa.pdf",
+        "ikonoa": "fitxa"
+      },
+      {
+        "izena": "S1 · Inprimatzeko orriak",
+        "kodea": "04.1",
+        "deskribapena": "Behaketa-orria (ikasle bakoitzeko bat, irteera-txartelarekin) eta hipotesi-orria (hirukote bakoitzeko bat), bakoitza bere orrian.",
+        "lotura": "fitxak/s1-orriak.html",
+        "pdf": "fitxak/pdf/s1-orriak.pdf",
         "ikonoa": "fitxa"
       },
       {

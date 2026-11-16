@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+<meta charset="UTF-8">
+<title>UD04 · S1 · Inprimatzeko orriak</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Inter:wght@400;500&display=swap');
+:root{--b:#1B3A5C;--ba:#D6E8F7;--o:#8C3A00;--oa:#FAE5D3;--apala:#5B6573;--lerroa:#9AA3AE}
+@page{size:A4;margin:14mm 14mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',sans-serif;font-size:10.5pt;color:#1A1A1A;line-height:1.4}
+.orria{page-break-after:always;min-height:262mm;display:flex;flex-direction:column}
+.orria:last-child{page-break-after:auto}
+.banda{display:flex;justify-content:space-between;align-items:center;border-radius:10px;padding:8px 14px;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13pt}
+.banda.bakarka{background:var(--b)}
+.banda.taldean{background:var(--o)}
+.banda small{font-weight:700;font-size:9.5pt;opacity:.9}
+h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:20pt;color:var(--b);margin:10px 0 2px}
+.taldean-orria h1{color:var(--o)}
+.izena{display:flex;gap:16px;margin:8px 0 10px;font-size:10pt}
+.izena span{flex:1;border-bottom:1px solid var(--lerroa);padding-bottom:3px}
+.galdera-gidaria{font-family:'Nunito',sans-serif;font-weight:900;font-size:12.5pt;color:var(--b);border-left:4px solid var(--b);padding-left:10px;margin:6px 0 10px}
+.argibidea{background:var(--ba);border-radius:8px;padding:7px 10px;font-size:9.5pt;margin-bottom:10px}
+.taldean-orria .argibidea{background:var(--oa)}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid var(--lerroa);padding:6px;vertical-align:top;text-align:left}
+th{background:var(--ba);color:var(--b);font-size:9.5pt}
+td.lerroa{height:13mm}
+.koadroa{border:1px solid var(--lerroa);border-radius:8px;padding:6px 10px;margin:7px 0;flex:1}
+.koadroa b{font-family:'Nunito',sans-serif;color:var(--o);font-size:10.5pt}
+.koadroa small{display:block;color:var(--apala);font-size:8.8pt}
+.zatiak{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:5px;font-size:8.8pt;color:var(--apala)}
+.zatiak div{border-top:1px dashed var(--lerroa);padding-top:2px;min-height:22mm}
+.aurre{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:5px;font-size:8.8pt;color:var(--apala)}
+.aurre div{border-top:1px dashed var(--lerroa);padding-top:2px;min-height:16mm}
+.irteera{border:2px dashed var(--b);border-radius:10px;padding:8px 12px;margin-top:12px}
+.irteera b{font-family:'Nunito',sans-serif;color:var(--b)}
+.irteera .tartea{height:30mm}
+.oina{font-size:8pt;color:var(--apala);margin-top:auto;padding-top:6px}
+</style>
+</head>
+<body>
+
+<!-- ===== 1. ORRIA: BEHAKETA (BAKARKA) ===== -->
+<div class="orria">
+  <div class="banda bakarka"><span>S1 · BEHAKETA-ORRIA</span><small>BAKARKA · ikasle bakoitzak bat</small></div>
+  <h1>Kutxa misteriotsua</h1>
+  <div class="izena"><span>Izena:</span><span>Taldea:</span><span>Data:</span></div>
+  <div class="galdera-gidaria">Zergatik egiten dugu, edo ez dugu egiten, ezertarako balio ez duen ekintza bat?</div>
+  <div class="argibidea"><b>Zer egin (15 min):</b> idatzi irakasleak egiten dituen ekintza GUZTIAK, ordenan. Gero markatu A, B eta C ikaskideek zein errepikatu dituzten (✓ / ✗) eta zenbat denbora behar izan duten. Isilik.</div>
+  <table>
+    <tr><th style="width:40%">Irakaslearen ekintzak (ordenan)</th><th>A · kutxa opakoa</th><th>B · kutxa gardena</th><th>C · erakustaldirik gabe</th></tr>
+    <tr><td class="lerroa">1.</td><td></td><td></td><td></td></tr>
+    <tr><td class="lerroa">2.</td><td></td><td></td><td></td></tr>
+    <tr><td class="lerroa">3.</td><td></td><td></td><td></td></tr>
+    <tr><td class="lerroa">4.</td><td></td><td></td><td></td></tr>
+    <tr><td class="lerroa">5.</td><td></td><td></td><td></td></tr>
+    <tr><td class="lerroa">Zenbat denbora behar izan du?</td><td></td><td></td><td></td></tr>
+    <tr><td class="lerroa">Beste behaketa batzuk</td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="irteera">
+    <b>IRTEERA-TXARTELA · saio amaieran, 4 min</b><br>
+    Zer alde dago ekintza bat errepikatzearen eta ekintza hori ulertzearen artean? Jarri adibide bat zure ikasle-bizitzatik.
+    <div class="tartea"></div>
+  </div>
+  <div class="oina">Psikologia BTX2 · UD04 Ikasten duguna ulertzen al dugu? · S1</div>
+</div>
+
+<!-- ===== 2. ORRIA: HIPOTESIAK (TALDEAN) ===== -->
+<div class="orria taldean-orria">
+  <div class="banda taldean"><span>S1 · HIPOTESI-ORRIA</span><small>HIRUKOTEAN · talde bakoitzak bat</small></div>
+  <h1>Hiru hipotesi eta aurreikuspen bat</h1>
+  <div class="izena"><span>Koordinatzailea:</span><span>Ebidentzia-zaindaria:</span><span>Aholkulari kritikoa:</span></div>
+  <div class="argibidea"><b>Galdera:</b> zergatik errepikatu dute (edo ez) A eta B ikaskideek alferrikako ekintza, eta zer aldatzen da C-rekin? Idatzi <b>hiru azalpen lehiakide</b>, desberdinak: ez gauza bera hiru modutan.</div>
+  <div class="koadroa"><b>1. hipotesia</b>
+    <div class="zatiak"><div>Zer gertatu da</div><div>Zergatik uste dugu</div><div>Zer behaketak frogatuko luke (edo ezeztatu)</div></div></div>
+  <div class="koadroa"><b>2. hipotesia</b>
+    <div class="zatiak"><div>Zer gertatu da</div><div>Zergatik uste dugu</div><div>Zer behaketak frogatuko luke (edo ezeztatu)</div></div></div>
+  <div class="koadroa"><b>3. hipotesia</b>
+    <div class="zatiak"><div>Zer gertatu da</div><div>Zergatik uste dugu</div><div>Zer behaketak frogatuko luke (edo ezeztatu)</div></div></div>
+  <div class="koadroa"><b>Aurreikuspena</b>
+    <small>2005ean, antzeko kutxa bat erabili zen 2-6 urteko txinpantzeekin eta 3-4 urteko haurrekin. Zer uste duzue egin zutela? Arrazoitu. S6an egiaztatuko dugu.</small>
+    <div class="aurre"><div>Txinpantzeak · kutxa opakoa</div><div>Txinpantzeak · kutxa gardena</div><div>Haurrak · kutxa opakoa</div><div>Haurrak · kutxa gardena</div></div></div>
+  <div class="oina">Orri hau irakasleari ematen zaio saio amaieran. Txostenaren 1. atala izango da.</div>
+</div>
+
+</body>
+</html>
