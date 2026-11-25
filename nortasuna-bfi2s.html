@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="eu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<title>BFI-2-S Nortasun-testa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; a sticky step bar carries the flow (abiapuntua → teoria → testa → emaitza → hausnarketa). Bloke 3 identity: plum. */
+:root {
+  --bg: #faf7fa;
+  --surface: #ffffff;
+  --fg: #221a23;
+  --muted: #6a5a6c;
+  --line: #e6dbe7;
+  --accent: #5C1A5C;
+  --accent-soft: #EDD4ED;
+  --accent-ink: #ffffff;
+  --ok: #1d6e46;
+  --ok-soft: #dcefe4;
+  --warn: #8a4b00;
+  --warn-soft: #fbe8d2;
+  --font-display: 'Nunito', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151017; --surface: #1e1720; --fg: #f0e8f0; --muted: #b3a2b5; --line: #3a2d3c;
+    --accent: #d7a3d7; --accent-soft: #3a2340; --accent-ink: #1a0f1b;
+    --ok: #7fd1a4; --ok-soft: #17332a; --warn: #f0b36b; --warn-soft: #3a2a17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151017; --surface: #1e1720; --fg: #f0e8f0; --muted: #b3a2b5; --line: #3a2d3c;
+  --accent: #d7a3d7; --accent-soft: #3a2340; --accent-ink: #1a0f1b;
+  --ok: #7fd1a4; --ok-soft: #17332a; --warn: #f0b36b; --warn-soft: #3a2a17;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 3rem;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 780px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 900; letter-spacing: -0.01em; }
+h2 { font-size: 1.55rem; font-weight: 800; }
+h3 { font-size: 1.12rem; font-weight: 800; }
+p { margin: 0; }
+a { color: var(--accent); }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+/* header */
+.top { padding-block: 2.2rem 1.2rem; display: grid; gap: 0.9rem; }
+.top-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.lead { color: var(--muted); max-width: 62ch; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.lang button { border: 0; background: transparent; padding: 0.3rem 0.85rem; border-radius: 999px; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: var(--muted); }
+.lang button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+/* steps */
+.steps { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 0.6rem; border-bottom: 1px solid var(--line); margin-bottom: 1.8rem; }
+.steps ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.35rem; }
+.steps button { width: 100%; border: 0; background: transparent; cursor: pointer; padding: 0.35rem 0.2rem 0.45rem; text-align: left; border-top: 3px solid var(--line); font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+.steps button .n { display: block; font-family: var(--font-display); font-weight: 900; font-size: 0.95rem; }
+.steps button[aria-current="step"] { border-top-color: var(--accent); color: var(--fg); }
+.steps button.done { border-top-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.steps button:disabled { cursor: not-allowed; opacity: 0.45; }
+@media (max-width: 520px) { .steps button .lbl { display: none; } .steps button { text-align: center; } }
+.progress { height: 4px; background: var(--line); border-radius: 4px; margin-top: 0.5rem; overflow: hidden; }
+.progress span { display: block; height: 100%; background: var(--accent); width: 0; transition: width .25s; }
+.progress-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
+
+section.step { display: grid; gap: 1.4rem; }
+.galdera-gidaria { font-family: var(--font-display); font-size: 1.4rem; font-weight: 900; color: var(--accent); line-height: 1.3; border-left: 4px solid var(--accent); padding-left: 1rem; }
+.fenomenoa { background: var(--accent-soft); border-radius: var(--radius); padding: 1.1rem 1.2rem; font-style: italic; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; display: grid; gap: 0.9rem; min-width: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 0.86rem; }
+.prose { display: grid; gap: 0.75rem; max-width: 66ch; }
+.prose ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; }
+
+/* buttons */
+.btn { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); padding: 0.6rem 1.1rem; border-radius: 999px; font-weight: 600; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.next { justify-content: flex-end; }
+
+/* barnum */
+.field { display: grid; gap: 0.4rem; }
+.field label, .field .lbl { font-weight: 600; font-size: 0.92rem; }
+select, input[type="text"] { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem 0.7rem; max-width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 0.35rem 0.8rem 0.35rem 0.4rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.9rem; }
+.chip .sw { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid var(--line); }
+.chip[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; font-weight: 600; }
+.chip.plain { padding-left: 0.8rem; }
+.profile { border-left: 4px solid var(--accent); padding-left: 1rem; display: grid; gap: 0.6rem; }
+.rate { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.rate button { width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); font-weight: 700; cursor: pointer; font-variant-numeric: tabular-nums; }
+.rate button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+/* theory */
+.domains { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.7rem; }
+.dom { border: 1px solid var(--line); border-radius: var(--radius); padding: 0.9rem 1rem; background: var(--surface); display: grid; gap: 0.35rem; align-content: start; }
+.dom .letter { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--accent); line-height: 1; }
+.dom .facets { font-size: 0.8rem; color: var(--muted); }
+.concept { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 0.4rem 1rem; }
+.concept dt { font-weight: 600; font-family: var(--font-display); }
+.concept dd { margin: 0; }
+@media (max-width: 560px) { .concept { grid-template-columns: minmax(0, 1fr); } .concept dd { margin-bottom: 0.5rem; } }
+
+/* test */
+.notice { background: var(--accent-soft); border-radius: var(--radius); padding: 1rem 1.1rem; display: grid; gap: 0.4rem; }
+.badge { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid currentColor; }
+.badge.ok { color: var(--ok); } .badge.warn { color: var(--warn); }
+.scale-legend { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.3rem; text-align: center; font-size: 0.78rem; color: var(--muted); line-height: 1.25; }
+.scale-legend b { display: block; font-family: var(--font-display); font-size: 1rem; color: var(--fg); }
+.items { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.item { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: 0.4rem 0.8rem; padding: 0.7rem 0.2rem; border-bottom: 1px solid var(--line); }
+.item.missing { background: var(--warn-soft); }
+.item .num { font-family: var(--font-display); font-weight: 900; color: var(--muted); font-variant-numeric: tabular-nums; }
+.opts { display: flex; gap: 0.3rem; border: 0; margin: 0; padding: 0; }
+.opts input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opts label { width: 2.3rem; height: 2.3rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.92rem; }
+.opts input:checked + label { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.opts input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .item { grid-template-columns: 1.8rem minmax(0, 1fr); }
+  .opts { grid-column: 2; }
+  .opts label { width: 2.5rem; height: 2.5rem; }
+}
+.err { color: var(--warn); font-weight: 600; }
+
+/* results */
+.verdict { border-radius: var(--radius); padding: 1rem 1.2rem; display: grid; gap: 0.3rem; }
+.verdict.ok { background: var(--ok-soft); }
+.verdict.warn { background: var(--warn-soft); }
+.verdict .tag { font-family: var(--font-display); font-weight: 900; letter-spacing: 0.06em; font-size: 1.15rem; }
+.verdict.ok .tag { color: var(--ok); } .verdict.warn .tag { color: var(--warn); }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.checks li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.5rem; align-items: start; }
+.checks .ic { width: 1.4rem; height: 1.4rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; font-weight: 800; }
+.checks .ic.ok { background: var(--ok-soft); color: var(--ok); }
+.checks .ic.warn { background: var(--warn-soft); color: var(--warn); }
+.checks .ic.na { background: var(--line); color: var(--muted); }
+.bars { display: grid; gap: 1.3rem; }
+.bar-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.bar-head .score { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; font-variant-numeric: tabular-nums; color: var(--accent); }
+.track { position: relative; height: 12px; background: var(--accent-soft); border-radius: 999px; margin: 0.5rem 0 0.2rem; }
+.track .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 999px; }
+.track .mid { position: absolute; left: 50%; top: -4px; bottom: -4px; border-left: 2px dashed var(--muted); }
+.ticks { position: relative; height: 1.1em; font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticks span { position: absolute; top: 0; transform: translateX(-50%); }
+.ticks span:first-child { transform: none; } .ticks span:last-child { transform: translateX(-100%); }
+.mid-legend { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+.mid-legend i { width: 0; height: 1em; border-left: 2px dashed var(--muted); }
+.result-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
+.code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.95rem; letter-spacing: 0.03em; background: var(--accent-soft); padding: 0.55rem 0.8rem; border-radius: 8px; overflow-wrap: anywhere; user-select: all; }
+.support { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.8rem; }
+
+/* reflection */
+.compare { overflow-x: auto; }
+.compare table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 480px; }
+.compare th, .compare td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.compare thead th { font-family: var(--font-display); font-weight: 800; color: var(--accent); }
+.questions { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.8rem; }
+.questions li::marker { font-family: var(--font-display); font-weight: 900; color: var(--accent); }
+.final-q { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.5rem, 4vw, 2rem); color: var(--accent); text-align: left; padding-block: 1rem; text-wrap: balance; }
+
+/* teacher + footer */
+details.teacher { margin-top: 3rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details.teacher > summary { cursor: pointer; padding: 1rem 1.2rem; font-family: var(--font-display); font-weight: 800; }
+details.teacher .inner { padding: 0 1.2rem 1.2rem; display: grid; gap: 1rem; }
+.keytable { overflow-x: auto; }
+.keytable table { border-collapse: collapse; font-size: 0.86rem; width: 100%; min-width: 420px; }
+.keytable td, .keytable th { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; font-variant-numeric: tabular-nums; }
+footer.src { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); display: grid; gap: 0.4rem; }
+footer.src p { padding-left: 1.4rem; text-indent: -1.4rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+  body { background: #fff; color: #000; }
+  .steps, .top .lang, .no-print, details.teacher, footer.src, section.step:not(#step-4) { display: none !important; }
+  #step-4 { display: grid !important; }
+}
+</style>
+
+<div class="wrap">
+  <p style="padding-top:1rem;margin:0;font-size:.85rem"><a href="index.html">← Psikologia BTX2 atarira</a></p>
+  <header class="top">
+    <div class="top-row">
+      <span class="eyebrow" data-t="eyebrow"></span>
+      <div class="lang" role="group" aria-label="Hizkuntza / Idioma">
+        <button type="button" data-lang="eu" aria-pressed="true">EUS</button>
+        <button type="button" data-lang="es" aria-pressed="false">CAS</button>
+      </div>
+    </div>
+    <h1 data-t="title"></h1>
+    <p class="lead" data-t="lead"></p>
+  </header>
+
+  <nav class="steps" aria-label="Urratsak">
+    <ol id="stepnav"></ol>
+    <div id="testprogress" hidden>
+      <div class="progress"><span id="progbar"></span></div>
+      <div class="progress-label" id="proglabel"></div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- 1 · ABIAPUNTUA -->
+    <section class="step" id="step-1">
+      <span class="eyebrow" data-t="s1Eyebrow"></span>
+      <p class="galdera-gidaria" data-t="guide"></p>
+      <p class="fenomenoa" data-t="s1Phen"></p>
+      <div class="card">
+        <h2 data-t="s1Title"></h2>
+        <div class="field">
+          <label for="bm-month" data-t="bmMonth"></label>
+          <select id="bm-month"></select>
+        </div>
+        <div class="field">
+          <span class="lbl" data-t="bmColor"></span>
+          <div class="chips" id="bm-colors"></div>
+        </div>
+        <div class="field">
+          <span class="lbl" data-t="bmPlace"></span>
+          <div class="chips" id="bm-places"></div>
+        </div>
+        <div class="row"><button class="btn" type="button" id="bm-go" data-t="bmGo"></button></div>
+        <div id="bm-out" hidden>
+          <div class="profile">
+            <h3 data-t="bmProfileH"></h3>
+            <p id="bm-text"></p>
+          </div>
+          <div class="field" style="margin-top:1rem">
+            <span class="lbl" data-t="bmRate"></span>
+            <div class="rate" id="bm-rate"></div>
+            <p class="small muted" id="bm-saved" hidden data-t="bmSaved"></p>
+          </div>
+        </div>
+      </div>
+      <div class="row next"><button class="btn" type="button" data-goto="2" data-t="toTheory"></button></div>
+    </section>
+
+    <!-- 2 · TEORIA -->
+    <section class="step" id="step-2" hidden>
+      <span class="eyebrow" data-t="s2Eyebrow"></span>
+      <div class="prose" data-t="t1"></div>
+      <div class="prose" data-t="t2"></div>
+      <h2 data-t="t3H"></h2>
+      <div class="domains" id="domgrid"></div>
+      <h2 data-t="t4H"></h2>
+      <div class="prose" data-t="t4"></div>
+      <dl class="concept" id="concepts"></dl>
+      <h2 data-t="t5H"></h2>
+      <div class="prose" data-t="t5"></div>
+      <div class="row next"><button class="btn" type="button" data-goto="3" data-t="toTest"></button></div>
+    </section>
+
+    <!-- 3 · TESTA -->
+    <section class="step" id="step-3" hidden>
+      <span class="eyebrow" data-t="s3Eyebrow"></span>
+      <div class="notice" data-t="consent"></div>
+      <div class="card">
+        <div class="row"><span id="versionbadge"></span></div>
+        <p data-t="instr"></p>
+        <div class="scale-legend" id="legend"></div>
+      </div>
+      <div class="items" id="items"></div>
+      <p class="err" id="missing" hidden role="alert"></p>
+      <div class="row next"><button class="btn" type="button" id="submit" data-t="submit"></button></div>
+    </section>
+
+    <!-- 4 · EMAITZA -->
+    <section class="step" id="step-4" hidden>
+      <span class="eyebrow" data-t="s4Eyebrow"></span>
+      <h2 data-t="resH"></h2>
+      <div id="result"></div>
+      <div class="card no-print">
+        <div class="result-meta">
+          <div class="field">
+            <label for="res-name" data-t="nameL"></label>
+            <input type="text" id="res-name" autocomplete="off" maxlength="40">
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn" type="button" id="copy" data-t="copy"></button>
+          <button class="btn ghost" type="button" id="print" hidden data-t="print"></button>
+          <button class="btn ghost" type="button" data-goto="3" data-t="review"></button>
+          <span class="small muted" id="copymsg" role="status"></span>
+        </div>
+      </div>
+      <div class="row next no-print"><button class="btn" type="button" data-goto="5" data-t="toReflect"></button></div>
+    </section>
+
+    <!-- 5 · HAUSNARKETA -->
+    <section class="step" id="step-5" hidden>
+      <span class="eyebrow" data-t="s5Eyebrow"></span>
+      <h2 data-t="revealH"></h2>
+      <div class="prose" id="reveal"></div>
+      <div class="compare" id="compare"></div>
+      <h2 data-t="qH"></h2>
+      <ol class="questions" id="questions"></ol>
+      <p class="final-q" data-t="finalQ"></p>
+    </section>
+  </main>
+
+  <details class="teacher" id="teacher">
+    <summary data-t="teachH"></summary>
+    <div class="inner">
+      <div class="prose small" data-t="teach"></div>
+      <div class="keytable" id="keytable"></div>
+      <div class="card">
+        <h3 data-t="verifyH"></h3>
+        <p class="small muted" data-t="verifyP"></p>
+        <div class="row">
+          <input type="text" id="verify-in" placeholder="B2S-E261125-31452-…" style="flex:1;min-width:0">
+          <button class="btn" type="button" id="verify-go" data-t="verifyGo"></button>
+        </div>
+        <div id="verify-out"></div>
+      </div>
+    </div>
+  </details>
+
+  <footer class="src" id="sources"></footer>
+</div>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------- Items: BFI-2-S order. es = official Spanish BFI-2 wording (item no. in BFI-2 = bfi). eu = didactic translation, NOT validated. ---------- */
+// [n, domain, reversed, facet, es, eu, bfi2]
+const ITEMS = [
+  [1,'E',1,'soc','Que tiende a estar callado/a','Isilik egoteko joera dut.',16],
+  [2,'A',0,'com','Compasivo/a, con un gran corazón','Errukitsua naiz, bihotz handikoa.',2],
+  [3,'C',1,'org','Que tiende a ser desorganizado/a','Desordenatua izateko joera dut.',3],
+  [4,'N',0,'anx','Que se preocupa mucho','Asko kezkatzen naiz.',34],
+  [5,'O',0,'aes','Fascinado por el arte, la música o la literatura','Arteak, musikak edo literaturak liluratu egiten naute.',20],
+  [6,'E',0,'ass','Dominante, que actúa como líder','Nagusitzeko joera dut, lider gisa jokatzen dut.',21],
+  [7,'A',1,'res','Que a veces es grosero/a con los demás','Batzuetan zakarra naiz besteekin.',37],
+  [8,'C',1,'pro','A quien le cuesta empezar las tareas','Kosta egiten zait zereginei ekitea.',23],
+  [9,'N',0,'dep','Que tiende a sentirse deprimido/a, melancólico/a','Goibel edo malenkoniatsu sentitzeko joera dut.',54],
+  [10,'O',1,'cur','Con poco interés por ideas abstractas','Ideia abstraktuek interes gutxi pizten didate.',55],
+  [11,'E',0,'ene','Lleno/a de energía','Energiaz beteta nago.',41],
+  [12,'A',0,'tru','Que piensa bien de la gente','Jendeaz ondo pentsatzen dut.',57],
+  [13,'C',0,'rsp','Fiable, con el/la que siempre se puede contar','Fidagarria naiz; besteek beti izan dezakete nigan konfiantza.',43],
+  [14,'N',1,'vol','Emocionalmente estable, que no se altera con facilidad','Emozionalki egonkorra naiz, ez naiz erraz asaldatzen.',29],
+  [15,'O',0,'cre','Original, que aporta ideas nuevas','Originala naiz, ideia berriak ekartzen ditut.',60],
+  [16,'E',0,'soc','Abierto/a, sociable','Irekia eta lagunkoia naiz.',1],
+  [17,'A',1,'com','Que puede ser frío/a e insensible','Hotza eta axolagabea izan naiteke.',47],
+  [18,'C',0,'org','Que mantiene todo limpio y ordenado','Dena garbi eta ordenatuta mantentzen dut.',33],
+  [19,'N',1,'anx','Relajado/a, que gestiona bien el estrés','Lasaia naiz, estresa ondo kudeatzen dut.',4],
+  [20,'O',1,'aes','Con pocos intereses artísticos','Interes artistiko gutxi ditut.',5],
+  [21,'E',1,'ass','Que prefiere que otros asuman la responsabilidad','Nahiago dut beste batzuek hartzea ardura.',51],
+  [22,'A',0,'res','Respetuoso/a, que trata a los demás con respeto','Begirunetsua naiz, besteak errespetuz tratatzen ditut.',7],
+  [23,'C',0,'pro','Tenaz, que trabaja hasta terminar la tarea','Tinkoa naiz, zeregina amaitu arte lan egiten dut.',53],
+  [24,'N',1,'dep','Que se siente seguro/a, cómodo/a consigo mismo/a','Seguru sentitzen naiz, eroso nire buruarekin.',24],
+  [25,'O',0,'cur','Complejo/a, de pensamientos profundos','Konplexua naiz, pentsamendu sakonekoa.',40],
+  [26,'E',1,'ene','Menos activo/a que otras personas','Beste pertsonak baino aktibo gutxiago naiz.',26],
+  [27,'A',1,'tru','Que tiende a buscar los defectos de los demás','Besteen akatsak bilatzeko joera dut.',12],
+  [28,'C',1,'rsp','Que puede ser algo descuidado/a','Zertxobait zabarra izan naiteke.',28],
+  [29,'N',0,'vol','Temperamental, que se exalta fácilmente','Temperamentu biziko pertsona naiz, erraz sutzen naiz.',59],
+  [30,'O',1,'cre','Con poca creatividad','Sormen gutxi dut.',30]
+];
+const DOMS = ['E','A','C','N','O'];
+
+/* ---------- Texts ---------- */
+const T = {
+eu: {
+  eyebrow: 'Psikologia · BTX2 · UD09 Nortasuna',
+  title: 'Nola neurtzen da ikusten ez dena?',
+  lead: 'Big Five eredua eta BFI-2-S galdetegia: abiapuntuko proba bat, teoria, 30 itemeko testa eta zure profila, balioztatuta.',
+  steps: ['Abiapuntua','Teoria','Testa','Emaitza','Hausnarketa'],
+  s1Eyebrow: '1 · Abiapuntua',
+  guide: 'Zergatik dirudi hain zehatza zutaz «dena asmatzen» duen testu batek?',
+  s1Phen: 'Sare sozialetako testak, horoskopoak, «zein pertsonaia zara?» galdetegiak, «16 nortasun mota»... Hamaika aldiz irakurri duzu zure burua islatzen duela dirudien deskribapen bat. Hasi aurretik, egin proba labur hau eta esan zenbateraino egokitzen zaizun emaitza.',
+  s1Title: 'Zure profila hiru galderatan',
+  bmMonth: 'Zein hilabetetan jaio zinen?',
+  bmMonthPh: 'Aukeratu hilabetea',
+  bmColor: 'Zein kolore aukeratuko zenuke orain?',
+  bmPlace: 'Non sentitzen zara ondoen?',
+  bmGo: 'Sortu nire profila',
+  bmNeed: 'Erantzun hiru galderak lehenik.',
+  bmProfileH: 'Zure profila',
+  bmRate: 'Zenbateraino egokitzen zaizu deskribapen hau? (1 = batere ez · 5 = erabat)',
+  bmSaved: 'Gordeta. Hausnarketa atalean itzuliko gara honetara.',
+  months: ['Urtarrila','Otsaila','Martxoa','Apirila','Maiatza','Ekaina','Uztaila','Abuztua','Iraila','Urria','Azaroa','Abendua'],
+  monthsLoc: ['urtarrilean','otsailean','martxoan','apirilean','maiatzean','ekainean','uztailean','abuztuan','irailean','urrian','azaroan','abenduan'],
+  colors: ['urdina','gorria','berdea','horia','morea','beltza'],
+  places: ['itsasoa','mendia','hiria'],
+  placesLoc: ['itsasoaren ondoan','mendian','hirian'],
+  profile: (m, c, p) => `<strong>${cap(m)} jaio zinen, ${c} aukeratu duzu eta ${p} sentitzen zara ondoen.</strong> Konbinazio horrek honela deskribatzen zaitu: besteek estimatzea eta baloratzea behar duzu, baina askotan oso kritikoa zara zeure buruarekin. Kanpotik dena kontrolpean duzula dirudi; barrutik, batzuetan zalantza egiten duzu erabaki egokia hartu ote duzun. Oraindik guztiz aprobetxatu ez dituzun gaitasunak dituzu. Aldaketa pixka bat behar duzu, eta errutinan harrapatuta sentitzen zarenean ito egiten zara. Batzuetan oso lagunkoia zara, eta beste batzuetan bakarrik egon behar duzu. Konfiantzazko lagunekin, gelan ikusten zaituztenetik oso bestelakoa izan zaitezke. Batzuetan kosta egiten zaizu ezetz esatea. Zeure kabuz pentsatzea baloratzen duzu, eta ez dituzu besteen iritziak frogarik gabe onartzen.`,
+  toTheory: 'Jarraitu teoriara →',
+  s2Eyebrow: '2 · Teoria',
+  t1: `<h2>Ezaugarria, ez kutxa</h2>
+<p>Nortasun-ezaugarri bat pentsatzeko, sentitzeko eta jokatzeko modu nahiko egonkorra da: egoera askotan eta denboran zehar errepikatzen dena. Ezaugarriak ez dira kutxak («introbertitua» <em>ala</em> «estrabertitua»), <strong>dimentsioak</strong> baizik: denok gaude lerro baten punturen batean, eta gehienok erdialdetik gertu.</p>
+<p>Horregatik da arazotsua pertsonak <strong>motatan</strong> sailkatzea, «16 nortasun» moduko testek egiten duten bezala. Erdialdean dagoen jendea alde batera edo bestera bidaltzen dute, eta askok mota aldatzen dute testa berriro egitean.</p>`,
+  t2: `<h2>Nondik datoz bost dimentsio?</h2>
+<p><strong>Hipotesi lexikoa</strong>: pertsonen arteko desberdintasun garrantzitsuek hitzak izan dituzte hizkuntzan. Allport eta Odbertek (1936) ingelesezko hiztegian 18.000 hitz inguru bildu zituzten pertsonak deskribatzeko. Hamarkadetan zehar, milaka pertsonari eskatu zitzaien hitz horiekin beren burua deskribatzeko, eta <strong>analisi faktorialaren</strong> bidez (zein hitz agertzen diren elkarrekin) bost multzo zabal agertu ziren behin eta berriz, hizkuntza eta kultura askotan. Hori da <strong>Big Five</strong> eredua.</p>
+<p>Kontuz: mapa bat da, ez azalpen bat. Nortasuna nola antolatzen den deskribatzen du; ez du esaten zergatik den horrela.</p>`,
+  t3H: 'Bost domeinuak (eta haien 15 fazetak)',
+  t4H: 'Nola neurtzen da ikusten ez dena?',
+  t4: `<p>Ezin dugu estrabertsioa zuzenean ikusi. Haren <strong>adierazleak</strong> bai: «irekia eta lagunkoia naiz», «isilik egoteko joera dut». Galdetegi batek adierazle horiek biltzen ditu (<strong>itemak</strong>), eta bakoitzean 1etik 5era erantzuten duzu (<strong>Likert eskala</strong>). Domeinu bakoitzaren puntuazioa bere sei itemen batez bestekoa da.</p>`,
+  concepts: [
+    ['Alderantzizko itemak', 'BFI-2-Sko itemen erdiek domeinuaren kontrako poloa deskribatzen dute. Zuzentzean irauli egiten dira (5→1, 4→2…). Helburua: edozeri «bai» esateko joera neutralizatzea.'],
+    ['Ados-joera', 'Edukiari begiratu gabe ados egoteko joera. Item zuzenak eta alderantzizkoak orekatuta badaude, ados-joerak ez du emaitza okertzen.'],
+    ['Fidagarritasuna', 'Neurketa koherentea eta egonkorra den. Item bakar batek ez du ezer esaten; seik elkarrekin, bai. Bihar berriz eginda, antzeko emaitza lortu beharko zenuke.'],
+    ['Baliozkotasuna', 'Neurtzen duela dioena neurtzen duen. Emaitzak bat datoz zure lagunek zutaz esaten dutenarekin? Zure benetako jokabidea iragartzen dute?'],
+    ['Desiragarritasun soziala', 'Ondo geratzeko erantzuteko tentazioa. Testak ezin du hori guztiz kontrolatu: zintzotasuna zure esku dago.']
+  ],
+  t5H: 'Testaren mugak',
+  t5: `<ul>
+<li><strong>Autotxostena da</strong>: zuk zeure buruaz uste duzuna neurtzen du, ez «egia objektiboa».</li>
+<li><strong>Ez dago zure adinerako araurik (baremorik)</strong>: ezin da esan beste ikasleekin alderatuta «altua» edo «baxua» zarenik. 3 eskalaren erdiko puntua da, ez jendearen batez bestekoa.</li>
+<li><strong>Ezaugarria ez da diagnostikoa.</strong> Emozionaltasun negatiboak joerak deskribatzen ditu, ez arazoak.</li>
+<li><strong>Fazetak ez ditugu erakusten.</strong> BFI-2-S laburrean fazeta bakoitzak bi item baino ez ditu, eta egileek ohartarazten dute ez direla nahikoa fidagarriak pertsona bakar baten emaitzarako.</li>
+<li><strong>Itzulpena.</strong> Gaztelaniazko bertsioa Espainian balioztatu zen (Gallardo-Pujol et al., 2022). Euskarazko bertsio hau gelarako egindako itzulpena da, eta <strong>ez dago balioztatuta</strong>. Itzulitako test bat ez da automatikoki test bera.</li>
+</ul>`,
+  toTest: 'Jarraitu testera →',
+  s3Eyebrow: '3 · Testa · BFI-2-S',
+  consent: '<strong>Borondatezkoa eta pribatua.</strong> Zure erantzunak ez dira inora bidaltzen eta ez dira gordetzen: orria ixtean desagertzen dira. Zuk bakarrik ikusiko duzu emaitza, zuk erakutsi nahi ez baduzu. Ez dago erantzun zuzenik edo okerrik: erantzun nolakoa zaren, ez nolakoa izan nahiko zenukeen.',
+  badge: '<span class="badge warn">Euskarazko bertsioa · balioztatu gabea</span>',
+  instr: 'Jarraian, ados edo desados egon zaitezkeen baieztapen batzuk dituzu. Adibidez: ados zaude besteekin denbora pasatzea gustatzen zaion norbait zarela esatearekin? Adierazi baieztapen bakoitzarekin zenbateraino zauden ados edo desados.',
+  scale: ['Guztiz desados','Zertxobait desados','Neutroa, iritzirik gabe','Zertxobait ados','Guztiz ados'],
+  submit: 'Kalkulatu nire emaitza',
+  missing: (n, l) => `${n === 1 ? 'Item bat falta da' : n + ' item falta dira'} (${l}). 30 erantzunak behar dira emaitza kalkulatzeko.`,
+  progress: (n) => `${n} / 30 erantzunda`,
+  s4Eyebrow: '4 · Emaitza',
+  resH: 'Zure BFI-2-S profila',
+  okTag: 'BALIOZTATUA',
+  okSub: 'Erantzunek kalitate-kontrol guztiak gainditu dituzte. Profila interpretatzeko modukoa da.',
+  warnTag: 'KONTUZ INTERPRETATU',
+  warnSub: 'Kontrolen batek abisua eman du. Horrek ez du esan nahi gezurra esan duzunik: agian azkarregi erantzun duzu, edo galderaren bat ez zenuen argi. Berrikusi erantzunak, edo irakurri profila kontuz.',
+  chkComplete: 'Osotasuna', chkCompleteD: (n) => `30 itemetatik ${n} erantzunda.`,
+  chkAcq: 'Ados-joera', chkAcqOk: (m) => `Erantzunen batez bestekoa: ${m}. 2,25 eta 3,75 artean dago.`, chkAcqWarn: (m) => `Erantzunen batez bestekoa: ${m}. Dena «bai» edo dena «ez» erantzuteko joera egon daiteke.`,
+  chkCons: 'Koherentzia', chkConsD: (k) => `Kontrako 15 bikoteetan ${k} kontraesan (gehienez 4). Adibidez, «isilik egoteko joera dut» eta «irekia eta lagunkoia naiz» biekin ados egotea.`,
+  chkPat: 'Erantzun-patroia', chkPatD: (r) => `Erantzun berdinen segidarik luzeena: ${r} (8tik behera izan behar du).`,
+  chkTime: 'Denbora', chkTimeD: (s) => `${s} erantzuteko (gutxienez minutu 1).`, chkTimeNA: 'Ezin da kodetik egiaztatu.',
+  domNames: { E: 'Estrabertsioa', A: 'Adeitasuna', C: 'Arduratasuna', N: 'Emozionaltasun negatiboa', O: 'Irekitasun mentala' },
+  domFacets: { E: 'Gizartekoitasuna · asertibitatea · energia-maila', A: 'Errukia · begirunea · konfiantza', C: 'Antolaketa · emankortasuna · ardura', N: 'Antsietatea · goibeltasuna · aldakortasun emozionala', O: 'Jakin-min intelektuala · sentikortasun estetikoa · irudimen sortzailea' },
+  domShort: {
+    E: 'Besteekiko harremanetan energia bilatzea eta hitza hartzea.',
+    A: 'Besteekiko errukia, begirunea eta konfiantza.',
+    C: 'Antolatzea, hasitakoa amaitzea eta konpromisoak betetzea.',
+    N: 'Emozio desatseginak (kezka, tristura, haserrea) maiz edo bizi sentitzeko joera.',
+    O: 'Ideiekiko, arteekiko eta berritasunarekiko jakin-mina.'
+  },
+  pos: { hi: 'eskalaren goiko aldean', mid: 'eskalaren erdialdean', lo: 'eskalaren beheko aldean' },
+  desc: {
+    E: { hi: 'Besteen konpainia bilatzeko, hitza hartzeko eta egoera sozialetan energia eta gogoa sentitzeko joera duzu.', mid: 'Egoeraren arabera, harreman sozialak bilatzen dituzu edo zeure txokora erretiratzen zara.', lo: 'Giro lasaiak eta talde txikiak nahiago izateko joera duzu; estimulu sozial gutxiagorekin kargatzen duzu energia. Introbertsioa ez da lotsa bera.' },
+    A: { hi: 'Besteekiko errukia, begirunea eta konfiantza erakusteko joera duzu.', mid: 'Konfiantza eta begirunea erakusten dituzu, eta egoerak eskatzen duenean kritikoa izateko gai zara.', lo: 'Zuzenagoa, kritikoagoa eta eszeptikoagoa izateko joera duzu; atsegin izatea ez zaizu hain garrantzitsua.' },
+    C: { hi: 'Antolatzeko, hasitakoa amaitzeko eta konpromisoak betetzeko joera duzu.', mid: 'Arlo batzuetan antolatua zara, eta beste batzuetan malguago jokatzen duzu.', lo: 'Espontaneoagoa eta malguagoa izateko joera duzu; ordena eta jarraitutasuna mantentzea gehiago kostatzen zaizu.' },
+    N: { hi: 'Kezka, tristura edo haserrea bezalako emozioak maizago edo biziago sentitzeko joera duzu. Ezaugarri bat da, ez diagnostiko bat.', mid: 'Batzuetan kezkak edo aldarte-aldaketak izaten dituzu, baina normalean oreka berreskuratzen duzu.', lo: 'Lasai mantentzeko eta atzerapenen ondoren azkar berreskuratzeko joera duzu.' },
+    O: { hi: 'Ideiekiko, arteekiko eta gauzak egiteko modu berriekiko jakin-mina izateko joera duzu.', mid: 'Ideia berriak gustuko dituzu, baina ezagunari eta praktikoari ere eusten diozu.', lo: 'Zehatza, praktikoa eta ezaguna nahiago izateko joera duzu.' }
+  },
+  poles: 'Polo bat ez da bestea baino hobea: bakoitzak abantailak eta kostuak ditu testuinguruaren arabera.',
+  midNote: 'eskalaren erdia (ez da batez bestekoa)',
+  support: 'Emaitzaren batek kezkatzen bazaitu, edo gaiaz norbaitekin hitz egin nahi baduzu, jo zure tutorearengana edo orientazio-zerbitzura.',
+  dateL: 'Data', langL: 'Bertsioa', langEU: 'Euskara (balioztatu gabea)', langES: 'Gaztelania (balioztatua)',
+  codeL: 'Egiaztapen-kodea',
+  codeHelp: 'Kode honek zure 30 erantzunak eta data jasotzen ditu. Irakasleak emaitza bera berreraiki dezake kodetik; kodea eskuz aldatuz gero, egiaztapenak huts egingo du.',
+  nameL: 'Izena edo ezizena (aukerakoa, ez da inora bidaltzen)',
+  copy: 'Kopiatu emaitza', copied: 'Kopiatuta.', copyFail: 'Ezin izan da kopiatu. Hautatu kodea eskuz.',
+  print: 'Inprimatu / gorde PDF gisa',
+  review: 'Berrikusi erantzunak',
+  toReflect: 'Jarraitu hausnarketara →',
+  s5Eyebrow: '5 · Hausnarketa',
+  revealH: 'Zer gertatu da lehen proban?',
+  revealRated: (r) => `<p>Zure profil «pertsonalizatuari» <strong>${r}/5</strong> eman zenion.</p>`,
+  revealNot: '<p>Ez zenuen lehen proba amaitu. Ez dio axola: orain irakurriko duzu tranpa.</p>',
+  reveal: `<p>Profil hori <strong>gelako guztiek jaso dute, hitz bat aldatu gabe</strong>. Hilabeteak, koloreak eta tokiak lehen esaldia baino ez zuten aldatzen. Fenomeno honi <strong>Barnum efektua</strong> (edo Forer efektua) deritzo: Bertram Forerrek profil bera eman zien bere ikasle guztiei, eta gehienek oso zehatza iritzi zioten (Forer, 1949).</p>
+<p>Begiratu esaldiei: «batzuetan lagunkoia, beste batzuetan bakarrik egon behar duzu». Bi poloak batera esaten ditu, eta beraz ezin du huts egin.</p>`,
+  cmpHead: ['', 'Profil «pertsonalizatua»', 'BFI-2-S'],
+  cmpRows: [
+    ['Nork jasotzen du emaitza bera?', 'Denek', 'Erantzun berdinak eman dituenak bakarrik'],
+    ['Oker egon daiteke?', 'Ez: esaldiak edonori egokitzen zaizkio', 'Bai: zuk diozunarekin kontraesanean egon daiteke'],
+    ['Zer neurtzen du?', 'Ezer ez: zuk zeuk jartzen diozu esanahia', 'Zure autodeskribapena, 30 itemetan'],
+    ['Ebidentzia', 'Bat ere ez', 'Fidagarritasun- eta baliozkotasun-azterketak']
+  ],
+  qH: 'Hausnartzeko',
+  qs: [
+    'Zergatik iruditu zitzaizun zehatza profil «pertsonalizatua», edo zergatik ez? Bilatu testuan edonori egokituko litzaizkiokeen bi esaldi.',
+    'Zure BFI-2-S profilak ezagutzen ez zenuen zerbait esan dizu, ala zuk dagoeneko esango zenukeena da? Zer esan nahi du horrek autotxosten baten balioaz?',
+    'Beste egun batean, beste aldarte batean, berdin erantzungo zenuke? Zein item aldatuko litzateke gehien?',
+    'Zure lagun batek zutaz beteko balu testa, emaitza bera aterako litzateke? Nork ezagutzen zaitu hobeto, zuk ala besteek?',
+    'Aldatu hizkuntza eta konparatu item bat euskaraz eta gaztelaniaz. Gauza bera esaten dute? Zergatik ez da nahikoa test bat itzultzea?'
+  ],
+  finalQ: 'Nortasuna aurkitu egiten dugu, ala eraiki?',
+  teachH: 'Irakaslearentzat: iturriak, zuzenketa-gakoa eta kodeen egiaztapena',
+  teach: `<ul>
+<li><strong>Erabilera.</strong> Borondatezkoa eta ikasleak berak zuzendua. Ez bildu banakako puntuaziorik eta ez konparatu emaitzak gelan.</li>
+<li><strong>Emozionaltasun negatiboa.</strong> Aurkeztu hasieratik ezaugarri gisa, ez diagnostiko gisa. Emaitza-orriak tutorearengana edo orientazio-zerbitzura bideratzen du kezkaren bat badago.</li>
+<li><strong>Hizkuntzak.</strong> Gaztelaniazko itemak BFI-2ren bertsio espainiar ofizialetik hitzez hitz hartuak dira (BFI-2-Sk BFI-2ren 60 itemetatik 30 erabiltzen ditu). Euskarazko itemak itzulpen didaktikoa dira, balioztatu gabea.</li>
+<li><strong>Barnum proba.</strong> Ikasle guztiek testu bera jasotzen dute; lehen esaldia bakarrik aldatzen da. Ez esan aurretik.</li>
+<li><strong>Balioztatze-kontrolak</strong> (ados-joera, koherentzia, patroia, denbora) material honen irizpide didaktikoak dira, ez testaren egileenak. Orientagarriak dira.</li>
+<li><strong>Egiaztapen-kodea.</strong> 30 erantzunak, hizkuntza eta data biltzen ditu, kontrol-batura batekin. Akatsak eta eskuzko aldaketak detektatzen ditu; ez da sinadura kriptografikoa.</li>
+</ul>`,
+  keyHead: ['Domeinua', 'BFI-2-S itemak (R = alderantzizkoa)', 'BFI-2 jatorrizko zenbakiak'],
+  verifyH: 'Egiaztatu ikasle baten kodea',
+  verifyP: 'Itsatsi kodea emaitza-orritik. Domeinuen puntuazioak eta kontrolak berriro kalkulatzen dira.',
+  verifyGo: 'Egiaztatu',
+  verifyBad: 'Kodea ez da baliozkoa: formatua edo kontrol-batura ez dator bat. Begiratu ez dagoela akatsik kopiatzean.',
+  verifyOk: 'Kodea baliozkoa da. Hau da emaitza berreraikia:',
+  sources: 'Iturriak'
+},
+es: {
+  eyebrow: 'Psicología · 2.º Bachillerato · UD09 Personalidad',
+  title: '¿Cómo se mide algo que no se ve?',
+  lead: 'El modelo Big Five y el cuestionario BFI-2-S: una prueba de partida, teoría, un test de 30 ítems y tu perfil, validado.',
+  steps: ['Punto de partida','Teoría','Test','Resultado','Reflexión'],
+  s1Eyebrow: '1 · Punto de partida',
+  guide: '¿Por qué parece tan exacto un texto que «lo acierta todo» sobre ti?',
+  s1Phen: 'Tests de redes sociales, horóscopos, cuestionarios de «¿qué personaje eres?», los «16 tipos de personalidad»... Has leído muchas veces una descripción que parece retratarte. Antes de empezar, haz esta prueba breve y di hasta qué punto encaja contigo el resultado.',
+  s1Title: 'Tu perfil en tres preguntas',
+  bmMonth: '¿En qué mes naciste?',
+  bmMonthPh: 'Elige el mes',
+  bmColor: '¿Qué color elegirías ahora?',
+  bmPlace: '¿Dónde te sientes mejor?',
+  bmGo: 'Generar mi perfil',
+  bmNeed: 'Responde primero a las tres preguntas.',
+  bmProfileH: 'Tu perfil',
+  bmRate: '¿Hasta qué punto encaja contigo esta descripción? (1 = nada · 5 = totalmente)',
+  bmSaved: 'Guardado. Volveremos a esto en la reflexión.',
+  months: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+  monthsLoc: ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
+  colors: ['azul','rojo','verde','amarillo','morado','negro'],
+  places: ['el mar','la montaña','la ciudad'],
+  placesLoc: ['junto al mar','en la montaña','en la ciudad'],
+  profile: (m, c, p) => `<strong>Naciste en ${m}, has elegido el ${c} y donde mejor te sientes es ${p}.</strong> Esa combinación dice esto de ti: necesitas que los demás te aprecien y te valoren, pero a menudo eres muy crítico/a contigo mismo/a. Por fuera parece que lo tienes todo bajo control; por dentro, a veces dudas de si has tomado la decisión correcta. Tienes capacidades que todavía no has aprovechado del todo. Necesitas cierta variedad y te agobias cuando te sientes atrapado/a en la rutina. Hay momentos en los que eres muy sociable y otros en los que necesitas estar a solas. Con tus amigos de confianza puedes ser muy distinto/a de como te ven en clase. A veces te cuesta decir que no. Valoras pensar por tu cuenta y no aceptas las opiniones ajenas sin pruebas.`,
+  toTheory: 'Seguir a la teoría →',
+  s2Eyebrow: '2 · Teoría',
+  t1: `<h2>Rasgo, no casilla</h2>
+<p>Un rasgo de personalidad es una forma relativamente estable de pensar, sentir y actuar: se repite en muchas situaciones y a lo largo del tiempo. Los rasgos no son casillas («introvertido» <em>o</em> «extravertido»), sino <strong>dimensiones</strong>: todos estamos en algún punto de una línea, y la mayoría cerca del centro.</p>
+<p>Por eso es problemático clasificar a las personas en <strong>tipos</strong>, como hacen los tests de «16 personalidades». Mandan a un lado o a otro a quien está en el centro, y muchas personas cambian de tipo al repetir el test.</p>`,
+  t2: `<h2>¿De dónde salen cinco dimensiones?</h2>
+<p><strong>Hipótesis léxica</strong>: las diferencias importantes entre personas acaban teniendo palabras en el idioma. Allport y Odbert (1936) reunieron unas 18.000 palabras del diccionario inglés que sirven para describir personas. Durante décadas se pidió a miles de personas que se describieran con esas palabras y, mediante <strong>análisis factorial</strong> (qué palabras aparecen juntas), surgieron una y otra vez cinco grandes grupos, en muchos idiomas y culturas. Es el modelo <strong>Big Five</strong>.</p>
+<p>Cuidado: es un mapa, no una explicación. Describe cómo se organiza la personalidad; no dice por qué es así.</p>`,
+  t3H: 'Los cinco dominios (y sus 15 facetas)',
+  t4H: '¿Cómo se mide algo que no se ve?',
+  t4: `<p>No podemos ver la extraversión directamente. Sus <strong>indicadores</strong>, sí: «abierto/a, sociable», «que tiende a estar callado/a». Un cuestionario reúne esos indicadores (<strong>ítems</strong>) y en cada uno respondes del 1 al 5 (<strong>escala Likert</strong>). La puntuación de cada dominio es la media de sus seis ítems.</p>`,
+  concepts: [
+    ['Ítems inversos', 'La mitad de los ítems del BFI-2-S describen el polo opuesto del dominio. Al corregir se invierten (5→1, 4→2…). Objetivo: neutralizar la tendencia a decir «sí» a todo.'],
+    ['Aquiescencia', 'Tendencia a mostrarse de acuerdo sin atender al contenido. Si los ítems directos e inversos están equilibrados, la aquiescencia no distorsiona el resultado.'],
+    ['Fiabilidad', 'Que la medida sea coherente y estable. Un ítem suelto no dice nada; seis juntos, sí. Si lo repites mañana, deberías obtener un resultado parecido.'],
+    ['Validez', 'Que mida lo que dice medir. ¿Coinciden los resultados con lo que dicen de ti tus amistades? ¿Predicen tu conducta real?'],
+    ['Deseabilidad social', 'La tentación de responder para quedar bien. El test no puede controlarlo del todo: la sinceridad depende de ti.']
+  ],
+  t5H: 'Los límites del test',
+  t5: `<ul>
+<li><strong>Es un autoinforme</strong>: mide lo que tú piensas de ti, no una «verdad objetiva».</li>
+<li><strong>No hay baremos para tu edad</strong>: no se puede decir que puntúas «alto» o «bajo» frente a otros estudiantes. El 3 es el punto medio de la escala, no la media de la gente.</li>
+<li><strong>Un rasgo no es un diagnóstico.</strong> La emocionalidad negativa describe tendencias, no problemas.</li>
+<li><strong>No mostramos las facetas.</strong> En la forma corta cada faceta tiene solo dos ítems, y los autores advierten que no son lo bastante fiables para el resultado de una sola persona.</li>
+<li><strong>La traducción.</strong> La versión en castellano se validó en España (Gallardo-Pujol et al., 2022). La versión en euskera es una traducción hecha para clase y <strong>no está validada</strong>. Un test traducido no es automáticamente el mismo test.</li>
+</ul>`,
+  toTest: 'Seguir al test →',
+  s3Eyebrow: '3 · Test · BFI-2-S',
+  consent: '<strong>Voluntario y privado.</strong> Tus respuestas no se envían a ningún sitio ni se guardan: desaparecen al cerrar la página. Solo tú verás el resultado, salvo que quieras enseñarlo. No hay respuestas correctas ni incorrectas: responde cómo eres, no cómo te gustaría ser.',
+  badge: '<span class="badge ok">Versión española validada · Gallardo-Pujol et al., 2022</span>',
+  instr: 'A continuación, se le presentan una serie de afirmaciones sobre las que usted puede estar de acuerdo o no. Por ejemplo, ¿está de acuerdo en que usted es alguién a quién le gusta pasar rato con los demás? Por favor, escriba el número que corresponda al lado de cada frase para indicar en qué medida está de acuerdo o en desacuerdo con las siguientes afirmaciones. <span class="muted">(En esta versión digital, marca el número en cada fila.)</span>',
+  scale: ['Muy en desacuerdo','Algo en desacuerdo','Neutral, sin opinión','Algo de acuerdo','Muy de acuerdo'],
+  submit: 'Calcular mi resultado',
+  missing: (n, l) => `${n === 1 ? 'Falta 1 ítem' : 'Faltan ' + n + ' ítems'} (${l}). Hacen falta las 30 respuestas para calcular el resultado.`,
+  progress: (n) => `${n} / 30 respondidos`,
+  s4Eyebrow: '4 · Resultado',
+  resH: 'Tu perfil BFI-2-S',
+  okTag: 'VALIDADO',
+  okSub: 'Las respuestas han superado todos los controles de calidad. El perfil se puede interpretar.',
+  warnTag: 'INTERPRETAR CON CAUTELA',
+  warnSub: 'Algún control ha dado un aviso. No significa que hayas mentido: quizá has respondido demasiado rápido o alguna pregunta no estaba clara. Revisa tus respuestas o lee el perfil con prudencia.',
+  chkComplete: 'Completitud', chkCompleteD: (n) => `${n} de 30 ítems respondidos.`,
+  chkAcq: 'Aquiescencia', chkAcqOk: (m) => `Media de las respuestas: ${m}. Está entre 2,25 y 3,75.`, chkAcqWarn: (m) => `Media de las respuestas: ${m}. Puede haber tendencia a responder todo «sí» o todo «no».`,
+  chkCons: 'Coherencia', chkConsD: (k) => `${k} contradicciones en los 15 pares opuestos (máximo 4). Por ejemplo, estar de acuerdo a la vez con «que tiende a estar callado/a» y con «abierto/a, sociable».`,
+  chkPat: 'Patrón de respuesta', chkPatD: (r) => `Racha más larga de respuestas iguales: ${r} (debe ser menor que 8).`,
+  chkTime: 'Tiempo', chkTimeD: (s) => `${s} para responder (mínimo 1 minuto).`, chkTimeNA: 'No se puede comprobar desde el código.',
+  domNames: { E: 'Extraversión', A: 'Cordialidad', C: 'Responsabilidad', N: 'Emocionalidad negativa', O: 'Apertura de mente' },
+  domFacets: { E: 'Sociabilidad · asertividad · nivel de energía', A: 'Compasión · respeto · confianza', C: 'Organización · productividad · responsabilidad', N: 'Ansiedad · depresión · volatilidad emocional', O: 'Curiosidad intelectual · sensibilidad estética · imaginación creativa' },
+  domShort: {
+    E: 'Buscar energía en el trato con los demás y tomar la palabra.',
+    A: 'Compasión, respeto y confianza hacia los demás.',
+    C: 'Organizarse, terminar lo que se empieza y cumplir compromisos.',
+    N: 'Tendencia a sentir a menudo o con intensidad emociones desagradables (preocupación, tristeza, enfado).',
+    O: 'Curiosidad por las ideas, el arte y lo nuevo.'
+  },
+  pos: { hi: 'en la parte alta de la escala', mid: 'en la zona media de la escala', lo: 'en la parte baja de la escala' },
+  desc: {
+    E: { hi: 'Tiendes a buscar la compañía de otras personas, a tomar la palabra y a sentir energía y entusiasmo en situaciones sociales.', mid: 'Según la situación, buscas el contacto social o te retiras a tu espacio.', lo: 'Tiendes a preferir ambientes tranquilos y grupos pequeños; recargas energía con menos estímulo social. Introversión no es lo mismo que timidez.' },
+    A: { hi: 'Tiendes a mostrar compasión, respeto y confianza hacia los demás.', mid: 'Muestras confianza y respeto, y eres capaz de ser crítico/a cuando la situación lo pide.', lo: 'Tiendes a ser más directo/a, crítico/a y escéptico/a; agradar te importa menos.' },
+    C: { hi: 'Tiendes a organizarte, a terminar lo que empiezas y a cumplir tus compromisos.', mid: 'En algunos ámbitos eres organizado/a y en otros actúas con más flexibilidad.', lo: 'Tiendes a ser más espontáneo/a y flexible; mantener el orden y la constancia te cuesta más.' },
+    N: { hi: 'Tiendes a sentir con más frecuencia o intensidad emociones como la preocupación, la tristeza o el enfado. Es un rasgo, no un diagnóstico.', mid: 'A veces tienes preocupaciones o cambios de humor, pero sueles recuperar el equilibrio.', lo: 'Tiendes a mantener la calma y a recuperarte rápido de los contratiempos.' },
+    O: { hi: 'Tiendes a sentir curiosidad por las ideas, el arte y las formas nuevas de hacer las cosas.', mid: 'Te gustan las ideas nuevas, pero también te apoyas en lo conocido y práctico.', lo: 'Tiendes a preferir lo concreto, lo práctico y lo conocido.' }
+  },
+  poles: 'Ningún polo es mejor que el otro: cada uno tiene ventajas y costes según el contexto.',
+  midNote: 'punto medio de la escala (no es la media)',
+  support: 'Si algún resultado te preocupa o quieres hablar del tema con alguien, acude a tu tutor/a o al departamento de orientación.',
+  dateL: 'Fecha', langL: 'Versión', langEU: 'Euskera (no validada)', langES: 'Castellano (validada)',
+  codeL: 'Código de verificación',
+  codeHelp: 'Este código recoge tus 30 respuestas y la fecha. El profesorado puede reconstruir el mismo resultado a partir de él; si se modifica a mano, la verificación falla.',
+  nameL: 'Nombre o alias (opcional, no se envía a ningún sitio)',
+  copy: 'Copiar resultado', copied: 'Copiado.', copyFail: 'No se ha podido copiar. Selecciona el código a mano.',
+  print: 'Imprimir / guardar como PDF',
+  review: 'Revisar respuestas',
+  toReflect: 'Seguir a la reflexión →',
+  s5Eyebrow: '5 · Reflexión',
+  revealH: '¿Qué ha pasado en la primera prueba?',
+  revealRated: (r) => `<p>Diste a tu perfil «personalizado» un <strong>${r}/5</strong>.</p>`,
+  revealNot: '<p>No terminaste la primera prueba. No importa: ahora vas a leer el truco.</p>',
+  reveal: `<p>Ese perfil lo ha recibido <strong>toda la clase, sin cambiar una palabra</strong>. El mes, el color y el lugar solo cambiaban la primera frase. Este fenómeno se llama <strong>efecto Barnum</strong> (o efecto Forer): Bertram Forer dio el mismo perfil a todos sus estudiantes y la mayoría lo consideró muy preciso (Forer, 1949).</p>
+<p>Fíjate en las frases: «hay momentos en los que eres muy sociable y otros en los que necesitas estar a solas». Afirma los dos polos a la vez, así que no puede fallar.</p>`,
+  cmpHead: ['', 'Perfil «personalizado»', 'BFI-2-S'],
+  cmpRows: [
+    ['¿Quién recibe el mismo resultado?', 'Todo el mundo', 'Solo quien da las mismas respuestas'],
+    ['¿Puede equivocarse?', 'No: sus frases encajan con cualquiera', 'Sí: puede contradecir lo que tú dices'],
+    ['¿Qué mide?', 'Nada: el significado lo pones tú', 'Tu autodescripción, en 30 ítems'],
+    ['Evidencia', 'Ninguna', 'Estudios de fiabilidad y validez']
+  ],
+  qH: 'Para reflexionar',
+  qs: [
+    '¿Por qué te pareció exacto (o no) el perfil «personalizado»? Busca en el texto dos frases que encajarían con cualquiera.',
+    '¿Tu perfil BFI-2-S te ha dicho algo que no sabías, o es lo que tú ya habrías dicho? ¿Qué implica eso sobre el valor de un autoinforme?',
+    'Otro día, con otro estado de ánimo, ¿responderías igual? ¿Qué ítem cambiaría más?',
+    'Si una amiga o un amigo rellenara el test sobre ti, ¿saldría lo mismo? ¿Quién te conoce mejor, tú o los demás?',
+    'Cambia de idioma y compara un ítem en euskera y en castellano. ¿Dicen lo mismo? ¿Por qué no basta con traducir un test?'
+  ],
+  finalQ: '¿La personalidad se descubre o se construye?',
+  teachH: 'Para el profesorado: fuentes, clave de corrección y verificación de códigos',
+  teach: `<ul>
+<li><strong>Uso.</strong> Voluntario y corregido por el propio alumnado. No recojas puntuaciones individuales ni compares resultados en clase.</li>
+<li><strong>Emocionalidad negativa.</strong> Preséntala desde el principio como rasgo, no como diagnóstico. La hoja de resultados remite al tutor/a o a orientación si algo preocupa.</li>
+<li><strong>Idiomas.</strong> Los ítems en castellano están tomados literalmente de la versión española oficial del BFI-2 (el BFI-2-S usa 30 de sus 60 ítems). Los ítems en euskera son una traducción didáctica no validada.</li>
+<li><strong>Prueba Barnum.</strong> Todo el alumnado recibe el mismo texto; solo cambia la primera frase. No lo anticipes.</li>
+<li><strong>Controles de validación</strong> (aquiescencia, coherencia, patrón, tiempo): son criterios didácticos de este material, no de los autores del test. Son orientativos.</li>
+<li><strong>Código de verificación.</strong> Recoge las 30 respuestas, el idioma y la fecha, con una suma de control. Detecta errores y modificaciones a mano; no es una firma criptográfica.</li>
+</ul>`,
+  keyHead: ['Dominio', 'Ítems BFI-2-S (R = inverso)', 'N.º original en el BFI-2'],
+  verifyH: 'Verificar el código de un/a estudiante',
+  verifyP: 'Pega el código de la hoja de resultados. Se recalculan las puntuaciones y los controles.',
+  verifyGo: 'Verificar',
+  verifyBad: 'El código no es válido: el formato o la suma de control no coinciden. Comprueba que no haya errores al copiarlo.',
+  verifyOk: 'El código es válido. Este es el resultado reconstruido:',
+  sources: 'Fuentes'
+}
+};
+
+const COLOR_HEX = ['#2f6bd8','#d23a3a','#2f9a5a','#e8c22e','#8a3fae','#1d1d1d'];
+const SOURCES = [
+  'Soto, C. J., & John, O. P. (2017). Short and extra-short forms of the Big Five Inventory–2: The BFI-2-S and BFI-2-XS. <em>Journal of Research in Personality, 68</em>, 69–81.',
+  'Soto, C. J., & John, O. P. (2017). The next Big Five Inventory (BFI-2): Developing and assessing a hierarchical model with 15 facets to enhance bandwidth, fidelity, and predictive power. <em>Journal of Personality and Social Psychology, 113</em>, 117–143.',
+  'Versión española del BFI-2: O. P. John y C. J. Soto; traducción de D. Gallardo-Pujol, L. Oceja, A. Cortijos-Bernabeu y V. Rouco. Ítems BFI-2 © 2015 Oliver P. John y Christopher J. Soto; uso sin coste. <a href="https://www.colby.edu/academics/departments-and-programs/psychology/research-opportunities/personality-lab/the-bfi-2/" target="_blank" rel="noopener">Colby Personality Lab</a> · <a href="https://osf.io/kp572/" target="_blank" rel="noopener">OSF</a>',
+  'Gallardo-Pujol, D., Rouco, V., Cortijos-Bernabeu, A., Oceja, L., Soto, C. J., & John, O. P. (2022). Factor structure, gender invariance, measurement properties, and short forms of the Spanish adaptation of the Big Five Inventory-2. <em>Psychological Test Adaptation and Development</em>.',
+  'Forer, B. R. (1949). The fallacy of personal validation: A classroom demonstration of gullibility. <em>Journal of Abnormal and Social Psychology, 44</em>, 118–123.',
+  'Allport, G. W., & Odbert, H. S. (1936). Trait-names: A psycho-lexical study. <em>Psychological Monographs, 47</em>(1).',
+  'Euskarazko itemak / ítems en euskera: itzulpen didaktikoa, balioztatu gabea · traducción didáctica, no validada.'
+];
+
+/* ---------- State ---------- */
+const S = {
+  lang: 'eu', step: 1, maxStep: 3,
+  answers: Array(30).fill(0), t0: null,
+  bm: { month: '', color: -1, place: -1, shown: false, rating: 0 },
+  result: null
+};
+let inFrame = true;
+try { inFrame = window.self !== window.top; } catch (e) { inFrame = true; }
+
+const $ = (id) => document.getElementById(id);
+const L = () => T[S.lang];
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function fmt(n) { return S.lang === 'eu' || S.lang === 'es' ? n.toFixed(2).replace('.', ',') : n.toFixed(2); }
+
+/* ---------- Scoring + validation (pure) ---------- */
+function score(answers) {
+  const out = {};
+  for (const d of DOMS) {
+    const its = ITEMS.filter(i => i[1] === d);
+    out[d] = its.reduce((s, i) => s + (i[2] ? 6 - answers[i[0]-1] : answers[i[0]-1]), 0) / its.length;
+  }
+  return out;
+}
+function checks(answers, seconds) {
+  const n = answers.filter(a => a > 0).length;
+  const mean = answers.reduce((s, a) => s + a, 0) / 30;
+  const facets = {};
+  ITEMS.forEach(i => (facets[i[3]] = facets[i[3]] || []).push(answers[i[0]-1]));
+  let contra = 0;
+  Object.values(facets).forEach(([a, b]) => { if ((a >= 4 && b >= 4) || (a <= 2 && b <= 2)) contra++; });
+  let run = 1, best = 1;
+  for (let i = 1; i < 30; i++) { run = answers[i] === answers[i-1] ? run + 1 : 1; best = Math.max(best, run); }
+  return {
+    complete: { ok: n === 30, n },
+    acq: { ok: mean >= 2.25 && mean <= 3.75, m: mean },
+    cons: { ok: contra <= 4, k: contra },
+    pat: { ok: best < 8, r: best },
+    time: seconds == null ? { ok: null } : { ok: seconds >= 60, s: seconds }
+  };
+}
+
+/* ---------- Verification code ---------- */
+function checksum(s) {
+  let h = 7;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i) * (i + 1)) % 1296;
+  return h.toString(36).toUpperCase().padStart(2, '0');
+}
+function makeCode(lang, ymd, answers) {
+  const l = lang === 'eu' ? 'E' : 'C';
+  const a = answers.join('');
+  const groups = [0,5,10,15,20,25].map(k => a.slice(k, k + 5));
+  return `B2S-${l}${ymd}-${groups.join('-')}-${checksum(l + ymd + a)}`;
+}
+function parseCode(str) {
+  const c = str.toUpperCase().replace(/\s+/g, '');
+  const m = c.match(/^B2S-([EC])(\d{6})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([0-9A-Z]{2})$/);
+  if (!m) return null;
+  const a = m.slice(3, 9).join('');
+  if (checksum(m[1] + m[2] + a) !== m[9]) return null;
+  return { lang: m[1] === 'E' ? 'eu' : 'es', ymd: m[2], answers: a.split('').map(Number) };
+}
+function todayYMD() {
+  const d = new Date();
+  return String(d.getFullYear()).slice(2) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+}
+function fmtDate(ymd) {
+  const y = '20' + ymd.slice(0, 2), m = ymd.slice(2, 4), d = ymd.slice(4, 6);
+  return S.lang === 'eu' ? `${y}/${m}/${d}` : `${d}/${m}/${y}`;
+}
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60), s = Math.round(sec % 60);
+  return S.lang === 'eu' ? `${m} min ${s} s` : `${m} min ${s} s`;
+}
+
+/* ---------- Rendering ---------- */
+function renderStatic() {
+  const t = L();
+  document.documentElement.lang = S.lang;
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const v = t[el.dataset.t];
+    if (typeof v === 'string') el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === S.lang)));
+}
+function renderNav() {
+  const t = L();
+  $('stepnav').innerHTML = t.steps.map((s, i) => {
+    const n = i + 1;
+    const dis = n > S.maxStep ? 'disabled' : '';
+    const cur = n === S.step ? 'aria-current="step"' : '';
+    const done = n < S.step ? 'done' : '';
+    return `<li><button type="button" class="${done}" data-goto="${n}" ${cur} ${dis}><span class="n">${n}</span><span class="lbl">${s}</span></button></li>`;
+  }).join('');
+  $('testprogress').hidden = S.step !== 3;
+  updateProgress();
+}
+function updateProgress() {
+  const n = S.answers.filter(a => a > 0).length;
+  $('progbar').style.width = (n / 30 * 100) + '%';
+  $('proglabel').textContent = L().progress(n);
+}
+function renderBarnum() {
+  const t = L();
+  const sel = $('bm-month');
+  sel.innerHTML = `<option value="">${t.bmMonthPh}</option>` + t.months.map((m, i) => `<option value="${i}" ${String(i) === S.bm.month ? 'selected' : ''}>${cap(m)}</option>`).join('');
+  $('bm-colors').innerHTML = t.colors.map((c, i) => `<button type="button" class="chip" data-color="${i}" aria-pressed="${S.bm.color === i}"><span class="sw" style="background:${COLOR_HEX[i]}"></span>${cap(c)}</button>`).join('');
+  $('bm-places').innerHTML = t.places.map((p, i) => `<button type="button" class="chip plain" data-place="${i}" aria-pressed="${S.bm.place === i}">${cap(p)}</button>`).join('');
+  $('bm-out').hidden = !S.bm.shown;
+  if (S.bm.shown) {
+    $('bm-text').innerHTML = t.profile(t.monthsLoc[+S.bm.month], t.colors[S.bm.color], t.placesLoc[S.bm.place]);
+  }
+  $('bm-rate').innerHTML = [1,2,3,4,5].map(r => `<button type="button" data-rate="${r}" aria-pressed="${S.bm.rating === r}">${r}</button>`).join('');
+  $('bm-saved').hidden = !S.bm.rating;
+}
+function renderTheory() {
+  const t = L();
+  $('domgrid').innerHTML = DOMS.map(d => `<div class="dom"><span class="letter">${d}</span><h3>${t.domNames[d]}</h3><p class="small">${t.domShort[d]}</p><p class="facets">${t.domFacets[d]}</p></div>`).join('');
+  $('concepts').innerHTML = t.concepts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+}
+function renderTest() {
+  const t = L();
+  $('versionbadge').innerHTML = t.badge;
+  $('legend').innerHTML = t.scale.map((s, i) => `<div><b>${i + 1}</b>${s}</div>`).join('');
+  $('items').innerHTML = ITEMS.map(([n, , , , es, eu]) => {
+    const txt = S.lang === 'eu' ? eu : es;
+    const opts = [1,2,3,4,5].map(v => `<input type="radio" name="q${n}" id="q${n}-${v}" value="${v}" ${S.answers[n-1] === v ? 'checked' : ''}><label for="q${n}-${v}" title="${t.scale[v-1]}">${v}</label>`).join('');
+    return `<div class="item" id="item-${n}"><span class="num">${n}</span><span id="qt${n}">${txt}</span><div class="opts" role="radiogroup" aria-labelledby="qt${n}">${opts}</div></div>`;
+  }).join('');
+  $('missing').hidden = true;
+}
+function resultHTML(r, opts) {
+  const t = L();
+  const c = r.checks;
+  const allOk = c.complete.ok && c.acq.ok && c.cons.ok && c.pat.ok && c.time.ok !== false;
+  const ic = (ok) => ok === null ? '<span class="ic na">–</span>' : ok ? '<span class="ic ok">✓</span>' : '<span class="ic warn">!</span>';
+  const chk = [
+    [c.complete.ok, t.chkComplete, t.chkCompleteD(c.complete.n)],
+    [c.acq.ok, t.chkAcq, c.acq.ok ? t.chkAcqOk(fmt(c.acq.m)) : t.chkAcqWarn(fmt(c.acq.m))],
+    [c.cons.ok, t.chkCons, t.chkConsD(c.cons.k)],
+    [c.pat.ok, t.chkPat, t.chkPatD(c.pat.r)],
+    [c.time.ok, t.chkTime, c.time.ok === null ? t.chkTimeNA : t.chkTimeD(fmtTime(c.time.s))]
+  ].map(([ok, h, d]) => `<li>${ic(ok)}<div><strong>${h}.</strong> <span class="small">${d}</span></div></li>`).join('');
+  const bars = DOMS.map(d => {
+    const s = r.scores[d];
+    const pos = s >= 3.5 ? 'hi' : s <= 2.5 ? 'lo' : 'mid';
+    const pct = (s - 1) / 4 * 100;
+    return `<div>
+      <div class="bar-head"><h3>${t.domNames[d]}</h3><span class="score">${fmt(s)}</span></div>
+      <div class="track" role="img" aria-label="${t.domNames[d]}: ${fmt(s)} / 5"><span class="fill" style="width:${pct}%"></span><span class="mid"></span></div>
+      <div class="ticks">${[1,2,3,4,5].map(v => `<span style="left:${(v-1)*25}%">${v}</span>`).join('')}</div>
+      <p class="small" style="margin-top:.4rem"><strong>${cap(t.pos[pos])}.</strong> ${t.desc[d][pos]}</p>
+    </div>`;
+  }).join('');
+  const name = opts.name ? `<div class="field"><span class="lbl">${S.lang === 'eu' ? 'Izena' : 'Nombre'}</span><span>${esc(opts.name)}</span></div>` : '';
+  return `<div class="card">
+    <div class="verdict ${allOk ? 'ok' : 'warn'}"><span class="tag">${allOk ? t.okTag : t.warnTag}</span><span class="small">${allOk ? t.okSub : t.warnSub}</span></div>
+    <ul class="checks">${chk}</ul>
+  </div>
+  <div class="card"><p class="mid-legend"><i></i>3 = ${t.midNote}</p><div class="bars">${bars}</div><p class="small muted">${t.poles}</p><p class="support">${t.support}</p></div>
+  <div class="card">
+    <div class="result-meta">
+      ${name}
+      <div class="field"><span class="lbl">${t.dateL}</span><span>${fmtDate(r.ymd)}</span></div>
+      <div class="field"><span class="lbl">${t.langL}</span><span>${r.lang === 'eu' ? t.langEU : t.langES}</span></div>
+    </div>
+    <div class="field"><span class="lbl">${t.codeL}</span><div class="code" ${opts.idAttr || ''}>${r.code}</div><span class="small muted">${t.codeHelp}</span></div>
+  </div>`;
+}
+function esc(s) { return s.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch])); }
+function renderResult() {
+  if (!S.result) { $('result').innerHTML = ''; return; }
+  $('result').innerHTML = resultHTML(S.result, { name: $('res-name').value.trim(), idAttr: 'id="rescode"' });
+  $('print').hidden = inFrame;
+}
+function renderReflection() {
+  const t = L();
+  $('reveal').innerHTML = (S.bm.rating ? t.revealRated(S.bm.rating) : t.revealNot) + t.reveal;
+  $('compare').innerHTML = `<table><thead><tr>${t.cmpHead.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${t.cmpRows.map(r => `<tr><th scope="row">${r[0]}</th><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>`;
+  $('questions').innerHTML = t.qs.map(q => `<li>${q}</li>`).join('');
+}
+function renderTeacher() {
+  const t = L();
+  const rows = DOMS.map(d => {
+    const its = ITEMS.filter(i => i[1] === d);
+    return `<tr><td>${t.domNames[d]}</td><td>${its.map(i => i[0] + (i[2] ? 'R' : '')).join(', ')}</td><td>${its.map(i => i[6]).join(', ')}</td></tr>`;
+  }).join('');
+  $('keytable').innerHTML = `<table><thead><tr>${t.keyHead.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+  $('sources').innerHTML = `<strong>${t.sources}</strong>` + SOURCES.map(s => `<p>${s}</p>`).join('');
+}
+function showStep(n, scroll) {
+  S.step = n;
+  for (let i = 1; i <= 5; i++) $('step-' + i).hidden = i !== n;
+  if (n === 5) renderReflection();
+  renderNav();
+  if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function renderAll() {
+  renderStatic(); renderBarnum(); renderTheory(); renderTest(); renderResult(); renderReflection(); renderTeacher(); showStep(S.step, false);
+  const v = $('verify-in').value.trim();
+  if (v && $('verify-out').innerHTML) doVerify();
+}
+
+/* ---------- Events ---------- */
+document.addEventListener('click', (e) => {
+  const g = e.target.closest('[data-goto]');
+  if (g && !g.disabled) { showStep(+g.dataset.goto, true); return; }
+  const lb = e.target.closest('[data-lang]');
+  if (lb) { S.lang = lb.dataset.lang; try { localStorage.setItem('bfi2s-lang', S.lang); } catch (_) {} renderAll(); return; }
+  const col = e.target.closest('[data-color]');
+  if (col) { S.bm.color = +col.dataset.color; renderBarnum(); return; }
+  const pl = e.target.closest('[data-place]');
+  if (pl) { S.bm.place = +pl.dataset.place; renderBarnum(); return; }
+  const rt = e.target.closest('[data-rate]');
+  if (rt) { S.bm.rating = +rt.dataset.rate; renderBarnum(); return; }
+});
+$('bm-month').addEventListener('change', (e) => { S.bm.month = e.target.value; });
+$('bm-go').addEventListener('click', () => {
+  if (S.bm.month === '' || S.bm.color < 0 || S.bm.place < 0) { $('bm-go').textContent = L().bmNeed; setTimeout(() => { $('bm-go').textContent = L().bmGo; }, 1800); return; }
+  S.bm.shown = true; renderBarnum();
+});
+$('items').addEventListener('change', (e) => {
+  const m = e.target.name && e.target.name.match(/^q(\d+)$/);
+  if (!m) return;
+  if (S.t0 === null) S.t0 = Date.now();
+  S.answers[+m[1] - 1] = +e.target.value;
+  $('item-' + m[1]).classList.remove('missing');
+  if (S.result) { S.result = null; S.maxStep = 3; renderResult(); renderNav(); }
+  updateProgress();
+});
+$('submit').addEventListener('click', () => {
+  const miss = S.answers.map((a, i) => a ? null : i + 1).filter(Boolean);
+  document.querySelectorAll('.item').forEach(el => el.classList.remove('missing'));
+  if (miss.length) {
+    miss.forEach(n => $('item-' + n).classList.add('missing'));
+    $('missing').textContent = L().missing(miss.length, miss.join(', '));
+    $('missing').hidden = false;
+    $('item-' + miss[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  $('missing').hidden = true;
+  const secs = S.t0 ? (Date.now() - S.t0) / 1000 : 0;
+  const ymd = todayYMD();
+  S.result = { lang: S.lang, ymd, scores: score(S.answers), checks: checks(S.answers, secs), code: makeCode(S.lang, ymd, S.answers) };
+  S.maxStep = 5;
+  renderResult();
+  showStep(4, true);
+});
+$('res-name').addEventListener('input', () => renderResult());
+$('print').addEventListener('click', () => window.print());
+$('copy').addEventListener('click', () => {
+  if (!S.result) return;
+  const t = L(), r = S.result, c = r.checks;
+  const allOk = c.complete.ok && c.acq.ok && c.cons.ok && c.pat.ok && c.time.ok !== false;
+  const name = $('res-name').value.trim();
+  const txt = [
+    `BFI-2-S · ${name ? name + ' · ' : ''}${fmtDate(r.ymd)}`,
+    allOk ? t.okTag : t.warnTag,
+    ...DOMS.map(d => `${t.domNames[d]}: ${fmt(r.scores[d])} / 5`),
+    `${t.codeL}: ${r.code}`
+  ].join('\n');
+  const done = () => { $('copymsg').textContent = t.copied; };
+  const fail = () => {
+    $('copymsg').textContent = t.copyFail;
+    const el = $('rescode');
+    if (el) { const rg = document.createRange(); rg.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(rg); }
+  };
+  try { navigator.clipboard.writeText(txt).then(done, fail); } catch (_) { fail(); }
+});
+function doVerify() {
+  const t = L();
+  const p = parseCode($('verify-in').value);
+  if (!p) { $('verify-out').innerHTML = `<p class="err">${t.verifyBad}</p>`; return; }
+  const r = { lang: p.lang, ymd: p.ymd, scores: score(p.answers), checks: checks(p.answers, null), code: makeCode(p.lang, p.ymd, p.answers) };
+  $('verify-out').innerHTML = `<p class="small" style="color:var(--ok);font-weight:600">${t.verifyOk}</p><div style="display:grid;gap:1rem">${resultHTML(r, {})}</div>`;
+}
+$('verify-go').addEventListener('click', doVerify);
+
+/* ---------- Boot ---------- */
+try { const l = localStorage.getItem('bfi2s-lang'); if (l === 'eu' || l === 'es') S.lang = l; } catch (_) {}
+renderAll();
+
+// expose pure functions for testing
+window.__bfi2s = { ITEMS, score, checks, makeCode, parseCode };
+})();
+</script>
+
+</html>

@@ -117,6 +117,19 @@
       "deskribapena": "Taldeak eta gizarteak nola moldatzen gaituzten, eta osasun mentalari begirada kritikoa.",
       "gaiak": [
         {
+          "id": "nortasuna",
+          "izenburua": "Nortasuna: nola neurtzen da ikusten ez dena?",
+          "deskribapena": "Barnum efektua, Big Five eredua eta BFI-2-S testa (EUS/CAS), emaitza balioztatuarekin.",
+          "egoera": "abian",
+          "ikonoa": "lente",
+          "lotura": "nortasuna-bfi2s.html",
+          "etiketak": [
+            "Big Five",
+            "Testa",
+            "Barnum"
+          ]
+        },
+        {
           "id": "soziala",
           "izenburua": "Psikologia soziala",
           "deskribapena": "Konformismoa, jarrerak eta talde-dinamika.",
