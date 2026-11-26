@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<title>BFI-2-S Nortasun-testa</title>
+<title>BFI-2 Nortasun-testa</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Inter:wght@400;500;600&display=swap">
@@ -172,7 +172,20 @@ select, input[type="text"] { background: var(--surface); border: 1px solid var(-
 details.teacher { margin-top: 3rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 details.teacher > summary { cursor: pointer; padding: 1rem 1.2rem; font-family: var(--font-display); font-weight: 800; }
 details.teacher .inner { padding: 0 1.2rem 1.2rem; display: grid; gap: 1rem; }
+.forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.8rem; }
+.form-opt { text-align: left; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: var(--radius); padding: 0.9rem 1rem; cursor: pointer; display: grid; gap: 0.2rem; font: inherit; }
+.form-opt strong { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; }
+.form-opt span { font-size: 0.86rem; color: var(--muted); }
+.form-opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); }
+.form-opt[aria-pressed="true"] strong { color: var(--accent); }
+.facres { display: grid; gap: 0.35rem; margin-top: 0.6rem; padding-left: 0.8rem; border-left: 2px solid var(--accent-soft); }
+.fr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(5rem, 42%) 2.6rem; align-items: center; gap: 0.6rem; font-size: 0.85rem; }
+.fr .t { position: relative; height: 7px; background: var(--accent-soft); border-radius: 999px; }
+.fr .t i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: 0.75; border-radius: 999px; }
+.fr .t b { position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px dashed var(--muted); }
+.fr .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
 .keytable { overflow-x: auto; }
+.keytable + .keytable { margin-top: 1rem; }
 .keytable table { border-collapse: collapse; font-size: 0.86rem; width: 100%; min-width: 420px; }
 .keytable td, .keytable th { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; font-variant-numeric: tabular-nums; }
 footer.src { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); display: grid; gap: 0.4rem; }
@@ -261,7 +274,11 @@ footer.src p { padding-left: 1.4rem; text-indent: -1.4rem; }
 
     <!-- 3 · TESTA -->
     <section class="step" id="step-3" hidden>
-      <span class="eyebrow" data-t="s3Eyebrow"></span>
+      <span class="eyebrow" id="s3eyebrow"></span>
+      <div class="card">
+        <h2 data-t="formH"></h2>
+        <div class="forms" id="forms"></div>
+      </div>
       <div class="notice" data-t="consent"></div>
       <div class="card">
         <div class="row"><span id="versionbadge"></span></div>
@@ -276,7 +293,7 @@ footer.src p { padding-left: 1.4rem; text-indent: -1.4rem; }
     <!-- 4 · EMAITZA -->
     <section class="step" id="step-4" hidden>
       <span class="eyebrow" data-t="s4Eyebrow"></span>
-      <h2 data-t="resH"></h2>
+      <h2 id="resH"></h2>
       <div id="result"></div>
       <div class="card no-print">
         <div class="result-meta">
@@ -312,11 +329,12 @@ footer.src p { padding-left: 1.4rem; text-indent: -1.4rem; }
     <div class="inner">
       <div class="prose small" data-t="teach"></div>
       <div class="keytable" id="keytable"></div>
+      <div class="keytable" id="keytableL"></div>
       <div class="card">
         <h3 data-t="verifyH"></h3>
         <p class="small muted" data-t="verifyP"></p>
         <div class="row">
-          <input type="text" id="verify-in" placeholder="B2S-E261125-31452-…" style="flex:1;min-width:0">
+          <input type="text" id="verify-in" placeholder="B2S-E261126-31452-… / B2L-…" style="flex:1;min-width:0">
           <button class="btn" type="button" id="verify-go" data-t="verifyGo"></button>
         </div>
         <div id="verify-out"></div>
@@ -365,14 +383,83 @@ const ITEMS = [
   [29,'N',0,'vol','Temperamental, que se exalta fácilmente','Temperamentu biziko pertsona naiz, erraz sutzen naiz.',59],
   [30,'O',1,'cre','Con poca creatividad','Sormen gutxi dut.',30]
 ];
+/* BFI-2 (60 items, official order). es = official Spanish BFI-2. eu: shared items reuse the BFI-2-S translation; the rest are new didactic translations, NOT validated. */
+// [n, domain, reversed, facet, es, eu]
+const ITEMS_L = [
+  [1,'E',0,'soc','Abierto/a, sociable','Irekia eta lagunkoia naiz.'],
+  [2,'A',0,'com','Compasivo/a, con un gran corazón','Errukitsua naiz, bihotz handikoa.'],
+  [3,'C',1,'org','Que tiende a ser desorganizado/a','Desordenatua izateko joera dut.'],
+  [4,'N',1,'anx','Relajado/a, que gestiona bien el estrés','Lasaia naiz, estresa ondo kudeatzen dut.'],
+  [5,'O',1,'aes','Con pocos intereses artísticos','Interes artistiko gutxi ditut.'],
+  [6,'E',0,'ass','Con una personalidad asertiva','Nortasun asertiboa dut.'],
+  [7,'A',0,'res','Respetuoso/a, que trata a los demás con respeto','Begirunetsua naiz, besteak errespetuz tratatzen ditut.'],
+  [8,'C',1,'pro','Que tiende a ser perezoso/a','Alferra izateko joera dut.'],
+  [9,'N',1,'dep','Que se mantiene optimista después de sufrir un contratiempo','Zailtasun baten ondoren ere baikor jarraitzen dut.'],
+  [10,'O',0,'cur','Que siente curiosidad por gran variedad de cosas','Gauza mota askori buruzko jakin-mina dut.'],
+  [11,'E',1,'ene','Que raramente se siente emocionado/a o entusiasmado/a','Gutxitan sentitzen naiz zirraraz edo ilusioz beteta.'],
+  [12,'A',1,'tru','Que tiende a buscar los defectos de los demás','Besteen akatsak bilatzeko joera dut.'],
+  [13,'C',0,'rsp','Formal, constante','Formala eta jarraitua naiz.'],
+  [14,'N',0,'vol','Variable, con notables cambios de humor','Aldakorra naiz, aldarte-aldaketa nabarmenak ditut.'],
+  [15,'O',0,'cre','Ingenioso/a, que busca formas inteligentes de hacer las cosas','Burutsua naiz, gauzak egiteko modu argiak bilatzen ditut.'],
+  [16,'E',1,'soc','Que tiende a estar callado/a','Isilik egoteko joera dut.'],
+  [17,'A',1,'com','Que siente poca compasión hacia los demás','Besteekiko erruki gutxi sentitzen dut.'],
+  [18,'C',0,'org','Metódico/a, a quien le gusta mantenerlo todo en orden','Metodikoa naiz, dena ordenan edukitzea gustatzen zait.'],
+  [19,'N',0,'anx','Que puede ponerse tenso/a','Urduri edo tenkatuta jar naiteke.'],
+  [20,'O',0,'aes','Fascinado por el arte, la música o la literatura','Arteak, musikak edo literaturak liluratu egiten naute.'],
+  [21,'E',0,'ass','Dominante, que actúa como líder','Nagusitzeko joera dut, lider gisa jokatzen dut.'],
+  [22,'A',1,'res','Que empieza discusiones con los demás','Besteekin eztabaidak hasten ditut.'],
+  [23,'C',1,'pro','A quien le cuesta empezar las tareas','Kosta egiten zait zereginei ekitea.'],
+  [24,'N',1,'dep','Que se siente seguro/a, cómodo/a consigo mismo/a','Seguru sentitzen naiz, eroso nire buruarekin.'],
+  [25,'O',1,'cur','Que evita conversaciones intelectuales y filosóficas','Elkarrizketa intelektual eta filosofikoak saihesten ditut.'],
+  [26,'E',1,'ene','Menos activo/a que otras personas','Ez naiz beste pertsonak bezain aktiboa.'],
+  [27,'A',0,'tru','Comprensivo/a con los demás','Besteekin ulerkorra naiz.'],
+  [28,'C',1,'rsp','Que puede ser algo descuidado/a','Zertxobait zabarra izan naiteke.'],
+  [29,'N',1,'vol','Emocionalmente estable, que no se altera con facilidad','Emozionalki egonkorra naiz, ez naiz erraz asaldatzen.'],
+  [30,'O',1,'cre','Con poca creatividad','Sormen gutxi dut.'],
+  [31,'E',1,'soc','A veces tímido/a, introvertido/a','Batzuetan lotsatia naiz, introbertitua.'],
+  [32,'A',0,'com','Servicial y generoso/a con los demás','Laguntzeko prest egoten naiz, eta eskuzabala naiz besteekin.'],
+  [33,'C',0,'org','Que mantiene todo limpio y ordenado','Dena garbi eta ordenatuta mantentzen dut.'],
+  [34,'N',0,'anx','Que se preocupa mucho','Asko kezkatzen naiz.'],
+  [35,'O',0,'aes','Que valora el arte y la belleza','Artea eta edertasuna baloratzen ditut.'],
+  [36,'E',1,'ass','A quien le es difícil influir en los demás','Zaila egiten zait besteengan eragitea.'],
+  [37,'A',1,'res','Que a veces es grosero/a con los demás','Batzuetan zakarra naiz besteekin.'],
+  [38,'C',0,'pro','Eficiente, que consigue que las cosas se hagan','Eraginkorra naiz: gauzak egitea lortzen dut.'],
+  [39,'N',0,'dep','Que a menudo se siente triste','Maiz sentitzen naiz triste.'],
+  [40,'O',0,'cur','Complejo/a, de pensamientos profundos','Konplexua naiz, pentsamendu sakonekoa.'],
+  [41,'E',0,'ene','Lleno/a de energía','Energiaz beteta nago.'],
+  [42,'A',1,'tru','Que desconfía de las intenciones de los demás','Besteen asmoekiko mesfidantza dut.'],
+  [43,'C',0,'rsp','Fiable, con el/la que siempre se puede contar','Fidagarria naiz; besteek beti izan dezakete nigan konfiantza.'],
+  [44,'N',1,'vol','Que controla sus emociones','Nire emozioak kontrolatzen ditut.'],
+  [45,'O',1,'cre','Que tiene dificultad para imaginarse las cosas','Zailtasunak ditut gauzak irudikatzeko.'],
+  [46,'E',0,'soc','Hablador/a','Berritsua naiz.'],
+  [47,'A',1,'com','Que puede ser frío/a e insensible','Hotza eta sentikortasunik gabea izan naiteke.'],
+  [48,'C',1,'org','Que lo deja todo hecho un lío, que no limpia','Dena nahaste-borrastean uzten dut, ez dut garbitzen.'],
+  [49,'N',1,'anx','Que raramente se siente ansioso/a o miedoso/a','Gutxitan sentitzen naiz larri edo beldurtuta.'],
+  [50,'O',1,'aes','Que considera que la poesía y el teatro son aburridos','Poesia eta antzerkia aspergarriak iruditzen zaizkit.'],
+  [51,'E',1,'ass','Que prefiere que otros asuman la responsabilidad','Nahiago dut beste batzuek hartzea ardura.'],
+  [52,'A',0,'res','Educado/a, cortés con los demás','Hezia eta adeitsua naiz besteekin.'],
+  [53,'C',0,'pro','Tenaz, que trabaja hasta terminar la tarea','Tinkoa naiz, zeregina amaitu arte lan egiten dut.'],
+  [54,'N',0,'dep','Que tiende a sentirse deprimido/a, melancólico/a','Goibel edo malenkoniatsu sentitzeko joera dut.'],
+  [55,'O',1,'cur','Con poco interés por ideas abstractas','Ideia abstraktuek interes gutxi pizten didate.'],
+  [56,'E',0,'ene','Que muestra mucho entusiasmo','Ilusio handia erakusten dut.'],
+  [57,'A',0,'tru','Que piensa bien de la gente','Jendeaz ondo pentsatzen dut.'],
+  [58,'C',1,'rsp','Que a veces se comporta de manera irresponsable','Batzuetan modu arduragabean jokatzen dut.'],
+  [59,'N',0,'vol','Temperamental, que se exalta fácilmente','Temperamentu biziko pertsona naiz, erraz sutzen naiz.'],
+  [60,'O',0,'cre','Original, que aporta ideas nuevas','Originala naiz, ideia berriak ekartzen ditut.']
+];
 const DOMS = ['E','A','C','N','O'];
+const FACETS = { E: ['soc','ass','ene'], A: ['com','res','tru'], C: ['org','pro','rsp'], N: ['anx','dep','vol'], O: ['cur','aes','cre'] };
+const FORMS = {
+  S: { items: ITEMS, n: 30, name: 'BFI-2-S', pfx: 'B2S', patMax: 8, minSec: 60 },
+  L: { items: ITEMS_L, n: 60, name: 'BFI-2', pfx: 'B2L', patMax: 10, minSec: 120 }
+};
 
 /* ---------- Texts ---------- */
 const T = {
 eu: {
   eyebrow: 'Psikologia · BTX2 · UD09 Nortasuna',
   title: 'Nola neurtzen da ikusten ez dena?',
-  lead: 'Big Five eredua eta BFI-2-S galdetegia: abiapuntuko proba bat, teoria, 30 itemeko testa eta zure profila, erantzunen kalitate-kontrolekin.',
+  lead: 'Big Five eredua eta BFI-2 galdetegia: abiapuntuko proba bat, teoria, testa (30 edo 60 item) eta zure profila, erantzunen kalitate-kontrolekin.',
   steps: ['Abiapuntua','Teoria','Testa','Emaitza','Hausnarketa'],
   s1Eyebrow: '1 · Abiapuntua',
   guide: 'Zergatik dirudi hain zehatza zutaz «dena asmatzen» duen testu batek?',
@@ -403,7 +490,7 @@ eu: {
 <p>Kontuz: mapa bat da, ez azalpen bat. Nortasuna nola antolatzen den deskribatzen du; ez du esaten zergatik den horrela.</p>`,
   t3H: 'Bost domeinuak (eta haien 15 fazetak)',
   t4H: 'Nola neurtzen da ikusten ez dena?',
-  t4: `<p>Ezin dugu estrabertsioa zuzenean ikusi. Haren <strong>adierazleak</strong> bai: «irekia eta lagunkoia naiz», «isilik egoteko joera dut». Galdetegi batek adierazle horiek biltzen ditu (<strong>itemak</strong>), eta bakoitzean 1etik 5era erantzuten duzu (<strong>Likert eskala</strong>). Domeinu bakoitzaren puntuazioa bere sei itemen batez bestekoa da.</p>`,
+  t4: `<p>Ezin dugu estrabertsioa zuzenean ikusi. Haren <strong>adierazleak</strong> bai: «irekia eta lagunkoia naiz», «isilik egoteko joera dut». Galdetegi batek adierazle horiek biltzen ditu (<strong>itemak</strong>), eta bakoitzean 1etik 5era erantzuten duzu (<strong>Likert eskala</strong>). Domeinu bakoitzaren puntuazioa bere itemen batez bestekoa da: 6 item bertsio laburrean, 12 luzean.</p>`,
   concepts: [
     ['Alderantzizko itemak', 'BFI-2-Sko itemen erdiek domeinuaren kontrako poloa deskribatzen dute. Zuzentzean irauli egiten dira (5→1, 4→2…). Helburua: edozeri «bai» esateko joera neutralizatzea.'],
     ['Ados-joera', 'Edukiari begiratu gabe ados egoteko joera. Item zuzenak eta alderantzizkoak orekatuta badaude, ados-joerak ez du emaitza okertzen.'],
@@ -416,31 +503,36 @@ eu: {
 <li><strong>Autotxostena da</strong>: zuk zeure buruaz uste duzuna neurtzen du, ez «egia objektiboa».</li>
 <li><strong>Ez dago zure adinerako araurik (baremorik)</strong>: ezin da esan beste ikasleekin alderatuta «altua» edo «baxua» zarenik. 3 eskalaren erdiko puntua da, ez jendearen batez bestekoa.</li>
 <li><strong>Ezaugarria ez da diagnostikoa.</strong> Emozionaltasun negatiboak joerak deskribatzen ditu, ez arazoak.</li>
-<li><strong>Fazetak ez ditugu erakusten.</strong> BFI-2-S laburrean fazeta bakoitzak bi item baino ez ditu, eta egileek ohartarazten dute ez direla nahikoa fidagarriak pertsona bakar baten emaitzarako.</li>
+<li><strong>Fazetak bertsio luzean bakarrik.</strong> BFI-2-S laburrean fazeta bakoitzak bi item baino ez ditu, eta egileek ohartarazten dute ez direla nahikoa fidagarriak pertsona bakar baten emaitzarako. BFI-2 luzean lau item ditu bakoitzak: erakusten ditugu, baina domeinuak baino zehaztasun txikiagoarekin.</li>
 <li><strong>Itzulpena.</strong> Gaztelaniazko bertsioa Espainian balioztatu zen (Gallardo-Pujol et al., 2022). Euskarazko bertsio hau gelarako egindako itzulpena da, eta <strong>ez dago balioztatuta</strong>. Itzulitako test bat ez da automatikoki test bera.</li>
 </ul>`,
   toTest: 'Jarraitu testera →',
-  s3Eyebrow: '3 · Testa · BFI-2-S',
+  s3Eyebrow: (n) => `3 · Testa · ${n}`,
+  formH: 'Aukeratu bertsioa',
+  formOpts: { S: ['Laburra · BFI-2-S', '30 item · 5-8 minutu · bost domeinuak'], L: ['Luzea · BFI-2', '60 item · 10-15 minutu · bost domeinuak eta 15 fazetak'] },
+  formNote: 'Bertsio batetik bestera alda zaitezke: bakoitzaren erantzunak gordeta geratzen dira orria itxi arte.',
   consent: '<strong>Borondatezkoa eta pribatua.</strong> Zure erantzunak ez dira inora bidaltzen eta ez dira gordetzen: orria ixtean desagertzen dira. Zuk bakarrik ikusiko duzu emaitza, zuk erakutsi nahi ez baduzu. Ez dago erantzun zuzenik edo okerrik: erantzun nolakoa zaren, ez nolakoa izan nahiko zenukeen.',
   badge: '<span class="badge warn">Euskarazko bertsioa · balioztatu gabea</span>',
   instr: 'Jarraian, ados edo desados egon zaitezkeen baieztapen batzuk dituzu. Adibidez: ados zaude besteekin denbora pasatzea gustatzen zaion norbait zarela esatearekin? Adierazi baieztapen bakoitzarekin zenbateraino zauden ados edo desados.',
   scale: ['Guztiz desados','Zertxobait desados','Neutroa, iritzirik gabe','Zertxobait ados','Guztiz ados'],
   submit: 'Kalkulatu nire emaitza',
-  missing: (n, l) => `${n === 1 ? 'Item bat falta da' : n + ' item falta dira'} (${l}). 30 erantzunak behar dira emaitza kalkulatzeko.`,
-  progress: (n) => `${n} / 30 erantzunda`,
+  missing: (n, l, tot) => `${n === 1 ? 'Item bat falta da' : n + ' item falta dira'} (${l}). ${tot} erantzunak behar dira emaitza kalkulatzeko.`,
+  progress: (n, tot) => `${n} / ${tot} erantzunda`,
   s4Eyebrow: '4 · Emaitza',
-  resH: 'Zure BFI-2-S profila',
+  resH: (n) => `Zure ${n} profila`,
   okTag: 'KONTROLAK GAINDITUTA',
   okSub: 'Erantzunek kalitate-kontrol guztiak gainditu dituzte. Profila interpretatzeko modukoa da.',
   warnTag: 'KONTUZ INTERPRETATU',
   warnSub: 'Kontrolen batek abisua eman du. Horrek ez du esan nahi gezurra esan duzunik: agian azkarregi erantzun duzu, edo galderaren bat ez zenuen argi. Berrikusi erantzunak, edo irakurri profila kontuz.',
-  chkComplete: 'Osotasuna', chkCompleteD: (n) => `30 itemetatik ${n} erantzunda.`,
+  chkComplete: 'Osotasuna', chkCompleteD: (n, tot) => `${tot} itemetatik ${n} erantzunda.`,
   chkAcq: 'Ados-joera', chkAcqOk: (m) => `Erantzunen batez bestekoa: ${m}. 2,25 eta 3,75 artean dago.`, chkAcqWarn: (m) => `Erantzunen batez bestekoa: ${m}. Dena «bai» edo dena «ez» erantzuteko joera egon daiteke.`,
-  chkCons: 'Koherentzia', chkConsD: (k) => `Kontrako 15 bikoteetan ${k} kontraesan (gehienez 4). Adibidez, «isilik egoteko joera dut» eta «irekia eta lagunkoia naiz» biekin ados egotea.`,
-  chkPat: 'Erantzun-patroia', chkPatD: (r) => `Erantzun berdinen segidarik luzeena: ${r} (8tik behera izan behar du).`,
-  chkTime: 'Denbora', chkTimeD: (s) => `${s} erantzuteko (gutxienez minutu 1).`, chkTimeNA: 'Ezin da kodetik egiaztatu.',
+  chkCons: 'Koherentzia', chkConsD: (k, f) => `${f === 'L' ? '15 fazetetan, item zuzenen eta alderantzizkoen artean: ' : 'Kontrako 15 bikoteetan '}${k} kontraesan (gehienez 4). Adibidez, «isilik egoteko joera dut» eta «irekia eta lagunkoia naiz» biekin ados egotea.`,
+  chkPat: 'Erantzun-patroia', chkPatD: (r, mx) => `Erantzun berdinen segidarik luzeena: ${r} (${mx}etik behera izan behar du).`,
+  chkTime: 'Denbora', chkTimeD: (s, f) => `${s} erantzuteko (gutxienez ${f === 'L' ? '2 minutu' : 'minutu 1'}).`, chkTimeNA: 'Ezin da kodetik egiaztatu.',
   domNames: { E: 'Estrabertsioa', A: 'Adeitasuna', C: 'Arduratasuna', N: 'Emozionaltasun negatiboa', O: 'Irekitasun mentala' },
   domFacets: { E: 'Gizartekoitasuna · asertibitatea · energia-maila', A: 'Errukia · begirunea · konfiantza', C: 'Antolaketa · emankortasuna · ardura', N: 'Antsietatea · goibeltasuna · aldakortasun emozionala', O: 'Jakin-min intelektuala · sentikortasun estetikoa · irudimen sortzailea' },
+  facNames: { soc: 'Gizartekoitasuna', ass: 'Asertibitatea', ene: 'Energia-maila', com: 'Errukia', res: 'Begirunea', tru: 'Konfiantza', org: 'Antolaketa', pro: 'Emankortasuna', rsp: 'Ardura', anx: 'Antsietatea', dep: 'Goibeltasuna', vol: 'Aldakortasun emozionala', cur: 'Jakin-min intelektuala', aes: 'Sentikortasun estetikoa', cre: 'Irudimen sortzailea' },
+  facNote: 'Fazetak: 4 item bakoitzak. Domeinuak baino zehaztasun txikiagoa dute; hartu orientagarri gisa.',
   domShort: {
     E: 'Besteekiko harremanetan energia bilatzea eta hitza hartzea.',
     A: 'Besteekiko errukia, begirunea eta konfiantza.',
@@ -461,7 +553,7 @@ eu: {
   support: 'Emaitzaren batek kezkatzen bazaitu, edo gaiaz norbaitekin hitz egin nahi baduzu, jo zure tutorearengana edo orientazio-zerbitzura.',
   dateL: 'Data', langL: 'Bertsioa', langEU: 'Euskara (balioztatu gabea)', langES: 'Gaztelania (balioztatua)',
   codeL: 'Egiaztapen-kodea',
-  codeHelp: 'Kode honek zure 30 erantzunak eta data jasotzen ditu. Irakasleak emaitza bera berreraiki dezake kodetik; kodea eskuz aldatuz gero, egiaztapenak huts egingo du.',
+  codeHelp: 'Kode honek zure erantzun guztiak, bertsioa eta data jasotzen ditu. Irakasleak emaitza bera berreraiki dezake kodetik; kodea eskuz aldatuz gero, egiaztapenak huts egingo du.',
   nameL: 'Izena edo ezizena (aukerakoa, ez da inora bidaltzen)',
   copy: 'Kopiatu emaitza', copied: 'Kopiatuta.', copyFail: 'Ezin izan da kopiatu. Hautatu kodea eskuz.',
   print: 'Inprimatu / gorde PDF gisa',
@@ -473,17 +565,17 @@ eu: {
   revealNot: '<p>Ez zenuen lehen proba amaitu. Ez dio axola: orain irakurriko duzu tranpa.</p>',
   reveal: `<p>Profil hori <strong>gelako guztiek jaso dute, hitz bat aldatu gabe</strong>. Hilabeteak, koloreak eta tokiak lehen esaldia baino ez zuten aldatzen. Fenomeno honi <strong>Barnum efektua</strong> (edo Forer efektua) deritzo: Bertram Forerrek profil bera eman zien bere ikasle guztiei, eta gehienei oso zehatza iruditu zitzaien (Forer, 1949).</p>
 <p>Begiratu esaldiei: «batzuetan lagunkoia, beste batzuetan bakarrik egon behar duzu». Bi poloak batera esaten ditu, eta beraz ezin du huts egin.</p>`,
-  cmpHead: ['', 'Profil «pertsonalizatua»', 'BFI-2-S'],
+  cmpHead: ['', 'Profil «pertsonalizatua»', 'BFI-2 / BFI-2-S'],
   cmpRows: [
     ['Nork jasotzen du emaitza bera?', 'Denek', 'Erantzun berdinak eman dituenak bakarrik'],
     ['Oker egon daiteke?', 'Ez: esaldiak edonori egokitzen zaizkio', 'Bai: zuk diozunarekin kontraesanean egon daiteke'],
-    ['Zer neurtzen du?', 'Ezer ez: zuk zeuk jartzen diozu esanahia', 'Zure autodeskribapena, 30 itemetan'],
+    ['Zer neurtzen du?', 'Ezer ez: zuk zeuk jartzen diozu esanahia', 'Zure autodeskribapena, 30 edo 60 itemetan'],
     ['Ebidentzia', 'Bat ere ez', 'Fidagarritasun- eta baliozkotasun-azterketak']
   ],
   qH: 'Hausnartzeko',
   qs: [
     'Zergatik iruditu zitzaizun zehatza profil «pertsonalizatua», edo zergatik ez? Bilatu testuan edonori egokituko litzaizkiokeen bi esaldi.',
-    'Zure BFI-2-S profilak ezagutzen ez zenuen zerbait esan dizu, ala zuk dagoeneko esango zenukeena da? Zer esan nahi du horrek autotxosten baten balioaz?',
+    'Zure Big Five profilak ezagutzen ez zenuen zerbait esan dizu, ala zuk dagoeneko esango zenukeena da? Zer esan nahi du horrek autotxosten baten balioaz?',
     'Beste egun batean, beste aldarte batean, berdin erantzungo zenuke? Zein item aldatuko litzateke gehien?',
     'Zure lagun batek zutaz beteko balu testa, emaitza bera aterako litzateke? Nork ezagutzen zaitu hobeto, zuk ala besteek?',
     'Aldatu hizkuntza eta konparatu item bat euskaraz eta gaztelaniaz. Gauza bera esaten dute? Zergatik ez da nahikoa test bat itzultzea?'
@@ -494,11 +586,13 @@ eu: {
 <li><strong>Erabilera.</strong> Borondatezkoa eta ikasleak berak zuzendua. Ez bildu banakako puntuaziorik eta ez konparatu emaitzak gelan.</li>
 <li><strong>Emozionaltasun negatiboa.</strong> Aurkeztu hasieratik ezaugarri gisa, ez diagnostiko gisa. Emaitza-orriak tutorearengana edo orientazio-zerbitzura bideratzen du kezkaren bat badago.</li>
 <li><strong>Hizkuntzak.</strong> Gaztelaniazko itemak BFI-2ren bertsio espainiar ofizialetik hitzez hitz hartuak dira (BFI-2-Sk BFI-2ren 60 itemetatik 30 erabiltzen ditu). Euskarazko itemak itzulpen didaktikoa dira, balioztatu gabea.</li>
+<li><strong>Bertsio luzea (BFI-2, 60 item).</strong> Aukerakoa, nahi duenarentzat. Gaztelaniazko itemak bertsio ofizialetik hitzez hitz hartuak dira; euskarazko 30 item berriak ere itzulpen didaktikoa dira, balioztatu gabea. Fazeta bakoitzak 4 item ditu.</li>
 <li><strong>Barnum proba.</strong> Ikasle guztiek testu bera jasotzen dute; lehen esaldia bakarrik aldatzen da. Ez esan aurretik.</li>
 <li><strong>Balioztatze-kontrolak</strong> (ados-joera, koherentzia, patroia, denbora) material honen irizpide didaktikoak dira, ez testaren egileenak. Orientagarriak dira.</li>
-<li><strong>Egiaztapen-kodea.</strong> 30 erantzunak, hizkuntza eta data biltzen ditu, kontrol-batura batekin. Akatsak eta eskuzko aldaketak detektatzen ditu; ez da sinadura kriptografikoa.</li>
+<li><strong>Egiaztapen-kodea.</strong> Erantzun guztiak (30 edo 60), bertsioa (B2S laburra, B2L luzea), hizkuntza eta data biltzen ditu, kontrol-batura batekin. Akatsak eta eskuzko aldaketak detektatzen ditu; ez da sinadura kriptografikoa.</li>
 </ul>`,
   keyHead: ['Domeinua', 'BFI-2-S itemak (R = alderantzizkoa)', 'BFI-2 jatorrizko zenbakiak'],
+  keyHeadL: ['BFI-2 luzea · domeinua / fazeta', 'Itemak (R = alderantzizkoa)'],
   verifyH: 'Egiaztatu ikasle baten kodea',
   verifyP: 'Itsatsi kodea emaitza-orritik. Domeinuen puntuazioak eta kontrolak berriro kalkulatzen dira.',
   verifyGo: 'Egiaztatu',
@@ -509,7 +603,7 @@ eu: {
 es: {
   eyebrow: 'Psicología · 2.º Bachillerato · UD09 Personalidad',
   title: '¿Cómo se mide algo que no se ve?',
-  lead: 'El modelo Big Five y el cuestionario BFI-2-S: una prueba de partida, teoría, un test de 30 ítems y tu perfil, con controles de calidad de las respuestas.',
+  lead: 'El modelo Big Five y el cuestionario BFI-2: una prueba de partida, teoría, el test (30 o 60 ítems) y tu perfil, con controles de calidad de las respuestas.',
   steps: ['Punto de partida','Teoría','Test','Resultado','Reflexión'],
   s1Eyebrow: '1 · Punto de partida',
   guide: '¿Por qué parece tan exacto un texto que «lo acierta todo» sobre ti?',
@@ -540,7 +634,7 @@ es: {
 <p>Cuidado: es un mapa, no una explicación. Describe cómo se organiza la personalidad; no dice por qué es así.</p>`,
   t3H: 'Los cinco dominios (y sus 15 facetas)',
   t4H: '¿Cómo se mide algo que no se ve?',
-  t4: `<p>No podemos ver la extraversión directamente. Sus <strong>indicadores</strong>, sí: «abierto/a, sociable», «que tiende a estar callado/a». Un cuestionario reúne esos indicadores (<strong>ítems</strong>) y en cada uno respondes del 1 al 5 (<strong>escala Likert</strong>). La puntuación de cada dominio es la media de sus seis ítems.</p>`,
+  t4: `<p>No podemos ver la extraversión directamente. Sus <strong>indicadores</strong>, sí: «abierto/a, sociable», «que tiende a estar callado/a». Un cuestionario reúne esos indicadores (<strong>ítems</strong>) y en cada uno respondes del 1 al 5 (<strong>escala Likert</strong>). La puntuación de cada dominio es la media de sus ítems: 6 en la versión corta, 12 en la larga.</p>`,
   concepts: [
     ['Ítems inversos', 'La mitad de los ítems del BFI-2-S describen el polo opuesto del dominio. Al corregir se invierten (5→1, 4→2…). Objetivo: neutralizar la tendencia a decir «sí» a todo.'],
     ['Aquiescencia', 'Tendencia a mostrarse de acuerdo sin atender al contenido. Si los ítems directos e inversos están equilibrados, la aquiescencia no distorsiona el resultado.'],
@@ -553,31 +647,36 @@ es: {
 <li><strong>Es un autoinforme</strong>: mide lo que tú piensas de ti, no una «verdad objetiva».</li>
 <li><strong>No hay baremos para tu edad</strong>: no se puede decir que puntúas «alto» o «bajo» frente a otros estudiantes. El 3 es el punto medio de la escala, no la media de la gente.</li>
 <li><strong>Un rasgo no es un diagnóstico.</strong> La emocionalidad negativa describe tendencias, no problemas.</li>
-<li><strong>No mostramos las facetas.</strong> En la forma corta cada faceta tiene solo dos ítems, y los autores advierten que no son lo bastante fiables para el resultado de una sola persona.</li>
+<li><strong>Facetas solo en la versión larga.</strong> En la forma corta cada faceta tiene solo dos ítems, y los autores advierten que no son lo bastante fiables para el resultado de una sola persona. En el BFI-2 largo cada una tiene cuatro: las mostramos, pero con menos precisión que los dominios.</li>
 <li><strong>La traducción.</strong> La versión en castellano se validó en España (Gallardo-Pujol et al., 2022). La versión en euskera es una traducción hecha para clase y <strong>no está validada</strong>. Un test traducido no es automáticamente el mismo test.</li>
 </ul>`,
   toTest: 'Seguir al test →',
-  s3Eyebrow: '3 · Test · BFI-2-S',
+  s3Eyebrow: (n) => `3 · Test · ${n}`,
+  formH: 'Elige la versión',
+  formOpts: { S: ['Corta · BFI-2-S', '30 ítems · 5-8 minutos · los cinco dominios'], L: ['Larga · BFI-2', '60 ítems · 10-15 minutos · cinco dominios y 15 facetas'] },
+  formNote: 'Puedes cambiar de versión: las respuestas de cada una se conservan hasta que cierres la página.',
   consent: '<strong>Voluntario y privado.</strong> Tus respuestas no se envían a ningún sitio ni se guardan: desaparecen al cerrar la página. Solo tú verás el resultado, salvo que quieras enseñarlo. No hay respuestas correctas ni incorrectas: responde cómo eres, no cómo te gustaría ser.',
   badge: '<span class="badge ok">Versión española validada · Gallardo-Pujol et al., 2022</span>',
   instr: 'A continuación, se le presentan una serie de afirmaciones sobre las que usted puede estar de acuerdo o no. Por ejemplo, ¿está de acuerdo en que usted es alguién a quién le gusta pasar rato con los demás? Por favor, escriba el número que corresponda al lado de cada frase para indicar en qué medida está de acuerdo o en desacuerdo con las siguientes afirmaciones. <span class="muted">(En esta versión digital, marca el número en cada fila.)</span>',
   scale: ['Muy en desacuerdo','Algo en desacuerdo','Neutral, sin opinión','Algo de acuerdo','Muy de acuerdo'],
   submit: 'Calcular mi resultado',
-  missing: (n, l) => `${n === 1 ? 'Falta 1 ítem' : 'Faltan ' + n + ' ítems'} (${l}). Hacen falta las 30 respuestas para calcular el resultado.`,
-  progress: (n) => `${n} / 30 respondidos`,
+  missing: (n, l, tot) => `${n === 1 ? 'Falta 1 ítem' : 'Faltan ' + n + ' ítems'} (${l}). Hacen falta las ${tot} respuestas para calcular el resultado.`,
+  progress: (n, tot) => `${n} / ${tot} respondidos`,
   s4Eyebrow: '4 · Resultado',
-  resH: 'Tu perfil BFI-2-S',
+  resH: (n) => `Tu perfil ${n}`,
   okTag: 'CONTROLES SUPERADOS',
   okSub: 'Las respuestas han superado todos los controles de calidad. El perfil se puede interpretar.',
   warnTag: 'INTERPRETAR CON CAUTELA',
   warnSub: 'Algún control ha dado un aviso. No significa que hayas mentido: quizá has respondido demasiado rápido o alguna pregunta no estaba clara. Revisa tus respuestas o lee el perfil con prudencia.',
-  chkComplete: 'Completitud', chkCompleteD: (n) => `${n} de 30 ítems respondidos.`,
+  chkComplete: 'Completitud', chkCompleteD: (n, tot) => `${n} de ${tot} ítems respondidos.`,
   chkAcq: 'Aquiescencia', chkAcqOk: (m) => `Media de las respuestas: ${m}. Está entre 2,25 y 3,75.`, chkAcqWarn: (m) => `Media de las respuestas: ${m}. Puede haber tendencia a responder todo «sí» o todo «no».`,
-  chkCons: 'Coherencia', chkConsD: (k) => `${k} contradicciones en los 15 pares opuestos (máximo 4). Por ejemplo, estar de acuerdo a la vez con «que tiende a estar callado/a» y con «abierto/a, sociable».`,
-  chkPat: 'Patrón de respuesta', chkPatD: (r) => `Racha más larga de respuestas iguales: ${r} (debe ser menor que 8).`,
-  chkTime: 'Tiempo', chkTimeD: (s) => `${s} para responder (mínimo 1 minuto).`, chkTimeNA: 'No se puede comprobar desde el código.',
+  chkCons: 'Coherencia', chkConsD: (k, f) => `${k} contradicciones ${f === 'L' ? 'en las 15 facetas, entre ítems directos e inversos' : 'en los 15 pares opuestos'} (máximo 4). Por ejemplo, estar de acuerdo a la vez con «que tiende a estar callado/a» y con «abierto/a, sociable».`,
+  chkPat: 'Patrón de respuesta', chkPatD: (r, mx) => `Racha más larga de respuestas iguales: ${r} (debe ser menor que ${mx}).`,
+  chkTime: 'Tiempo', chkTimeD: (s, f) => `${s} para responder (mínimo ${f === 'L' ? '2 minutos' : '1 minuto'}).`, chkTimeNA: 'No se puede comprobar desde el código.',
   domNames: { E: 'Extraversión', A: 'Cordialidad', C: 'Responsabilidad', N: 'Emocionalidad negativa', O: 'Apertura de mente' },
   domFacets: { E: 'Sociabilidad · asertividad · nivel de energía', A: 'Compasión · respeto · confianza', C: 'Organización · productividad · responsabilidad', N: 'Ansiedad · depresión · volatilidad emocional', O: 'Curiosidad intelectual · sensibilidad estética · imaginación creativa' },
+  facNames: { soc: 'Sociabilidad', ass: 'Asertividad', ene: 'Nivel de energía', com: 'Compasión', res: 'Respeto', tru: 'Confianza', org: 'Organización', pro: 'Productividad', rsp: 'Responsabilidad', anx: 'Ansiedad', dep: 'Depresión', vol: 'Volatilidad emocional', cur: 'Curiosidad intelectual', aes: 'Sensibilidad estética', cre: 'Imaginación creativa' },
+  facNote: 'Facetas: 4 ítems cada una. Son menos precisas que los dominios; tómalas como orientación.',
   domShort: {
     E: 'Buscar energía en el trato con los demás y tomar la palabra.',
     A: 'Compasión, respeto y confianza hacia los demás.',
@@ -598,7 +697,7 @@ es: {
   support: 'Si algún resultado te preocupa o quieres hablar del tema con alguien, acude a tu tutor/a o al departamento de orientación.',
   dateL: 'Fecha', langL: 'Versión', langEU: 'Euskera (no validada)', langES: 'Castellano (validada)',
   codeL: 'Código de verificación',
-  codeHelp: 'Este código recoge tus 30 respuestas y la fecha. El profesorado puede reconstruir el mismo resultado a partir de él; si se modifica a mano, la verificación falla.',
+  codeHelp: 'Este código recoge todas tus respuestas, la versión y la fecha. El profesorado puede reconstruir el mismo resultado a partir de él; si se modifica a mano, la verificación falla.',
   nameL: 'Nombre o alias (opcional, no se envía a ningún sitio)',
   copy: 'Copiar resultado', copied: 'Copiado.', copyFail: 'No se ha podido copiar. Selecciona el código a mano.',
   print: 'Imprimir / guardar como PDF',
@@ -610,17 +709,17 @@ es: {
   revealNot: '<p>No terminaste la primera prueba. No importa: ahora vas a leer el truco.</p>',
   reveal: `<p>Ese perfil lo ha recibido <strong>toda la clase, sin cambiar una palabra</strong>. El mes, el color y el lugar solo cambiaban la primera frase. Este fenómeno se llama <strong>efecto Barnum</strong> (o efecto Forer): Bertram Forer dio el mismo perfil a todos sus estudiantes y la mayoría lo consideró muy preciso (Forer, 1949).</p>
 <p>Fíjate en las frases: «hay momentos en los que eres muy sociable y otros en los que necesitas estar a solas». Afirma los dos polos a la vez, así que no puede fallar.</p>`,
-  cmpHead: ['', 'Perfil «personalizado»', 'BFI-2-S'],
+  cmpHead: ['', 'Perfil «personalizado»', 'BFI-2 / BFI-2-S'],
   cmpRows: [
     ['¿Quién recibe el mismo resultado?', 'Todo el mundo', 'Solo quien da las mismas respuestas'],
     ['¿Puede equivocarse?', 'No: sus frases encajan con cualquiera', 'Sí: puede contradecir lo que tú dices'],
-    ['¿Qué mide?', 'Nada: el significado lo pones tú', 'Tu autodescripción, en 30 ítems'],
+    ['¿Qué mide?', 'Nada: el significado lo pones tú', 'Tu autodescripción, en 30 o 60 ítems'],
     ['Evidencia', 'Ninguna', 'Estudios de fiabilidad y validez']
   ],
   qH: 'Para reflexionar',
   qs: [
     '¿Por qué te pareció exacto (o no) el perfil «personalizado»? Busca en el texto dos frases que encajarían con cualquiera.',
-    '¿Tu perfil BFI-2-S te ha dicho algo que no sabías, o es lo que tú ya habrías dicho? ¿Qué implica eso sobre el valor de un autoinforme?',
+    '¿Tu perfil Big Five te ha dicho algo que no sabías, o es lo que tú ya habrías dicho? ¿Qué implica eso sobre el valor de un autoinforme?',
     'Otro día, con otro estado de ánimo, ¿responderías igual? ¿Qué ítem cambiaría más?',
     'Si una amiga o un amigo rellenara el test sobre ti, ¿saldría lo mismo? ¿Quién te conoce mejor, tú o los demás?',
     'Cambia de idioma y compara un ítem en euskera y en castellano. ¿Dicen lo mismo? ¿Por qué no basta con traducir un test?'
@@ -631,11 +730,13 @@ es: {
 <li><strong>Uso.</strong> Voluntario y corregido por el propio alumnado. No recojas puntuaciones individuales ni compares resultados en clase.</li>
 <li><strong>Emocionalidad negativa.</strong> Preséntala desde el principio como rasgo, no como diagnóstico. La hoja de resultados remite al tutor/a o a orientación si algo preocupa.</li>
 <li><strong>Idiomas.</strong> Los ítems en castellano están tomados literalmente de la versión española oficial del BFI-2 (el BFI-2-S usa 30 de sus 60 ítems). Los ítems en euskera son una traducción didáctica no validada.</li>
+<li><strong>Versión larga (BFI-2, 60 ítems).</strong> Opcional, para quien quiera. Los ítems en castellano son literales de la versión oficial; los 30 ítems nuevos en euskera son también traducción didáctica no validada. Cada faceta tiene 4 ítems.</li>
 <li><strong>Prueba Barnum.</strong> Todo el alumnado recibe el mismo texto; solo cambia la primera frase. No lo anticipes.</li>
 <li><strong>Controles de validación</strong> (aquiescencia, coherencia, patrón, tiempo): son criterios didácticos de este material, no de los autores del test. Son orientativos.</li>
-<li><strong>Código de verificación.</strong> Recoge las 30 respuestas, el idioma y la fecha, con una suma de control. Detecta errores y modificaciones a mano; no es una firma criptográfica.</li>
+<li><strong>Código de verificación.</strong> Recoge todas las respuestas (30 o 60), la versión (B2S corta, B2L larga), el idioma y la fecha, con una suma de control. Detecta errores y modificaciones a mano; no es una firma criptográfica.</li>
 </ul>`,
   keyHead: ['Dominio', 'Ítems BFI-2-S (R = inverso)', 'N.º original en el BFI-2'],
+  keyHeadL: ['BFI-2 largo · dominio / faceta', 'Ítems (R = inverso)'],
   verifyH: 'Verificar el código de un/a estudiante',
   verifyP: 'Pega el código de la hoja de resultados. Se recalculan las puntuaciones y los controles.',
   verifyGo: 'Verificar',
@@ -659,7 +760,7 @@ const SOURCES = [
 /* ---------- State ---------- */
 const S = {
   lang: 'eu', step: 1, maxStep: 3,
-  answers: Array(30).fill(0), t0: null,
+  form: 'S', ans: { S: Array(30).fill(0), L: Array(60).fill(0) }, t0: { S: null, L: null },
   bm: { month: '', color: -1, place: -1, shown: false, rating: 0 },
   result: null
 };
@@ -668,33 +769,45 @@ try { inFrame = window.self !== window.top; } catch (e) { inFrame = true; }
 
 const $ = (id) => document.getElementById(id);
 const L = () => T[S.lang];
+const F = () => FORMS[S.form];
+const ANS = () => S.ans[S.form];
 function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 function fmt(n) { return S.lang === 'eu' || S.lang === 'es' ? n.toFixed(2).replace('.', ',') : n.toFixed(2); }
 
 /* ---------- Scoring + validation (pure) ---------- */
-function score(answers) {
+const mean = (xs) => xs.reduce((s, x) => s + x, 0) / xs.length;
+const keyed = (answers, i) => i[2] ? 6 - answers[i[0]-1] : answers[i[0]-1];
+function score(answers, f = 'S') {
   const out = {};
-  for (const d of DOMS) {
-    const its = ITEMS.filter(i => i[1] === d);
-    out[d] = its.reduce((s, i) => s + (i[2] ? 6 - answers[i[0]-1] : answers[i[0]-1]), 0) / its.length;
-  }
+  for (const d of DOMS) out[d] = mean(FORMS[f].items.filter(i => i[1] === d).map(i => keyed(answers, i)));
   return out;
 }
-function checks(answers, seconds) {
+function facetScores(answers, f = 'L') {
+  const out = {};
+  for (const d of DOMS) for (const fc of FACETS[d]) out[fc] = mean(FORMS[f].items.filter(i => i[3] === fc).map(i => keyed(answers, i)));
+  return out;
+}
+// Consistency: within each facet, the direct and reversed items describe opposite poles.
+// A contradiction = agreeing (>=4) or disagreeing (<=2) with both sides (BFI-2-S: 1 vs 1 item; BFI-2: mean of 2 vs 2).
+function checks(answers, seconds, f = 'S') {
+  const N = FORMS[f].n, items = FORMS[f].items;
   const n = answers.filter(a => a > 0).length;
-  const mean = answers.reduce((s, a) => s + a, 0) / 30;
-  const facets = {};
-  ITEMS.forEach(i => (facets[i[3]] = facets[i[3]] || []).push(answers[i[0]-1]));
+  const m = mean(answers);
   let contra = 0;
-  Object.values(facets).forEach(([a, b]) => { if ((a >= 4 && b >= 4) || (a <= 2 && b <= 2)) contra++; });
+  for (const d of DOMS) for (const fc of FACETS[d]) {
+    const its = items.filter(i => i[3] === fc);
+    const a = mean(its.filter(i => !i[2]).map(i => answers[i[0]-1]));
+    const b = mean(its.filter(i => i[2]).map(i => answers[i[0]-1]));
+    if ((a >= 4 && b >= 4) || (a <= 2 && b <= 2)) contra++;
+  }
   let run = 1, best = 1;
-  for (let i = 1; i < 30; i++) { run = answers[i] === answers[i-1] ? run + 1 : 1; best = Math.max(best, run); }
+  for (let i = 1; i < N; i++) { run = answers[i] === answers[i-1] ? run + 1 : 1; best = Math.max(best, run); }
   return {
-    complete: { ok: n === 30, n },
-    acq: { ok: mean >= 2.25 && mean <= 3.75, m: mean },
+    complete: { ok: n === N, n },
+    acq: { ok: m >= 2.25 && m <= 3.75, m },
     cons: { ok: contra <= 4, k: contra },
-    pat: { ok: best < 8, r: best },
-    time: seconds == null ? { ok: null } : { ok: seconds >= 60, s: seconds }
+    pat: { ok: best < FORMS[f].patMax, r: best },
+    time: seconds == null ? { ok: null } : { ok: seconds >= FORMS[f].minSec, s: seconds }
   };
 }
 
@@ -704,19 +817,27 @@ function checksum(s) {
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i) * (i + 1)) % 1296;
   return h.toString(36).toUpperCase().padStart(2, '0');
 }
-function makeCode(lang, ymd, answers) {
+// B2S keeps its original checksum input (codes issued before the long form still verify); B2L prefixes 'L'.
+function makeCode(lang, ymd, answers, f = 'S') {
   const l = lang === 'eu' ? 'E' : 'C';
   const a = answers.join('');
-  const groups = [0,5,10,15,20,25].map(k => a.slice(k, k + 5));
-  return `B2S-${l}${ymd}-${groups.join('-')}-${checksum(l + ymd + a)}`;
+  const groups = [];
+  for (let k = 0; k < a.length; k += 5) groups.push(a.slice(k, k + 5));
+  return `${FORMS[f].pfx}-${l}${ymd}-${groups.join('-')}-${checksum((f === 'L' ? 'L' : '') + l + ymd + a)}`;
 }
 function parseCode(str) {
   const c = str.toUpperCase().replace(/\s+/g, '');
-  const m = c.match(/^B2S-([EC])(\d{6})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([1-5]{5})-([0-9A-Z]{2})$/);
+  const m = c.match(/^(B2S|B2L)-([EC])(\d{6})-([1-5-]+)-([0-9A-Z]{2})$/);
   if (!m) return null;
-  const a = m.slice(3, 9).join('');
-  if (checksum(m[1] + m[2] + a) !== m[9]) return null;
-  return { lang: m[1] === 'E' ? 'eu' : 'es', ymd: m[2], answers: a.split('').map(Number) };
+  const f = m[1] === 'B2L' ? 'L' : 'S';
+  const groups = m[4].split('-');
+  if (groups.length !== FORMS[f].n / 5 || groups.some(g => !/^[1-5]{5}$/.test(g))) return null;
+  const a = groups.join('');
+  if (checksum((f === 'L' ? 'L' : '') + m[2] + m[3] + a) !== m[5]) return null;
+  return { form: f, lang: m[2] === 'E' ? 'eu' : 'es', ymd: m[3], answers: a.split('').map(Number) };
+}
+function buildResult(form, lang, ymd, answers, secs) {
+  return { form, lang, ymd, scores: score(answers, form), fac: form === 'L' ? facetScores(answers, form) : null, checks: checks(answers, secs, form), code: makeCode(lang, ymd, answers, form) };
 }
 function todayYMD() {
   const d = new Date();
@@ -754,9 +875,9 @@ function renderNav() {
   updateProgress();
 }
 function updateProgress() {
-  const n = S.answers.filter(a => a > 0).length;
-  $('progbar').style.width = (n / 30 * 100) + '%';
-  $('proglabel').textContent = L().progress(n);
+  const n = ANS().filter(a => a > 0).length, tot = F().n;
+  $('progbar').style.width = (n / tot * 100) + '%';
+  $('proglabel').textContent = L().progress(n, tot);
 }
 function renderBarnum() {
   const t = L();
@@ -778,11 +899,14 @@ function renderTheory() {
 }
 function renderTest() {
   const t = L();
+  $('s3eyebrow').textContent = t.s3Eyebrow(F().name);
+  $('forms').innerHTML = ['S', 'L'].map(f => `<button type="button" class="form-opt" data-form="${f}" aria-pressed="${S.form === f}"><strong>${t.formOpts[f][0]}</strong><span>${t.formOpts[f][1]}</span></button>`).join('') + `<p class="small muted" style="grid-column:1/-1;margin:0">${t.formNote}</p>`;
   $('versionbadge').innerHTML = t.badge;
   $('legend').innerHTML = t.scale.map((s, i) => `<div><b>${i + 1}</b>${s}</div>`).join('');
-  $('items').innerHTML = ITEMS.map(([n, , , , es, eu]) => {
+  const A = ANS();
+  $('items').innerHTML = F().items.map(([n, , , , es, eu]) => {
     const txt = S.lang === 'eu' ? eu : es;
-    const opts = [1,2,3,4,5].map(v => `<input type="radio" name="q${n}" id="q${n}-${v}" value="${v}" ${S.answers[n-1] === v ? 'checked' : ''}><label for="q${n}-${v}" title="${t.scale[v-1]}">${v}</label>`).join('');
+    const opts = [1,2,3,4,5].map(v => `<input type="radio" name="q${n}" id="q${n}-${v}" value="${v}" ${A[n-1] === v ? 'checked' : ''}><label for="q${n}-${v}" title="${t.scale[v-1]}">${v}</label>`).join('');
     return `<div class="item" id="item-${n}"><span class="num">${n}</span><span id="qt${n}">${txt}</span><div class="opts" role="radiogroup" aria-labelledby="qt${n}">${opts}</div></div>`;
   }).join('');
   $('missing').hidden = true;
@@ -792,12 +916,13 @@ function resultHTML(r, opts) {
   const c = r.checks;
   const allOk = c.complete.ok && c.acq.ok && c.cons.ok && c.pat.ok && c.time.ok !== false;
   const ic = (ok) => ok === null ? '<span class="ic na">–</span>' : ok ? '<span class="ic ok">✓</span>' : '<span class="ic warn">!</span>';
+  const fm = FORMS[r.form];
   const chk = [
-    [c.complete.ok, t.chkComplete, t.chkCompleteD(c.complete.n)],
+    [c.complete.ok, t.chkComplete, t.chkCompleteD(c.complete.n, fm.n)],
     [c.acq.ok, t.chkAcq, c.acq.ok ? t.chkAcqOk(fmt(c.acq.m)) : t.chkAcqWarn(fmt(c.acq.m))],
-    [c.cons.ok, t.chkCons, t.chkConsD(c.cons.k)],
-    [c.pat.ok, t.chkPat, t.chkPatD(c.pat.r)],
-    [c.time.ok, t.chkTime, c.time.ok === null ? t.chkTimeNA : t.chkTimeD(fmtTime(c.time.s))]
+    [c.cons.ok, t.chkCons, t.chkConsD(c.cons.k, r.form)],
+    [c.pat.ok, t.chkPat, t.chkPatD(c.pat.r, fm.patMax)],
+    [c.time.ok, t.chkTime, c.time.ok === null ? t.chkTimeNA : t.chkTimeD(fmtTime(c.time.s), r.form)]
   ].map(([ok, h, d]) => `<li>${ic(ok)}<div><strong>${h}.</strong> <span class="small">${d}</span></div></li>`).join('');
   const bars = DOMS.map(d => {
     const s = r.scores[d];
@@ -808,6 +933,7 @@ function resultHTML(r, opts) {
       <div class="track" role="img" aria-label="${t.domNames[d]}: ${fmt(s)} / 5"><span class="fill" style="width:${pct}%"></span><span class="mid"></span></div>
       <div class="ticks">${[1,2,3,4,5].map(v => `<span style="left:${(v-1)*25}%">${v}</span>`).join('')}</div>
       <p class="small" style="margin-top:.4rem"><strong>${cap(t.pos[pos])}.</strong> ${t.desc[d][pos]}</p>
+      ${r.fac ? `<div class="facres">${FACETS[d].map(fc => `<div class="fr"><span>${t.facNames[fc]}</span><span class="t" role="img" aria-label="${t.facNames[fc]}: ${fmt(r.fac[fc])} / 5"><i style="width:${(r.fac[fc] - 1) / 4 * 100}%"></i><b></b></span><span class="v">${fmt(r.fac[fc])}</span></div>`).join('')}</div>` : ''}
     </div>`;
   }).join('');
   const name = opts.name ? `<div class="field"><span class="lbl">${S.lang === 'eu' ? 'Izena' : 'Nombre'}</span><span>${esc(opts.name)}</span></div>` : '';
@@ -815,18 +941,19 @@ function resultHTML(r, opts) {
     <div class="verdict ${allOk ? 'ok' : 'warn'}"><span class="tag">${allOk ? t.okTag : t.warnTag}</span><span class="small">${allOk ? t.okSub : t.warnSub}</span></div>
     <ul class="checks">${chk}</ul>
   </div>
-  <div class="card"><p class="mid-legend"><i></i>3 = ${t.midNote}</p><div class="bars">${bars}</div><p class="small muted">${t.poles}</p><p class="support">${t.support}</p></div>
+  <div class="card"><p class="mid-legend"><i></i>3 = ${t.midNote}</p><div class="bars">${bars}</div>${r.fac ? `<p class="small muted">${t.facNote}</p>` : ''}<p class="small muted">${t.poles}</p><p class="support">${t.support}</p></div>
   <div class="card">
     <div class="result-meta">
       ${name}
       <div class="field"><span class="lbl">${t.dateL}</span><span>${fmtDate(r.ymd)}</span></div>
-      <div class="field"><span class="lbl">${t.langL}</span><span>${r.lang === 'eu' ? t.langEU : t.langES}</span></div>
+      <div class="field"><span class="lbl">${t.langL}</span><span>${fm.name} · ${r.lang === 'eu' ? t.langEU : t.langES}</span></div>
     </div>
     <div class="field"><span class="lbl">${t.codeL}</span><div class="code" ${opts.idAttr || ''}>${r.code}</div><span class="small muted">${t.codeHelp}</span></div>
   </div>`;
 }
 function esc(s) { return s.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch])); }
 function renderResult() {
+  $('resH').textContent = L().resH(S.result ? FORMS[S.result.form].name : F().name);
   if (!S.result) { $('result').innerHTML = ''; return; }
   $('result').innerHTML = resultHTML(S.result, { name: $('res-name').value.trim(), idAttr: 'id="rescode"' });
   $('print').hidden = inFrame;
@@ -844,6 +971,10 @@ function renderTeacher() {
     return `<tr><td>${t.domNames[d]}</td><td>${its.map(i => i[0] + (i[2] ? 'R' : '')).join(', ')}</td><td>${its.map(i => i[6]).join(', ')}</td></tr>`;
   }).join('');
   $('keytable').innerHTML = `<table><thead><tr>${t.keyHead.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+  const ref = (its) => its.map(i => i[0] + (i[2] ? 'R' : '')).join(', ');
+  const rowsL = DOMS.map(d => `<tr><th scope="row">${t.domNames[d]}</th><td>${ref(ITEMS_L.filter(i => i[1] === d))}</td></tr>` +
+    FACETS[d].map(fc => `<tr><td style="padding-left:1.2rem">${t.facNames[fc]}</td><td>${ref(ITEMS_L.filter(i => i[3] === fc))}</td></tr>`).join('')).join('');
+  $('keytableL').innerHTML = `<table><thead><tr>${t.keyHeadL.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rowsL}</tbody></table>`;
   $('sources').innerHTML = `<strong>${t.sources}</strong>` + SOURCES.map(s => `<p>${s}</p>`).join('');
 }
 function showStep(n, scroll) {
@@ -869,6 +1000,14 @@ document.addEventListener('click', (e) => {
   if (col) { S.bm.color = +col.dataset.color; renderBarnum(); return; }
   const pl = e.target.closest('[data-place]');
   if (pl) { S.bm.place = +pl.dataset.place; renderBarnum(); return; }
+  const fb = e.target.closest('[data-form]');
+  if (fb) {
+    if (fb.dataset.form === S.form) return;
+    S.form = fb.dataset.form;
+    if (S.result) { S.result = null; S.maxStep = 3; renderResult(); }
+    renderTest(); renderNav();
+    return;
+  }
   const rt = e.target.closest('[data-rate]');
   if (rt) { S.bm.rating = +rt.dataset.rate; renderBarnum(); return; }
 });
@@ -880,26 +1019,25 @@ $('bm-go').addEventListener('click', () => {
 $('items').addEventListener('change', (e) => {
   const m = e.target.name && e.target.name.match(/^q(\d+)$/);
   if (!m) return;
-  if (S.t0 === null) S.t0 = Date.now();
-  S.answers[+m[1] - 1] = +e.target.value;
+  if (S.t0[S.form] === null) S.t0[S.form] = Date.now();
+  ANS()[+m[1] - 1] = +e.target.value;
   $('item-' + m[1]).classList.remove('missing');
   if (S.result) { S.result = null; S.maxStep = 3; renderResult(); renderNav(); }
   updateProgress();
 });
 $('submit').addEventListener('click', () => {
-  const miss = S.answers.map((a, i) => a ? null : i + 1).filter(Boolean);
+  const miss = ANS().map((a, i) => a ? null : i + 1).filter(Boolean);
   document.querySelectorAll('.item').forEach(el => el.classList.remove('missing'));
   if (miss.length) {
     miss.forEach(n => $('item-' + n).classList.add('missing'));
-    $('missing').textContent = L().missing(miss.length, miss.join(', '));
+    $('missing').textContent = L().missing(miss.length, miss.join(', '), F().n);
     $('missing').hidden = false;
     $('item-' + miss[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
   $('missing').hidden = true;
-  const secs = S.t0 ? (Date.now() - S.t0) / 1000 : 0;
-  const ymd = todayYMD();
-  S.result = { lang: S.lang, ymd, scores: score(S.answers), checks: checks(S.answers, secs), code: makeCode(S.lang, ymd, S.answers) };
+  const secs = S.t0[S.form] ? (Date.now() - S.t0[S.form]) / 1000 : 0;
+  S.result = buildResult(S.form, S.lang, todayYMD(), ANS().slice(), secs);
   S.maxStep = 5;
   renderResult();
   showStep(4, true);
@@ -912,9 +1050,9 @@ $('copy').addEventListener('click', () => {
   const allOk = c.complete.ok && c.acq.ok && c.cons.ok && c.pat.ok && c.time.ok !== false;
   const name = $('res-name').value.trim();
   const txt = [
-    `BFI-2-S · ${name ? name + ' · ' : ''}${fmtDate(r.ymd)}`,
+    `${FORMS[r.form].name} · ${name ? name + ' · ' : ''}${fmtDate(r.ymd)}`,
     allOk ? t.okTag : t.warnTag,
-    ...DOMS.map(d => `${t.domNames[d]}: ${fmt(r.scores[d])} / 5`),
+    ...DOMS.map(d => `${t.domNames[d]}: ${fmt(r.scores[d])} / 5` + (r.fac ? ' (' + FACETS[d].map(fc => `${t.facNames[fc]} ${fmt(r.fac[fc])}`).join(' · ') + ')' : '')),
     `${t.codeL}: ${r.code}`
   ].join('\n');
   const done = () => { $('copymsg').textContent = t.copied; };
@@ -929,7 +1067,7 @@ function doVerify() {
   const t = L();
   const p = parseCode($('verify-in').value);
   if (!p) { $('verify-out').innerHTML = `<p class="err">${t.verifyBad}</p>`; return; }
-  const r = { lang: p.lang, ymd: p.ymd, scores: score(p.answers), checks: checks(p.answers, null), code: makeCode(p.lang, p.ymd, p.answers) };
+  const r = buildResult(p.form, p.lang, p.ymd, p.answers, null);
   $('verify-out').innerHTML = `<p class="small" style="color:var(--ok);font-weight:600">${t.verifyOk}</p><div style="display:grid;gap:1rem">${resultHTML(r, {})}</div>`;
 }
 $('verify-go').addEventListener('click', doVerify);
@@ -939,7 +1077,7 @@ try { const l = localStorage.getItem('bfi2s-lang'); if (l === 'eu' || l === 'es'
 renderAll();
 
 // expose pure functions for testing
-window.__bfi2s = { ITEMS, score, checks, makeCode, parseCode };
+window.__bfi2s = { ITEMS, ITEMS_L, FORMS, score, facetScores, checks, makeCode, parseCode, checksum };
 })();
 </script>
 
