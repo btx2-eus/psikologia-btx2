@@ -184,6 +184,23 @@ details.teacher .inner { padding: 0 1.2rem 1.2rem; display: grid; gap: 1rem; }
 .fr .t i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: 0.75; border-radius: 999px; }
 .fr .t b { position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px dashed var(--muted); }
 .fr .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.radars { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem 1.5rem; }
+.radar { position: relative; margin: 0; display: grid; gap: 0.3rem; }
+.radar figcaption { font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; text-align: center; }
+.radar svg { width: 100%; height: auto; display: block; overflow: visible; }
+.radar .grid { fill: none; stroke: var(--line); stroke-width: 1; }
+.radar .grid.mid { stroke: var(--muted); stroke-dasharray: 4 4; }
+.radar .spoke { stroke: var(--line); stroke-width: 1; }
+.radar .sector { fill: var(--accent-soft); opacity: 0.55; }
+.radar .area { fill: var(--accent); fill-opacity: 0.16; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.radar .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.radar .hit { fill: transparent; cursor: pointer; outline: none; }
+.radar .hit:focus-visible + .dot, .radar .hit:hover + .dot { r: 6; }
+.radar .lbl { fill: var(--fg); font-family: var(--font-display); font-weight: 800; font-size: 16px; }
+.radar .lbl.dom { font-size: 15px; fill: var(--muted); letter-spacing: 0.02em; }
+.radar .val { fill: var(--muted); font-family: var(--font-body); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+.radar .ring { fill: var(--muted); font-family: var(--font-body); font-size: 10px; }
+.radar .tip { position: absolute; pointer-events: none; background: var(--fg); color: var(--surface); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.55rem; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); font-variant-numeric: tabular-nums; z-index: 2; }
 .keytable { overflow-x: auto; }
 .keytable + .keytable { margin-top: 1rem; }
 .keytable table { border-collapse: collapse; font-size: 0.86rem; width: 100%; min-width: 420px; }
@@ -532,6 +549,8 @@ eu: {
   domNames: { E: 'Estrabertsioa', A: 'Adeitasuna', C: 'Arduratasuna', N: 'Emozionaltasun negatiboa', O: 'Irekitasun mentala' },
   domFacets: { E: 'Gizartekoitasuna · asertibitatea · energia-maila', A: 'Errukia · begirunea · konfiantza', C: 'Antolaketa · emankortasuna · ardura', N: 'Antsietatea · goibeltasuna · aldakortasun emozionala', O: 'Jakin-min intelektuala · sentikortasun estetikoa · irudimen sortzailea' },
   facNames: { soc: 'Gizartekoitasuna', ass: 'Asertibitatea', ene: 'Energia-maila', com: 'Errukia', res: 'Begirunea', tru: 'Konfiantza', org: 'Antolaketa', pro: 'Emankortasuna', rsp: 'Ardura', anx: 'Antsietatea', dep: 'Goibeltasuna', vol: 'Aldakortasun emozionala', cur: 'Jakin-min intelektuala', aes: 'Sentikortasun estetikoa', cre: 'Irudimen sortzailea' },
+  radarH: 'Profila begirada batean', radarDom: 'Bost domeinuak', radarFac: '15 fazetak, domeinuka',
+  radarNote: 'Erdiko zirkulu etenak 3 adierazten du (eskalaren erdia). Zentrotik zenbat eta urrunago, orduan eta puntuazio altuagoa. Jarri sagua puntu baten gainean, edo sakatu, balioa ikusteko.',
   facNote: 'Fazetak: 4 item bakoitzak. Domeinuak baino zehaztasun txikiagoa dute; hartu orientagarri gisa.',
   domShort: {
     E: 'Besteekiko harremanetan energia bilatzea eta hitza hartzea.',
@@ -676,6 +695,8 @@ es: {
   domNames: { E: 'Extraversión', A: 'Cordialidad', C: 'Responsabilidad', N: 'Emocionalidad negativa', O: 'Apertura de mente' },
   domFacets: { E: 'Sociabilidad · asertividad · nivel de energía', A: 'Compasión · respeto · confianza', C: 'Organización · productividad · responsabilidad', N: 'Ansiedad · depresión · volatilidad emocional', O: 'Curiosidad intelectual · sensibilidad estética · imaginación creativa' },
   facNames: { soc: 'Sociabilidad', ass: 'Asertividad', ene: 'Nivel de energía', com: 'Compasión', res: 'Respeto', tru: 'Confianza', org: 'Organización', pro: 'Productividad', rsp: 'Responsabilidad', anx: 'Ansiedad', dep: 'Depresión', vol: 'Volatilidad emocional', cur: 'Curiosidad intelectual', aes: 'Sensibilidad estética', cre: 'Imaginación creativa' },
+  radarH: 'Tu perfil de un vistazo', radarDom: 'Los cinco dominios', radarFac: 'Las 15 facetas, por dominio',
+  radarNote: 'El círculo discontinuo marca el 3 (punto medio de la escala). Cuanto más lejos del centro, más alta la puntuación. Pasa el ratón por un punto, o tócalo, para ver su valor.',
   facNote: 'Facetas: 4 ítems cada una. Son menos precisas que los dominios; tómalas como orientación.',
   domShort: {
     E: 'Buscar energía en el trato con los demás y tomar la palabra.',
@@ -911,6 +932,63 @@ function renderTest() {
   }).join('');
   $('missing').hidden = true;
 }
+/* ---------- Radar (single series; 1 at centre, 5 at rim; dashed ring = 3) ---------- */
+function wrapWords(str, max) {
+  const out = []; let cur = '';
+  for (const w of str.split(' ')) { if (cur && (cur + ' ' + w).length > max) { out.push(cur); cur = w; } else cur = cur ? cur + ' ' + w : w; }
+  if (cur) out.push(cur);
+  return out;
+}
+function radarSVG(axes, o) {
+  const n = axes.length, W = o.W, H = o.H, cx = W / 2, cy = o.cy, R = o.R;
+  const ang = (i) => -Math.PI / 2 + i * 2 * Math.PI / n;
+  const pt = (i, v) => { const rr = R * (v - 1) / 4; return [cx + rr * Math.cos(ang(i)), cy + rr * Math.sin(ang(i))]; };
+  const f1 = (x) => x.toFixed(1);
+  const ring = (v) => axes.map((_, i) => pt(i, v).map(f1).join(',')).join(' ');
+  let g = '';
+  if (o.groups) {
+    // Shade alternate domains; edges run along the outer polygon (midpoints of its sides), not an arc.
+    const mid = (i, j) => { const [x1, y1] = pt(i, 5), [x2, y2] = pt(j, 5); return [(x1 + x2) / 2, (y1 + y2) / 2]; };
+    o.groups.forEach((grp, gi) => {
+      if (gi % 2) return;
+      const ps = [[cx, cy], mid((grp.from - 1 + n) % n, grp.from)];
+      for (let i = grp.from; i <= grp.to; i++) ps.push(pt(i, 5));
+      ps.push(mid(grp.to, (grp.to + 1) % n));
+      g += `<polygon class="sector" points="${ps.map(p => p.map(f1).join(',')).join(' ')}"/>`;
+    });
+  }
+  for (const v of [2, 4, 5]) g += `<polygon class="grid" points="${ring(v)}"/>`;
+  g += `<polygon class="grid mid" points="${ring(3)}"/>`;
+  axes.forEach((_, i) => { const [x, y] = pt(i, 5); g += `<line class="spoke" x1="${cx}" y1="${cy}" x2="${f1(x)}" y2="${f1(y)}"/>`; });
+  g += `<text class="ring" x="${cx + 4}" y="${f1(cy - R / 2 + 11)}">3</text><text class="ring" x="${cx + 4}" y="${f1(cy - R + 11)}">5</text>`;
+  g += `<polygon class="area" points="${axes.map((a, i) => pt(i, a.v).map(f1).join(',')).join(' ')}"/>`;
+  const lab = (i, lines, extra, cls, dist) => {
+    const a = ang(i), x = cx + dist * Math.cos(a), c = Math.cos(a), sn = Math.sin(a);
+    const anchor = c > 0.25 ? 'start' : c < -0.25 ? 'end' : 'middle';
+    const all = lines.map(t => [t, cls]).concat(extra ? [[extra, 'val']] : []);
+    const lh = 16, h = all.length * lh;
+    const y0 = cy + dist * sn + (sn < -0.5 ? -h + 11 : sn > 0.5 ? 11 : -h / 2 + 12);
+    return all.map(([t, k], j) => `<text class="${k}" x="${f1(x)}" y="${f1(y0 + j * lh)}" text-anchor="${anchor}">${t}</text>`).join('');
+  };
+  if (o.groups) o.groups.forEach(grp => { g += lab((grp.from + grp.to) / 2, wrapWords(grp.label, 13), '', 'lbl dom', R + 16); });
+  else axes.forEach((a, i) => { g += lab(i, wrapWords(a.label, 13), a.vt, 'lbl', R + 14); });
+  axes.forEach((a, i) => {
+    const [x, y] = pt(i, a.v);
+    g += `<circle class="hit" tabindex="0" cx="${f1(x)}" cy="${f1(y)}" r="14" data-tip="${a.label}: ${a.vt} / 5"><title>${a.label}: ${a.vt} / 5</title></circle><circle class="dot" cx="${f1(x)}" cy="${f1(y)}" r="4.5"/>`;
+  });
+  return `<figure class="radar"><figcaption>${o.title}</figcaption><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.title}. ${axes.map(a => a.label + ' ' + a.vt).join(', ')}">${g}</svg><span class="tip" hidden></span></figure>`;
+}
+function radarsHTML(r) {
+  const t = L();
+  const dom = radarSVG(DOMS.map(d => ({ label: t.domNames[d], v: r.scores[d], vt: fmt(r.scores[d]) })), { W: 420, H: 360, cy: 186, R: 104, title: t.radarDom });
+  let fac = '';
+  if (r.fac) {
+    const axes = [], groups = [];
+    DOMS.forEach(d => { const from = axes.length; FACETS[d].forEach(fc => axes.push({ label: t.facNames[fc], v: r.fac[fc], vt: fmt(r.fac[fc]) })); groups.push({ label: t.domNames[d], from, to: axes.length - 1 }); });
+    fac = radarSVG(axes, { W: 420, H: 360, cy: 182, R: 112, title: t.radarFac, groups });
+  }
+  return `<div class="card"><h3>${t.radarH}</h3><div class="radars">${dom}${fac}</div><p class="small muted">${t.radarNote}</p></div>`;
+}
 function resultHTML(r, opts) {
   const t = L();
   const c = r.checks;
@@ -941,6 +1019,7 @@ function resultHTML(r, opts) {
     <div class="verdict ${allOk ? 'ok' : 'warn'}"><span class="tag">${allOk ? t.okTag : t.warnTag}</span><span class="small">${allOk ? t.okSub : t.warnSub}</span></div>
     <ul class="checks">${chk}</ul>
   </div>
+  ${radarsHTML(r)}
   <div class="card"><p class="mid-legend"><i></i>3 = ${t.midNote}</p><div class="bars">${bars}</div>${r.fac ? `<p class="small muted">${t.facNote}</p>` : ''}<p class="small muted">${t.poles}</p><p class="support">${t.support}</p></div>
   <div class="card">
     <div class="result-meta">
@@ -1011,6 +1090,20 @@ document.addEventListener('click', (e) => {
   const rt = e.target.closest('[data-rate]');
   if (rt) { S.bm.rating = +rt.dataset.rate; renderBarnum(); return; }
 });
+function showTip(hit) {
+  const fig = hit.closest('.radar'), tip = fig.querySelector('.tip');
+  const fr = fig.getBoundingClientRect(), hr = hit.getBoundingClientRect();
+  tip.textContent = hit.dataset.tip;
+  tip.style.left = (hr.left + hr.width / 2 - fr.left) + 'px';
+  tip.style.top = (hr.top + hr.height / 2 - fr.top) + 'px';
+  tip.hidden = false;
+}
+function hideTips() { document.querySelectorAll('.radar .tip').forEach(t => { t.hidden = true; }); }
+document.addEventListener('pointerover', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); });
+document.addEventListener('pointerout', (e) => { if (e.target.closest && e.target.closest('.radar .hit')) hideTips(); });
+document.addEventListener('focusin', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); });
+document.addEventListener('focusout', (e) => { if (e.target.closest && e.target.closest('.radar .hit')) hideTips(); });
+document.addEventListener('click', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); else hideTips(); });
 $('bm-month').addEventListener('change', (e) => { S.bm.month = e.target.value; });
 $('bm-go').addEventListener('click', () => {
   if (S.bm.month === '' || S.bm.color < 0 || S.bm.place < 0) { $('bm-go').textContent = L().bmNeed; setTimeout(() => { $('bm-go').textContent = L().bmGo; }, 1800); return; }
