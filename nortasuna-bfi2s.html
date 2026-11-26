@@ -11,13 +11,13 @@
 <style>
 /* Layout: one reading column; a sticky step bar carries the flow (abiapuntua → teoria → testa → emaitza → hausnarketa). Bloke 3 identity: plum. */
 :root {
-  --bg: #faf7fa;
+  --bg: #fdfbfd;
   --surface: #ffffff;
   --fg: #221a23;
   --muted: #6a5a6c;
-  --line: #e6dbe7;
+  --line: #ece3ed;
   --accent: #5C1A5C;
-  --accent-soft: #EDD4ED;
+  --accent-soft: #f6e9f6;
   --accent-ink: #ffffff;
   --ok: #1d6e46;
   --ok-soft: #dcefe4;
@@ -27,20 +27,7 @@
   --font-body: 'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
   --radius: 12px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #151017; --surface: #1e1720; --fg: #f0e8f0; --muted: #b3a2b5; --line: #3a2d3c;
-    --accent: #d7a3d7; --accent-soft: #3a2340; --accent-ink: #1a0f1b;
-    --ok: #7fd1a4; --ok-soft: #17332a; --warn: #f0b36b; --warn-soft: #3a2a17;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #151017; --surface: #1e1720; --fg: #f0e8f0; --muted: #b3a2b5; --line: #3a2d3c;
-  --accent: #d7a3d7; --accent-soft: #3a2340; --accent-ink: #1a0f1b;
-  --ok: #7fd1a4; --ok-soft: #17332a; --warn: #f0b36b; --warn-soft: #3a2a17;
-  color-scheme: dark;
-}
+:root { color-scheme: light; }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body {
