@@ -130,6 +130,19 @@
           ]
         },
         {
+          "id": "bizikidetza",
+          "izenburua": "Nolakoa da gure gelako bizikidetza?",
+          "deskribapena": "Alonso-Tapiaren eredua (2019): zazpi elkarreragin-patroi, «nire gela» eta «ni» konparatuta, izenik gabeko kodeak eta irakaslearentzako emaitza taldekatua. EUS/CAS.",
+          "egoera": "abian",
+          "ikonoa": "taldea",
+          "lotura": "bizikidetza-klima.html",
+          "etiketak": [
+            "Bizikidetza",
+            "Galdetegia",
+            "Tutoretza"
+          ]
+        },
+        {
           "id": "soziala",
           "izenburua": "Psikologia soziala",
           "deskribapena": "Konformismoa, jarrerak eta talde-dinamika.",

@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="eu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<title>Gelako bizikidetza-klima</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column. Two modes (ikaslea / irakaslea) under the header; student flow is a 4-step bar.
+   Deliberately light-only (the user prefers light tones), so every color is set explicitly here. Bloke 3 plum identity. */
+:root {
+  color-scheme: light;
+  --bg: #fdfbfd;
+  --surface: #ffffff;
+  --fg: #221a23;
+  --muted: #6a5a6c;
+  --line: #ece3ed;
+  --accent: #5C1A5C;
+  --accent-soft: #f6e9f6;
+  --accent-ink: #ffffff;
+  --serA: #7A2A7A;   /* series A: nire gela / mi clase (circle) */
+  --serB: #2F7FC1;   /* series B: ni / yo (diamond) — pair validated for CVD */
+  --ok: #1d6e46; --ok-soft: #dcefe4;
+  --warn: #8a4b00; --warn-soft: #fbe8d2;
+  --font-display: 'Nunito', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.5rem 4rem; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.3rem); font-weight: 900; }
+h2 { font-size: 1.35rem; font-weight: 900; }
+h3 { font-size: 1.05rem; font-weight: 800; }
+p { margin: 0; }
+a { color: var(--accent); }
+.eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: 0.88rem; }
+header.top { display: grid; gap: 0.6rem; margin-bottom: 1.2rem; }
+.top-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.lead { color: var(--muted); max-width: 62ch; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.seg button { border: 0; background: transparent; padding: 0.3rem 0.85rem; border-radius: 999px; font: inherit; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.modes { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 1.4rem; }
+.modes button { border: 0; background: transparent; font: inherit; font-family: var(--font-display); font-weight: 800; font-size: 1rem; padding: 0.7rem 0.4rem; cursor: pointer; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.modes button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.steps { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 0.5rem; border-bottom: 1px solid var(--line); margin-bottom: 1.6rem; }
+.steps ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
+.steps button { width: 100%; border: 0; background: transparent; cursor: pointer; padding: 0.35rem 0.2rem 0.4rem; text-align: left; border-top: 3px solid var(--line); font: inherit; font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+.steps button .n { font-family: var(--font-display); font-weight: 900; margin-right: 0.3rem; }
+.steps button[aria-current="step"] { border-top-color: var(--accent); color: var(--fg); font-weight: 600; }
+.steps button.done { border-top-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.steps button:disabled { cursor: default; opacity: 0.55; }
+@media (max-width: 520px) { .steps button .lbl { display: none; } .steps button { text-align: center; } }
+.progress { height: 4px; background: var(--line); border-radius: 4px; margin-top: 0.45rem; overflow: hidden; }
+.progress span { display: block; height: 100%; background: var(--accent); width: 0; transition: width .25s; }
+.progress-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; font-variant-numeric: tabular-nums; }
+section.step, section.mode { display: grid; gap: 1.2rem; }
+.step, .item, #stuResult, #teaResult { scroll-margin-top: 6rem; }
+.galdera { font-family: var(--font-display); font-size: 1.35rem; font-weight: 900; color: var(--accent); line-height: 1.3; border-left: 4px solid var(--accent); padding-left: 1rem; }
+.fenomenoa { background: var(--accent-soft); border-radius: var(--radius); padding: 1.1rem 1.2rem; font-style: italic; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; display: grid; gap: 0.9rem; min-width: 0; }
+.notice { background: var(--accent-soft); border-radius: var(--radius); padding: 1rem 1.1rem; display: grid; gap: 0.4rem; }
+.row { display: flex; gap: 0.7rem; flex-wrap: wrap; align-items: center; }
+.next { justify-content: flex-end; }
+.btn { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); padding: 0.6rem 1.1rem; border-radius: 999px; font: inherit; font-weight: 600; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, .seg button:focus-visible, .modes button:focus-visible, .steps button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: 2px; }
+.field { display: grid; gap: 0.35rem; }
+.field label, .field .lbl { font-weight: 600; font-size: 0.92rem; }
+input[type="text"], textarea, select { font: inherit; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.7rem; max-width: 100%; }
+input[type="text"]:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+textarea { width: 100%; min-height: 9rem; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.8rem; line-height: 1.45; }
+.err { color: var(--warn); font-weight: 600; font-size: 0.92rem; }
+.patterns { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+.patterns li { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 0.7rem 0.85rem; display: grid; gap: 0.15rem; }
+.patterns b { font-family: var(--font-display); font-weight: 800; }
+.patterns span { font-size: 0.86rem; color: var(--muted); }
+/* items */
+.scale-legend { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.3rem; font-size: 0.74rem; color: var(--muted); text-align: center; }
+.scale-legend b { display: block; font-family: var(--font-display); font-size: 1rem; color: var(--fg); }
+.items { display: grid; border-top: 1px solid var(--line); }
+.item { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: 0.4rem 0.8rem; padding: 0.7rem 0.2rem; border-bottom: 1px solid var(--line); }
+.item.missing { background: var(--warn-soft); }
+.item .num { font-family: var(--font-display); font-weight: 900; color: var(--muted); font-variant-numeric: tabular-nums; }
+.opts { display: flex; gap: 0.3rem; }
+.opts input { position: absolute; opacity: 0; pointer-events: none; }
+.opts label { width: 2.3rem; height: 2.3rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.92rem; }
+.opts input:checked + label { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.opts input:focus-visible + label { outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent); outline-offset: 2px; }
+@media (max-width: 600px) { .item { grid-template-columns: 1.6rem minmax(0, 1fr); } .opts { grid-column: 1 / -1; justify-content: space-between; } .opts label { width: 2.6rem; height: 2.6rem; } }
+/* verdict + checks */
+.verdict { border-radius: var(--radius); padding: 0.9rem 1.1rem; display: grid; gap: 0.25rem; }
+.verdict.ok { background: var(--ok-soft); } .verdict.warn { background: var(--warn-soft); }
+.verdict .tag { font-family: var(--font-display); font-weight: 900; letter-spacing: 0.05em; font-size: 1.05rem; }
+.verdict.ok .tag { color: var(--ok); } .verdict.warn .tag { color: var(--warn); }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+.checks li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: 0.5rem; align-items: start; }
+.ic { width: 1.4rem; height: 1.4rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; font-weight: 800; }
+.ic.ok { background: var(--ok-soft); color: var(--ok); } .ic.warn { background: var(--warn-soft); color: var(--warn); }
+/* legend + dumbbells */
+.legend { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: 0.88rem; align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.mk { display: inline-block; width: 11px; height: 11px; flex: none; }
+.mk.a { background: var(--serA); border-radius: 50%; }
+.mk.b { background: var(--serB); transform: rotate(45deg) scale(0.86); border-radius: 2px; }
+.mk.mid { width: 0; height: 1em; border-left: 2px dashed var(--muted); }
+.dumbbells { display: grid; gap: 0.9rem; }
+.db { display: grid; grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr) 6.2rem; gap: 0.3rem 0.9rem; align-items: center; }
+.db .name { font-weight: 600; font-size: 0.92rem; line-height: 1.25; }
+.db .vals { font-size: 0.82rem; font-variant-numeric: tabular-nums; color: var(--muted); text-align: right; line-height: 1.35; }
+.db .vals b { color: var(--fg); font-weight: 600; }
+.track { position: relative; height: 22px; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: var(--line); border-radius: 2px; }
+.track .midl { position: absolute; left: 50%; top: 0; bottom: 0; border-left: 2px dashed color-mix(in srgb, var(--muted) 70%, transparent); }
+.track .gap { position: absolute; top: 50%; height: 3px; margin-top: -1.5px; background: color-mix(in srgb, var(--muted) 45%, transparent); border-radius: 2px; }
+.track .dot { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid var(--surface); box-sizing: content-box; }
+.track .dot.a { background: var(--serA); border-radius: 50%; }
+.track .dot.b { background: var(--serB); border-radius: 2px; transform: rotate(45deg) scale(0.9); }
+.axis { display: grid; grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr) 6.2rem; gap: 0 0.9rem; }
+.axis .ticks { position: relative; height: 1.1em; font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.axis .ticks span { position: absolute; transform: translateX(-50%); }
+.axis .ticks span:first-child { transform: none; } .axis .ticks span:last-child { transform: translateX(-100%); }
+@media (max-width: 560px) {
+  .db, .axis { grid-template-columns: minmax(0, 1fr) 5.4rem; }
+  .db .name { grid-column: 1 / -1; }
+  .axis > :first-child { display: none; }
+}
+/* radar */
+.radar { position: relative; margin: 0; max-width: 460px; justify-self: center; width: 100%; }
+.radar svg { width: 100%; height: auto; display: block; overflow: visible; }
+.radar .grid { fill: none; stroke: var(--line); stroke-width: 1; }
+.radar .grid.mid { stroke: var(--muted); stroke-dasharray: 4 4; }
+.radar .spoke { stroke: var(--line); stroke-width: 1; }
+.radar .lbl { fill: var(--fg); font-family: var(--font-display); font-weight: 800; font-size: 16.5px; }
+.radar .ring { fill: var(--muted); font-size: 10px; font-family: var(--font-body); }
+.radar .areaA { fill: var(--serA); fill-opacity: 0.12; stroke: var(--serA); stroke-width: 2; stroke-linejoin: round; }
+.radar .areaB { fill: var(--serB); fill-opacity: 0.08; stroke: var(--serB); stroke-width: 2; stroke-linejoin: round; stroke-dasharray: 6 3; }
+.radar .dotA { fill: var(--serA); stroke: var(--surface); stroke-width: 2; }
+.radar .dotB { fill: var(--serB); stroke: var(--surface); stroke-width: 2; }
+.radar .hit { fill: transparent; cursor: pointer; outline: none; }
+.tip { position: absolute; pointer-events: none; background: var(--fg); color: var(--surface); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.55rem; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); font-variant-numeric: tabular-nums; z-index: 2; }
+/* teacher */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.6rem; }
+.tile { border: 1px solid var(--line); border-radius: 10px; padding: 0.7rem 0.9rem; background: var(--surface); display: grid; gap: 0.1rem; }
+.tile .k { font-size: 0.78rem; color: var(--muted); }
+.tile .v { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.sample { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 0.55rem 0.8rem; font-weight: 600; font-size: 0.88rem; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 480px; }
+th, td { padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+thead th { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+.lvl { display: inline-block; font-size: 0.74rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 999px; white-space: nowrap; }
+.lvl.hi { background: var(--ok-soft); color: var(--ok); }
+.lvl.mid { background: var(--line); color: var(--muted); }
+.lvl.lo { background: var(--warn-soft); color: var(--warn); }
+.prio { display: grid; gap: 0.8rem; }
+.prio article { border-left: 3px solid var(--warn); padding-left: 0.9rem; display: grid; gap: 0.3rem; }
+.prio ul, .prose ul, .qs { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }
+.code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.9rem; letter-spacing: 0.02em; background: var(--accent-soft); padding: 0.6rem 0.8rem; border-radius: 8px; overflow-wrap: anywhere; user-select: all; }
+.prose { display: grid; gap: 0.7rem; max-width: 66ch; }
+details.info { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+details.info > summary { cursor: pointer; padding: 0.9rem 1.1rem; font-family: var(--font-display); font-weight: 800; }
+details.info > .inner { padding: 0 1.1rem 1.1rem; display: grid; gap: 0.9rem; }
+.check-row { display: flex; gap: 0.5rem; align-items: center; font-size: 0.9rem; }
+footer.src { margin-top: 2.5rem; font-size: 0.8rem; color: var(--muted); display: grid; gap: 0.4rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+  body { background: #fff; }
+  .modes, .steps, .no-print, .seg, header .top-row .seg { display: none !important; }
+  .card, details.info { break-inside: avoid; }
+}
+</style>
+
+<div class="wrap">
+  <p style="padding-top:1rem;margin:0;font-size:.85rem"><a href="index.html">← Psikologia BTX2 atarira</a></p>
+  <header class="top">
+    <div class="top-row">
+      <span class="eyebrow" data-t="eyebrow"></span>
+      <div class="seg" role="group" aria-label="Hizkuntza / Idioma">
+        <button type="button" data-lang="eu" aria-pressed="true">EUS</button>
+        <button type="button" data-lang="es" aria-pressed="false">CAS</button>
+      </div>
+    </div>
+    <h1 data-t="title"></h1>
+    <p class="lead" data-t="lead"></p>
+  </header>
+
+  <div class="modes" role="tablist">
+    <button type="button" role="tab" id="tab-stu" data-mode="stu" aria-selected="true" data-t="modeStu"></button>
+    <button type="button" role="tab" id="tab-tea" data-mode="tea" aria-selected="false" data-t="modeTea"></button>
+  </div>
+
+  <!-- ================= IKASLEA ================= -->
+  <section class="mode" id="mode-stu">
+    <nav class="steps" aria-label="Urratsak">
+      <ol id="stepnav"></ol>
+      <div id="testprogress" hidden>
+        <div class="progress"><span id="progbar"></span></div>
+        <div class="progress-label" id="proglabel"></div>
+      </div>
+    </nav>
+
+    <section class="step" id="step-1">
+      <p class="galdera" data-t="guide"></p>
+      <p class="fenomenoa" data-t="phen"></p>
+      <div class="card">
+        <h2 data-t="patH"></h2>
+        <p class="small muted" data-t="patP"></p>
+        <ul class="patterns" id="patlist"></ul>
+      </div>
+      <div class="notice" data-t="consent"></div>
+      <div class="card">
+        <div class="field">
+          <label for="tag" data-t="tagL"></label>
+          <input type="text" id="tag" maxlength="12" autocomplete="off" placeholder="2BTXA" style="max-width:14rem;text-transform:uppercase">
+          <span class="small muted" data-t="tagHelp"></span>
+          <span class="err" id="tagerr" hidden data-t="tagErr"></span>
+        </div>
+      </div>
+      <div class="row next"><button class="btn" type="button" id="start" data-t="start"></button></div>
+    </section>
+
+    <section class="step" id="step-2" hidden>
+      <span class="eyebrow" data-t="aEyebrow"></span>
+      <h2 data-t="aH"></h2>
+      <div class="card">
+        <p data-t="aInstr"></p>
+        <div class="scale-legend" id="legendA"></div>
+      </div>
+      <div class="items" id="itemsA"></div>
+      <p class="err" id="missA" hidden role="alert"></p>
+      <div class="row next"><button class="btn" type="button" id="toB" data-t="toB"></button></div>
+    </section>
+
+    <section class="step" id="step-3" hidden>
+      <span class="eyebrow" data-t="bEyebrow"></span>
+      <h2 data-t="bH"></h2>
+      <div class="card">
+        <p data-t="bInstr"></p>
+        <div class="scale-legend" id="legendB"></div>
+      </div>
+      <div class="items" id="itemsB"></div>
+      <p class="err" id="missB" hidden role="alert"></p>
+      <div class="row next"><button class="btn" type="button" id="submit" data-t="submit"></button></div>
+    </section>
+
+    <section class="step" id="step-4" hidden>
+      <span class="eyebrow" data-t="rEyebrow"></span>
+      <h2 data-t="rH"></h2>
+      <div id="stuResult"></div>
+    </section>
+  </section>
+
+  <!-- ================= IRAKASLEA ================= -->
+  <section class="mode" id="mode-tea" hidden>
+    <div class="card">
+      <h2 data-t="howH"></h2>
+      <ol class="prose" style="padding-left:1.2rem" id="howList"></ol>
+    </div>
+    <div class="card">
+      <div class="field">
+        <label for="codes" data-t="codesL"></label>
+        <textarea id="codes" spellcheck="false" autocomplete="off"></textarea>
+        <span class="small muted" data-t="codesHelp"></span>
+      </div>
+      <div class="row">
+        <button class="btn" type="button" id="analyze" data-t="analyze"></button>
+        <button class="btn ghost" type="button" id="loadSample" data-t="loadSample"></button>
+        <button class="btn ghost" type="button" id="clearCodes" data-t="clearCodes"></button>
+      </div>
+    </div>
+    <div id="teaResult"></div>
+    <details class="info" id="about">
+      <summary data-t="aboutH"></summary>
+      <div class="inner prose small" data-t="about"></div>
+    </details>
+  </section>
+
+  <footer class="src" id="sources"></footer>
+</div>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------- Model: 7 interaction patterns (Alonso-Tapia et al., 2019). Items are OUR OWN wording, not the authors' questionnaire. ---------- */
+const PAT = ['pra', 'lis', 'und', 'hel', 'def', 'iso', 'gro'];
+// [pattern, reversed, A_es, A_eu, B_es, B_eu] — A = how my class is; B = how I behave. B[i] mirrors A[i] (same pattern and key).
+const ITEMS = [
+  ['pra',0,'Cuando a alguien le sale bien algo, mis compañeros/as le felicitan de verdad.','Norbaiti zerbait ondo ateratzen zaionean, ikaskideek benetan zoriontzen dute.','Cuando a un compañero/a le sale bien algo, le felicito de verdad.','Ikaskide bati zerbait ondo ateratzen zaionean, benetan zoriontzen dut.'],
+  ['lis',1,'En mi clase es habitual que te corten antes de terminar de hablar.','Nire gelan ohikoa da hitz egiten amaitu aurretik hitza moztea.','Suelo interrumpir a los demás cuando hablan.','Besteak hitz egiten ari direnean, hitza mozteko joera dut.'],
+  ['und',0,'Cuando no estamos de acuerdo, mis compañeros/as preguntan por qué pienso así antes de responder.','Ados ez gaudenean, ikaskideek zergatik pentsatzen dudan horrela galdetzen didate, erantzun aurretik.','Cuando alguien piensa distinto, le pregunto por qué antes de rebatirle.','Norbaitek desberdin pentsatzen duenean, zergatik galdetzen diot, aurka egin aurretik.'],
+  ['hel',1,'En mi clase cada uno va a lo suyo: solo se ayuda a los amigos.','Nire gelan bakoitza bere kasa dabil: lagunei bakarrik laguntzen zaie.','Solo ayudo a mis amigos/as.','Nire lagunei bakarrik laguntzen diet.'],
+  ['def',0,'Si alguien se mete con un compañero/a, otros le paran los pies.','Norbait ikaskide batekin sartzen bada, beste batzuek geldiarazi egiten dute.','Si alguien se mete con un compañero/a, digo o hago algo para pararlo.','Norbait ikaskide batekin sartzen bada, zerbait esan edo egiten dut hori gelditzeko.'],
+  ['iso',1,'Al hacer grupos de trabajo, siempre se quedan los mismos sin grupo.','Lan-taldeak egitean, beti berberak geratzen dira talderik gabe.','Al hacer grupos, solo me fijo en ir con mis amigos/as.','Taldeak egitean, nire lagunekin joatea baino ez dut begiratzen.'],
+  ['gro',0,'En mi clase se puede ir con gente de distintos grupos sin problema.','Nire gelan arazorik gabe ibil zaitezke talde desberdinetako jendearekin.','Me relaciono con gente de distintos grupos de la clase.','Gelako talde desberdinetako jendearekin harremana dut.'],
+  ['pra',1,'En mi clase, cuando alguien destaca, es más fácil oír burlas que elogios.','Nire gelan, norbait nabarmentzen denean, errazagoa da isekak entzutea laudorioak baino.','Me cuesta reconocer los éxitos de los demás.','Kosta egiten zait besteen arrakastak aitortzea.'],
+  ['lis',0,'Cuando alguien habla en clase, los demás le escuchan con atención.','Norbaitek gelan hitz egiten duenean, besteek arretaz entzuten diote.','Cuando alguien me habla, dejo lo que estoy haciendo y le escucho.','Norbaitek hitz egiten didanean, egiten ari naizena utzi eta entzun egiten diot.'],
+  ['und',1,'En mi clase, quien opina distinto suele recibir burlas o desprecio.','Nire gelan, desberdin pentsatzen duenak iseka edo gutxiespena jaso ohi du.','Cuando alguien dice algo que me parece absurdo, no me esfuerzo en entenderlo.','Norbaitek zentzugabea iruditzen zaidan zerbait esaten duenean, ez naiz hura ulertzen ahalegintzen.'],
+  ['hel',0,'Si alguien no entiende algo, siempre hay quien se ofrece a explicárselo.','Norbaitek zerbait ulertzen ez badu, beti dago azaltzeko prest dagoen norbait.','Si veo que alguien no entiende algo, me ofrezco a explicárselo.','Norbaitek zerbait ulertzen ez duela ikusten badut, azaltzeko prest agertzen naiz.'],
+  ['def',1,'Cuando hay burlas o insultos a alguien, la mayoría mira hacia otro lado.','Norbaiti iseka edo irainak egiten zaizkionean, gehienek beste aldera begiratzen dute.','Cuando se burlan de alguien, prefiero no meterme.','Norbaiti iseka egiten diotenean, nahiago dut ez sartu.'],
+  ['iso',0,'Cuando alguien está solo en el recreo o en clase, alguien se le acerca.','Norbait jolas-orduan edo gelan bakarrik dagoenean, norbait hurbiltzen zaio.','Si veo a alguien solo/a, me acerco o le invito a unirse.','Norbait bakarrik ikusten badut, hurbildu egiten naiz edo gurekin egoteko gonbidatzen dut.'],
+  ['gro',1,'Si alguien de un grupo se junta con otra gente, su grupo se lo echa en cara.','Talde bateko norbait beste jende batekin elkartzen bada, bere taldeak aurpegiratu egiten dio.','Me molesta que alguien de mi grupo se junte con otra gente.','Molestatu egiten nau nire taldeko norbait beste jende batekin elkartzeak.'],
+  ['pra',0,'En mi clase se reconoce en voz alta cuando alguien hace algo bien.','Nire gelan ozen aitortzen da norbaitek zerbait ondo egiten duenean.','Reconozco en voz alta cuando alguien hace algo bien, aunque no sea mi amigo/a.','Norbaitek zerbait ondo egiten duenean ozen aitortzen dut, nire laguna ez bada ere.'],
+  ['lis',1,'Cuando alguien cuenta algo personal, muchos siguen a lo suyo.','Norbaitek zerbait pertsonala kontatzen duenean, askok beren kasa jarraitzen dute.','Mientras otra persona habla, suelo estar pensando en lo que voy a decir yo.','Beste bat hitz egiten ari den bitartean, nik zer esango dudan pentsatzen egon ohi naiz.'],
+  ['und',0,'En los debates de clase intentamos entender la postura contraria.','Gelako eztabaidetan kontrako jarrera ulertzen saiatzen gara.','Intento ponerme en el lugar de quien no está de acuerdo conmigo.','Nirekin ados ez dagoenaren lekuan jartzen saiatzen naiz.'],
+  ['hel',1,'En mi clase da corte pedir ayuda, porque lo normal es que nadie te la dé.','Nire gelan lotsa ematen du laguntza eskatzeak, normalean inork ez dizulako emango.','Cuando me piden ayuda, suelo poner excusas.','Laguntza eskatzen didatenean, aitzakiak jartzeko joera dut.'],
+  ['def',0,'Cuando alguien sufre burlas, hay compañeros/as que le defienden aunque no sean sus amigos.','Norbaitek isekak jasaten dituenean, badira hura defendatzen duten ikaskideak, haren lagunak ez izan arren.','Defiendo a quien sufre burlas aunque no sea mi amigo/a.','Isekak jasaten dituena defendatzen dut, nire laguna ez bada ere.'],
+  ['iso',1,'En mi clase hay personas a las que casi nadie dirige la palabra.','Nire gelan badira ia inork hitzik egiten ez dien pertsonak.','Hay compañeros/as con los que casi nunca hablo, y no me preocupa.','Badira ia inoiz hitz egiten ez dudan ikaskideak, eta ez zait kezkatzen.'],
+  ['gro',0,'Los grupos de amigos de mi clase aceptan bien a gente nueva.','Nire gelako lagun-taldeek ondo onartzen dute jende berria.','Si alguien de mi grupo hace amigos fuera, me parece bien.','Nire taldeko norbaitek kanpoan lagunak egiten baditu, ondo iruditzen zait.']
+];
+const N = ITEMS.length; // 21 per part
+const MIN_N = 5;        // minimum respondents before the teacher sees anything
+const MIN_SEC = 90;     // minimum time for both parts
+
+/* ---------- Texts ---------- */
+const T = {
+eu: {
+  eyebrow: 'Psikologia · BTX2 · Tutoretza',
+  title: 'Nolakoa da gure gelako bizikidetza?',
+  lead: 'Gelako bizikidetza-klima neurtzeko tresna: zazpi elkarreragin-patroi, bi ikuspegi (gela eta ni) eta irakaslearentzako emaitza taldekatua. Izenik gabe.',
+  modeStu: 'Ikaslea', modeTea: 'Irakaslea',
+  steps: ['Sarrera', 'Nire gela', 'Ni', 'Emaitza'],
+  guide: 'Zerk egiten du gela bat leku ona, denontzat?',
+  phen: 'Gela batean 25 pertsona egoten dira egunero, sei orduz, aukeratu gabe. Batzuetan giroa ona da; beste batzuetan, norbait beti geratzen da bakarrik, edo inork ez du ezer esaten iseka bat entzutean. Giro hori ez da zortea: egunero errepikatzen diren jokabide txikiek osatzen dute.',
+  patH: 'Zazpi jokabide',
+  patP: 'Alonso-Tapiaren taldearen ereduaren arabera (2019), zazpi elkarreragin-patroi hauek orokortzen direnean, ikasle guztien inklusioa errazten da.',
+  consent: '<strong>Izenik gabe eta borondatez.</strong> Ez da zure izenik eskatzen eta erantzunak ez dira inora bidaltzen. Amaieran kode bat jasoko duzu; irakasleak gela osoaren kodeak batuko ditu eta batez bestekoak bakarrik ikusiko ditu. Erantzun zintzo: ez dago erantzun zuzenik.',
+  tagL: 'Taldearen kodea',
+  tagHelp: 'Irakasleak emango dizu (adib. 2BTXA). Letrak eta zenbakiak, 2-8 karaktere.',
+  tagErr: 'Idatzi taldearen kodea: 2-8 letra edo zenbaki.',
+  start: 'Hasi →',
+  aEyebrow: '1. zatia · Nire gela', aH: 'Nolakoa da zure gela?',
+  aInstr: 'Pentsatu zure gelako ikaskideengan, oro har, ez lagun jakin batengan. Adierazi baieztapen bakoitzarekin zenbateraino zauden ados.',
+  bEyebrow: '2. zatia · Ni', bH: 'Eta zu, nola jokatzen duzu?',
+  bInstr: 'Orain zure buruaz ari gara. Pentsatu zer egiten duzun benetan, ez zer egin beharko zenukeen.',
+  scale: ['Guztiz desados', 'Zertxobait desados', 'Ez ados ez desados', 'Zertxobait ados', 'Guztiz ados'],
+  toB: 'Jarraitu 2. zatira →', submit: 'Ikusi nire emaitza',
+  missing: (n, l) => `${n === 1 ? 'Item bat falta da' : n + ' item falta dira'} (${l}).`,
+  progress: (n) => `${n} / 42 erantzunda`,
+  rEyebrow: 'Emaitza', rH: 'Zure begirada: gela eta zu',
+  legA: 'Nire gela (1. zatia)', legB: 'Ni (2. zatia)', legMid: '3 = eskalaren erdia',
+  okTag: 'KONTROLAK GAINDITUTA', okSub: 'Zure erantzunak koherenteak dira. Kodea bidal dezakezu.',
+  warnTag: 'KONTUZ INTERPRETATU', warnSub: 'Kontrolen batek abisua eman du. Kodea bidal dezakezu, baina irakasleak bereizita kontatuko du.',
+  chkPat: 'Erantzun-patroia', chkPatD: (r) => `Erantzun berdinen segidarik luzeena: ${r} (10etik behera).`,
+  chkAcq: 'Ados-joera', chkAcqD: (m) => `Erantzunen batez bestekoa: ${m} (2,25 eta 3,75 artean).`,
+  chkTime: 'Denbora', chkTimeD: (s) => `${s} (gutxienez 1,5 minutu).`,
+  gapMany: (k) => `${k} patroitan zure burua gela baino hobeto baloratu duzu. Oso ohikoa da: psikologia sozialean <strong>autoaldeko alborapena</strong> deitzen zaio (gehienok uste dugu batez bestekoa baino hobeto jokatzen dugula). Artikuluko 2.581 ikasleetan ere zazpi patroietan gertatu zen.`,
+  gapFew: 'Zure burua eta gela antzera baloratu dituzu. Ez da ohikoena: gehienok geure burua hobeto baloratzen dugu (autoaldeko alborapena).',
+  codeH: 'Zure kodea', codeHelp: 'Kopiatu eta bidali irakasleak esandako moduan (adibidez, izenik gabeko inprimaki batean). Kodeak zure 42 erantzunak eta taldearen kodea ditu, izenik gabe.',
+  copy: 'Kopiatu kodea', copied: 'Kopiatuta.', copyFail: 'Ezin izan da kopiatu: hautatu kodea eskuz.',
+  review: 'Berrikusi erantzunak',
+  qH: 'Hausnartzeko',
+  qs: [
+    'Zein patroitan dago alde handiena zure gelaren eta zure artean? Zergatik uste duzu?',
+    'Gehienok geure burua gela baino hobeto ikusten badugu, nor da «gela» hori? Zer esan nahi du horrek?',
+    'Aukeratu puntuazio baxuena duen patroia. Zer egin zenezake zuk bihar, zerbait aldatzeko?',
+    'Nahikoa da pertsona bakar batek jokabidea aldatzea gela osoaren giroa aldatzeko? Gogoratu ikuslearen efektua.'
+  ],
+  lvl: { hi: 'Indargunea', mid: 'Tartekoa', lo: 'Hobetzeko' },
+  pat: {
+    pra: ['Benetako laudorioa', 'Besteen lorpenak benetan aitortzea, ez konpromisoz.', 'Laudorioa'],
+    lis: ['Entzute aktiboa', 'Hitza ez moztea eta entzundakoa jaso dela erakustea.', 'Entzutea'],
+    und: ['Besteen ikuspegia ulertzea', 'Desadostasunean, aurka egin aurretik zergatia galdetzea.', 'Ikuspegia'],
+    hel: ['Elkarri laguntzea', 'Laguntza eskaintzea, baita lagun-taldetik kanpo ere.', 'Laguntza'],
+    def: ['Erasotua defendatzea', 'Isekak edo erasoak ikustean ez isiltzea.', 'Defentsa'],
+    iso: ['Inor bakarrik ez uztea', 'Bakarrik dagoenari arreta jartzea eta taldean sartzea.', 'Inklusioa'],
+    gro: ['Talde irekiak', 'Lagun-taldea ez izatea kaiola: kanpoko harremanak onartzea.', 'Talde irekiak']
+  },
+  ideas: {
+    pra: ['Talde-lan baten amaieran, bakoitzak beste batek ondo egin duen gauza zehatz bat esaten du.', 'Landu pertsonari egindako kritikaren eta lanari buruzko iruzkinaren arteko aldea.'],
+    lis: ['Eztabaidetarako araua: erantzun aurretik, laburbildu aurrekoak esandakoa.', 'Hitz-txanda objektu batekin: hura duenak bakarrik hitz egiten du.'],
+    und: ['Rol-aldaketa eztabaidan: bakoitzak bere kontrako jarrera defendatzen du.', '«Zergatik?» galdera, iritzi bati erantzun aurretik.'],
+    hel: ['Ikaskide-tutoretza bikoteak, lagun-taldeetatik kanpo osatuta.', '«Galdetu hiruri, irakaslearengana etorri aurretik» araua.'],
+    def: ['Ikuslearen efektua landu (Darley eta Latané, 1968): zergatik ez du inork ezer egiten taldean?', 'Kasu laburrak: zer esan edo egin daiteke, norbera arriskuan jarri gabe?'],
+    iso: ['Irakasleak osatzen ditu lan-taldeak, eta aldizka txandakatzen dira.', 'Tutoretzan, begiratu isilean nor geratzen den bakarrik, eta jardun banaka.'],
+    gro: ['Eserlekuak eta lan-taldeak txandakatu (GelaLekuak tresna erabil daiteke).', 'Talde arteko zereginak, lagun-talde bakoitzeko kideak talde mistoetan.']
+  },
+  howH: 'Nola erabili gelan',
+  how: [
+    '<strong>Aukeratu taldearen kode bat</strong> (adib. 2BTXA) eta idatzi arbelean.',
+    '<strong>Partekatu orri honen esteka.</strong> Ikasle bakoitzak bere gailuan egiten du, 10 minutu inguru.',
+    '<strong>Bildu kodeak izenik gabe</strong>: adibidez, galdera bakarreko Google Forms bat, posta elektronikoa bildu gabe. Kodeek ez dute izenik.',
+    '<strong>Itsatsi kode guztiak behean</strong> eta sakatu «Aztertu». Gutxienez 5 erantzun behar dira emaitzak ikusteko.'
+  ],
+  codesL: 'Ikasleen kodeak',
+  codesHelp: 'Itsatsi kodeak edozein formatutan: lerro bakoitzean bat, edo dena batera. Tresnak berak bilatzen ditu, eta errepikatuak behin bakarrik kontatzen ditu.',
+  analyze: 'Aztertu', loadSample: 'Kargatu adibidea', clearCodes: 'Garbitu',
+  sampleNote: 'ADIBIDEA · datu asmatuak, tresna nola ikusten den erakusteko. Itsatsi zure gelako kodeak eta sakatu «Aztertu».',
+  tagSel: 'Taldea',
+  exclL: 'Baztertu abisua duten erantzunak',
+  tiles: { n: 'Erantzun baliodunak', ex: 'Baztertuta (abisua)', bad: 'Kode baliogabeak', dup: 'Errepikatuak' },
+  tooFew: (n) => `${n} erantzun baino ez daude talde honetan. Gutxienez ${MIN_N} behar dira, inor identifika ez dadin.`,
+  noCodes: 'Ez da koderik aurkitu. Ziurtatu BKG- hasierako kodeak itsatsi dituzula.',
+  profH: 'Gelaren profila',
+  profP: 'Zazpi patroiak, ikasleen batez bestekoa: nola ikusten duten gela (1. zatia) eta nola ikusten duten beren burua (2. zatia).',
+  radarNote: 'Erdiko zirkulu etenak 3 adierazten du. Jarri sagua puntu baten gainean, edo sakatu, balioa ikusteko.',
+  tblH: ['Patroia', 'Gela (A)', 'Ni (B)', 'B − A', 'A ≤ 2,5', 'Maila'],
+  lowNote: '«A ≤ 2,5»: patroi hori gelan ia ez dagoela uste duten ikasleen ehunekoa.',
+  prioH: 'Lehentasunak',
+  prioP: 'Gelak baxuen baloratzen dituen patroiak, esku-hartzeko ideiekin. Ideiak orientagarriak dira.',
+  prioNone: 'Ez dago 3,5etik beherako patroirik. Gela honek zazpi patroiak indargune gisa ikusten ditu.',
+  allIdeasH: 'Esku-hartze ideiak, patroi guztietarako',
+  copySum: 'Kopiatu laburpena (kalkulu-orrirako)', sumCopied: 'Laburpena kopiatuta: itsatsi kalkulu-orri batean.',
+  aboutH: 'Eredua, mugak eta iturriak',
+  about: `<p><strong>Eredua.</strong> Alonso-Tapia, Simón, López-Valle, Ulate eta Biehl-ek (2019) <em>gelako bizikidetza-klima</em> proposatu zuten: ikasleen arteko elkarreraginaren kalitatea, irakaslearen jokabidetik bereizita. Zazpi patroi identifikatu zituzten eta bi galdetegi sortu: gelaren pertzepzioa eta norberaren ekarpena. Espainia eta Costa Ricako 2.581 ikaslerekin balioztatu zituzten (CFI .94–.97; ω .85–.96), eta bi puntuazioek integrazio soziala iragartzen zuten.</p>
+<p><strong>Tresna hau ez da haien galdetegia.</strong> Jatorrizko 21 itemak ez daude argitaratuta (adibide bat bakarrik patroi bakoitzeko), eta artikuluaren lizentziak (CC BY-NC-ND) ez du itzulpenik baimentzen. Hemengo 42 itemak geuk idatzi ditugu, euskaraz eta gaztelaniaz, eredu beraren arabera (3 item patroi bakoitzeko, 1-5 eskala, item zuzenak eta alderantzizkoak orekatuta). <strong>Ez daude balioztatuta.</strong> Artikuluko datu psikometrikoak ez dira tresna honetara pasatzen.</p>
+<p><strong>Puntuazioa.</strong> Patroi bakoitza bere 3 itemen batez bestekoa da (1-5), alderantzizkoak iraulita. Mailak: 3,5 edo gehiago indargunea; 2,5etik behera hobetzeko. Muga horiek orientagarriak dira, ez baremoak.</p>
+<p><strong>Kontrolak.</strong> Erantzun berdinen segida 10 edo gehiago, batez besteko gordina 2,25–3,75 tartetik kanpo, edo 90 segundo baino gutxiago: abisua. Abisua duten erantzunak bereizita kontatzen dira.</p>
+<p><strong>Anonimotasuna.</strong> Kodeek ez dute izenik. Tresnak ez ditu banakako erantzunak erakusten, eta 5 erantzun baino gutxiagorekin ez du emaitzarik ematen. Anonimotasuna kodeak nola biltzen diren araberakoa ere bada: erabili izenik gabeko bide bat.</p>
+<p><strong>Jatorrizko galdetegia nahi izanez gero</strong>, idatzi egileari (Jesús Alonso-Tapia, UAM): <span style="user-select:all">jesus.alonso@uam.es</span>. Itemak eta baimena jasoz gero, tresna honetan ordezka daitezke.</p>`,
+  sources: 'Iturriak'
+},
+es: {
+  eyebrow: 'Psicología · 2.º Bachillerato · Tutoría',
+  title: '¿Cómo es la convivencia en nuestra clase?',
+  lead: 'Herramienta para medir el clima de convivencia de la clase: siete patrones de interacción, dos miradas (la clase y yo) y resultados agregados para el profesorado. Sin nombres.',
+  modeStu: 'Alumnado', modeTea: 'Profesorado',
+  steps: ['Inicio', 'Mi clase', 'Yo', 'Resultado'],
+  guide: '¿Qué hace que una clase sea un buen sitio para todo el mundo?',
+  phen: 'En una clase conviven 25 personas, seis horas al día, sin haberse elegido. A veces el ambiente es bueno; otras, alguien se queda siempre solo o nadie dice nada cuando se oye una burla. Ese ambiente no es cuestión de suerte: lo forman pequeñas conductas que se repiten cada día.',
+  patH: 'Siete conductas',
+  patP: 'Según el modelo del equipo de Alonso-Tapia (2019), cuando estos siete patrones de interacción se generalizan, se facilita la inclusión de todo el alumnado.',
+  consent: '<strong>Anónimo y voluntario.</strong> No se pide tu nombre y las respuestas no se envían a ningún sitio. Al final recibirás un código; el profesorado reunirá los códigos de toda la clase y solo verá medias. Responde con sinceridad: no hay respuestas correctas.',
+  tagL: 'Código del grupo',
+  tagHelp: 'Te lo dará el profesorado (p. ej., 2BTXA). Letras y números, de 2 a 8 caracteres.',
+  tagErr: 'Escribe el código del grupo: de 2 a 8 letras o números.',
+  start: 'Empezar →',
+  aEyebrow: 'Parte 1 · Mi clase', aH: '¿Cómo es tu clase?',
+  aInstr: 'Piensa en tus compañeros y compañeras de clase en general, no en una persona concreta. Indica hasta qué punto estás de acuerdo con cada afirmación.',
+  bEyebrow: 'Parte 2 · Yo', bH: '¿Y tú, cómo actúas?',
+  bInstr: 'Ahora hablamos de ti. Piensa en lo que haces de verdad, no en lo que deberías hacer.',
+  scale: ['Totalmente en desacuerdo', 'Algo en desacuerdo', 'Ni de acuerdo ni en desacuerdo', 'Algo de acuerdo', 'Totalmente de acuerdo'],
+  toB: 'Seguir a la parte 2 →', submit: 'Ver mi resultado',
+  missing: (n, l) => `${n === 1 ? 'Falta 1 ítem' : 'Faltan ' + n + ' ítems'} (${l}).`,
+  progress: (n) => `${n} / 42 respondidos`,
+  rEyebrow: 'Resultado', rH: 'Tu mirada: la clase y tú',
+  legA: 'Mi clase (parte 1)', legB: 'Yo (parte 2)', legMid: '3 = punto medio de la escala',
+  okTag: 'CONTROLES SUPERADOS', okSub: 'Tus respuestas son coherentes. Puedes enviar el código.',
+  warnTag: 'INTERPRETAR CON CAUTELA', warnSub: 'Algún control ha dado un aviso. Puedes enviar el código, pero el profesorado lo contará aparte.',
+  chkPat: 'Patrón de respuesta', chkPatD: (r) => `Racha más larga de respuestas iguales: ${r} (menos de 10).`,
+  chkAcq: 'Aquiescencia', chkAcqD: (m) => `Media de las respuestas: ${m} (entre 2,25 y 3,75).`,
+  chkTime: 'Tiempo', chkTimeD: (s) => `${s} (mínimo 1,5 minutos).`,
+  gapMany: (k) => `En ${k} patrones te has valorado mejor que a la clase. Es muy habitual: en psicología social se llama <strong>sesgo de autoservicio</strong> (casi todos creemos que actuamos mejor que la media). En los 2.581 estudiantes del artículo pasó en los siete patrones.`,
+  gapFew: 'Has valorado de forma parecida a la clase y a ti. No es lo más habitual: casi todos nos valoramos mejor (sesgo de autoservicio).',
+  codeH: 'Tu código', codeHelp: 'Cópialo y envíalo como te indique el profesorado (por ejemplo, en un formulario sin nombre). El código contiene tus 42 respuestas y el código del grupo, sin tu nombre.',
+  copy: 'Copiar código', copied: 'Copiado.', copyFail: 'No se ha podido copiar: selecciona el código a mano.',
+  review: 'Revisar respuestas',
+  qH: 'Para reflexionar',
+  qs: [
+    '¿En qué patrón hay más diferencia entre tu clase y tú? ¿Por qué crees que pasa?',
+    'Si casi todos nos vemos mejor que a la clase, ¿quién es esa «clase»? ¿Qué significa eso?',
+    'Elige el patrón con la puntuación más baja. ¿Qué podrías hacer tú mañana para cambiar algo?',
+    '¿Basta con que una sola persona cambie su conducta para cambiar el ambiente de toda la clase? Recuerda el efecto espectador.'
+  ],
+  lvl: { hi: 'Fortaleza', mid: 'Intermedio', lo: 'A mejorar' },
+  pat: {
+    pra: ['Elogio sincero', 'Reconocer de verdad los logros de los demás, no por compromiso.', 'Elogio'],
+    lis: ['Escucha activa', 'No interrumpir y mostrar que se ha recogido lo escuchado.', 'Escucha'],
+    und: ['Entender el punto de vista ajeno', 'Ante el desacuerdo, preguntar el porqué antes de rebatir.', 'Perspectiva'],
+    hel: ['Ayuda mutua', 'Ofrecer ayuda, también fuera del propio grupo de amigos.', 'Ayuda'],
+    def: ['Defender a quien es atacado', 'No callar ante burlas o agresiones.', 'Defensa'],
+    iso: ['No dejar a nadie aislado', 'Fijarse en quien está solo e incluirle.', 'Inclusión'],
+    gro: ['Grupos abiertos', 'Que el grupo de amigos no sea una jaula: aceptar relaciones fuera.', 'Grupos abiertos']
+  },
+  ideas: {
+    pra: ['Al final de un trabajo en grupo, cada persona dice algo concreto que otra ha hecho bien.', 'Trabajar la diferencia entre criticar a la persona y comentar su trabajo.'],
+    lis: ['Norma para los debates: antes de responder, resumir lo que ha dicho la persona anterior.', 'Turno de palabra con un objeto: solo habla quien lo tiene.'],
+    und: ['Debate con cambio de rol: cada cual defiende la postura contraria a la suya.', 'Pregunta «¿por qué?» antes de responder a una opinión.'],
+    hel: ['Parejas de tutoría entre iguales, formadas fuera de los grupos de amigos.', 'Norma «pregunta a tres antes de venir al profesor».'],
+    def: ['Trabajar el efecto espectador (Darley y Latané, 1968): ¿por qué nadie hace nada en grupo?', 'Casos breves: ¿qué se puede decir o hacer sin ponerse en riesgo?'],
+    iso: ['El profesorado forma los grupos de trabajo y los rota periódicamente.', 'En tutoría, observar discretamente quién se queda solo y actuar de forma individual.'],
+    gro: ['Rotar asientos y grupos de trabajo (se puede usar la herramienta GelaLekuak).', 'Tareas entre grupos, con miembros de cada grupo de amigos en equipos mixtos.']
+  },
+  howH: 'Cómo usarlo en clase',
+  how: [
+    '<strong>Elige un código de grupo</strong> (p. ej., 2BTXA) y escríbelo en la pizarra.',
+    '<strong>Comparte el enlace de esta página.</strong> Cada estudiante lo hace en su dispositivo, unos 10 minutos.',
+    '<strong>Recoge los códigos sin nombres</strong>: por ejemplo, un Google Forms de una sola pregunta, sin recoger el correo. Los códigos no llevan nombre.',
+    '<strong>Pega todos los códigos abajo</strong> y pulsa «Analizar». Hacen falta al menos 5 respuestas para ver resultados.'
+  ],
+  codesL: 'Códigos del alumnado',
+  codesHelp: 'Pega los códigos en cualquier formato: uno por línea o todo junto. La herramienta los localiza y cuenta una sola vez los repetidos.',
+  analyze: 'Analizar', loadSample: 'Cargar ejemplo', clearCodes: 'Vaciar',
+  sampleNote: 'EJEMPLO · datos inventados para mostrar cómo se ve la herramienta. Pega los códigos de tu clase y pulsa «Analizar».',
+  tagSel: 'Grupo',
+  exclL: 'Excluir las respuestas con aviso',
+  tiles: { n: 'Respuestas válidas', ex: 'Excluidas (aviso)', bad: 'Códigos no válidos', dup: 'Repetidos' },
+  tooFew: (n) => `Solo hay ${n} respuestas en este grupo. Hacen falta al menos ${MIN_N} para que nadie sea identificable.`,
+  noCodes: 'No se ha encontrado ningún código. Comprueba que has pegado códigos que empiezan por BKG-.',
+  profH: 'Perfil de la clase',
+  profP: 'Los siete patrones, media del alumnado: cómo ven la clase (parte 1) y cómo se ven a sí mismos (parte 2).',
+  radarNote: 'El círculo discontinuo marca el 3. Pasa el ratón por un punto, o tócalo, para ver su valor.',
+  tblH: ['Patrón', 'Clase (A)', 'Yo (B)', 'B − A', 'A ≤ 2,5', 'Nivel'],
+  lowNote: '«A ≤ 2,5»: porcentaje del alumnado que cree que ese patrón casi no se da en la clase.',
+  prioH: 'Prioridades',
+  prioP: 'Los patrones peor valorados por la clase, con ideas de intervención. Las ideas son orientativas.',
+  prioNone: 'Ningún patrón baja de 3,5. Esta clase ve los siete patrones como fortalezas.',
+  allIdeasH: 'Ideas de intervención para todos los patrones',
+  copySum: 'Copiar resumen (para hoja de cálculo)', sumCopied: 'Resumen copiado: pégalo en una hoja de cálculo.',
+  aboutH: 'Modelo, límites y fuentes',
+  about: `<p><strong>El modelo.</strong> Alonso-Tapia, Simón, López-Valle, Ulate y Biehl (2019) propusieron el <em>clima de convivencia de clase</em>: la calidad de las interacciones entre estudiantes, distinta de la conducta del profesorado. Identificaron siete patrones y crearon dos cuestionarios: percepción de la clase y contribución propia. Los validaron con 2.581 estudiantes de España y Costa Rica (CFI .94–.97; ω .85–.96), y ambas puntuaciones predecían la integración social.</p>
+<p><strong>Esta herramienta no es su cuestionario.</strong> Los 21 ítems originales no están publicados (solo hay un ejemplo por patrón) y la licencia del artículo (CC BY-NC-ND) no permite traducirlos. Los 42 ítems de aquí son de redacción propia, en euskera y castellano, siguiendo el mismo modelo (3 ítems por patrón, escala 1-5, ítems directos e inversos equilibrados). <strong>No están validados.</strong> Los datos psicométricos del artículo no se trasladan a esta herramienta.</p>
+<p><strong>Puntuación.</strong> Cada patrón es la media de sus 3 ítems (1-5), con los inversos invertidos. Niveles: 3,5 o más, fortaleza; menos de 2,5, a mejorar. Son cortes orientativos, no baremos.</p>
+<p><strong>Controles.</strong> Racha de 10 o más respuestas iguales, media bruta fuera de 2,25–3,75 o menos de 90 segundos: aviso. Las respuestas con aviso se cuentan aparte.</p>
+<p><strong>Anonimato.</strong> Los códigos no llevan nombre. La herramienta no muestra respuestas individuales y con menos de 5 respuestas no da resultados. El anonimato también depende de cómo se recojan los códigos: usa una vía sin nombres.</p>
+<p><strong>Si quieres el cuestionario original</strong>, escribe al autor (Jesús Alonso-Tapia, UAM): <span style="user-select:all">jesus.alonso@uam.es</span>. Si envía los ítems y da permiso, se pueden sustituir en esta herramienta.</p>`,
+  sources: 'Fuentes'
+}
+};
+const SOURCES = [
+  'Alonso-Tapia, J., Simón, C., López-Valle, N., Ulate, M. A., & Biehl, M. L. (2019). Clima de convivencia de clase: naturaleza, medida, efectos e implicaciones para la educación social. Un estudio transcultural. <em>Anales de Psicología, 35</em>(3), 424–433. <a href="https://doi.org/10.6018/analesps.35.3.363501" target="_blank" rel="noopener">doi.org/10.6018/analesps.35.3.363501</a>',
+  'Darley, J. M., & Latané, B. (1968). Bystander intervention in emergencies: Diffusion of responsibility. <em>Journal of Personality and Social Psychology, 8</em>(4), 377–383.',
+  'Itemak / ítems: geuk idatziak, balioztatu gabeak · redacción propia, no validados.'
+];
+
+/* ---------- State ---------- */
+const S = {
+  lang: 'eu', mode: 'stu', step: 1, maxStep: 1,
+  tag: '', A: Array(N).fill(0), B: Array(N).fill(0), t0: null, result: null,
+  tea: { text: '', sample: true, tag: '', excl: true }
+};
+const $ = (id) => document.getElementById(id);
+const L = () => T[S.lang];
+const fmt = (n) => n.toFixed(2).replace('.', ',');
+const fmt1 = (n) => n.toFixed(1).replace('.', ',');
+const esc = (s) => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+
+/* ---------- Scoring + checks (pure) ---------- */
+const mean = (xs) => xs.reduce((s, x) => s + x, 0) / xs.length;
+const keyed = (raw, i) => ITEMS[i][1] ? 6 - raw : raw;
+function patScores(ans) {
+  const out = {};
+  for (const p of PAT) out[p] = mean(ITEMS.map((it, i) => it[0] === p ? keyed(ans[i], i) : null).filter(v => v !== null));
+  return out;
+}
+function checks(A, B, timeOk) {
+  const all = A.concat(B);
+  let run = 1, best = 1;
+  for (let i = 1; i < all.length; i++) { run = all[i] === all[i-1] ? run + 1 : 1; best = Math.max(best, run); }
+  const m = mean(all);
+  const c = { pat: { ok: best < 10, r: best }, acq: { ok: m >= 2.25 && m <= 3.75, m }, time: { ok: !!timeOk } };
+  c.allOk = c.pat.ok && c.acq.ok && c.time.ok;
+  return c;
+}
+function level(v) { return v >= 3.5 ? 'hi' : v < 2.5 ? 'lo' : 'mid'; }
+
+/* ---------- Anonymous code: BKG-{E|C}{YYMMDD}-{TAG}-{t}-{42 digits in 7×6}-{checksum} ---------- */
+function checksum(s) {
+  let h = 7;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i) * (i + 1)) % 1296;
+  return h.toString(36).toUpperCase().padStart(2, '0');
+}
+function makeCode(lang, ymd, tag, t, A, B) {
+  const l = lang === 'eu' ? 'E' : 'C', d = A.concat(B).join('');
+  const groups = []; for (let k = 0; k < d.length; k += 6) groups.push(d.slice(k, k + 6));
+  return `BKG-${l}${ymd}-${tag}-${t ? 1 : 0}-${groups.join('-')}-${checksum(l + ymd + tag + (t ? 1 : 0) + d)}`;
+}
+const CODE_RE = /BKG-([EC])(\d{6})-([A-Z0-9]{2,8})-([01])-((?:[1-5]{6}-){6}[1-5]{6})-([0-9A-Z]{2})(?![0-9A-Z])/g;
+function parseCodes(text) {
+  const up = String(text).toUpperCase();
+  const seen = new Set(), valid = []; let bad = 0, dup = 0;
+  const attempts = (up.match(/BKG-/g) || []).length;
+  for (const m of up.matchAll(CODE_RE)) {
+    const d = m[5].replace(/-/g, '');
+    if (checksum(m[1] + m[2] + m[3] + m[4] + d) !== m[6]) { bad++; continue; }
+    if (seen.has(m[0])) { dup++; continue; }
+    seen.add(m[0]);
+    const ans = d.split('').map(Number);
+    valid.push({ lang: m[1] === 'E' ? 'eu' : 'es', ymd: m[2], tag: m[3], t: m[4] === '1', A: ans.slice(0, N), B: ans.slice(N) });
+  }
+  bad += Math.max(0, attempts - valid.length - dup - bad);
+  return { valid, bad, dup };
+}
+function aggregate(list) {
+  const out = { n: list.length, A: {}, B: {}, lowA: {} };
+  const sA = list.map(r => patScores(r.A)), sB = list.map(r => patScores(r.B));
+  for (const p of PAT) {
+    out.A[p] = mean(sA.map(s => s[p]));
+    out.B[p] = mean(sB.map(s => s[p]));
+    out.lowA[p] = sA.filter(s => s[p] <= 2.5).length / list.length;
+  }
+  out.totA = mean(PAT.map(p => out.A[p])); out.totB = mean(PAT.map(p => out.B[p]));
+  return out;
+}
+function todayYMD() {
+  const d = new Date();
+  return String(d.getFullYear()).slice(2) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+}
+
+/* ---------- Example data (deterministic, clearly labelled as invented) ---------- */
+function sampleCodes() {
+  let seed = 20261126;
+  const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const gauss = () => (rnd() + rnd() + rnd() - 1.5) * 1.15;
+  const muA = { pra: 3.4, lis: 2.9, und: 3.1, hel: 3.8, def: 2.4, iso: 2.6, gro: 3.3 };
+  const clamp = (v) => Math.max(1, Math.min(5, Math.round(v)));
+  const ymd = todayYMD(), codes = [];
+  for (let s = 0; s < 23; s++) {
+    const off = gauss() * 0.45;
+    const raw = (mu) => ITEMS.map((it, i) => { const k = clamp(mu[it[0]] + off + gauss() * 0.7); return it[1] ? 6 - k : k; });
+    const muB = {}; for (const p of PAT) muB[p] = Math.min(4.6, muA[p] + 0.7 + gauss() * 0.15);
+    let A = raw(muA), B = raw(muB), t = 1;
+    if (s === 7) { A = Array(N).fill(4); B = Array(N).fill(4); }
+    if (s === 15) t = 0;
+    codes.push(makeCode(s % 5 ? 'eu' : 'es', ymd, 'ADIB', t, A, B));
+  }
+  return codes.join('\n');
+}
+
+/* ---------- Charts ---------- */
+function legendHTML() {
+  const t = L();
+  return `<div class="legend"><span><i class="mk a"></i>${t.legA}</span><span><i class="mk b"></i>${t.legB}</span><span class="muted"><i class="mk mid"></i>${t.legMid}</span></div>`;
+}
+function dumbbellsHTML(a, b) {
+  const t = L();
+  const pos = (v) => ((v - 1) / 4 * 100).toFixed(1) + '%';
+  const rows = PAT.map(p => {
+    const lo = Math.min(a[p], b[p]), hi = Math.max(a[p], b[p]);
+    return `<div class="db"><span class="name">${t.pat[p][0]}</span>
+      <span class="track" role="img" aria-label="${t.pat[p][0]}: ${t.legA} ${fmt(a[p])}, ${t.legB} ${fmt(b[p])}">
+        <span class="midl"></span><span class="gap" style="left:${pos(lo)};width:calc(${pos(hi)} - ${pos(lo)})"></span>
+        <span class="dot a" style="left:${pos(a[p])}" title="${t.legA}: ${fmt(a[p])}"></span>
+        <span class="dot b" style="left:${pos(b[p])}" title="${t.legB}: ${fmt(b[p])}"></span>
+      </span>
+      <span class="vals"><i class="mk a"></i> <b>${fmt(a[p])}</b><br><i class="mk b"></i> <b>${fmt(b[p])}</b></span></div>`;
+  }).join('');
+  const ticks = [1, 2, 3, 4, 5].map(v => `<span style="left:${(v - 1) * 25}%">${v}</span>`).join('');
+  return `<div class="dumbbells">${rows}<div class="axis"><span></span><div class="ticks">${ticks}</div><span></span></div></div>`;
+}
+function radarHTML(a, b) {
+  const t = L(), n = PAT.length, W = 440, H = 352, cx = W / 2, cy = 192, R = 122;
+  const ang = (i) => -Math.PI / 2 + i * 2 * Math.PI / n;
+  const pt = (i, v) => { const r = R * (v - 1) / 4; return [cx + r * Math.cos(ang(i)), cy + r * Math.sin(ang(i))]; };
+  const f1 = (x) => x.toFixed(1);
+  const ring = (v) => PAT.map((_, i) => pt(i, v).map(f1).join(',')).join(' ');
+  let g = '';
+  for (const v of [2, 4, 5]) g += `<polygon class="grid" points="${ring(v)}"/>`;
+  g += `<polygon class="grid mid" points="${ring(3)}"/>`;
+  PAT.forEach((_, i) => { const [x, y] = pt(i, 5); g += `<line class="spoke" x1="${cx}" y1="${cy}" x2="${f1(x)}" y2="${f1(y)}"/>`; });
+  g += `<text class="ring" x="${cx + 4}" y="${f1(cy - R / 2 + 11)}">3</text><text class="ring" x="${cx + 4}" y="${f1(cy - R + 11)}">5</text>`;
+  g += `<polygon class="areaB" points="${PAT.map((p, i) => pt(i, b[p]).map(f1).join(',')).join(' ')}"/>`;
+  g += `<polygon class="areaA" points="${PAT.map((p, i) => pt(i, a[p]).map(f1).join(',')).join(' ')}"/>`;
+  PAT.forEach((p, i) => {
+    const an = ang(i), c = Math.cos(an), sn = Math.sin(an), d = R + 14;
+    const anchor = c > 0.25 ? 'start' : c < -0.25 ? 'end' : 'middle';
+    const words = t.pat[p][2].split(' ');
+    const lines = words.length > 1 && t.pat[p][2].length > 11 ? [words.slice(0, -1).join(' '), words[words.length - 1]] : [t.pat[p][2]];
+    const y0 = cy + d * sn + (sn < -0.5 ? -(lines.length - 1) * 17 - 4 : sn > 0.5 ? 14 : -(lines.length - 1) * 8.5 + 5);
+    lines.forEach((ln, j) => { g += `<text class="lbl" x="${f1(cx + d * c)}" y="${f1(y0 + j * 17)}" text-anchor="${anchor}">${ln}</text>`; });
+  });
+  PAT.forEach((p, i) => {
+    const [xa, ya] = pt(i, a[p]), [xb, yb] = pt(i, b[p]);
+    g += `<circle class="hit" tabindex="0" cx="${f1(xb)}" cy="${f1(yb)}" r="13" data-tip="${t.pat[p][0]} · ${t.legB}: ${fmt(b[p])}"><title>${t.pat[p][0]} · ${t.legB}: ${fmt(b[p])}</title></circle>`;
+    g += `<rect class="dotB" x="${f1(xb - 4.5)}" y="${f1(yb - 4.5)}" width="9" height="9" transform="rotate(45 ${f1(xb)} ${f1(yb)})"/>`;
+    g += `<circle class="hit" tabindex="0" cx="${f1(xa)}" cy="${f1(ya)}" r="13" data-tip="${t.pat[p][0]} · ${t.legA}: ${fmt(a[p])}"><title>${t.pat[p][0]} · ${t.legA}: ${fmt(a[p])}</title></circle>`;
+    g += `<circle class="dotA" cx="${f1(xa)}" cy="${f1(ya)}" r="5"/>`;
+  });
+  const label = PAT.map(p => `${t.pat[p][0]} ${fmt(a[p])} / ${fmt(b[p])}`).join(', ');
+  return `<figure class="radar"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${g}</svg><span class="tip" hidden></span></figure>`;
+}
+
+/* ---------- Rendering: shared ---------- */
+function renderStatic() {
+  const t = L();
+  document.documentElement.lang = S.lang;
+  document.querySelectorAll('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (typeof v === 'string') el.innerHTML = v; });
+  document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === S.lang)));
+  $('patlist').innerHTML = PAT.map(p => `<li><b>${t.pat[p][0]}</b><span>${t.pat[p][1]}</span></li>`).join('');
+  $('howList').innerHTML = t.how.map(h => `<li>${h}</li>`).join('');
+  const leg = t.scale.map((s, i) => `<div><b>${i + 1}</b>${s}</div>`).join('');
+  $('legendA').innerHTML = leg; $('legendB').innerHTML = leg;
+  $('sources').innerHTML = `<strong>${t.sources}</strong>` + SOURCES.map(s => `<p>${s}</p>`).join('');
+}
+function renderMode() {
+  document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.mode === S.mode)));
+  $('mode-stu').hidden = S.mode !== 'stu';
+  $('mode-tea').hidden = S.mode !== 'tea';
+}
+
+/* ---------- Rendering: student ---------- */
+function renderNav() {
+  const t = L();
+  $('stepnav').innerHTML = t.steps.map((s, i) => {
+    const n = i + 1;
+    return `<li><button type="button" class="${n < S.step ? 'done' : ''}" data-goto="${n}" ${n === S.step ? 'aria-current="step"' : ''} ${n > S.maxStep ? 'disabled' : ''}><span class="n">${n}</span><span class="lbl">${s}</span></button></li>`;
+  }).join('');
+  $('testprogress').hidden = !(S.step === 2 || S.step === 3);
+  const n = S.A.concat(S.B).filter(Boolean).length;
+  $('progbar').style.width = (n / (2 * N) * 100) + '%';
+  $('proglabel').textContent = t.progress(n);
+}
+function itemsHTML(part) {
+  const t = L(), ans = S[part];
+  return ITEMS.map((it, i) => {
+    const txt = part === 'A' ? (S.lang === 'eu' ? it[3] : it[2]) : (S.lang === 'eu' ? it[5] : it[4]);
+    const id = `${part}${i}`;
+    const opts = [1, 2, 3, 4, 5].map(v => `<input type="radio" name="${id}" id="${id}-${v}" value="${v}" ${ans[i] === v ? 'checked' : ''}><label for="${id}-${v}" title="${t.scale[v - 1]}">${v}</label>`).join('');
+    return `<div class="item" id="it-${id}"><span class="num">${i + 1}</span><span id="qt-${id}">${txt}</span><div class="opts" role="radiogroup" aria-labelledby="qt-${id}">${opts}</div></div>`;
+  }).join('');
+}
+function renderItems() { $('itemsA').innerHTML = itemsHTML('A'); $('itemsB').innerHTML = itemsHTML('B'); $('missA').hidden = true; $('missB').hidden = true; }
+function renderStuResult() {
+  const r = S.result; if (!r) { $('stuResult').innerHTML = ''; return; }
+  const t = L(), c = r.checks;
+  const a = patScores(r.A), b = patScores(r.B);
+  const k = PAT.filter(p => b[p] - a[p] >= 0.34).length;
+  const ic = (ok) => ok ? '<span class="ic ok">✓</span>' : '<span class="ic warn">!</span>';
+  const mm = Math.floor(r.secs / 60), ss = Math.round(r.secs % 60);
+  $('stuResult').innerHTML = `
+    <div class="card">
+      <div class="verdict ${c.allOk ? 'ok' : 'warn'}"><span class="tag">${c.allOk ? t.okTag : t.warnTag}</span><span class="small">${c.allOk ? t.okSub : t.warnSub}</span></div>
+      <ul class="checks">
+        <li>${ic(c.pat.ok)}<div><strong>${t.chkPat}.</strong> <span class="small">${t.chkPatD(c.pat.r)}</span></div></li>
+        <li>${ic(c.acq.ok)}<div><strong>${t.chkAcq}.</strong> <span class="small">${t.chkAcqD(fmt(c.acq.m))}</span></div></li>
+        <li>${ic(c.time.ok)}<div><strong>${t.chkTime}.</strong> <span class="small">${t.chkTimeD(`${mm} min ${ss} s`)}</span></div></li>
+      </ul>
+    </div>
+    <div class="card">${legendHTML()}${dumbbellsHTML(a, b)}<p class="small">${k >= 3 ? t.gapMany(k) : t.gapFew}</p></div>
+    <div class="card no-print">
+      <h3>${t.codeH}</h3>
+      <div class="code" id="stucode">${r.code}</div>
+      <p class="small muted">${t.codeHelp}</p>
+      <div class="row"><button class="btn" type="button" id="copyCode">${t.copy}</button><button class="btn ghost" type="button" data-goto="2">${t.review}</button><span class="small muted" id="copymsg" role="status"></span></div>
+    </div>
+    <div class="card"><h3>${t.qH}</h3><ol class="qs">${t.qs.map(q => `<li>${q}</li>`).join('')}</ol></div>`;
+}
+function showStep(n, scroll) {
+  S.step = n;
+  for (let i = 1; i <= 4; i++) $('step-' + i).hidden = i !== n;
+  renderNav();
+  if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function missingIn(part) { return S[part].map((v, i) => v ? null : i + 1).filter(Boolean); }
+function flagMissing(part, errId) {
+  const miss = missingIn(part);
+  document.querySelectorAll(`#items${part} .item`).forEach(el => el.classList.remove('missing'));
+  if (!miss.length) { $(errId).hidden = true; return true; }
+  miss.forEach(n => $(`it-${part}${n - 1}`).classList.add('missing'));
+  $(errId).textContent = L().missing(miss.length, miss.join(', '));
+  $(errId).hidden = false;
+  $(`it-${part}${miss[0] - 1}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+
+/* ---------- Rendering: teacher ---------- */
+function renderTeacher() {
+  const t = L(), box = $('teaResult');
+  const parsed = parseCodes(S.tea.text);
+  if (!S.tea.text.trim()) { box.innerHTML = ''; return; }
+  if (!parsed.valid.length) { box.innerHTML = `<p class="err">${t.noCodes}</p>`; return; }
+  const counts = {}; parsed.valid.forEach(r => { counts[r.tag] = (counts[r.tag] || 0) + 1; });
+  const tags = Object.keys(counts).sort((x, y) => counts[y] - counts[x]);
+  if (!tags.includes(S.tea.tag)) S.tea.tag = tags[0];
+  const inTag = parsed.valid.filter(r => r.tag === S.tea.tag);
+  const flagged = inTag.filter(r => !checks(r.A, r.B, r.t).allOk);
+  const used = S.tea.excl ? inTag.filter(r => checks(r.A, r.B, r.t).allOk) : inTag;
+  const sel = tags.length > 1
+    ? `<div class="field"><label for="tagSel">${t.tagSel}</label><select id="tagSel">${tags.map(g => `<option value="${g}" ${g === S.tea.tag ? 'selected' : ''}>${g} (${counts[g]})</option>`).join('')}</select></div>` : '';
+  const head = `
+    ${S.tea.sample ? `<p class="sample">${t.sampleNote}</p>` : ''}
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:end">
+        ${sel || `<h2>${S.tea.tag}</h2>`}
+        <label class="check-row"><input type="checkbox" id="excl" ${S.tea.excl ? 'checked' : ''}> ${t.exclL}</label>
+      </div>
+      <div class="tiles">
+        <div class="tile"><span class="k">${t.tiles.n}</span><span class="v">${used.length}</span></div>
+        <div class="tile"><span class="k">${t.tiles.ex}</span><span class="v">${S.tea.excl ? flagged.length : 0}</span></div>
+        <div class="tile"><span class="k">${t.tiles.bad}</span><span class="v">${parsed.bad}</span></div>
+        <div class="tile"><span class="k">${t.tiles.dup}</span><span class="v">${parsed.dup}</span></div>
+      </div>
+    </div>`;
+  if (used.length < MIN_N) { box.innerHTML = head + `<p class="err">${t.tooFew(used.length)}</p>`; return; }
+  const ag = aggregate(used);
+  const rows = PAT.map(p => {
+    const lv = level(ag.A[p]);
+    const d = ag.B[p] - ag.A[p];
+    return `<tr><th scope="row">${t.pat[p][0]}</th><td class="n">${fmt(ag.A[p])}</td><td class="n">${fmt(ag.B[p])}</td><td class="n">${d >= 0 ? '+' : '−'}${fmt(Math.abs(d))}</td><td class="n">${Math.round(ag.lowA[p] * 100)} %</td><td><span class="lvl ${lv}">${t.lvl[lv]}</span></td></tr>`;
+  }).join('');
+  const prio = PAT.filter(p => ag.A[p] < 3.5).sort((x, y) => ag.A[x] - ag.A[y]).slice(0, 3);
+  const ideaList = (p) => `<ul>${t.ideas[p].map(i => `<li>${i}</li>`).join('')}</ul>`;
+  box.innerHTML = head + `
+    <div class="card">
+      <h2>${t.profH}</h2>
+      <p class="small muted">${t.profP}</p>
+      ${legendHTML()}
+      ${radarHTML(ag.A, ag.B)}
+      <p class="small muted">${t.radarNote}</p>
+      ${dumbbellsHTML(ag.A, ag.B)}
+    </div>
+    <div class="card">
+      <div class="tablewrap"><table><thead><tr>${t.tblH.map((h, i) => `<th class="${i && i < 5 ? 'n' : ''}">${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+      <p class="small muted">${t.lowNote}</p>
+      <div class="row no-print"><button class="btn ghost" type="button" id="copySum">${t.copySum}</button><span class="small muted" id="summsg" role="status"></span></div>
+    </div>
+    <div class="card">
+      <h2>${t.prioH}</h2>
+      <p class="small muted">${t.prioP}</p>
+      <div class="prio">${prio.length ? prio.map(p => `<article><h3>${t.pat[p][0]} · ${fmt(ag.A[p])}</h3><p class="small muted">${t.pat[p][1]}</p>${ideaList(p)}</article>`).join('') : `<p>${t.prioNone}</p>`}</div>
+      <details class="info"><summary>${t.allIdeasH}</summary><div class="inner">${PAT.map(p => `<div><strong>${t.pat[p][0]}</strong>${ideaList(p)}</div>`).join('')}</div></details>
+    </div>`;
+  box.dataset.summary = [t.tblH.slice(0, 5).join('\t'), ...PAT.map(p => [t.pat[p][0], fmt(ag.A[p]), fmt(ag.B[p]), fmt(ag.B[p] - ag.A[p]), Math.round(ag.lowA[p] * 100) + '%'].join('\t')), `n\t${used.length}`].join('\n');
+}
+
+function renderAll() {
+  renderStatic(); renderMode(); renderItems(); renderStuResult(); showStep(S.step, false);
+  $('codes').value = S.tea.text; renderTeacher();
+}
+
+/* ---------- Events ---------- */
+function copyText(txt, ok, fail) { try { navigator.clipboard.writeText(txt).then(ok, fail); } catch (_) { fail(); } }
+function showTip(hit) {
+  const fig = hit.closest('.radar'), tip = fig.querySelector('.tip');
+  const fr = fig.getBoundingClientRect(), hr = hit.getBoundingClientRect();
+  tip.textContent = hit.dataset.tip;
+  tip.style.left = (hr.left + hr.width / 2 - fr.left) + 'px';
+  tip.style.top = (hr.top + hr.height / 2 - fr.top) + 'px';
+  tip.hidden = false;
+}
+function hideTips() { document.querySelectorAll('.radar .tip').forEach(x => { x.hidden = true; }); }
+document.addEventListener('pointerover', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); });
+document.addEventListener('pointerout', (e) => { if (e.target.closest && e.target.closest('.radar .hit')) hideTips(); });
+document.addEventListener('focusin', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); });
+document.addEventListener('focusout', (e) => { if (e.target.closest && e.target.closest('.radar .hit')) hideTips(); });
+
+document.addEventListener('click', (e) => {
+  const h = e.target.closest('.radar .hit'); if (h) { showTip(h); return; } else hideTips();
+  const lb = e.target.closest('[data-lang]');
+  if (lb) { S.lang = lb.dataset.lang; try { localStorage.setItem('klima-lang', S.lang); } catch (_) {} renderAll(); return; }
+  const md = e.target.closest('[data-mode]');
+  if (md) { S.mode = md.dataset.mode; renderMode(); try { history.replaceState(null, '', S.mode === 'tea' ? '#irakaslea' : location.pathname + location.search); } catch (_) {} return; }
+  const g = e.target.closest('[data-goto]');
+  if (g && !g.disabled) { showStep(+g.dataset.goto, true); return; }
+  if (e.target.id === 'copyCode') {
+    const t = L();
+    copyText(S.result.code, () => { $('copymsg').textContent = t.copied; }, () => {
+      $('copymsg').textContent = t.copyFail;
+      const rg = document.createRange(); rg.selectNodeContents($('stucode')); const sl = getSelection(); sl.removeAllRanges(); sl.addRange(rg);
+    });
+  }
+  if (e.target.id === 'copySum') {
+    const t = L();
+    copyText($('teaResult').dataset.summary || '', () => { $('summsg').textContent = t.sumCopied; }, () => { $('summsg').textContent = t.copyFail; });
+  }
+});
+$('start').addEventListener('click', () => {
+  const tag = $('tag').value.toUpperCase().normalize('NFD').replace(/[^A-Z0-9]/g, '');
+  $('tag').value = tag;
+  if (tag.length < 2 || tag.length > 8) { $('tagerr').hidden = false; $('tag').focus(); return; }
+  $('tagerr').hidden = true; S.tag = tag; S.maxStep = Math.max(S.maxStep, 2); showStep(2, true);
+});
+function onAnswer(e) {
+  const m = e.target.name && e.target.name.match(/^([AB])(\d+)$/);
+  if (!m) return;
+  if (S.t0 === null) S.t0 = Date.now();
+  S[m[1]][+m[2]] = +e.target.value;
+  $(`it-${m[1]}${m[2]}`).classList.remove('missing');
+  if (S.result) { S.result = null; S.maxStep = 3; renderStuResult(); }
+  renderNav();
+}
+$('itemsA').addEventListener('change', onAnswer);
+$('itemsB').addEventListener('change', onAnswer);
+$('toB').addEventListener('click', () => { if (flagMissing('A', 'missA')) { S.maxStep = Math.max(S.maxStep, 3); showStep(3, true); } });
+$('submit').addEventListener('click', () => {
+  if (!flagMissing('A', 'missA')) { showStep(2, false); flagMissing('A', 'missA'); return; }
+  if (!flagMissing('B', 'missB')) return;
+  const secs = S.t0 ? (Date.now() - S.t0) / 1000 : 0, tOk = secs >= MIN_SEC;
+  S.result = { A: S.A.slice(), B: S.B.slice(), secs, checks: checks(S.A, S.B, tOk), code: makeCode(S.lang, todayYMD(), S.tag, tOk, S.A, S.B) };
+  S.maxStep = 4; renderStuResult(); showStep(4, true);
+});
+$('analyze').addEventListener('click', () => { S.tea.text = $('codes').value; S.tea.sample = false; S.tea.tag = ''; renderTeacher(); });
+$('loadSample').addEventListener('click', () => { S.tea.text = sampleCodes(); S.tea.sample = true; S.tea.tag = ''; $('codes').value = S.tea.text; renderTeacher(); });
+$('clearCodes').addEventListener('click', () => { S.tea.text = ''; S.tea.sample = false; $('codes').value = ''; renderTeacher(); });
+$('teaResult').addEventListener('change', (e) => {
+  if (e.target.id === 'tagSel') { S.tea.tag = e.target.value; renderTeacher(); }
+  if (e.target.id === 'excl') { S.tea.excl = e.target.checked; renderTeacher(); }
+});
+
+/* ---------- Boot ---------- */
+try { const l = localStorage.getItem('klima-lang'); if (l === 'eu' || l === 'es') S.lang = l; } catch (_) {}
+if (/^#(irakaslea|profesorado)$/.test(location.hash)) S.mode = 'tea';
+window.addEventListener('hashchange', () => { S.mode = /^#(irakaslea|profesorado)$/.test(location.hash) ? 'tea' : 'stu'; renderMode(); });
+S.tea.text = sampleCodes();
+renderAll();
+
+window.__klima = { ITEMS, PAT, patScores, checks, makeCode, parseCodes, aggregate, checksum, sampleCodes };
+})();
+</script>
+
+</html>
