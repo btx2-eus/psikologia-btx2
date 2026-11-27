@@ -147,6 +147,30 @@ textarea { width: 100%; min-height: 9rem; font-family: ui-monospace, 'SF Mono', 
 .radar .dotA { fill: var(--serA); stroke: var(--surface); stroke-width: 2; }
 .radar .dotB { fill: var(--serB); stroke: var(--surface); stroke-width: 2; }
 .radar .hit { fill: transparent; cursor: pointer; outline: none; }
+/* distribution: diverging stacked bars (orange = low, gray = mid, teal-green = high; adjacent steps validated) */
+.dist { position: relative; display: grid; gap: 0.55rem; --d1: #A84A0C; --d2: #EFA266; --d3: #E2DEE2; --d4: #6DBB9B; --d5: #1E7A62; }
+.dist .legend .mk { border-radius: 3px; width: 12px; height: 12px; }
+.dist .mk.s1, .dist .dseg.s1 { background: var(--d1); } .dist .mk.s2, .dist .dseg.s2 { background: var(--d2); }
+.dist .mk.s3, .dist .dseg.s3 { background: var(--d3); } .dist .mk.s4, .dist .dseg.s4 { background: var(--d4); }
+.dist .mk.s5, .dist .dseg.s5 { background: var(--d5); }
+.drow { display: grid; grid-template-columns: minmax(9rem, 13rem) 2.8rem minmax(0, 1fr) 2.8rem; gap: 0.3rem 0.6rem; align-items: center; }
+.drow .name { font-weight: 600; font-size: 0.92rem; line-height: 1.25; }
+.drow .pct { white-space: nowrap; font-size: 0.82rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.drow .pct.l { text-align: right; } .drow .pct.r { text-align: left; }
+.dtrack { position: relative; height: 24px; }
+.dtrack .ctr { position: absolute; left: 50%; top: -4px; bottom: -4px; border-left: 2px solid var(--fg); opacity: 0.55; z-index: 1; pointer-events: none; }
+.dtrack .dseg { position: absolute; top: 0; bottom: 0; border-right: 2px solid var(--surface); cursor: pointer; outline: none; }
+.dtrack .dseg:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent); }
+.dtrack .dseg.first { border-radius: 4px 0 0 4px; } .dtrack .dseg.last { border-radius: 0 4px 4px 0; border-right: 0; }
+.pol { display: inline-block; margin-left: 0.35rem; font-size: 0.7rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 999px; background: var(--warn-soft); color: var(--warn); white-space: nowrap; vertical-align: 1px; }
+.daxis { display: grid; grid-template-columns: minmax(9rem, 13rem) 2.8rem minmax(0, 1fr) 2.8rem; gap: 0 0.6rem; font-size: 0.75rem; color: var(--muted); }
+.daxis > :nth-child(3) { display: flex; justify-content: space-between; }
+.seg-tog { margin-bottom: 0.2rem; justify-self: start; }
+@media (max-width: 560px) {
+  .drow, .daxis { grid-template-columns: 3.1rem minmax(0, 1fr) 3.1rem; }
+  .drow .name { grid-column: 1 / -1; }
+  .daxis > :first-child { display: none; }
+}
 .tip { position: absolute; pointer-events: none; background: var(--fg); color: var(--surface); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.55rem; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); font-variant-numeric: tabular-nums; z-index: 2; }
 /* teacher */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.6rem; }
@@ -405,6 +429,16 @@ eu: {
   profH: 'Gelaren profila',
   profP: 'Zazpi patroiak, ikasleen batez bestekoa: nola ikusten duten gela (1. zatia) eta nola ikusten duten beren burua (2. zatia).',
   radarNote: 'Erdiko zirkulu etenak 3 adierazten du. Jarri sagua puntu baten gainean, edo sakatu, balioa ikusteko.',
+  distH: 'Nola banatzen da gela?',
+  distP: 'Batez bestekoak ez du dena esaten: 3ko batez bestekoa denek 3 jartzetik etor daiteke, edo erdiek 1 eta beste erdiek 5 jartzetik. Barra bakoitzak erakusten du ikasleen zer zatik ikusten duen patroia maila bakoitzean (ikasle bakoitzaren puntuazioa biribilduta). Ezkerrean, maila baxuak; eskuinean, altuak.',
+  distTog: ['Nire gela (A)', 'Ni (B)'],
+  bins: ['Oso baxua', 'Baxua', 'Erdikoa', 'Altua', 'Oso altua'],
+  dAxis: ['← Baxua (1-2)', 'Altua (4-5) →'],
+  dTip: (pat, bin, c, pct) => `${pat} · ${bin}: ${c} ikasle (${pct} %)`,
+  polTag: 'Banatuta',
+  polNote: (l) => `<strong>Gela banatuta dago patroi hauetan: ${l}.</strong> Ikasleen laurden batek baino gehiagok baxu ikusten dute, eta beste laurden batek baino gehiagok altu. Baliteke talde batzuek giro hori ez bizitzea (adibidez, bakarrik geratzen direnek). Hemen batez bestekoa ez da nahikoa: galdetu zeinek bizi duen bakoitza.`,
+  polNone: 'Ez dago patroi banaturik: ikasleek antzera ikusten dute gela.',
+  distTipNote: 'Jarri sagua barra-zati baten gainean, edo sakatu, ikasle kopurua ikusteko.',
   tblH: ['Patroia', 'Gela (A)', 'Ni (B)', 'B − A', 'A ≤ 2,5', 'Maila'],
   lowNote: '«A ≤ 2,5»: patroi hori gelan ia ez dagoela uste duten ikasleen ehunekoa.',
   prioH: 'Lehentasunak',
@@ -501,6 +535,16 @@ es: {
   profH: 'Perfil de la clase',
   profP: 'Los siete patrones, media del alumnado: cómo ven la clase (parte 1) y cómo se ven a sí mismos (parte 2).',
   radarNote: 'El círculo discontinuo marca el 3. Pasa el ratón por un punto, o tócalo, para ver su valor.',
+  distH: '¿Cómo se reparte la clase?',
+  distP: 'La media no lo dice todo: una media de 3 puede salir de que todos pongan 3 o de que la mitad ponga 1 y la otra mitad 5. Cada barra muestra qué parte del alumnado ve el patrón en cada nivel (puntuación de cada estudiante, redondeada). A la izquierda, niveles bajos; a la derecha, altos.',
+  distTog: ['Mi clase (A)', 'Yo (B)'],
+  bins: ['Muy bajo', 'Bajo', 'Intermedio', 'Alto', 'Muy alto'],
+  dAxis: ['← Bajo (1-2)', 'Alto (4-5) →'],
+  dTip: (pat, bin, c, pct) => `${pat} · ${bin}: ${c} estudiante${c === 1 ? '' : 's'} (${pct} %)`,
+  polTag: 'Dividida',
+  polNote: (l) => `<strong>La clase está dividida en estos patrones: ${l}.</strong> Más de una cuarta parte del alumnado los ve bajos y otra cuarta parte, altos. Puede que algunos grupos no vivan ese clima (por ejemplo, quienes se quedan solos). Aquí la media no basta: pregunta quién vive cada lado.`,
+  polNone: 'No hay patrones divididos: el alumnado ve la clase de forma parecida.',
+  distTipNote: 'Pasa el ratón por un tramo de la barra, o tócalo, para ver cuántos estudiantes son.',
   tblH: ['Patrón', 'Clase (A)', 'Yo (B)', 'B − A', 'A ≤ 2,5', 'Nivel'],
   lowNote: '«A ≤ 2,5»: porcentaje del alumnado que cree que ese patrón casi no se da en la clase.',
   prioH: 'Prioridades',
@@ -528,7 +572,7 @@ const SOURCES = [
 const S = {
   lang: 'eu', mode: 'stu', step: 1, maxStep: 1,
   tag: '', A: Array(N).fill(0), B: Array(N).fill(0), t0: null, result: null,
-  tea: { text: '', sample: true, tag: '', excl: true }
+  tea: { text: '', sample: true, tag: '', excl: true, dist: 'A' }
 };
 const $ = (id) => document.getElementById(id);
 const L = () => T[S.lang];
@@ -583,12 +627,17 @@ function parseCodes(text) {
   return { valid, bad, dup };
 }
 function aggregate(list) {
-  const out = { n: list.length, A: {}, B: {}, lowA: {} };
+  const out = { n: list.length, A: {}, B: {}, lowA: {}, dist: { A: {}, B: {} } };
   const sA = list.map(r => patScores(r.A)), sB = list.map(r => patScores(r.B));
   for (const p of PAT) {
     out.A[p] = mean(sA.map(s => s[p]));
     out.B[p] = mean(sB.map(s => s[p]));
     out.lowA[p] = sA.filter(s => s[p] <= 2.5).length / list.length;
+    for (const [k, arr] of [['A', sA], ['B', sB]]) {
+      const c = [0, 0, 0, 0, 0];
+      arr.forEach(s => { c[Math.round(s[p] + 1e-9) - 1]++; });
+      out.dist[k][p] = c;
+    }
   }
   out.totA = mean(PAT.map(p => out.A[p])); out.totB = mean(PAT.map(p => out.B[p]));
   return out;
@@ -609,8 +658,9 @@ function sampleCodes() {
   for (let s = 0; s < 23; s++) {
     const off = gauss() * 0.45;
     const raw = (mu) => ITEMS.map((it, i) => { const k = clamp(mu[it[0]] + off + gauss() * 0.7); return it[1] ? 6 - k : k; });
-    const muB = {}; for (const p of PAT) muB[p] = Math.min(4.6, muA[p] + 0.7 + gauss() * 0.15);
-    let A = raw(muA), B = raw(muB), t = 1;
+    const mu = Object.assign({}, muA, { iso: s % 3 === 0 ? 1.2 : 4.0 });
+    const muB = {}; for (const p of PAT) muB[p] = Math.min(4.6, mu[p] + 0.7 + gauss() * 0.15);
+    let A = raw(mu), B = raw(muB), t = 1;
     if (s === 7) { A = Array(N).fill(4); B = Array(N).fill(4); }
     if (s === 15) t = 0;
     codes.push(makeCode(s % 5 ? 'eu' : 'es', ymd, 'ADIB', t, A, B));
@@ -619,6 +669,40 @@ function sampleCodes() {
 }
 
 /* ---------- Charts ---------- */
+function polarized(c) {
+  const n = c.reduce((a, b) => a + b, 0);
+  return (c[0] + c[1]) / n >= 0.25 && (c[3] + c[4]) / n >= 0.25;
+}
+function distHTML(dist, part) {
+  const t = L();
+  const rows = PAT.map(p => {
+    const c = dist[part][p], n = c.reduce((a, b) => a + b, 0), sh = c.map(x => x / n);
+    return { p, c, n, sh, Lx: sh[0] + sh[1] + sh[2] / 2, Rx: sh[3] + sh[4] + sh[2] / 2 };
+  });
+  const ext = Math.max(0.5, ...rows.map(r => Math.max(r.Lx, r.Rx)));
+  const k = 48 / ext; // % of track per unit share; the longest arm fills 48 % (half minus a little air)
+  const pc = (x) => Math.round(x * 100);
+  const body = rows.map(r => {
+    let x = 50 - r.Lx * k, segs = '';
+    const vis = r.c.map((v, i) => v ? i : -1).filter(i => i >= 0);
+    r.c.forEach((v, i) => {
+      if (!v) return;
+      const w = r.sh[i] * k;
+      const tip = t.dTip(t.pat[r.p][0], t.bins[i], v, pc(r.sh[i]));
+      segs += `<span class="hit dseg s${i + 1}${i === vis[0] ? ' first' : ''}${i === vis[vis.length - 1] ? ' last' : ''}" tabindex="0" style="left:${x.toFixed(2)}%;width:${w.toFixed(2)}%" data-tip="${esc(tip)}" aria-label="${esc(tip)}"></span>`;
+      x += w;
+    });
+    const lo = pc(r.sh[0] + r.sh[1]), hi = pc(r.sh[3] + r.sh[4]);
+    const pol = polarized(r.c) ? `<span class="pol">${t.polTag}</span>` : '';
+    return `<div class="drow"><span class="name">${t.pat[r.p][0]}${pol}</span><span class="pct l">${lo} %</span><span class="dtrack">${segs}<span class="ctr"></span></span><span class="pct r">${hi} %</span></div>`;
+  }).join('');
+  const legend = `<div class="legend">${t.bins.map((b, i) => `<span><i class="mk s${i + 1}"></i>${b}</span>`).join('')}</div>`;
+  const tog = `<div class="seg seg-tog" role="group">${['A', 'B'].map((x, i) => `<button type="button" data-dist="${x}" aria-pressed="${S.tea.dist === x}">${t.distTog[i]}</button>`).join('')}</div>`;
+  const pols = PAT.filter(p => polarized(dist[part][p])).map(p => t.pat[p][0]);
+  return `${tog}<div class="dist" data-tips>${legend}${body}<div class="daxis"><span></span><span></span><span><span>${t.dAxis[0]}</span><span>${t.dAxis[1]}</span></span><span></span></div><span class="tip" hidden></span></div>
+    <p class="small muted">${t.distTipNote}</p>
+    <p class="small">${pols.length ? t.polNote(pols.join(', ')) : t.polNone}</p>`;
+}
 function legendHTML() {
   const t = L();
   return `<div class="legend"><span><i class="mk a"></i>${t.legA}</span><span><i class="mk b"></i>${t.legB}</span><span class="muted"><i class="mk mid"></i>${t.legMid}</span></div>`;
@@ -668,7 +752,7 @@ function radarHTML(a, b) {
     g += `<circle class="dotA" cx="${f1(xa)}" cy="${f1(ya)}" r="5"/>`;
   });
   const label = PAT.map(p => `${t.pat[p][0]} ${fmt(a[p])} / ${fmt(b[p])}`).join(', ');
-  return `<figure class="radar"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${g}</svg><span class="tip" hidden></span></figure>`;
+  return `<figure class="radar" data-tips><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${g}</svg><span class="tip" hidden></span></figure>`;
 }
 
 /* ---------- Rendering: shared ---------- */
@@ -801,6 +885,11 @@ function renderTeacher() {
       ${dumbbellsHTML(ag.A, ag.B)}
     </div>
     <div class="card">
+      <h2>${t.distH}</h2>
+      <p class="small muted">${t.distP}</p>
+      ${distHTML(ag.dist, S.tea.dist)}
+    </div>
+    <div class="card">
       <div class="tablewrap"><table><thead><tr>${t.tblH.map((h, i) => `<th class="${i && i < 5 ? 'n' : ''}">${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
       <p class="small muted">${t.lowNote}</p>
       <div class="row no-print"><button class="btn ghost" type="button" id="copySum">${t.copySum}</button><span class="small muted" id="summsg" role="status"></span></div>
@@ -822,21 +911,23 @@ function renderAll() {
 /* ---------- Events ---------- */
 function copyText(txt, ok, fail) { try { navigator.clipboard.writeText(txt).then(ok, fail); } catch (_) { fail(); } }
 function showTip(hit) {
-  const fig = hit.closest('.radar'), tip = fig.querySelector('.tip');
+  const fig = hit.closest('[data-tips]'), tip = fig.querySelector('.tip');
   const fr = fig.getBoundingClientRect(), hr = hit.getBoundingClientRect();
   tip.textContent = hit.dataset.tip;
   tip.style.left = (hr.left + hr.width / 2 - fr.left) + 'px';
   tip.style.top = (hr.top + hr.height / 2 - fr.top) + 'px';
   tip.hidden = false;
 }
-function hideTips() { document.querySelectorAll('.radar .tip').forEach(x => { x.hidden = true; }); }
-document.addEventListener('pointerover', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); });
-document.addEventListener('pointerout', (e) => { if (e.target.closest && e.target.closest('.radar .hit')) hideTips(); });
-document.addEventListener('focusin', (e) => { const h = e.target.closest && e.target.closest('.radar .hit'); if (h) showTip(h); });
-document.addEventListener('focusout', (e) => { if (e.target.closest && e.target.closest('.radar .hit')) hideTips(); });
+function hideTips() { document.querySelectorAll('[data-tips] .tip').forEach(x => { x.hidden = true; }); }
+document.addEventListener('pointerover', (e) => { const h = e.target.closest && e.target.closest('[data-tips] .hit'); if (h) showTip(h); });
+document.addEventListener('pointerout', (e) => { if (e.target.closest && e.target.closest('[data-tips] .hit')) hideTips(); });
+document.addEventListener('focusin', (e) => { const h = e.target.closest && e.target.closest('[data-tips] .hit'); if (h) showTip(h); });
+document.addEventListener('focusout', (e) => { if (e.target.closest && e.target.closest('[data-tips] .hit')) hideTips(); });
 
 document.addEventListener('click', (e) => {
-  const h = e.target.closest('.radar .hit'); if (h) { showTip(h); return; } else hideTips();
+  const h = e.target.closest('[data-tips] .hit'); if (h) { showTip(h); return; } else hideTips();
+  const dt = e.target.closest('[data-dist]');
+  if (dt) { S.tea.dist = dt.dataset.dist; renderTeacher(); return; }
   const lb = e.target.closest('[data-lang]');
   if (lb) { S.lang = lb.dataset.lang; try { localStorage.setItem('klima-lang', S.lang); } catch (_) {} renderAll(); return; }
   const md = e.target.closest('[data-mode]');
